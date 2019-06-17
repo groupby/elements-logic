@@ -2,12 +2,19 @@
   "name": "sfx-logic",
   "version": "0.0.0",
   "description": "SFX Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
+  "private": true,
+  "workspaces": [
+    "packages/@sfx/data-source/sayt",
+    "packages/@sfx/data-source/search",
+    "packages/@sfx/events",
+    "packages/@sfx/cache"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/groupby/sfx-logic.git"
+    "url": "https://github.com/groupby/sfx-logic.git"
   },
   "author": "",
   "license": "MIT",
