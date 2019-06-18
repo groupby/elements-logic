@@ -4,10 +4,7 @@
   "description": "SFX Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
   "private": true,
   "workspaces": [
-    "packages/@sfx/data-source/sayt",
-    "packages/@sfx/data-source/search",
-    "packages/@sfx/events",
-    "packages/@sfx/cache"
+    "packages/@sfx/*"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
