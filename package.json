@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/groupby/sfx-logic#readme",
   "devDependencies": {
+    "@types/node": "^12.0.8",
+    "nodemon": "^1.19.1",
     "typescript": "^3.5.2",
     "webpack": "^4.34.0"
   }
