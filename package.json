@@ -22,8 +22,12 @@
   "homepage": "https://github.com/groupby/sfx-logic#readme",
   "devDependencies": {
     "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
+    "@types/mocha": "^5.2.7",
     "@types/node": "^12.0.8",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
     "nodemon": "^1.19.1",
+    "sinon": "^7.3.2",
     "ts-loader": "^6.0.3",
     "typedoc": "^0.14.2",
     "typedoc-plugin-nojekyll": "^1.0.1",
