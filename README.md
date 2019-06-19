@@ -11,7 +11,7 @@ or if the repo is already cloned and you want to install submodules only, run:
 git submodule update --init
 ```
 ## Setup
-Run the `./scripts/setup.sh` script from the root of the monorepo to build all of the SFX-Logic packages.
+Run the `./scripts/setup.sh` script to build all of the SFX-Logic packages.
 ```sh
   ./scripts/setup.sh
 ```
