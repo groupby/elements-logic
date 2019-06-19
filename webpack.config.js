@@ -25,8 +25,10 @@ module.exports = {
     plugins: './presets/plugins.ts',
   },
 
+  devtool: 'source-map',
+
   output: {
-    filename: '[name].[chunkhash].js',
+    filename: '[name].js',
     path: path.resolve(__dirname, 'dist')
   },
 
