@@ -10,3 +10,30 @@ or if the repo is already cloned and you want to install submodules only, run:
 ```
 git submodule update --init
 ```
+## Setup
+Run the `./scripts/setup.sh` script from the root of the monorepo to build all of the SFX-Logic packages.
+```sh
+  ./scripts/setup.sh
+```
+
+## Commands
+The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
+
+### Building packages
+To build an individual package, run the following command:
+```sh
+yarn build
+```
+
+To build an individual package in response to changes within the `src` directory, run the following command:
+```sh
+yarn dev
+```
+
+## Bundling
+To bundle the SFX-Logic packages, run the following command at the root of the monorepo:
+```sh
+yarn bundle
+```
+
+The resulting bundles can be found with the `dist` directory at the root of the repo.
