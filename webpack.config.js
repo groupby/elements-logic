@@ -22,7 +22,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
-    plugins: './presets/plugins.js',
+    plugins: './presets/plugins.ts',
   },
 
   output: {
@@ -36,7 +36,6 @@ module.exports = {
     rules: [{
       test: /.(ts|tsx)?$/,
       loader: 'ts-loader',
-      include: [path.resolve(__dirname, 'src')],
       exclude: [/node_modules/]
     }]
   },
