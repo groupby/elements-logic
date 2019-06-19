@@ -1,0 +1,30 @@
+{
+  "name": "sfx-logic",
+  "version": "0.0.0",
+  "description": "SF-X Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
+  "private": true,
+  "workspaces": [
+    "packages/@sfx/*"
+  ],
+  "scripts": {
+    "bundle": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/sfx-logic.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/groupby/sfx-logic/issues"
+  },
+  "homepage": "https://github.com/groupby/sfx-logic#readme",
+  "devDependencies": {
+    "@types/node": "^12.0.8",
+    "nodemon": "^1.19.1",
+    "ts-loader": "^6.0.3",
+    "typescript": "^3.5.2",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4"
+  }
+}
