@@ -36,4 +36,4 @@ To bundle the SFX-Logic packages, run the following command at the root of the m
 yarn bundle
 ```
 
-The resulting bundles can be found with the `dist` directory at the root of the repo.
+The resulting bundles can be found within the `dist` directory at the root of the repo.
