@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "bundle": "webpack",
-    "docs": "typedoc --out ./docs ./packages/@sfx --readme none --mode modules"
+    "docs": "typedoc --options ./typedoc.js packages"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/groupby/sfx-logic#readme",
   "devDependencies": {
+    "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
     "@types/node": "^12.0.8",
     "nodemon": "^1.19.1",
     "ts-loader": "^6.0.3",
-    "typescript": "^3.5.2",
     "typedoc": "^0.14.2",
+    "typedoc-plugin-nojekyll": "^1.0.1",
+    "typescript": "^3.5.2",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   }
