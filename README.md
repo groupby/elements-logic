@@ -30,6 +30,12 @@ To build an individual package in response to changes within the `src` directory
 yarn dev
 ```
 
+##Documentation
+The following command will generate documentation for each module in packages/sfx using typeDoc. This will update the index file in the docs folder. 
+```sh
+yarn docs
+```
+
 ## Bundling
 To bundle the SFX-Logic packages, run the following command at the root of the monorepo:
 ```sh
