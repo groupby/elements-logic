@@ -29,7 +29,22 @@ describe('Core', () => {
 
       expect(registerA).to.be.calledWith(core.plugins);
       expect(registerB).to.be.calledWith(core.plugins);
-      expect(registerB).to.be.calledAfter(registerA);
+    });
+
+    it('should call the register() functions of each plugin in order',() => {
+      const registerA = spy();
+      const registerB = spy();
+      const registerC = spy();
+      const plugins = [
+        { register: registerA },
+        { register: registerB },
+        { register: registerC },
+      ];
+
+      core.register(plugins);
+
+      expect(registerA).to.be.calledBefore(registerB);
+      expect(registerB).to.be.calledBefore(registerC);
     });
   });
 });
