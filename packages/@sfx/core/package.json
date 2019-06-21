@@ -16,5 +16,8 @@
     "directory": "packages/@sfx/core"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "mocha": {
+    "require": ["../../../test-setup.ts"]
+  }
 }
