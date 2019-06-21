@@ -16,5 +16,8 @@
     "directory": "packages/@sfx/sayt-plugin"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "mocha": {
+    "require": ["../../../test-setup.ts"]
+  }
 }
