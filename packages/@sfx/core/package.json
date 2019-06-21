@@ -1,0 +1,20 @@
+{
+  "name": "@sfx/core",
+  "version": "0.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "../../../scripts/build.sh",
+    "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
+    "test": "nyc mocha",
+    "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
+    "test:browser": "karma start karma.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/sfx-logic.git",
+    "directory": "packages/@sfx/core"
+  },
+  "author": "",
+  "license": "MIT"
+}
