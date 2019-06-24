@@ -3,6 +3,7 @@ import { match, spy } from 'sinon';
 import {
   getMissingDependencies,
   initPlugins,
+  readyPlugins,
   registerPlugins,
 } from '../../../../src/utils/core';
 
@@ -149,6 +150,41 @@ describe('CoreUtils', () => {
       ];
 
       expect(() => initPlugins(plugins)).to.not.throw();
+    });
+  });
+
+  describe('readyPlugins()', () => {
+    it('should call the ready function of each plugin', () => {
+      const readyA = spy();
+      const readyB = spy();
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+          ready: readyA,
+        },
+        {
+          metadata: { name: 'pluginB' },
+          ready: readyB,
+        },
+      ];
+
+      readyPlugins(plugins);
+
+      expect(readyA).to.be.called;
+      expect(readyB).to.be.called;
+    });
+
+    it('should not throw when a plugin does not have an ready function', () => {
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+        },
+        {
+          metadata: { name: 'pluginB' },
+        },
+      ];
+
+      expect(() => readyPlugins(plugins)).to.not.throw();
     });
   });
 });
