@@ -25,13 +25,14 @@ To build an individual package, run the following command:
 yarn build
 ```
 
-To build an individual package in response to changes within the `src` directory, run the following command:
+The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
+
 ```sh
 yarn dev
 ```
 
 ##Documentation
-The following command will generate documentation for each module in packages/sfx using typeDoc. This will update the index file in the docs folder. 
+The following command will generate documentation for each module in packages/sfx using typeDoc. This will update the index file in the docs folder.
 ```sh
 yarn docs
 ```
