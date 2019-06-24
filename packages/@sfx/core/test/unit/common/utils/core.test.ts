@@ -1,13 +1,15 @@
 import { expect } from 'chai';
-import { checkDependencies } from '../../../../src/utils/core';
+import { getMissingDependencies } from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
-  describe('checkDependencies()', () => {
-    it('should raise an error if there are missing dependencies', () => {
+  describe('getMissingDependencies()', () => {
+    it('should return missing dependencies', () => {
       const available = ['a', 'b', 'c'];
       const required = ['a', 'b', 'd'];
 
-      expect(() => checkDependencies(available, required)).to.throw();
+      const missing = getMissingDependencies(available, required);
+
+      expect(missing).to.eql(['d']);
     });
   });
 });
