@@ -9,6 +9,8 @@ export default class Core {
    * @param plugins An array of plugin instances to regsiter.
    */
   register(plugins: Plugin[]) {
-    plugins.forEach((p) => p.register(this.plugins));
+    // ensure dependencies are valid
+      // if not, exit/throw
+    // call lifecycle methods on plugins
   }
 }

@@ -10,28 +10,73 @@ import {
 describe('CoreUtils', () => {
   describe('getMissingDependencies()', () => {
     it('should return missing dependencies', () => {
-      const available = ['a', 'b', 'c'];
-      const required = ['a', 'd', 'b', 'e'];
+      const registry = {
+        a: 'aa',
+        b: 'bb',
+        c: 'cc',
+      };
+      const plugins: any = [
+        {
+          metadata: {
+            depends: ['a', 'x'],
+          },
+        },
+        {
+          metadata: {
+            depends: ['z'],
+          },
+        },
+      ]
 
-      const missing = getMissingDependencies(available, required);
+      const missing = getMissingDependencies(plugins, registry);
 
-      expect(missing).to.have.members(['d', 'e']);
+      expect(missing).to.have.members(['x', 'z']);
     });
 
     it('should return no missing dependencies when all are met', () => {
-      const available = ['a', 'b', 'c'];
-      const required = ['a', 'b'];
+      const registry = {
+        a: 'aa',
+        b: 'bb',
+        c: 'cc',
+      }
+      const plugins: any = [
+        {
+          metadata: {
+            depends: ['a', 'b'],
+          },
+        },
+        {
+          metadata: {
+            depends: ['b'],
+          },
+        },
+      ]
 
-      const missing = getMissingDependencies(available, required);
+      const missing = getMissingDependencies(plugins, registry);
 
       expect(missing).to.deep.equal([]);
     });
 
     it('should return no missing dependencies when there are no dependencies', () => {
-      const available = ['a', 'b', 'c'];
-      const required = [];
+      const registry = {
+        a: 'aa',
+        b: 'bb',
+        c: 'cc',
+      };
+      const plugins = [
+        {
+          metadata: {
+            depends: [],
+          },
+        },
+        {
+          metadata: {
+            depends: [],
+          },
+        },
+      ] as any;
 
-      const missing = getMissingDependencies(available, required);
+      const missing = getMissingDependencies(plugins, registry);
 
       expect(missing).to.deep.equal([]);
     });
