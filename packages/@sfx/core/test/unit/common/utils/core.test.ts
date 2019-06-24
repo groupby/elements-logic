@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { getMissingDependencies } from '../../../../src/utils/core';
+import { match, spy } from 'sinon';
+import { getMissingDependencies, registerPlugins } from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
   describe('getMissingDependencies()', () => {
@@ -28,6 +29,87 @@ describe('CoreUtils', () => {
       const missing = getMissingDependencies(available, required);
 
       expect(missing).to.deep.equal([]);
+    });
+  });
+
+  describe('registerPlugins()', () => {
+    it('should call the register function of each plugin with the plugin registry', () => {
+      const registerA = spy();
+      const registerB = spy();
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+          register: registerA,
+        },
+        {
+          metadata: { name: 'pluginB' },
+          register: registerB,
+        },
+      ];
+      const registry = {};
+
+      registerPlugins(plugins, registry);
+
+      expect(registerA).to.be.calledWith(match.same(registry));
+      expect(registerB).to.be.calledWith(match.same(registry));
+    });
+
+    it('should return a map of new plugin keys to exposed values', () => {
+      const valueA = { a: 'a' };
+      const valueB = { b: 'b' };
+      const valueC = { c: 'c' };
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+          register: () => valueA,
+        },
+        {
+          metadata: { name: 'pluginB' },
+          register: () => valueB,
+        },
+        {
+          metadata: { name: 'pluginC' },
+          register: () => valueC,
+        },
+      ];
+      const registry = {};
+
+      const newlyRegistered = registerPlugins(plugins, registry);
+
+      expect(newlyRegistered).to.deep.equal({
+        pluginA: valueA,
+        pluginB: valueB,
+        pluginC: valueC,
+      });
+      expect(newlyRegistered.pluginA).to.equal(valueA);
+      expect(newlyRegistered.pluginB).to.equal(valueB);
+      expect(newlyRegistered.pluginC).to.equal(valueC);
+    });
+
+    it('should add the newly registered plugins to the initial registry', () => {
+      const valueA = { a: 'a' };
+      const valueB = { b: 'b' };
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+          register: () => valueA,
+        },
+        {
+          metadata: { name: 'pluginB' },
+          register: () => valueB,
+        },
+      ];
+      const registry: any = { a: 'b' };
+
+      registerPlugins(plugins, registry);
+
+      expect(registry).to.deep.equal({
+        a: 'b',
+        pluginA: valueA,
+        pluginB: valueB,
+      });
+      expect(registry.pluginA).to.equal(valueA);
+      expect(registry.pluginB).to.equal(valueB);
     });
   });
 });
