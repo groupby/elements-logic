@@ -18,7 +18,7 @@ describe('CoreUtils', () => {
 
       const missing = getMissingDependencies(available, required);
 
-      expect(missing).to.eql([]);
+      expect(missing).to.deep.equal([]);
     });
 
     it('should return no missing dependencies when there are no dependencies', () => {
@@ -27,7 +27,7 @@ describe('CoreUtils', () => {
 
       const missing = getMissingDependencies(available, required);
 
-      expect(missing).to.eql([]);
+      expect(missing).to.deep.equal([]);
     });
   });
 });
