@@ -1,6 +1,10 @@
 import { expect } from 'chai';
 import { match, spy } from 'sinon';
-import { getMissingDependencies, registerPlugins } from '../../../../src/utils/core';
+import {
+  getMissingDependencies,
+  initPlugins,
+  registerPlugins,
+} from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
   describe('getMissingDependencies()', () => {
@@ -110,6 +114,41 @@ describe('CoreUtils', () => {
       });
       expect(registry.pluginA).to.equal(valueA);
       expect(registry.pluginB).to.equal(valueB);
+    });
+  });
+
+  describe('initPlugins()', () => {
+    it('should call the init function of each plugin', () => {
+      const initA = spy();
+      const initB = spy();
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+          init: initA,
+        },
+        {
+          metadata: { name: 'pluginB' },
+          init: initB,
+        },
+      ];
+
+      initPlugins(plugins);
+
+      expect(initA).to.be.called;
+      expect(initB).to.be.called;
+    });
+
+    it('should not throw when a plugin does not have an init function', () => {
+      const plugins: any = [
+        {
+          metadata: { name: 'pluginA' },
+        },
+        {
+          metadata: { name: 'pluginB' },
+        },
+      ];
+
+      expect(() => initPlugins(plugins)).to.not.throw();
     });
   });
 });
