@@ -39,3 +39,14 @@ export function initPlugins(plugins: Plugin[]) {
     }
   });
 }
+
+/**
+ * TODO
+ */
+export function readyPlugins(plugins: Plugin[]) {
+  plugins.forEach((plugin) => {
+    if (typeof plugin.ready === 'function') {
+      plugin.ready();
+    }
+  });
+}
