@@ -10,9 +10,15 @@ describe('Core', () => {
   });
 
   describe('constructor()', () => {
-    it('should create an empty null-prototype plugins object', () => {
+    it('should create an empty null-prototype plugins registry object', () => {
       expect(core.plugins).to.be.empty;
       expect(Object.getPrototypeOf(core.plugins)).to.be.null;
     });
   });
+
+  // describe('register()', () => {
+  //   it('should throw if dependencies are not met', () => {
+
+  //   });
+  // })
 });
