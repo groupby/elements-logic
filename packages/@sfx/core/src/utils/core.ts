@@ -28,3 +28,14 @@ export function registerPlugins(plugins: Plugin[], registry: object) {
 
   return newlyRegistered;
 }
+
+/**
+ * TODO
+ */
+export function initPlugins(plugins: Plugin[]) {
+  plugins.forEach((plugin) => {
+    if (typeof plugin.init === 'function') {
+      plugin.init();
+    }
+  });
+}
