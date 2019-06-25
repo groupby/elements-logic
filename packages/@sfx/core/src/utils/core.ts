@@ -1,7 +1,13 @@
 import { Plugin } from '../plugin';
 
 /**
- * TODO
+ * Calculates the missing dependencies of the given plugins. The given
+ * plugins and the plugins in the registry are eligible to satisfy
+ * dependencies.
+ *
+ * @param plugins The plugins whose dependencies should be checked.
+ * @param registry The plugin registry containing all available plugins.
+ * @returns an Array of names of missing plugins.
  */
 export function calculateMissingDependencies(plugins: Plugin[], registry: object): string[] {
   const available = [
@@ -21,7 +27,13 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: object
 }
 
 /**
- * TODO
+ * Calls the `register` function of each plugin. The values returned by
+ * each plugin are added to the given registry.
+ *
+ * @param plugins The plugins to register.
+ * @param regsitry The registry to register the plugins into.
+ * @returns an Object containing the keys and values of the new items
+ * added to the registry.
  */
 export function registerPlugins(plugins: Plugin[], registry: object) {
   const newlyRegistered = Object.create(null);
@@ -39,7 +51,10 @@ export function registerPlugins(plugins: Plugin[], registry: object) {
 }
 
 /**
- * TODO
+ * Calls the `init` function of each plugin. If a plugin does not
+ * exppose an `init` function, it is ignored.
+ *
+ * @param plugins The plugins to initialize.
  */
 export function initPlugins(plugins: Plugin[]) {
   plugins.forEach((plugin) => {
@@ -50,7 +65,10 @@ export function initPlugins(plugins: Plugin[]) {
 }
 
 /**
- * TODO
+ * Calls the `ready` function of each plugin. If a plugin does not
+ * expose a `ready` function, it is ignored.
+ *
+ * @param plugins The plugins to ready.
  */
 export function readyPlugins(plugins: Plugin[]) {
   plugins.forEach((plugin) => {
