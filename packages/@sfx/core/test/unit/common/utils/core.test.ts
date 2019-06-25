@@ -18,11 +18,13 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: {
+            name: 'm',
             depends: ['a', 'x'],
           },
         },
         {
           metadata: {
+            name: 'n',
             depends: ['z'],
           },
         },
@@ -42,11 +44,13 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: {
+            name: 'm',
             depends: ['a', 'b'],
           },
         },
         {
           metadata: {
+            name: 'n',
             depends: ['b'],
           },
         },
@@ -66,11 +70,13 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: {
+            name: 'm',
             depends: [],
           },
         },
         {
           metadata: {
+            name: 'n',
             depends: [],
           },
         },
