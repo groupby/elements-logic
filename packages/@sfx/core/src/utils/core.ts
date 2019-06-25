@@ -10,8 +10,9 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: object
   ];
   const availableSet = new Set(available);
 
+  const required = plugins.reduce((memo, plugin) => {
     return [...memo, ...plugin.metadata.depends];
-  }, [])
+  }, []);
   const requiredSet = new Set(required);
 
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));
