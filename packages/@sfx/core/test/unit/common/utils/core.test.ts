@@ -80,6 +80,30 @@ describe('CoreUtils', () => {
 
       expect(missing).to.deep.equal([]);
     });
+
+    it('should return no missing dependencies when dependencies are satisfied by the new plugins', () => {
+      const registry = {
+        c: 'cc',
+      };
+      const plugins: any = [
+        {
+          metadata: {
+            name: 'a',
+            depends: ['b', 'c'],
+          },
+        },
+        {
+          metadata: {
+            name: 'b',
+            depends: ['c'],
+          },
+        },
+      ];
+
+      const missing = calculateMissingDependencies(plugins, registry);
+
+      expect(missing).to.deep.equal([]);
+    });
   });
 
   describe('registerPlugins()', () => {
