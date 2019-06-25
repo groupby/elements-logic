@@ -63,7 +63,7 @@ describe('CoreUtils', () => {
         b: 'bb',
         c: 'cc',
       };
-      const plugins = [
+      const plugins: any = [
         {
           metadata: {
             depends: [],
@@ -74,7 +74,7 @@ describe('CoreUtils', () => {
             depends: [],
           },
         },
-      ] as any;
+      ];
 
       const missing = calculateMissingDependencies(plugins, registry);
 
