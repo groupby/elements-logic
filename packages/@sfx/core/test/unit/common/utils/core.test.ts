@@ -110,6 +110,34 @@ describe('CoreUtils', () => {
 
       expect(missing).to.deep.equal([]);
     });
+
+    it('should return no missing dependencies for satisfied circular dependencies', () => {
+      const registry = {};
+      const plugins: any = [
+        {
+          metadata: {
+            name: 'a',
+            depends: ['b'],
+          },
+        },
+        {
+          metadata: {
+            name: 'b',
+            depends: ['c'],
+          },
+        },
+        {
+          metadata: {
+            name: 'c',
+            depends: ['a'],
+          },
+        },
+      ];
+
+      const missing = calculateMissingDependencies(plugins, registry);
+
+      expect(missing).to.deep.equal([]);
+    });
   });
 
   describe('registerPlugins()', () => {
