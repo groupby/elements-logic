@@ -1,6 +1,7 @@
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { match, spy, stub } from 'sinon';
 import Core from '../../../src/core';
+import * as CoreUtils from '../../../src/utils/core';
 
 describe('Core', () => {
   let core: Core;
@@ -16,9 +17,27 @@ describe('Core', () => {
     });
   });
 
-  // describe('register()', () => {
-  //   it('should throw if dependencies are not met', () => {
+  describe('register()', () => {
+    it('should throw if dependencies are not met', () => {
+      const plugins: any = [
+        {
+          metadata: {
+            name: 'a',
+            depends: ['x'],
+          },
+        },
+        {
+          metadata: {
+            name: 'b',
+            depends: ['a'],
+          },
+        },
+      ];
+      const calculateMissingDependencies = stub(CoreUtils, 'calculateMissingDependencies').returns(['x']);
+      Object.assign(core.plugins, { m: 'mm' });
 
-  //   });
-  // })
+      expect(() => core.register(plugins)).to.throw();
+      expect(calculateMissingDependencies).to.be.calledWith(plugins, match(core.plugins));
+    });
+  });
 });
