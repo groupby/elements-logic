@@ -4,11 +4,16 @@ import { Plugin } from '../plugin';
  * TODO
  */
 export function calculateMissingDependencies(plugins: Plugin[], registry: object): string[] {
-  const availableSet = new Set(Object.keys(registry));
-  const required = plugins.reduce((memo: [], plugin: Plugin) => {
+  const available = [
+    ...Object.keys(registry),
+    ...plugins.map(({ metadata: { name }}) => name),
+  ];
+  const availableSet = new Set(available);
+
     return [...memo, ...plugin.metadata.depends];
   }, [])
   const requiredSet = new Set(required);
+
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));
 
   return Array.from(difference.values()).sort();
