@@ -30,6 +30,28 @@ To build an individual package in response to changes within the `src` directory
 yarn dev
 ```
 
+### Testing
+Tests are run with [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/), and [Sinon](https://sinonjs.org/) in Node. Alternatively, browser based testing is also supported and uses the [Karma test runner](https://karma-runner.github.io/latest/index.html). The following browsers are tested:
+
+- Chrome
+
+To run tests for a specific plugin package, navigate to its directory and use the following commands based on the desired testing flow:
+
+- To run the tests for a specific package once:
+```sh
+yarn test
+```
+- To watch the `./src` and `./test` directories and run the tests after any changes:
+```sh
+yarn tdd
+```
+- To run the tests in a browser environment:
+```sh
+yarn test:browser
+```
+
+Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
+
 ##Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
