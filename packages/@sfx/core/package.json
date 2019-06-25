@@ -18,6 +18,6 @@
   "author": "",
   "license": "MIT",
   "mocha": {
-    "require": ["../../../test-setup.ts"]
+    "spec": ["../../../test-setup.ts"]
   }
 }
