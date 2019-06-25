@@ -1,14 +1,14 @@
 import { expect } from 'chai';
 import { match, spy } from 'sinon';
 import {
-  getMissingDependencies,
+  calculateMissingDependencies,
   initPlugins,
   readyPlugins,
   registerPlugins,
 } from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
-  describe('getMissingDependencies()', () => {
+  describe('calculateMissingDependencies()', () => {
     it('should return missing dependencies', () => {
       const registry = {
         a: 'aa',
@@ -28,7 +28,7 @@ describe('CoreUtils', () => {
         },
       ]
 
-      const missing = getMissingDependencies(plugins, registry);
+      const missing = calculateMissingDependencies(plugins, registry);
 
       expect(missing).to.have.members(['x', 'z']);
     });
@@ -52,7 +52,7 @@ describe('CoreUtils', () => {
         },
       ]
 
-      const missing = getMissingDependencies(plugins, registry);
+      const missing = calculateMissingDependencies(plugins, registry);
 
       expect(missing).to.deep.equal([]);
     });
@@ -76,7 +76,7 @@ describe('CoreUtils', () => {
         },
       ] as any;
 
-      const missing = getMissingDependencies(plugins, registry);
+      const missing = calculateMissingDependencies(plugins, registry);
 
       expect(missing).to.deep.equal([]);
     });

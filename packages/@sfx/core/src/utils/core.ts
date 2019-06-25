@@ -3,7 +3,7 @@ import { Plugin } from '../plugin';
 /**
  * TODO
  */
-export function getMissingDependencies(plugins: Plugin[], registry: object): string[] {
+export function calculateMissingDependencies(plugins: Plugin[], registry: object): string[] {
   const availableSet = new Set(Object.keys(registry));
   const required = plugins.reduce((memo: [], plugin: Plugin) => {
     return [...memo, ...plugin.metadata.depends];
