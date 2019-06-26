@@ -41,13 +41,17 @@ To run tests for a specific plugin package, navigate to its directory and use th
 ```sh
 yarn test
 ```
-- To watch the `./src` and `./test` directories and run the tests after any changes:
+- To run the tests for a specific package and watch the `src` and `test` directories to rerun the tests after any changes:
 ```sh
 yarn tdd
 ```
-- To run the tests in a browser environment:
+- To run the tests in a browser environment once:
 ```sh
 yarn test:browser
+```
+- To run the tests in a browser environment while watching the `src` and `test` directories for any changes:
+```sh
+yarn tdd:browser
 ```
 
 Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
