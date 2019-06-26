@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Wed Jun 19 2019 16:47:19 GMT-0400 (EDT)
-
 const webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config) {
