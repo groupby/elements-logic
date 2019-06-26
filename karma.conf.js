@@ -2,31 +2,31 @@ const webpackConfig = require('./webpack.config.js');
 
 module.exports = function(config) {
   config.set({
-    autoWatch: true,
     basePath: '',
     browsers: ['ChromeHeadless'],
-    colors: true,
-    concurrency: Infinity,
     files: [
       'test/*/browser/**/*.test.ts'
     ],
     frameworks: ['mocha', 'karma-typescript'],
+    reporters: ['mocha', 'karma-typescript'],
     karmaTypescriptConfig: {
       compilerOptions: {
-          module: "commonjs"
+        module: "commonjs"
       },
       tsconfig: "./tsconfig.json"
     },
-    logLevel: config.LOG_INFO,
-    port: 9876,
     preprocessors: {
       '**/*.ts': ['webpack']
     },
-    reporters: ['mocha', 'karma-typescript'],
-    singleRun: true,
     webpack: webpackConfig,
     webpackMiddleware: {
       stats: 'errors-only',
     },
+    autoWatch: true,
+    singleRun: true,
+    concurrency: Infinity,
+    port: 9876,
+    logLevel: config.LOG_INFO,
+    colors: true,
   })
 }
