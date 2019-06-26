@@ -5,12 +5,13 @@ const testObj = {
   label: 'test text',
 }
 
-const testFunc = (text: TestInterface) => {
+export const testFunc = (text: DummyInterface) => {
   console.log(`I am logging out ${ text.label }`);
+  return text.label;
 }
 
 testFunc(testObj);
 
-interface TestInterface {
+export interface DummyInterface {
   label: string;
 }
