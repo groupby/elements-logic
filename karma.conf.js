@@ -1,6 +1,8 @@
 // Karma configuration
 // Generated on Wed Jun 19 2019 16:47:19 GMT-0400 (EDT)
 
+const webpackConfig = require('./webpack.config.js');
+
 module.exports = function(config) {
   config.set({
 
@@ -23,18 +25,30 @@ module.exports = function(config) {
     exclude: [
     ],
 
+    karmaTypescriptConfig: {
+      compilerOptions: {
+          module: "commonjs"
+      },
+      tsconfig: "./tsconfig.json"
+    },
+
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.ts': ['karma-typescript']
+      '**/*.ts': ['webpack']
     },
 
+    webpack: webpackConfig,
+
+    webpackMiddleware: {
+      stats: 'errors-only',
+    },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'mocha', 'karma-typescript'],
+    reporters: ['mocha', 'karma-typescript'],
 
 
     // web server port
