@@ -7,8 +7,8 @@
       "dom"
     ],
     "types": [
-      "mocha",
-      "node"
+      "node",
+      "mocha"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
