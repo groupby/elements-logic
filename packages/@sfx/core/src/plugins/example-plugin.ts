@@ -1,4 +1,4 @@
-import { Plugin, PluginMetadata } from "../plugin";
+import { Plugin } from "../plugin";
 
 export default class ExamplePlugin implements Plugin {
   // 5 major props:
