@@ -32,6 +32,13 @@ class ExamplePlugin implements Plugin {
 
     };
   }
+
+  // The init method gets called after all the plugins have been registered.
+  init() {
+    // On init you should conduct all setup tasks. These setup tasks should not assume the functionality of any other plugin is available at this time.
+    // Try to complete as much setup as you can within the init method.
+    // Note: Init should be simple and is expected to delegate complex tasks to other methods.
+  }
 }
 
 export interface ExamplePluginOptions {
