@@ -3,15 +3,18 @@
  */
 const testObj = {
   label: 'test text',
+  number: 6,
 }
 
-export const testFunc = (text: DummyInterface) => {
-  console.log(`I am logging out ${ text.label }`);
-  return text.label;
+export const testFunc = (data: DummyInterface) => {
+  return exports.getLabel(data).toUpperCase();
 }
 
-testFunc(testObj);
+export const getLabel = (data: DummyInterface) => {
+  return data.label;
+}
 
 export interface DummyInterface {
   label: string;
+  number: number;
 }
