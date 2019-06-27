@@ -1,6 +1,6 @@
 export interface Plugin {
   metadata: PluginMetadata;
-  register(plugins: object): any;
+  register: (plugins: object) => any;
   init?: () => void;
   ready?: () => void;
 }
