@@ -7,5 +7,5 @@ export interface Plugin {
 
 export interface PluginMetadata {
   name: string;
-  depends: [];
+  depends: string[];
 }
