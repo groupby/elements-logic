@@ -18,9 +18,19 @@ class ExamplePlugin implements Plugin {
     baz: true,
   }
 
+  core: object;
+
   // Constructor takes in an options object.
   constructor(options: Partial<ExamplePluginOptions> = {}) {
     this.options = { ...this.options, ...options };
+  }
+
+  register(plugins) {
+    this.core = plugins;
+    // This method will return a value to expose. Generally it will return an object. The object will most likely return bound methods.
+    return {
+
+    };
   }
 }
 
