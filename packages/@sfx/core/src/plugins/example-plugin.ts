@@ -39,6 +39,12 @@ class ExamplePlugin implements Plugin {
     // Try to complete as much setup as you can within the init method.
     // Note: Init should be simple and is expected to delegate complex tasks to other methods.
   }
+
+  // The ready method gets called after all the init methods have resolved.
+  ready() {
+    // Within the ready method you can assume that all plugins are initialized and available.
+    // This means that you can define tasks that depend on other plugins.
+  }
 }
 
 export interface ExamplePluginOptions {
