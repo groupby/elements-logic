@@ -10,7 +10,7 @@ import { Plugin, PluginMetadata, PluginRegistry } from '../../../src/plugin';
 import * as CoreUtils from '../../../src/utils/core';
 
 describe('Entry point', () => {
-  it('should export Core as default', () => {
+  it('should export Core', () => {
     expect(CoreExport).to.equal(Core);
   });
 
