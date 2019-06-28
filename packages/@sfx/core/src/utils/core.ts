@@ -1,4 +1,4 @@
-import { Plugin } from '../plugin';
+import { Plugin, PluginRegistry } from '../plugin';
 
 /**
  * Calculates the missing dependencies of the given plugins. The given
@@ -31,11 +31,11 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: object
  * each plugin are added to the given registry.
  *
  * @param plugins The plugins to register.
- * @param regsitry The registry to register the plugins into.
- * @returns an Object containing the keys and values of the new items
+ * @param registry The registry into which to add the plugins.
+ * @returns An object containing the keys and values of the new items
  * added to the registry.
  */
-export function registerPlugins(plugins: Plugin[], registry: object) {
+export function registerPlugins(plugins: Plugin[], registry: PluginRegistry): PluginRegistry {
   const newlyRegistered = Object.create(null);
 
   plugins.forEach((plugin) => {

@@ -1,4 +1,4 @@
-import { Plugin } from './plugin';
+import { Plugin, PluginRegistry } from './plugin';
 import {
   calculateMissingDependencies,
   initPlugins,
@@ -7,7 +7,7 @@ import {
 } from './utils/core';
 
 export default class Core {
-  plugins = Object.create(null);
+  plugins: PluginRegistry = Object.create(null);
 
   /**
    * Register one or more plugins with Core.
