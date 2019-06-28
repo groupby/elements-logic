@@ -6,8 +6,8 @@ import { Plugin, PluginRegistry } from '../plugin';
  * dependencies.
  *
  * @param plugins The plugins whose dependencies should be checked.
- * @param registry The plugin registry containing all available plugins.
- * @returns an Array of names of missing plugins.
+ * @param registry The plugin registry containing all registered plugins.
+ * @returns An array of names of missing plugins.
  */
 export function calculateMissingDependencies(plugins: Plugin[], registry: object): string[] {
   const available = [
