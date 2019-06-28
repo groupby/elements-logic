@@ -39,7 +39,7 @@ export function registerPlugins(plugins: Plugin[], registry: object) {
   const newlyRegistered = Object.create(null);
 
   plugins.forEach((plugin) => {
-    const exposedValue = plugin.register(registry);
+    const exposedValue = plugin.register(Object.create(registry));
     const { name } = plugin.metadata;
 
     newlyRegistered[name] = exposedValue;

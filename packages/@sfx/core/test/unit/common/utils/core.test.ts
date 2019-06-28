@@ -142,24 +142,29 @@ describe('CoreUtils', () => {
 
   describe('registerPlugins()', () => {
     it('should call the register function of each plugin with the plugin registry', () => {
-      const registerA = spy();
-      const registerB = spy();
+      let localRegistryA;
+      let localRegistryB;
       const plugins: any = [
         {
-          metadata: { name: 'pluginA' },
-          register: registerA,
+          metadata: { name: 'a' },
+          register: (r) => localRegistryA = r,
         },
         {
-          metadata: { name: 'pluginB' },
-          register: registerB,
+          metadata: { name: 'b' },
+          register: (r) => localRegistryB = r,
         },
       ];
-      const registry = {};
+      const registry: any = {};
 
       registerPlugins(plugins, registry);
 
-      expect(registerA).to.be.calledWith(match.same(registry));
-      expect(registerB).to.be.calledWith(match.same(registry));
+      expect(localRegistryA).to.be.an('object');
+      expect(localRegistryB).to.be.an('object');
+
+      const cvalue = registry.c = 'cc';
+
+      expect(localRegistryA.c).to.equal(cvalue);
+      expect(localRegistryB.c).to.equal(cvalue);
     });
 
     it('should return a map of new plugin keys to exposed values', () => {
@@ -218,6 +223,24 @@ describe('CoreUtils', () => {
       });
       expect(registry.pluginA).to.equal(valueA);
       expect(registry.pluginB).to.equal(valueB);
+    });
+
+    it('should not allow plugins to modify the registry', () => {
+      const plugins: any = [
+        {
+          metadata: { name: 'x' },
+          register: (plugins) => {
+            delete plugins.a;
+            plugins.b = 'bb';
+          },
+        },
+      ];
+      const registry = { a: 'aa' };
+
+      registerPlugins(plugins, registry);
+
+      expect(registry.a).to.equal('aa');
+      expect(registry).to.not.have.any.keys('b');
     });
   });
 
