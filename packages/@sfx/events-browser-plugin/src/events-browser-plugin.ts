@@ -18,11 +18,57 @@
       payload: The information meant to be sent along with the event that is being dispatched.
     Note: the Dispatch method will be dispatching customEvents in order to attach custom data to any given event.
 */
+import { Plugin } from '../../core/src/plugin';
 
-/**
- * This test comment _supports_ [Markdown and other fun stuff](https://typedoc.org/guides/doccomments/)
- */
+ export default class EventsBrowserPlugin implements Plugin {
+  get metadata() {
+    return {
+      name: 'events-browser-plugin',
+      depends: [],
+    };
+  }
 
- export default class EventsBrowserPlugin {
-   
+  // Plugin Properties
+  core: object;
+  exposedValue: any;
+  options: any = {};
+
+  constructor(options: any) {
+    this.options = {...this.options, ...options};
+
+    // Binds
+    this.listen = this.listen.bind(this);
+    this.unlisten = this.listen.bind(this);
+    this.dispatch = this.dispatch.bind(this);
+  }
+
+  register(plugins) {
+    this.core = plugins;
+
+    this.exposedValue = {
+      listen: this.listen,
+      unlisten: this.unlisten,
+      dispatch: this.dispatch,
+    };
+
+    return this.exposedValue;
+  }
+
+  init() {}
+
+  ready() {}
+
+  listen() {
+    console.log('Listening method has fired');
+  }
+
+  unlisten() {
+    console.log('Unlistening method has fired');
+  }
+
+  dispatch() {
+    console.log('Dispatch method has fired');
+  }
  }
+
+// Interfaces
