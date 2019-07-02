@@ -1,9 +1,7 @@
-import { expect, sinon } from '../../utils';
+import { expect, stub } from '../../utils';
 import * as Sample from '../../../src';
 
-declare var global: any;
-
-describe('Test Import', () => {
+describe('Test Import Browser', () => {
   let testData: Sample.DummyInterface = {
     label: 'test',
     number: 6,
@@ -12,11 +10,9 @@ describe('Test Import', () => {
     expect(Sample.testFunc(testData)).to.equal('TEST');
   });
   it('should call a function to get the label value', () => {
-    const getLabelStub = sinon.stub(Sample, 'getLabel').returns('other return string');
+    const getLabelStub = stub(Sample, 'getLabel').returns('other return string');
     Sample.testFunc(testData);
-
-    console.error('sinon check', sinon === global.sinon);
-    expect(getLabelStub.callCount).to.equal(1);
+    expect(getLabelStub).to.be.calledOnce;
   });
   it('test', () => {
     expect(Sample.getLabel(testData)).to.equal('test');

@@ -1,7 +1,7 @@
 import { expect, stub } from '../../utils';
 import * as Sample from '../../../src';
 
-describe('Test Import', () => {
+describe('Test Import Node', () => {
   let testData: Sample.DummyInterface = {
     label: 'test',
     number: 6,
@@ -12,7 +12,7 @@ describe('Test Import', () => {
   it('should call a function to get the label value', () => {
     const getLabelStub = stub(Sample, 'getLabel').returns('other return string');
     Sample.testFunc(testData);
-    expect(getLabelStub.callCount).to.equal(1);
+    expect(getLabelStub).to.be.calledOnce;
   });
   it('test', () => {
     expect(Sample.getLabel(testData)).to.equal('test');
