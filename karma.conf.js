@@ -5,10 +5,11 @@ module.exports = function(config) {
     basePath: '',
     browsers: ['ChromeHeadless'],
     files: [
+      'test/setup.ts',
       'test/unit/common/**/*.test.ts',
       'test/unit/browser/**/*.test.ts',
     ],
-    frameworks: ['mocha', 'karma-typescript'],
+    frameworks: ['mocha', 'chai', 'sinon', 'karma-typescript'],
     reporters: ['mocha', 'karma-typescript'],
     karmaTypescriptConfig: {
       compilerOptions: {

@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { stub } from 'sinon';
+import { expect, stub } from '../../utils';
 import * as Sample from '../../../src';
 
 describe('Test Import', () => {
@@ -11,8 +10,11 @@ describe('Test Import', () => {
     expect(Sample.testFunc(testData)).to.equal('TEST');
   });
   it('should call a function to get the label value', () => {
-    const getLabelStub = stub(Sample, 'getLabel').callThrough();
+    const getLabelStub = stub(Sample, 'getLabel').returns('other return string');
     Sample.testFunc(testData);
     expect(getLabelStub.callCount).to.equal(1);
+  });
+  it('test', () => {
+    expect(Sample.getLabel(testData)).to.equal('test');
   });
 });
