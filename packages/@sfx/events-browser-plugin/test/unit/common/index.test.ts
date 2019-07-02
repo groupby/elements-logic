@@ -1,7 +1,9 @@
 import { expect } from 'chai';
+import { EventsBrowserPlugin as EventsBrowserPluginExport} from '../../../src';
+import EventsBrowserPlugin from '../../../src/events-browser-plugin';
 
-describe('Dummy test', () => {
-  it('should pass', () => {
-    expect(true).to.be.true;
+describe('Entry point', () => {
+  it('should export EventsBrowserPlugin ', () => {
+    expect(EventsBrowserPluginExport).to.equal(EventsBrowserPlugin);
   });
 });
