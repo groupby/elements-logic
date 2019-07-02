@@ -32,9 +32,11 @@ import { Plugin } from '../../core/src/plugin';
   core: object;
   exposedValue: any;
   options: any = {};
+  window: any;
 
   constructor(options: any) {
     this.options = {...this.options, ...options};
+    this.window = this.options.window || window;
 
     // Binds
     this.listen = this.listen.bind(this);
