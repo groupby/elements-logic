@@ -17,10 +17,10 @@ describe('Core', () => {
   });
 
   describe('register()', () => {
-    let calculateMissingDependencies = stub(CoreUtils, 'calculateMissingDependencies').returns(['x']);
-    let registerPlugins = stub(CoreUtils, 'registerPlugins');
-    let initPlugins = stub(CoreUtils, 'initPlugins');
-    let readyPlugins = stub(CoreUtils, 'readyPlugins');
+    let calculateMissingDependencies;
+    let registerPlugins;
+    let initPlugins;
+    let readyPlugins;
 
     beforeEach(() => {
       calculateMissingDependencies = stub(CoreUtils, 'calculateMissingDependencies');
