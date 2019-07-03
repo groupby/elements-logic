@@ -9,7 +9,7 @@ import { Plugin, PluginRegistry } from '../plugin';
  * @param registry The plugin registry containing all registered plugins.
  * @returns An array of names of missing plugins.
  */
-export function calculateMissingDependencies(plugins: Plugin[], registry: object): string[] {
+export function calculateMissingDependencies(plugins: Plugin[], registry: PluginRegistry): string[] {
   const available = [
     ...Object.keys(registry),
     ...plugins.map(({ metadata: { name }}) => name),
