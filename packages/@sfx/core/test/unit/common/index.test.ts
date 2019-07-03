@@ -7,7 +7,6 @@ import {
 } from '../../../src';
 import Core from '../../../src/core';
 import { Plugin, PluginMetadata, PluginRegistry } from '../../../src/plugin';
-import * as CoreUtils from '../../../src/utils/core';
 
 describe('Entry point', () => {
   it('should export Core', () => {

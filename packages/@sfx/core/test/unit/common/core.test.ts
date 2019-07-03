@@ -1,4 +1,4 @@
-import { expect, sinon, spy, stub } from '../../utils';
+import { expect, sinon, stub } from '../../utils';
 import Core from '../../../src/core';
 import * as CoreUtils from '../../../src/utils/core';
 
