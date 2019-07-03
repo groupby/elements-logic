@@ -71,7 +71,6 @@ describe('Core', () => {
       core.register(plugins);
 
       expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
-      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
       sinon.assert.callOrder(
