@@ -18,10 +18,10 @@
       payload: The information meant to be sent along with the event that is being dispatched.
     Note: the Dispatch method will be dispatching customEvents in order to attach custom data to any given event.
 */
-import { Plugin } from '../../core/src/plugin';
+import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
 
  export default class EventsBrowserPlugin implements Plugin {
-  get metadata() {
+  get metadata(): PluginMetadata {
     return {
       name: 'events-browser-plugin',
       depends: [],
@@ -34,9 +34,13 @@ import { Plugin } from '../../core/src/plugin';
   options: any = {};
   window: any;
 
-  constructor(options: any) {
+  constructor(options: Partial<EventsBrowserPluginOptions> = {}) {
     this.options = {...this.options, ...options};
-    this.window = this.options.window || window;
+    this.window = this.options.window || (typeof window !== "undefined" ? window : undefined);
+
+    if(!this.window) {
+      throw new Error('window object is not valid');
+    }
 
     // Binds
     this.registerListener = this.registerListener.bind(this);
@@ -44,7 +48,7 @@ import { Plugin } from '../../core/src/plugin';
     this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
-  register(plugins) {
+  register(plugins: PluginRegistry) {
     this.core = plugins;
 
     this.exposedValue = {
@@ -74,3 +78,6 @@ import { Plugin } from '../../core/src/plugin';
  }
 
 // Interfaces
+export interface EventsBrowserPluginOptions {
+  window: Window,
+}

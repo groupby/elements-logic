@@ -3,9 +3,9 @@ import EventsBrowserPlugin from '../../../src/events-browser-plugin';
 
 describe('EventsBrowserPlugin', () => {
   let eventsBrowserPlugin: any;
-  
+
   beforeEach(() => {
-    eventsBrowserPlugin = new EventsBrowserPlugin({ window: {} as any });
+    eventsBrowserPlugin = new EventsBrowserPlugin({ window: new Window() });
   });
 
   describe('constructor()', () => {
