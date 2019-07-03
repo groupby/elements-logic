@@ -39,18 +39,18 @@ import { Plugin } from '../../core/src/plugin';
     this.window = this.options.window || window;
 
     // Binds
-    this.listen = this.listen.bind(this);
-    this.unlisten = this.listen.bind(this);
-    this.dispatch = this.dispatch.bind(this);
+    this.registerListener = this.registerListener.bind(this);
+    this.unregisterListener = this.unregisterListener.bind(this);
+    this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
   register(plugins) {
     this.core = plugins;
 
     this.exposedValue = {
-      listen: this.listen,
-      unlisten: this.unlisten,
-      dispatch: this.dispatch,
+      registerListen: this.registerListener,
+      unregisterListener: this.unregisterListener,
+      dispatchEvent: this.dispatchEvent,
     };
 
     return this.exposedValue;
@@ -60,15 +60,15 @@ import { Plugin } from '../../core/src/plugin';
 
   ready() {}
 
-  listen() {
+  registerListener() {
     console.log('Listening method has fired');
   }
 
-  unlisten() {
+  unregisterListener() {
     console.log('Unlistening method has fired');
   }
 
-  dispatch() {
+  dispatchEvent() {
     console.log('Dispatch method has fired');
   }
  }
