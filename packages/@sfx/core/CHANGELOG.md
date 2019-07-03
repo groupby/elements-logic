@@ -6,6 +6,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-99: Added the Core module and related plugin interfaces.
+- SFX-99: Added the `Core` module and related plugin interfaces.
   - The Core module manages the registration and unregistration of plugins.
-  - The package also exports the Plugin, PluginMetadata, and PluginRegistry interfaces.
+  - The package also exports the `Plugin`, `PluginMetadata`, and `PluginRegistry` interfaces.
