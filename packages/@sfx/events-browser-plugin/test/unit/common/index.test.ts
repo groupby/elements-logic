@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from '../../utils';
 import { EventsBrowserPlugin as EventsBrowserPluginExport} from '../../../src';
 import EventsBrowserPlugin from '../../../src/events-browser-plugin';
 
