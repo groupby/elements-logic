@@ -1,7 +1,7 @@
 {
   "name": "@sfx/core",
   "version": "0.0.0",
-  "description": "",
+  "description": "SF-X Core",
   "main": "dist/index.js",
   "scripts": {
     "build": "../../../scripts/build.sh",
