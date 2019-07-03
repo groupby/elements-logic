@@ -5,8 +5,11 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "../../../scripts/build.sh",
-    "dev": "nodemon --watch src --exec npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
+    "test": "nyc mocha",
+    "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
+    "test:browser": "karma start karma.conf.js",
+    "tdd:browser": "karma start karma.conf.js --no-single-run"
   },
   "repository": {
     "type": "git",
