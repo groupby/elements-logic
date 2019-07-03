@@ -44,7 +44,7 @@ export default class Core {
    * are supported. If dependencies are missing, an error will be
    * thrown.
    *
-   * @param plugins An array of plugin instances to regsiter.
+   * @param plugins An array of plugin instances to register.
    */
   register(plugins: Plugin[]) {
     const missingDependencies = calculateMissingDependencies(plugins, this.plugins);
