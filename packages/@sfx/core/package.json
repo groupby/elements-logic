@@ -8,7 +8,8 @@
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
     "test": "nyc mocha",
     "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
-    "test:browser": "karma start karma.conf.js"
+    "test:browser": "karma start karma.conf.js",
+    "tdd:browser": "karma start karma.conf.js --no-single-run"
   },
   "repository": {
     "type": "git",
@@ -16,8 +17,5 @@
     "directory": "packages/@sfx/core"
   },
   "author": "",
-  "license": "MIT",
-  "mocha": {
-    "spec": ["../../../test-setup.ts"]
-  }
+  "license": "MIT"
 }

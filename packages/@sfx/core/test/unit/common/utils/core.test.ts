@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { match, spy } from 'sinon';
+import { expect, spy } from '../../../utils';
 import {
   calculateMissingDependencies,
   initPlugins,

@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { expect } from '../../utils';
 import {
   Core as CoreExport,
   Plugin as PluginExport,

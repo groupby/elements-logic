@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-import { assert as sinonAssert, match, spy, stub } from 'sinon';
+import { expect, sinon, spy, stub } from '../../utils';
 import Core from '../../../src/core';
 import * as CoreUtils from '../../../src/utils/core';
 
@@ -49,7 +48,7 @@ describe('Core', () => {
       Object.assign(core.plugins, { m: 'mm' });
 
       expect(() => core.register(plugins)).to.throw();
-      expect(calculateMissingDependencies).to.be.calledWith(plugins, match(core.plugins));
+      expect(calculateMissingDependencies).to.be.calledWith(plugins, sinon.match(core.plugins));
     });
 
     it('should call the lifecycle events on the plugins in order', () => {
@@ -71,11 +70,11 @@ describe('Core', () => {
 
       core.register(plugins);
 
-      expect(registerPlugins).to.be.calledWith(plugins, match(core.plugins));
-      expect(registerPlugins).to.be.calledWith(plugins, match(core.plugins));
+      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.plugins));
+      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.plugins));
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
-      sinonAssert.callOrder(
+      sinon.assert.callOrder(
         registerPlugins,
         initPlugins,
         readyPlugins
