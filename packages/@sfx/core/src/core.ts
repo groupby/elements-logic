@@ -17,10 +17,10 @@ export default class Core {
    * names as keys and their corresponding exposed values as values.
    *
    * The preferred way to access plugins in the registry is through
-   * another plugin. Accessing the plugins through Core outside of a
+   * another plugin. Accessing the registry through Core outside of a
    * plugin is discouraged.
    */
-  plugins: PluginRegistry = Object.create(null);
+  registry: PluginRegistry = Object.create(null);
 
   /**
    * Register one or more plugins with Core.
@@ -47,12 +47,12 @@ export default class Core {
    * @param plugins An array of plugin instances to register.
    */
   register(plugins: Plugin[]) {
-    const missingDependencies = calculateMissingDependencies(plugins, this.plugins);
+    const missingDependencies = calculateMissingDependencies(plugins, this.registry);
     if (missingDependencies.length) {
       throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
     }
 
-    registerPlugins(plugins, this.plugins);
+    registerPlugins(plugins, this.registry);
     initPlugins(plugins);
     readyPlugins(plugins);
   }

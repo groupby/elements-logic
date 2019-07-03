@@ -11,8 +11,8 @@ describe('Core', () => {
 
   describe('constructor()', () => {
     it('should create an empty null-prototype plugins registry object', () => {
-      expect(core.plugins).to.be.empty;
-      expect(Object.getPrototypeOf(core.plugins)).to.be.null;
+      expect(core.registry).to.be.empty;
+      expect(Object.getPrototypeOf(core.registry)).to.be.null;
     });
   });
 
@@ -45,10 +45,10 @@ describe('Core', () => {
         },
       ];
       calculateMissingDependencies.returns(['x']);
-      Object.assign(core.plugins, { m: 'mm' });
+      Object.assign(core.registry, { m: 'mm' });
 
       expect(() => core.register(plugins)).to.throw();
-      expect(calculateMissingDependencies).to.be.calledWith(plugins, sinon.match(core.plugins));
+      expect(calculateMissingDependencies).to.be.calledWith(plugins, sinon.match(core.registry));
     });
 
     it('should call the lifecycle events on the plugins in order', () => {
@@ -70,8 +70,8 @@ describe('Core', () => {
 
       core.register(plugins);
 
-      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.plugins));
-      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.plugins));
+      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
+      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
       sinon.assert.callOrder(
