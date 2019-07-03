@@ -51,8 +51,7 @@ export function registerPlugins(plugins: Plugin[], registry: PluginRegistry): Pl
 }
 
 /**
- * Calls the `init` function of each plugin. If a plugin does not
- * exppose an `init` function, it is ignored.
+ * Calls the optional `init` function of each plugin.
  *
  * @param plugins The plugins to initialize.
  */
@@ -65,8 +64,7 @@ export function initPlugins(plugins: Plugin[]) {
 }
 
 /**
- * Calls the `ready` function of each plugin. If a plugin does not
- * expose a `ready` function, it is ignored.
+ * Calls the optional `ready` function of each plugin.
  *
  * @param plugins The plugins to ready.
  */
