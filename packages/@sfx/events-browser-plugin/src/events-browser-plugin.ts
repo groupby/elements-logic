@@ -66,8 +66,8 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
     this.window.addEventListener(eventName, callback);
   }
 
-  unregisterListener() {
-    console.log('Unlistening method has fired');
+  unregisterListener(eventName: string, callback: () => void) {
+    this.window.removeEventListener(eventName, callback);
   }
 
   dispatchEvent() {

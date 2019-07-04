@@ -64,4 +64,16 @@ describe('EventsBrowserPlugin', () => {
       expect(addEventListener).to.be.calledWith(eventName, callback);
     });
   });
+
+  describe('unregisterListen()', () => {
+    it('should call removeEventListener with eventName and callback', () => {
+      const eventName = 'fetchProducts';
+      const callback = () => null;
+      const removeEventListener = stub(eventsBrowserPlugin.window, 'removeEventListener');
+
+      eventsBrowserPlugin.unregisterListener(eventName, callback);
+
+      expect(removeEventListener).to.be.calledWith(eventName, callback);
+    });
+  });
 });
