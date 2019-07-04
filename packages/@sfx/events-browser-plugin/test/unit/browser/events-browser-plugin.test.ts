@@ -37,4 +37,19 @@ describe('EventsBrowserPlugin', () => {
       expect(eventsBrowserPlugin.window).to.deep.equal(options.window);
     });
   });
+
+  describe('register()', () => {
+    it('should return an exposedValue', () => {
+      const pluginRegistry = { dummyPlugin: 'b' };
+      const exposedValue = {
+        registerListener: eventsBrowserPlugin.registerListener,
+        unregisterListener: eventsBrowserPlugin.unregisterListener,
+        dispatchEvent: eventsBrowserPlugin.dispatchEvent,
+      };
+
+      const registerReturnValue = eventsBrowserPlugin.register(pluginRegistry);
+
+      expect(registerReturnValue).to.deep.equal(exposedValue);
+    });
+  });
 });
