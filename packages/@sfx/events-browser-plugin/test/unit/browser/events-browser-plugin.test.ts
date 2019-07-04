@@ -52,4 +52,16 @@ describe('EventsBrowserPlugin', () => {
       expect(registerReturnValue).to.deep.equal(exposedValue);
     });
   });
+
+  describe('registerListener()', () => {
+    it('should call addEventListener with eventName and callback', () => {
+      const eventName = 'fetchProducts';
+      const callback = () => null;
+      const addEventListener = stub(eventsBrowserPlugin.window, 'addEventListener');
+
+      eventsBrowserPlugin.registerListener(eventName, callback);
+
+      expect(addEventListener).to.be.calledWith(eventName, callback);
+    });
+  });
 });

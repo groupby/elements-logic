@@ -62,8 +62,8 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
     return this.exposedValue;
   }
 
-  registerListener() {
-    console.log('Listening method has fired');
+  registerListener(eventName: string, callback: () => void) {
+    this.window.addEventListener(eventName, callback);
   }
 
   unregisterListener() {
