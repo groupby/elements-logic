@@ -168,8 +168,8 @@ describe('CoreUtils', () => {
 
     it('should return a map of new plugin keys to exposed values', () => {
       const valueA = { a: 'a' };
-      const valueB = { b: 'b' };
-      const valueC = { c: 'c' };
+      const valueB = () => /b/;
+      const valueC = 'c';
       const plugins: any = [
         {
           metadata: { name: 'pluginA' },
