@@ -70,8 +70,10 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
     this.window.removeEventListener(eventName, callback);
   }
 
-  dispatchEvent() {
-    console.log('Dispatch method has fired');
+  dispatchEvent(eventName: string, payload?: any) {
+    const eventToDispatch = new this.window.CustomEvent(eventName, { detail: payload });
+
+    this.window.dispatchEvent(eventToDispatch);
   }
  }
 

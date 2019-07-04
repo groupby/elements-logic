@@ -76,4 +76,17 @@ describe('EventsBrowserPlugin', () => {
       expect(removeEventListener).to.be.calledWith(eventName, callback);
     });
   });
+
+  describe('dispatchEvent()', () => {
+    it('should call dispatch with eventName and payload', () => {
+      const eventName = 'fetchProducts';
+      const payload = { a: 'b' };
+      const dispatchEvent = stub(eventsBrowserPlugin.window, 'dispatchEvent');
+      const eventToDispatch = new eventsBrowserPlugin.window.CustomEvent(eventName, { detail: payload });
+
+      eventsBrowserPlugin.dispatchEvent(eventName, payload);
+
+      expect(dispatchEvent).to.be.calledWith(eventToDispatch);
+    });
+  });
 });
