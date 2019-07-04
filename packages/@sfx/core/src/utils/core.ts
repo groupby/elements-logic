@@ -14,13 +14,11 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: Plugin
     ...Object.keys(registry),
     ...plugins.map(({ metadata: { name }}) => name),
   ];
-  const availableSet = new Set(available);
-
   const required = plugins.reduce((memo, plugin) => {
     return [...memo, ...plugin.metadata.depends];
   }, []);
+  const availableSet = new Set(available);
   const requiredSet = new Set(required);
-
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));
 
   return Array.from(difference.values()).sort();
@@ -46,7 +44,6 @@ export function registerPlugins(plugins: Plugin[], registry: PluginRegistry): Pl
   });
 
   Object.assign(registry, newlyRegistered);
-
   return newlyRegistered;
 }
 
