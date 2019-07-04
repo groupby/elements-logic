@@ -51,7 +51,7 @@ describe('Core', () => {
       expect(calculateMissingDependencies).to.be.calledWith(plugins, sinon.match(core.registry));
     });
 
-    it('should call the lifecycle events on the plugins in order', () => {
+    it('should call the lifecycle events in order on the plugins', () => {
       const plugins: any = [
         {
           metadata: {
