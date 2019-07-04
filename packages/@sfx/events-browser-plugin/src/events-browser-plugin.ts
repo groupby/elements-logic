@@ -54,17 +54,13 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
     this.core = plugins;
 
     this.exposedValue = {
-      registerListen: this.registerListener,
+      registerListener: this.registerListener,
       unregisterListener: this.unregisterListener,
       dispatchEvent: this.dispatchEvent,
     };
 
     return this.exposedValue;
   }
-
-  init() {}
-
-  ready() {}
 
   registerListener() {
     console.log('Listening method has fired');
