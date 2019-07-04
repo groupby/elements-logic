@@ -5,37 +5,26 @@ describe('EventsBrowserPlugin', () => {
   let eventsBrowserPlugin: any;
 
   beforeEach(() => {
-    eventsBrowserPlugin = new EventsBrowserPlugin({ window: new Window() });
+    eventsBrowserPlugin = new EventsBrowserPlugin();
   });
 
   describe('constructor()', () => {
-    it('should have an options property equal to and empty object', () => {
-      expect(eventsBrowserPlugin.options).to.deep.equal({});
+    it('should create an EventsBrowserPlugin with default options', () => {
+      const defaultOptions = { window: window, };
+
+      expect(eventsBrowserPlugin.options).to.deep.equal(defaultOptions);
     });
 
-    it('should create an EventsBrowserPlugin with default options', () => {
-      const defaultOptions: any = {
-        a: 'b',
-        c: 'd',
-      }
-      eventsBrowserPlugin.options = defaultOptions;
+    it('should combine default options and provided options', () => {
+      const defaultOptions = { window: window, };
+      const options: any = { a: 'b', c: 'd', };
 
-      const newEventsBrowserPluginInstance = new EventsBrowserPlugin();
+      eventsBrowserPlugin = new EventsBrowserPlugin(options);
 
-      expect(newEventsBrowserPluginInstance.options).to.deep.equal(defaultOptions);
+      expect(eventsBrowserPlugin.options).to.deep.equal({ ...options, ...defaultOptions });
     });
 
     it('should override default options', () => {
-      const options: any = {
-        a: 'b',
-        c: 'd'
-      };
-      eventsBrowserPlugin = new EventsBrowserPlugin(options);
-
-      expect(eventsBrowserPlugin.options).to.deep.equal(options);
-    });
-
-    it('should define an object to the window property', () => {
       const options: any = {
         foo: 'bar',
         baz: 'qux',

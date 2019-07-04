@@ -31,12 +31,14 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
   // Plugin Properties
   core: object;
   exposedValue: any;
-  options: any = {};
+  options: EventsBrowserPluginOptions = {
+    window: typeof window !== "undefined" ? window : undefined,
+  };
   window: any;
 
   constructor(options: Partial<EventsBrowserPluginOptions> = {}) {
     this.options = {...this.options, ...options};
-    this.window = this.options.window || (typeof window !== "undefined" ? window : undefined);
+    this.window = this.options.window;
 
     if(!this.window) {
       throw new Error('window object is not valid');
