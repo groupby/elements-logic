@@ -62,11 +62,11 @@ import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
     return this.exposedValue;
   }
 
-  registerListener(eventName: string, callback: () => void) {
+  registerListener(eventName: string, callback: EventListener) {
     this.window.addEventListener(eventName, callback);
   }
 
-  unregisterListener(eventName: string, callback: () => void) {
+  unregisterListener(eventName: string, callback: EventListener) {
     this.window.removeEventListener(eventName, callback);
   }
 
