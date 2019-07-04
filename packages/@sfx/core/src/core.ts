@@ -37,7 +37,8 @@ export default class Core {
    * 2. **Initialization:** Plugins perform setup tasks. Plugins are
    *    aware of the existence of other plugins, but should not make use
    *    of their functionality as they may not yet be initialized.
-   * 3. **Ready:** Plugins may make use of other plugins.
+   * 3. **Ready:** Registration is complete. All plugins have been
+   *    initialized, and plugins may make use of other plugins.
    *
    * This function ensures that all plugin dependencies are available
    * before proceeding to register the plugins. Circular dependencies

@@ -48,7 +48,7 @@ export interface Plugin {
    * The callback for the ready phase of the lifecycle.
    *
    * In this function, the plugin can assume that other plugins have
-   * been initialized.
+   * been initialized and may safely use other plugins.
    */
   ready?: () => void;
 }
