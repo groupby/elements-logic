@@ -19,7 +19,11 @@
     Note: the Dispatch method will be dispatching customEvents in order to attach custom data to any given event.
 */
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-
+/**
+ * The browser version of the events plugin designed for the SF-X product.
+ * This plugin is responsible for exposing methods that will allow other
+ * plugins to register, unregister, and dispatch events.
+ */
 export default class EventsBrowserPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
@@ -28,14 +32,34 @@ export default class EventsBrowserPlugin implements Plugin {
     };
   }
 
-  // Plugin Properties
+  /**
+   * The core property is meant to hold a reference to the plugin registry
+   * that is passed in during the plugin registration lifecycle event.
+   */
   core: PluginRegistry;
+  /**
+   * The exposedValue property is the value that the Events Browser Plugin
+   * exposes to the Core entity.
+   */
   exposedValue: EventsBrowserPluginExposedValue;
+  /**
+   * The options property is the set of configuration values used to set
+   * up the plugin during construction.
+   */
   options: EventsBrowserPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
   };
   window: any;
 
+  /**
+   * The browser events plugin constructor function which will combine
+   * both the default options and any options passed in. Also the constructor
+   * will accept a window object provided through the options object.
+   * If the window object provided is not valid, the constructor will throw
+   * an error.
+   * @param options an object that must contain a window property that is
+   * a reference to the browser Window object.
+   */
   constructor(options: Partial<EventsBrowserPluginOptions> = {}) {
     this.options = {...this.options, ...options};
     this.window = this.options.window;
@@ -50,6 +74,13 @@ export default class EventsBrowserPlugin implements Plugin {
     this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
+  /**
+   * The register method that accepts a plugin registry object and returns
+   * the exposedValue of the browser events plugin. The exposedValue is an
+   * object that holds references to the registerListener, unregisterListener,
+   * and dispatchEvent methods.
+   * @param plugins a plugin registry object.
+   */
   register(plugins: PluginRegistry): EventsBrowserPluginExposedValue {
     this.core = plugins;
 
