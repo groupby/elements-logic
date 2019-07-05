@@ -5,6 +5,7 @@ module.exports = {
   mode: 'development',
 
   entry: {
+    core: path.resolve(__dirname, 'presets/core.ts'),
     plugins: path.resolve(__dirname, 'presets/plugins.ts'),
   },
 
