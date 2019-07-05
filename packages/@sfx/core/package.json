@@ -4,6 +4,7 @@
   "description": "SF-X Core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
   "scripts": {
     "build": "../../../scripts/build.sh",
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
