@@ -18,7 +18,7 @@
       payload: The information meant to be sent along with the event that is being dispatched.
     Note: the Dispatch method will be dispatching customEvents in order to attach custom data to any given event.
 */
-import { Plugin, PluginRegistry, PluginMetadata } from '../../core/src/plugin';
+import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
  export default class EventsBrowserPlugin implements Plugin {
   get metadata(): PluginMetadata {
