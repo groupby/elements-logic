@@ -312,4 +312,9 @@ describe('CoreUtils', () => {
       expect(() => readyPlugins(plugins)).to.not.throw();
     });
   });
+
+  describe('unregisterAllPlugins()', () => {
+    it('should call the unregister function of all plugins');
+    it('should clear the registry');
+  });
 });
