@@ -19,5 +19,6 @@
     "directory": "packages/@sfx/core"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "sideEffects": false
 }
