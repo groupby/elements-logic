@@ -20,7 +20,7 @@
 */
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
- export default class EventsBrowserPlugin implements Plugin {
+export default class EventsBrowserPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'events-browser-plugin',
@@ -30,7 +30,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
   // Plugin Properties
   core: object;
-  exposedValue: any;
+  exposedValue: EventsBrowserPluginExposedValue;
   options: EventsBrowserPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
   };
@@ -50,7 +50,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
     this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
-  register(plugins: PluginRegistry) {
+  register(plugins: PluginRegistry): EventsBrowserPluginExposedValue {
     this.core = plugins;
 
     this.exposedValue = {
@@ -80,4 +80,10 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 // Interfaces
 export interface EventsBrowserPluginOptions {
   window: Window,
+}
+
+export interface EventsBrowserPluginExposedValue {
+  registerListener: (eventName: string, callback: EventListener) => void,
+  unregisterListener: (eventName: string, callback: EventListener) => void,
+  dispatchEvent: (eventName: string, payload?: any) => void,
 }
