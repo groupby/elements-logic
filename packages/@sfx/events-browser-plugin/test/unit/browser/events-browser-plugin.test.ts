@@ -21,7 +21,7 @@ describe('EventsBrowserPlugin', () => {
 
       eventsBrowserPlugin = new EventsBrowserPlugin(options);
 
-      expect(eventsBrowserPlugin.options).to.deep.equal({ ...options, ...defaultOptions });
+      expect(eventsBrowserPlugin.options).to.deep.equal({ ...defaultOptions, ...options });
     });
 
     it('should override default options', () => {
