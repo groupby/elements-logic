@@ -29,7 +29,7 @@ export default class EventsBrowserPlugin implements Plugin {
   }
 
   // Plugin Properties
-  core: object;
+  core: PluginRegistry;
   exposedValue: EventsBrowserPluginExposedValue;
   options: EventsBrowserPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
