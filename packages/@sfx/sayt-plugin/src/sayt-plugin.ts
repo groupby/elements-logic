@@ -32,14 +32,15 @@ export default class SaytPlugin implements Plugin {
 // }
 
 // method that wraps the api
-const clientTarget = 'cvshealth-cors';
-const groupbyAPI = `https://${clientTarget}.groupbycloud.com/api/v1/search`;
 
 getSaytResults() {
+  let clientTarget = 'cvshealth-cors';
+  let groupbyAPI = `https://${clientTarget}.groupbycloud.com/api/v1/search`;
+
   fetch(groupbyAPI).then((res: any) => {
     console.log('>>> res', res);
     return res;
-  })  
+  })
 }
 
 
