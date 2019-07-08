@@ -37,10 +37,12 @@ getSaytResults() {
   let clientTarget = 'cvshealth-cors';
   let groupbyAPI = `https://${clientTarget}.groupbycloud.com/api/v1/search`;
 
-  fetch(groupbyAPI).then((res: any) => {
-    console.log('>>> res', res);
-    return res;
-  })
+  // return fetch(groupbyAPI).then((res: any) => {
+  //   console.log('>>> res', res);
+  //   return res;
+  // })
+
+  return Promise.resolve({});
 }
 
 
