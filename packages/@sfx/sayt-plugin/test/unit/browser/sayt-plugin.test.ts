@@ -8,15 +8,13 @@ describe('SaytPlugin', () => {
     saytPlugin = new SaytPlugin();
   });
 
-  describe('getSaytResults', () => {
-    it('should return true', () => {
-      return saytPlugin.getSaytResults()
-        .then(res => {
-          console.log('>>> res', res.result)
-          expect(res).to.equal(false);
-        })
+  describe('getSayt', () => {
+    it('should set a given client target into sayt instance', () => {
+      const sayt = saytPlugin.getSayt('example-client');
+
+      expect(sayt.config.subdomain).to.equal('example-client');
     });
   });
+
+
 });
-// what type of thing - json object
-//it is fetching against an edpoint  -res code
