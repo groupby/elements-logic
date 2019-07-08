@@ -15,6 +15,24 @@ describe('domEventsPlugin', () => {
       expect(domEventsPlugin.options).to.deep.equal(defaultOptions);
     });
 
+    it('should throw an error if an invalid window option is provided', () => {
+      const invalidOptions = {
+        window: undefined,
+        CustomEvent: CustomEvent,
+      };
+
+      expect(() => new DomEventsPlugin(invalidOptions)).to.throw();
+    });
+
+    it('should throw an error if an invalid CustomEvent constructor is provided', () => {
+      const invalidOptions = {
+        windowL: Window,
+        CustomEvent: undefined,
+      };
+
+      expect(() => new DomEventsPlugin(invalidOptions)).to.throw();
+    });
+
     it('should combine default options and provided options', () => {
       const defaultOptions = { window: window, CustomEvent: CustomEvent };
       const options: any = { a: 'b', c: 'd', };
