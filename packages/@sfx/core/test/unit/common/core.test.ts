@@ -75,7 +75,11 @@ describe('Core', () => {
 
       core.register(plugins);
 
-      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
+      expect(registerPlugins).to.be.calledWith(
+        plugins,
+        sinon.match(core.registry),
+        sinon.match(core.plugins)
+      );
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
       sinon.assert.callOrder(
@@ -84,112 +88,30 @@ describe('Core', () => {
         readyPlugins
       );
     });
-
-    it('should add the plugins to the plugin directory', () => {
-      const pluginA: any = {
-        metadata: {
-          name: 'a',
-          depends: [],
-        },
-      };
-      const pluginB: any = {
-        metadata: {
-          name: 'b',
-          depends: [],
-        },
-      };
-      const pluginC: any = {
-        metadata: {
-          name: 'c',
-          depends: [],
-        },
-      };
-      const plugins: any = [pluginA, pluginB];
-      core.plugins = { c: pluginC };
-      calculateMissingDependencies.returns([]);
-
-      core.register(plugins);
-
-      expect(core.plugins).to.deep.equal({
-        a: pluginA,
-        b: pluginB,
-        c: pluginC,
-      });
-      expect(core.plugins.a).to.equal(pluginA);
-      expect(core.plugins.b).to.equal(pluginB);
-      expect(core.plugins.c).to.equal(pluginC);
-    });
   });
 
   describe('unregisterAll()', () => {
     it('should call unregisterPlugins with all plugins', () => {
-      const pluginA: any = {
-        metadata: {
-          name: 'a',
-          depends: [],
-        },
-      };
-      const pluginB: any = {
-        metadata: {
-          name: 'b',
-          depends: ['a'],
-        },
-      };
-      const pluginC: any = {
-        metadata: {
-          name: 'c',
-          depends: ['a'],
-        },
-      };
-      const plugins = core.plugins = {
-        a: pluginA,
-        b: pluginB,
-        c: pluginC,
-      };
+      const names = ['a', 'b', 'c'];
       const registry = core.registry = {
         a: { a: 'a' },
         b: () => /b/,
         c: 'c',
       };
-      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
-      const pluginArrayMatcher =
-        sinon.match.array.contains([pluginA, pluginB, pluginC])
-        .and(sinon.match((arr) => arr.length === 3));
-
-      core.unregisterAll();
-
-      expect(unregisterPlugins).to.be.calledWith(pluginArrayMatcher, sinon.match.same(registry));
-    });
-
-    it('should clear the plugin directory', () => {
-      const pluginA: any = {
-        metadata: {
-          name: 'a',
-          depends: [],
-        },
-      };
-      const pluginB: any = {
-        metadata: {
-          name: 'b',
-          depends: ['a'],
-        },
-      };
-      const pluginC: any = {
-        metadata: {
-          name: 'c',
-          depends: ['a'],
-        },
-      };
-      const plugins = core.plugins = {
-        a: pluginA,
-        b: pluginB,
-        c: pluginC,
-      };
+      const directory = core.plugins = {
+        a: { metadata: { name: 'a', depends: [] } },
+        b: { metadata: { name: 'b', depends: ['a'] } },
+        c: { metadata: { name: 'c', depends: ['a'] } },
+      } as any;
       const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
 
       core.unregisterAll();
 
-      expect(plugins).to.deep.equal({});
+      expect(unregisterPlugins).to.be.calledWith(
+        names,
+        sinon.match.same(registry),
+        sinon.match.same(directory)
+      );
     });
   });
 });

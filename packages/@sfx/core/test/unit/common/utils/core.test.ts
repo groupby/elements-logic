@@ -156,7 +156,7 @@ describe('CoreUtils', () => {
       ];
       const registry: any = {};
 
-      registerPlugins(plugins, registry);
+      registerPlugins(plugins, registry, {});
 
       expect(localRegistryA).to.be.an('object');
       expect(localRegistryB).to.be.an('object');
@@ -185,9 +185,8 @@ describe('CoreUtils', () => {
           register: () => valueC,
         },
       ];
-      const registry = {};
 
-      const newlyRegistered = registerPlugins(plugins, registry);
+      const newlyRegistered = registerPlugins(plugins, {}, {});
 
       expect(newlyRegistered).to.deep.equal({
         pluginA: valueA,
@@ -199,7 +198,7 @@ describe('CoreUtils', () => {
       expect(newlyRegistered.pluginC).to.equal(valueC);
     });
 
-    it('should add the newly registered plugins to the initial registry', () => {
+    it('should add the newly registered plugins to the plugin registry', () => {
       const valueA = { a: 'a' };
       const valueB = { b: 'b' };
       const plugins: any = [
@@ -214,7 +213,7 @@ describe('CoreUtils', () => {
       ];
       const registry: any = { a: 'b' };
 
-      registerPlugins(plugins, registry);
+      registerPlugins(plugins, registry, {});
 
       expect(registry).to.deep.equal({
         a: 'b',
@@ -237,10 +236,35 @@ describe('CoreUtils', () => {
       ];
       const registry = { a: 'aa' };
 
-      registerPlugins(plugins, registry);
+      registerPlugins(plugins, registry, {});
 
       expect(registry.a).to.equal('aa');
       expect(registry).to.not.have.any.keys('b');
+    });
+
+    it('should add the newly registered plugins to the plugin directory', () => {
+      const pluginA = {
+        metadata: { name: 'pluginA' },
+        register: () => 'a',
+      };
+      const pluginB = {
+        metadata: { name: 'pluginB' },
+        register: () => 'b',
+      };
+      const pluginC = {
+        metadata: { name: 'pluginC' },
+        register: () => 'c',
+      };
+      const plugins: any = [pluginA, pluginB];
+      const registry: any = { pluginC: 'c' };
+      const directory: any = { pluginC };
+
+      registerPlugins(plugins, registry, directory);
+
+      expect(directory).to.deep.equal({ pluginA, pluginB, pluginC });
+      expect(directory.pluginA).to.equal(pluginA);
+      expect(directory.pluginB).to.equal(pluginB);
+      expect(directory.pluginC).to.equal(pluginC);
     });
   });
 
@@ -315,81 +339,117 @@ describe('CoreUtils', () => {
   });
 
   describe('unregisterPlugins()', () => {
-    it('should call the unregister function of all plugins', () => {
+    it('should call the unregister function of the unregistered plugins', () => {
       const unregisterA = spy();
       const unregisterB = spy();
       const unregisterC = spy();
-      const plugins: any = [
-        {
-          metadata: { name: 'a' },
-          unregister: unregisterA,
-        },
-        {
-          metadata: { name: 'b' },
-          unregister: unregisterB,
-        },
-        {
-          metadata: { name: 'c' },
-          unregister: unregisterC,
-        },
-      ];
+      const names = ['a', 'c'];
       const registry: any = {
         a: { a: 'a' },
         b: () => /b/,
         c: 'c',
       };
+      const directory: any = {
+        a: {
+          metadata: { name: 'a' },
+          unregister: unregisterA,
+        },
+        b: {
+          metadata: { name: 'b' },
+          unregister: unregisterB,
+        },
+        c: {
+          metadata: { name: 'c' },
+          unregister: unregisterC,
+        },
+      };
 
-      unregisterPlugins(plugins, registry);
+      unregisterPlugins(names, registry, directory);
 
       expect(unregisterA).to.be.called;
-      expect(unregisterB).to.be.called;
       expect(unregisterC).to.be.called;
+      expect(unregisterB).to.not.be.called;
     });
 
     it('should remove the corresponding entry from the registry', () => {
+      const names = ['a', 'c'];
       const bValue = () => /b/;
-      const plugins: any = [
-        {
+      const directory: any = {
+        a: {
           metadata: { name: 'a' },
           unregister: () => null,
         },
-        {
+        b: {
+          metadata: { name: 'b' },
+          unregister: () => null,
+        },
+        c: {
           metadata: { name: 'c' },
           unregister: () => null,
         },
-      ];
+      };
       const registry: any = {
         a: { a: 'a' },
         b: bValue,
         c: 'c',
       };
 
-      unregisterPlugins(plugins, registry);
+      unregisterPlugins(names, registry, directory);
 
       expect(registry).to.deep.equal({ b: bValue });
     });
 
-    it('should not throw when a plugin does not have an unregister function', () => {
-      const plugins: any = [
-        {
+    it('should remove the corresponding entry from the directory', () => {
+      const names = ['a', 'c'];
+      const pluginB = {
+        metadata: { name: 'b' },
+        unregister: () => null,
+      };
+      const directory: any = {
+        a: {
           metadata: { name: 'a' },
           unregister: () => null,
         },
-        {
-          metadata: { name: 'b' },
-        },
-        {
+        b: pluginB,
+        c: {
           metadata: { name: 'c' },
           unregister: () => null,
         },
-      ];
+      };
       const registry: any = {
         a: { a: 'a' },
         b: () => /b/,
         c: 'c',
       };
 
-      expect(() => unregisterPlugins(plugins, registry)).to.not.throw();
+      unregisterPlugins(names, registry, directory);
+
+      expect(directory).to.deep.equal({ b: pluginB });
+      expect(directory.b).to.equal(pluginB);
+    });
+
+    it('should not throw when a plugin does not have an unregister function', () => {
+      const names = ['a', 'b', 'c'];
+      const registry: any = {
+        a: { a: 'a' },
+        b: () => /b/,
+        c: 'c',
+      };
+      const directory: any = {
+        a: {
+          metadata: { name: 'a' },
+          unregister: () => null,
+        },
+        b: {
+          metadata: { name: 'b' },
+        },
+        c: {
+          metadata: { name: 'c' },
+          unregister: () => null,
+        },
+      };
+
+      expect(() => unregisterPlugins(names, registry, directory)).to.not.throw();
     });
   });
 });

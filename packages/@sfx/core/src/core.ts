@@ -59,11 +59,7 @@ export default class Core {
       throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
     }
 
-    plugins.forEach((plugin) => {
-      this.plugins[plugin.metadata.name] = plugin;
-    });
-
-    registerPlugins(plugins, this.registry);
+    registerPlugins(plugins, this.registry, this.plugins);
 
     initPlugins(plugins);
     readyPlugins(plugins);
@@ -73,11 +69,6 @@ export default class Core {
    * TODO
    */
   unregisterAll() {
-    const pluginNames = Object.keys(this.plugins);
-    const plugins = pluginNames.map((name) => this.plugins[name]);
-
-    unregisterPlugins(plugins, this.registry);
-
-    pluginNames.forEach((p) => delete this.plugins[p]);
+    unregisterPlugins(Object.keys(this.plugins), this.registry, this.plugins);
   }
 }
