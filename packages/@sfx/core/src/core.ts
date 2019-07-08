@@ -72,5 +72,7 @@ export default class Core {
     const plugins = pluginNames.map((name) => this.plugins[name]);
 
     unregisterPlugins(plugins, this.registry);
+
+    pluginNames.forEach((p) => delete this.plugins[p]);
   }
 }

@@ -120,5 +120,36 @@ describe('Core', () => {
 
       expect(unregisterPlugins).to.be.calledWith(pluginArrayMatcher, sinon.match.same(registry));
     });
+
+    it('should clear the plugin directory', () => {
+      const pluginA: any = {
+        metadata: {
+          name: 'a',
+          depends: [],
+        },
+      };
+      const pluginB: any = {
+        metadata: {
+          name: 'b',
+          depends: ['a'],
+        },
+      };
+      const pluginC: any = {
+        metadata: {
+          name: 'c',
+          depends: ['a'],
+        },
+      };
+      const plugins = core.plugins = {
+        a: pluginA,
+        b: pluginB,
+        c: pluginC,
+      };
+      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+
+      core.unregisterAll();
+
+      expect(plugins).to.deep.equal({});
+    });
   });
 });
