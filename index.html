@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h1>SF-X Logic Layer Test Page</h1>
+
+  <!-- Pull in core -->
+  <script src="./dist/core.js"></script>
+  <!-- Pull in plugins -->
+  <script src="./dist/plugins.js"></script>
+  <script>
+    console.log('Scripts are running!');
+    const core = new sfxCore.Core();
+    const eventsPlugin = new EventsBrowserPlugin;
+
+    console.log('logging out Core instance', core);
+    console.log('logging out eventsPlugin instance', eventsPlugin);
+  </script>
+</body>
+</html>
