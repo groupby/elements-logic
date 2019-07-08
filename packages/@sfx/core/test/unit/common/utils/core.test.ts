@@ -4,7 +4,7 @@ import {
   initPlugins,
   readyPlugins,
   registerPlugins,
-  unregisterAllPlugins,
+  unregisterPlugins,
 } from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
@@ -314,7 +314,7 @@ describe('CoreUtils', () => {
     });
   });
 
-  describe('unregisterAllPlugins()', () => {
+  describe('unregisterPlugins()', () => {
     it('should call the unregister function of all plugins', () => {
       const unregisterA = spy();
       const unregisterB = spy();
@@ -339,7 +339,7 @@ describe('CoreUtils', () => {
         c: 'c',
       };
 
-      unregisterAllPlugins(plugins, registry);
+      unregisterPlugins(plugins, registry);
 
       expect(unregisterA).to.be.called;
       expect(unregisterB).to.be.called;
@@ -366,7 +366,7 @@ describe('CoreUtils', () => {
         c: 'c',
       };
 
-      expect(() => unregisterAllPlugins(plugins, registry)).to.not.throw();
+      expect(() => unregisterPlugins(plugins, registry)).to.not.throw();
     });
   });
 });

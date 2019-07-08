@@ -76,7 +76,7 @@ export function readyPlugins(plugins: Plugin[]) {
 /**
  * TODO
  */
-export function unregisterAllPlugins(plugins: Plugin[], registry: PluginRegistry) {
+export function unregisterPlugins(plugins: Plugin[], registry: PluginRegistry) {
   plugins.forEach((plugin) => {
     if (typeof plugin.unregister === 'function') {
       plugin.unregister();
