@@ -15,11 +15,20 @@
   <script src="./dist/plugins.js"></script>
   <script>
     console.log('Scripts are running!');
-    const core = new sfxCore.Core();
-    const eventsPlugin = new sfxPlugins.DomEventsPlugin;
+    const core = new sfxCore.Core;
+    const DomEventsPlugin = new sfxPlugins.DomEventsPlugin;
 
-    console.log('logging out Core instance', core);
-    console.log('logging out eventsPlugin instance', eventsPlugin);
+    core.register([DomEventsPlugin]);
+
+    const eventHandler = (data) => console.log('test event has fired!', data);
+
+    core.registry.dom_events_plugin.registerListener('test', eventHandler);
+
+    core.registry.dom_events_plugin.dispatchEvent('test', { data: 'this that data' });
+
+    core.registry.dom_events_plugin.unregisterListener('test', eventHandler);
+
+    core.registry.dom_events_plugin.dispatchEvent('test', { data: 'this that data' });
   </script>
 </body>
 </html>
