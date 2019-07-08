@@ -26,10 +26,10 @@ export default class SaytDriverPlugin implements Plugin {
     this.core['events-browser-plugin'].registerListener('fetch-sayt-products', this.fetchSaytProducts);
   }
 
-  async fetchSaytData(query: string) {
+  async fetchSaytData(saytDataQuery: SaytDataPayload) {
     let response;
     try {
-      response = await this.core['sayt-data-source-plugin'].fetchSaytData(query);
+      response = await this.core['sayt-data-source-plugin'].fetchSaytData(saytDataQuery);
     } catch(err) {
       throw err;
     }
@@ -49,7 +49,15 @@ export default class SaytDriverPlugin implements Plugin {
   }
 }
 
-
+export interface SaytDataPayload {
+  query: string;
+  collection?: string;
+  language?: string;
+  filter?: string;
+  searchItems?: number;
+  navigationItems?: number;
+  fuzzy?: boolean;
+}
 
 export interface SaytHoverQuery {
   query: string;
