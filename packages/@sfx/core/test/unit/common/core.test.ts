@@ -79,6 +79,41 @@ describe('Core', () => {
         readyPlugins
       );
     });
+
+    it('should add the plugins to the plugin directory', () => {
+      const pluginA: any = {
+        metadata: {
+          name: 'a',
+          depends: [],
+        },
+      };
+      const pluginB: any = {
+        metadata: {
+          name: 'b',
+          depends: [],
+        },
+      };
+      const pluginC: any = {
+        metadata: {
+          name: 'c',
+          depends: [],
+        },
+      };
+      const plugins: any = [pluginA, pluginB];
+      core.plugins = { c: pluginC };
+      calculateMissingDependencies.returns([]);
+
+      core.register(plugins);
+
+      expect(core.plugins).to.deep.equal({
+        a: pluginA,
+        b: pluginB,
+        c: pluginC,
+      });
+      expect(core.plugins.a).to.equal(pluginA);
+      expect(core.plugins.b).to.equal(pluginB);
+      expect(core.plugins.c).to.equal(pluginC);
+    });
   });
 
   describe('unregisterAll()', () => {

@@ -60,6 +60,11 @@ export default class Core {
     }
 
     registerPlugins(plugins, this.registry);
+
+    plugins.forEach((plugin) => {
+      this.plugins[plugin.metadata.name] = plugin;
+    });
+
     initPlugins(plugins);
     readyPlugins(plugins);
   }
