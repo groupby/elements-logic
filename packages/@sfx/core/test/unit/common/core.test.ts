@@ -80,4 +80,45 @@ describe('Core', () => {
       );
     });
   });
+
+  describe('unregisterAll()', () => {
+    it('should call unregisterPlugins with all plugins', () => {
+      const pluginA: any = {
+        metadata: {
+          name: 'a',
+          depends: [],
+        },
+      };
+      const pluginB: any = {
+        metadata: {
+          name: 'b',
+          depends: ['a'],
+        },
+      };
+      const pluginC: any = {
+        metadata: {
+          name: 'c',
+          depends: ['a'],
+        },
+      };
+      const plugins = core.plugins = {
+        a: pluginA,
+        b: pluginB,
+        c: pluginC,
+      };
+      const registry = core.registry = {
+        a: { a: 'a' },
+        b: () => /b/,
+        c: 'c',
+      };
+      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+      const pluginArrayMatcher =
+        sinon.match.array.contains([pluginA, pluginB, pluginC])
+        .and(sinon.match((arr) => arr.length === 3));
+
+      core.unregisterAll();
+
+      expect(unregisterPlugins).to.be.calledWith(pluginArrayMatcher, sinon.match.same(registry));
+    });
+  });
 });

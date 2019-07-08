@@ -84,3 +84,11 @@ export interface PluginMetadata {
 export interface PluginRegistry {
   [key: string]: any;
 }
+
+
+/**
+ * The type of the plugin directory, which holds plugins keyed by name.
+ */
+export interface PluginDirectory {
+  [name: string]: Plugin;
+}

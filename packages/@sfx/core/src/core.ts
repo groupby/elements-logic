@@ -1,9 +1,10 @@
-import { Plugin, PluginRegistry } from './plugin';
+import { Plugin, PluginDirectory, PluginRegistry } from './plugin';
 import {
   calculateMissingDependencies,
   initPlugins,
   readyPlugins,
   registerPlugins,
+  unregisterPlugins,
 } from './utils/core';
 
 /**
@@ -21,6 +22,11 @@ export default class Core {
    * plugin is discouraged.
    */
   registry: PluginRegistry = Object.create(null);
+
+  /**
+   * TODO
+   */
+  plugins: PluginDirectory = Object.create(null);
 
   /**
    * Register one or more plugins with Core.
@@ -56,5 +62,15 @@ export default class Core {
     registerPlugins(plugins, this.registry);
     initPlugins(plugins);
     readyPlugins(plugins);
+  }
+
+  /**
+   * TODO
+   */
+  unregisterAll() {
+    const pluginNames = Object.keys(this.plugins);
+    const plugins = pluginNames.map((name) => this.plugins[name]);
+
+    unregisterPlugins(plugins, this.registry);
   }
 }
