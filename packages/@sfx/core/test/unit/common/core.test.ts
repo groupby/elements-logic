@@ -14,6 +14,11 @@ describe('Core', () => {
       expect(core.registry).to.be.empty;
       expect(Object.getPrototypeOf(core.registry)).to.be.null;
     });
+
+    it('should create an empty null-prototype plugins directory object', () => {
+      expect(core.plugins).to.be.empty;
+      expect(Object.getPrototypeOf(core.plugins)).to.be.null;
+    });
   });
 
   describe('register()', () => {

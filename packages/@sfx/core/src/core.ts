@@ -59,11 +59,11 @@ export default class Core {
       throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
     }
 
-    registerPlugins(plugins, this.registry);
-
     plugins.forEach((plugin) => {
       this.plugins[plugin.metadata.name] = plugin;
     });
+
+    registerPlugins(plugins, this.registry);
 
     initPlugins(plugins);
     readyPlugins(plugins);
