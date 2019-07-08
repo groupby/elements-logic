@@ -9,75 +9,30 @@ export default class SaytPlugin implements Plugin {
     };
   }
 
-  core: SaytPlugin;
-  // exposedValue: TBD
+  core: PluginRegistry;
+  exposedValue: SaytPluginExposedValue;
 
-  // A TypeScript Module that:
-  //
-  // Exposes methods that will take in request objects and then return relevant Search-data based around the request sent in.
-  //
-  // Can be consumed by 3rd-party application.
-  //
-  // Can be used in the browser, and on the server (ie. within a Node-based environment).
-  //
-  // Can be transpiled down to 'vanilla' JavaScript.
-  //
-  // A series of tests that encompass the functionality of a Data-source plugin.
+  getSayt(clientTarget) {
+    let config = {
+      https: true,
+      collection: 'BCProduction',
+      subdomain: clientTarget,
+    };
 
-
-// driver on front end makes request
-
-// method to take in request obj possible helper method
-// buildRequest(data) {
-//
-// }
-
-// method that wraps the api
-// method that when invoked returns the response
-//  -- take in request objs
-// -- return rel data
-
-// make sayt call
-getSaytResults() {
-  let clientTarget = 'cvshealth-cors';
-  let groupbyAPI = `https://${clientTarget}.groupbycloud.com/api/v1/search`;
-
-  let autoConfig = {
-    // language: en,
-    numSearchTerms: 20,
-    // numNavigations: 10,
-    // sortAlphabetically: boolean,
-    // fuzzyMatch: boolean,
+    return new Sayt(config);
   }
 
-  let config = {
-    subdomain: clientTarget,
-    collection: 'ProductsLeaf',
+  register(plugins: PluginRegistry): SaytPluginExposedValue {
+    this.core = plugins;
+
+    this.exposedValue = {
+      getSayt: this.getSayt,
+    };
+
+    return this.exposedValue;
   }
-
-  let sayt = new Sayt(config);
-
-  return sayt.autocomplete('red', autoConfig)
-  // return fetch(groupbyAPI).then((res: any) => {
-  //   console.log('>>> res', res);
-  //   return res;
-  // })
 }
 
-
-  constructor() {
-    console.log('yo shawna')
-  }
-  // recieve obj through which other plugins can be accessed but cannot access at this time?
-  register() {
-
-  }
-  //init lifecycle - do as much setup as possible
-  init() {
-
-  }
-  // can safely use other plugins
-  ready() {
-
-  }
+export interface SaytPluginExposedValue {
+  getSayt: (clientTarget: string) => Sayt;
 }
