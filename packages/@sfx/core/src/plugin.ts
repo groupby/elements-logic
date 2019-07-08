@@ -52,7 +52,13 @@ export interface Plugin {
    */
   ready?: () => void;
 
-  /** TODO */
+  /**
+   * The callback for the unregistration phase of the lifecycle. The
+   * plugin is expected to perform teardown tasks in this function.
+   *
+   * In this function, the plugin can assume that other plugins are
+   * still available to be used.
+   */
   unregister?: () => void;
 }
 

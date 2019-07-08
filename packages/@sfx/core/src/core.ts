@@ -24,7 +24,10 @@ export default class Core {
   registry: PluginRegistry = Object.create(null);
 
   /**
-   * TODO
+   * The plugin directory. This object is a dictionary containing plugin
+   * names as keys and the plugin object as values.
+   *
+   * Plugins do not have access to this directory.
    */
   directory: PluginDirectory = Object.create(null);
 
@@ -66,7 +69,10 @@ export default class Core {
   }
 
   /**
-   * TODO
+   * Unregisters all plugins. The plugin registry and directory are both
+   * cleared. The optional `unregister` function of each plugin is
+   * called when the plugin is unregistered. The order in which the
+   * plugins are unregistered is unspecified.
    */
   unregisterAll() {
     unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);

@@ -78,7 +78,13 @@ export function readyPlugins(plugins: Plugin[]) {
 }
 
 /**
- * 
+ * Unregisters the plugins with the given names from the given registry
+ * and directory.
+ *
+ * @param names The names of the plugins to unregister.
+ * @param registry The registry from which to unregister the plugin's
+ * exposed value.
+ * @param directory The directory from which to unregister the plugin.
  */
 export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory) {
   names.forEach((name) => {
