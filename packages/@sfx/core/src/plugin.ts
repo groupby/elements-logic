@@ -51,6 +51,9 @@ export interface Plugin {
    * been initialized and may safely use other plugins.
    */
   ready?: () => void;
+
+  /** TODO */
+  unregister?: () => void;
 }
 
 /**

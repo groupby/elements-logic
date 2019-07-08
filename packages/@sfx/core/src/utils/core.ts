@@ -72,3 +72,12 @@ export function readyPlugins(plugins: Plugin[]) {
     }
   });
 }
+
+/**
+ * TODO
+ */
+export function unregisterAllPlugins(plugins: Plugin[], registry: PluginRegistry) {
+  plugins.forEach((plugin) => {
+    plugin.unregister();
+  });
+}
