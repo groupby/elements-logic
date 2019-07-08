@@ -92,7 +92,8 @@ export function unregisterPlugins(names: string[], registry: PluginRegistry, dir
     if (typeof plugin.unregister === 'function') {
       plugin.unregister();
     }
-
+  });
+  names.forEach((name) => {
     delete registry[name];
     delete directory[name];
   });

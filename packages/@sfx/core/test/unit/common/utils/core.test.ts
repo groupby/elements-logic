@@ -399,6 +399,31 @@ describe('CoreUtils', () => {
       expect(registry).to.deep.equal({ b: bValue });
     });
 
+    it('should not remove the entry from the registry until all the unregistration hooks have been called', () => {
+      const valueA = spy();
+      const valueB = spy();
+      const names = ['a', 'b'];
+      const registry = {
+        a: valueA,
+        b: valueB,
+      };
+      const directory: any = {
+        a: {
+          metadata: { name: 'a' },
+          unregister: () => registry.b(),
+        },
+        b: {
+          metadata: { name: 'b' },
+          unregister: () => registry.a(),
+        },
+      };
+
+      unregisterPlugins(names, registry, directory);
+
+      expect(valueA).to.be.called;
+      expect(valueB).to.be.called;
+    });
+
     it('should remove the corresponding entry from the directory', () => {
       const names = ['a', 'c'];
       const pluginB = {
