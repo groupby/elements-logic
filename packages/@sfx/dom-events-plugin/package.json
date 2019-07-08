@@ -1,5 +1,5 @@
 {
-  "name": "@sfx/events-browser-plugin",
+  "name": "@sfx/dom-events-plugin",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/sfx-logic.git",
-    "directory": "packages/@sfx/events-browser-plugin"
+    "directory": "packages/@sfx/dom-events-plugin"
   },
   "author": "",
   "license": "MIT",

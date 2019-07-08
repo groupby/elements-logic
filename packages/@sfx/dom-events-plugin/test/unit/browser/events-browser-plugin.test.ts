@@ -1,27 +1,27 @@
 import { expect, sinon, spy, stub } from '../../utils';
-import EventsBrowserPlugin from '../../../src/events-browser-plugin';
+import DomEventsPlugin from '../../../src/dom-events-plugin';
 
-describe('EventsBrowserPlugin', () => {
-  let eventsBrowserPlugin: any;
+describe('domEventsPlugin', () => {
+  let domEventsPlugin: any;
 
   beforeEach(() => {
-    eventsBrowserPlugin = new EventsBrowserPlugin();
+    domEventsPlugin = new DomEventsPlugin();
   });
 
   describe('constructor()', () => {
-    it('should create an EventsBrowserPlugin with default options', () => {
+    it('should create a DomEventsPlugin instance with default options', () => {
       const defaultOptions = { window: window, CustomEvent: CustomEvent };
 
-      expect(eventsBrowserPlugin.options).to.deep.equal(defaultOptions);
+      expect(domEventsPlugin.options).to.deep.equal(defaultOptions);
     });
 
     it('should combine default options and provided options', () => {
       const defaultOptions = { window: window, CustomEvent: CustomEvent };
       const options: any = { a: 'b', c: 'd', };
 
-      eventsBrowserPlugin = new EventsBrowserPlugin(options);
+      domEventsPlugin = new DomEventsPlugin(options);
 
-      expect(eventsBrowserPlugin.options).to.deep.equal({ ...defaultOptions, ...options });
+      expect(domEventsPlugin.options).to.deep.equal({ ...defaultOptions, ...options });
     });
 
     it('should override default options', () => {
@@ -32,9 +32,9 @@ describe('EventsBrowserPlugin', () => {
           windowProp: 'windowPropValue',
         },
       };
-      eventsBrowserPlugin = new EventsBrowserPlugin(options);
+      domEventsPlugin = new DomEventsPlugin(options);
 
-      expect(eventsBrowserPlugin.window).to.deep.equal(options.window);
+      expect(domEventsPlugin.window).to.deep.equal(options.window);
     });
   });
 
@@ -42,12 +42,12 @@ describe('EventsBrowserPlugin', () => {
     it('should return an exposedValue', () => {
       const pluginRegistry = { dummyPlugin: 'b' };
       const exposedValue = {
-        registerListener: eventsBrowserPlugin.registerListener,
-        unregisterListener: eventsBrowserPlugin.unregisterListener,
-        dispatchEvent: eventsBrowserPlugin.dispatchEvent,
+        registerListener: domEventsPlugin.registerListener,
+        unregisterListener: domEventsPlugin.unregisterListener,
+        dispatchEvent: domEventsPlugin.dispatchEvent,
       };
 
-      const registerReturnValue = eventsBrowserPlugin.register(pluginRegistry);
+      const registerReturnValue = domEventsPlugin.register(pluginRegistry);
 
       expect(registerReturnValue).to.deep.equal(exposedValue);
     });
@@ -57,9 +57,9 @@ describe('EventsBrowserPlugin', () => {
     it('should call addEventListener with eventName and callback', () => {
       const eventName = 'fetchProducts';
       const callback = () => null;
-      const addEventListener = stub(eventsBrowserPlugin.window, 'addEventListener');
+      const addEventListener = stub(domEventsPlugin.window, 'addEventListener');
 
-      eventsBrowserPlugin.registerListener(eventName, callback);
+      domEventsPlugin.registerListener(eventName, callback);
 
       expect(addEventListener).to.be.calledWith(eventName, callback);
     });
@@ -69,9 +69,9 @@ describe('EventsBrowserPlugin', () => {
     it('should call removeEventListener with eventName and callback', () => {
       const eventName = 'fetchProducts';
       const callback = () => null;
-      const removeEventListener = stub(eventsBrowserPlugin.window, 'removeEventListener');
+      const removeEventListener = stub(domEventsPlugin.window, 'removeEventListener');
 
-      eventsBrowserPlugin.unregisterListener(eventName, callback);
+      domEventsPlugin.unregisterListener(eventName, callback);
 
       expect(removeEventListener).to.be.calledWith(eventName, callback);
     });
@@ -81,10 +81,10 @@ describe('EventsBrowserPlugin', () => {
     it('should call dispatch with eventName and payload', () => {
       const eventName = 'fetchProducts';
       const payload = { a: 'b' };
-      const dispatchEvent = stub(eventsBrowserPlugin.window, 'dispatchEvent');
-      const eventToDispatch = new eventsBrowserPlugin.window.CustomEvent(eventName, { detail: payload });
+      const dispatchEvent = stub(domEventsPlugin.window, 'dispatchEvent');
+      const eventToDispatch = new domEventsPlugin.CustomEvent(eventName, { detail: payload });
 
-      eventsBrowserPlugin.dispatchEvent(eventName, payload);
+      domEventsPlugin.dispatchEvent(eventName, payload);
 
       expect(dispatchEvent).to.be.calledWith(eventToDispatch);
     });

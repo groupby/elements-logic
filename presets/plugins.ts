@@ -1,1 +1,1 @@
-import '@sfx/events-browser-plugin';
+import '@sfx/dom-events-plugin';

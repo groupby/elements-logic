@@ -4,10 +4,10 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
  * This plugin is responsible for exposing methods that will allow other
  * plugins to register, unregister, and dispatch events.
  */
-export default class EventsBrowserPlugin implements Plugin {
+export default class DomEventsPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'events-browser-plugin',
+      name: 'dom_events_plugin',
       depends: [],
     };
   }
@@ -21,12 +21,12 @@ export default class EventsBrowserPlugin implements Plugin {
    * The exposedValue property is the value that the Events Browser Plugin
    * exposes to the Core entity.
    */
-  exposedValue: EventsBrowserPluginExposedValue;
+  exposedValue: DomEventsPluginExposedValue;
   /**
    * The options property is the set of configuration values used to set
    * up the plugin during construction.
    */
-  options: EventsBrowserPluginOptions = {
+  options: DomEventsPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
     CustomEvent: typeof CustomEvent !== "undefined" ? CustomEvent : undefined,
   };
@@ -45,7 +45,7 @@ export default class EventsBrowserPlugin implements Plugin {
    * @param options an object that must contain a window property that is
    * a reference to the browser Window object.
    */
-  constructor(options: Partial<EventsBrowserPluginOptions> = {}) {
+  constructor(options: Partial<DomEventsPluginOptions> = {}) {
     this.options = {...this.options, ...options};
     this.window = this.options.window;
     this.CustomEvent = this.options.CustomEvent;
@@ -72,7 +72,7 @@ export default class EventsBrowserPlugin implements Plugin {
    *
    * @param plugins a plugin registry object.
    */
-  register(plugins: PluginRegistry): EventsBrowserPluginExposedValue {
+  register(plugins: PluginRegistry): DomEventsPluginExposedValue {
     this.core = plugins;
 
     this.exposedValue = {
@@ -124,7 +124,7 @@ export default class EventsBrowserPlugin implements Plugin {
  * Browser Events Plugin options. This plugin expects a reference to a window
  * object be provided that conforms to the Window type.
  */
-export interface EventsBrowserPluginOptions {
+export interface DomEventsPluginOptions {
   window: Window,
   CustomEvent: typeof CustomEvent,
 }
@@ -133,7 +133,7 @@ export interface EventsBrowserPluginOptions {
  * Browser Events Plugin exposed value. This plugin will return an object
  * of the outlined shape during the plugin registration lifecycle.
  */
-export interface EventsBrowserPluginExposedValue {
+export interface DomEventsPluginExposedValue {
   registerListener: (eventName: string, callback: EventListener) => void,
   unregisterListener: (eventName: string, callback: EventListener) => void,
   dispatchEvent: (eventName: string, payload?: any) => void,
