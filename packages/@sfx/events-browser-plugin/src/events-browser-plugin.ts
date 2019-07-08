@@ -1,23 +1,3 @@
-/*
- This is the events plugin designed for a browser based environment
- It needs to include the following methods:
-  Listen (aka a register listener method).
-     The listen method should accept the following parameters:
-      type: this parameter informs the method of the event that needs to be listened for.
-      name: An alternative parameter to type, it informs the method of the name of the event.
-      callback: This is a function that informs the listen method what should be registered to be invoked in response to "hearing" the provided event.
-  Unlisten (aka an unregister listener method).
-    The unlisten method should accept the following parameters:
-      type: this parameter informs the method of event needs to be unregistered.
-      name: An alternative parameter to type, it informs the method of the name of the event to unregister.
-      callback: This is the event handler function that was meant to handle the event that is being removed.
-  Dispatch (aka an event dispatching method).
-    The dispatch method should accept the following parameters:
-      type: this parameter informs the method of the event that needs to be dispatched.
-      name: An alternative parameter to type, it informs the method of the name of the event.
-      payload: The information meant to be sent along with the event that is being dispatched.
-    Note: the Dispatch method will be dispatching customEvents in order to attach custom data to any given event.
-*/
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 /**
  * The browser version of the events plugin designed for the SF-X product.
@@ -93,14 +73,32 @@ export default class EventsBrowserPlugin implements Plugin {
     return this.exposedValue;
   }
 
+  /**
+   * Register an event listener for a given event and a callback to be
+   * invoked in response to the same event.
+   * @param eventName Name of the event to be registered/listened for.
+   * @param callback Callback to be registered with the listener.
+   */
   registerListener(eventName: string, callback: EventListener) {
     this.window.addEventListener(eventName, callback);
   }
 
+  /**
+   * Unregister/remove an event listener for the given event as well as
+   * its corresponding callback function.
+   * @param eventName Name of the event to unregister.
+   * @param callback Callback to be unregistered along with the event.
+   */
   unregisterListener(eventName: string, callback: EventListener) {
     this.window.removeEventListener(eventName, callback);
   }
 
+  /**
+   * Dispatch a given event and provide a payload which will be received
+   * by a listener registered for the given event.
+   * @param eventName Name of the event to be dispatched.
+   * @param payload Data to accompany the dispatched event.
+   */
   dispatchEvent(eventName: string, payload?: any) {
     const eventToDispatch = new this.window.CustomEvent(eventName, { detail: payload });
 
@@ -108,11 +106,18 @@ export default class EventsBrowserPlugin implements Plugin {
   }
  }
 
-// Interfaces
+/**
+ * Browser Events Plugin options. This plugin expects a reference to a window
+ * object be provided that conforms to the Window type.
+ */
 export interface EventsBrowserPluginOptions {
   window: Window,
 }
 
+/**
+ * Browser Events Plugin exposed value. This plugin will return an object
+ * of the outlined shape during the plugin registration lifecycle.
+ */
 export interface EventsBrowserPluginExposedValue {
   registerListener: (eventName: string, callback: EventListener) => void,
   unregisterListener: (eventName: string, callback: EventListener) => void,
