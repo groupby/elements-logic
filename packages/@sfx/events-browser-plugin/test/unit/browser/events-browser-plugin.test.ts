@@ -10,13 +10,13 @@ describe('EventsBrowserPlugin', () => {
 
   describe('constructor()', () => {
     it('should create an EventsBrowserPlugin with default options', () => {
-      const defaultOptions = { window: window, };
+      const defaultOptions = { window: window, CustomEvent: CustomEvent };
 
       expect(eventsBrowserPlugin.options).to.deep.equal(defaultOptions);
     });
 
     it('should combine default options and provided options', () => {
-      const defaultOptions = { window: window, };
+      const defaultOptions = { window: window, CustomEvent: CustomEvent };
       const options: any = { a: 'b', c: 'd', };
 
       eventsBrowserPlugin = new EventsBrowserPlugin(options);

@@ -28,24 +28,34 @@ export default class EventsBrowserPlugin implements Plugin {
    */
   options: EventsBrowserPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
+    CustomEvent: typeof CustomEvent !== "undefined" ? CustomEvent : undefined,
   };
-  window: any;
+  window: Window;
+  CustomEvent: typeof CustomEvent;
 
   /**
    * The browser events plugin constructor function which will combine
    * both the default options and any options passed in. Also the constructor
-   * will accept a window object provided through the options object.
-   * If the window object provided is not valid, the constructor will throw
-   * an error.
+   * will accept a window object and a CustomEvent constructor provided
+   * through the options object.
+   *
+   * If either the window object or CustomEvent constructor provided are
+   * not valid, the plugin constructor will throw an error.
+   *
    * @param options an object that must contain a window property that is
    * a reference to the browser Window object.
    */
   constructor(options: Partial<EventsBrowserPluginOptions> = {}) {
     this.options = {...this.options, ...options};
     this.window = this.options.window;
+    this.CustomEvent = this.options.CustomEvent;
 
-    if(!this.window) {
+    if (!this.window) {
       throw new Error('window object is not valid');
+    }
+
+    if (typeof this.CustomEvent !== 'function') {
+      throw new Error('CustomEvent constructor is not valid');
     }
 
     // Binds
@@ -59,6 +69,7 @@ export default class EventsBrowserPlugin implements Plugin {
    * the exposedValue of the browser events plugin. The exposedValue is an
    * object that holds references to the registerListener, unregisterListener,
    * and dispatchEvent methods.
+   *
    * @param plugins a plugin registry object.
    */
   register(plugins: PluginRegistry): EventsBrowserPluginExposedValue {
@@ -76,6 +87,7 @@ export default class EventsBrowserPlugin implements Plugin {
   /**
    * Register an event listener for a given event and a callback to be
    * invoked in response to the same event.
+   *
    * @param eventName Name of the event to be registered/listened for.
    * @param callback Callback to be registered with the listener.
    */
@@ -86,6 +98,7 @@ export default class EventsBrowserPlugin implements Plugin {
   /**
    * Unregister/remove an event listener for the given event as well as
    * its corresponding callback function.
+   *
    * @param eventName Name of the event to unregister.
    * @param callback Callback to be unregistered along with the event.
    */
@@ -96,11 +109,12 @@ export default class EventsBrowserPlugin implements Plugin {
   /**
    * Dispatch a given event and provide a payload which will be received
    * by a listener registered for the given event.
+   *
    * @param eventName Name of the event to be dispatched.
    * @param payload Data to accompany the dispatched event.
    */
   dispatchEvent(eventName: string, payload?: any) {
-    const eventToDispatch = new this.window.CustomEvent(eventName, { detail: payload });
+    const eventToDispatch = new this.CustomEvent(eventName, { detail: payload });
 
     this.window.dispatchEvent(eventToDispatch);
   }
@@ -112,6 +126,7 @@ export default class EventsBrowserPlugin implements Plugin {
  */
 export interface EventsBrowserPluginOptions {
   window: Window,
+  CustomEvent: typeof CustomEvent,
 }
 
 /**
