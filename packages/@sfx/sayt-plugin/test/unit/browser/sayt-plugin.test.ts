@@ -10,7 +10,10 @@ describe('SaytPlugin', () => {
 
   describe('getSaytResults', () => {
     it('should return true', () => {
-      expect(saytPlugin.getSaytResults()).to.be.true;
-    })
-  })
+      return saytPlugin.getSaytResults()
+        .then(res => {
+          expect(res).to.equal(false);
+        })
+    });
+  });
 });
