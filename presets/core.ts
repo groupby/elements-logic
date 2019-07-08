@@ -1,1 +1,1 @@
-import '@sfx/core';
+export * from '@sfx/core';
