@@ -1,4 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+import { Sayt } from 'sayt';
 
 export default class SaytPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -32,21 +33,37 @@ export default class SaytPlugin implements Plugin {
 // }
 
 // method that wraps the api
+// method that when invoked returns the response
+//  -- take in request objs
+// -- return rel data
 
+// make sayt call
 getSaytResults() {
   let clientTarget = 'cvshealth-cors';
   let groupbyAPI = `https://${clientTarget}.groupbycloud.com/api/v1/search`;
 
+  let autoConfig = {
+    // language: en,
+    numSearchTerms: 20,
+    // numNavigations: 10,
+    // sortAlphabetically: boolean,
+    // fuzzyMatch: boolean,
+  }
+
+  let config = {
+    subdomain: clientTarget,
+    collection: 'ProductsLeaf',
+  }
+
+  let sayt = new Sayt(config);
+
+  return sayt.autocomplete('red', autoConfig)
   // return fetch(groupbyAPI).then((res: any) => {
   //   console.log('>>> res', res);
   //   return res;
   // })
-
-  return Promise.resolve({});
 }
 
-
-// method that when invoked returns the response
 
   constructor() {
     console.log('yo shawna')
