@@ -81,5 +81,7 @@ export function unregisterPlugins(plugins: Plugin[], registry: PluginRegistry) {
     if (typeof plugin.unregister === 'function') {
       plugin.unregister();
     }
+
+    delete registry[plugin.metadata.name];
   });
 }

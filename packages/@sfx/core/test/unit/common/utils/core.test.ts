@@ -346,6 +346,29 @@ describe('CoreUtils', () => {
       expect(unregisterC).to.be.called;
     });
 
+    it('should remove the corresponding entry from the registry', () => {
+      const bValue = () => /b/;
+      const plugins: any = [
+        {
+          metadata: { name: 'a' },
+          unregister: () => null,
+        },
+        {
+          metadata: { name: 'c' },
+          unregister: () => null,
+        },
+      ];
+      const registry: any = {
+        a: { a: 'a' },
+        b: bValue,
+        c: 'c',
+      };
+
+      unregisterPlugins(plugins, registry);
+
+      expect(registry).to.deep.equal({ b: bValue });
+    });
+
     it('should not throw when a plugin does not have an unregister function', () => {
       const plugins: any = [
         {
