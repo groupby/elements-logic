@@ -26,7 +26,7 @@ export default class Core {
   /**
    * TODO
    */
-  plugins: PluginDirectory = Object.create(null);
+  directory: PluginDirectory = Object.create(null);
 
   /**
    * Register one or more plugins with Core.
@@ -59,7 +59,7 @@ export default class Core {
       throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
     }
 
-    registerPlugins(plugins, this.registry, this.plugins);
+    registerPlugins(plugins, this.registry, this.directory);
 
     initPlugins(plugins);
     readyPlugins(plugins);
@@ -69,6 +69,6 @@ export default class Core {
    * TODO
    */
   unregisterAll() {
-    unregisterPlugins(Object.keys(this.plugins), this.registry, this.plugins);
+    unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);
   }
 }

@@ -16,8 +16,8 @@ describe('Core', () => {
     });
 
     it('should create an empty null-prototype plugins directory object', () => {
-      expect(core.plugins).to.be.empty;
-      expect(Object.getPrototypeOf(core.plugins)).to.be.null;
+      expect(core.directory).to.be.empty;
+      expect(Object.getPrototypeOf(core.directory)).to.be.null;
     });
   });
 
@@ -78,7 +78,7 @@ describe('Core', () => {
       expect(registerPlugins).to.be.calledWith(
         plugins,
         sinon.match(core.registry),
-        sinon.match(core.plugins)
+        sinon.match(core.directory)
       );
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
@@ -98,7 +98,7 @@ describe('Core', () => {
         b: () => /b/,
         c: 'c',
       };
-      const directory = core.plugins = {
+      const directory = core.directory = {
         a: { metadata: { name: 'a', depends: [] } },
         b: { metadata: { name: 'b', depends: ['a'] } },
         c: { metadata: { name: 'c', depends: ['a'] } },
