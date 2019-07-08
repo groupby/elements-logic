@@ -78,6 +78,8 @@ export function readyPlugins(plugins: Plugin[]) {
  */
 export function unregisterAllPlugins(plugins: Plugin[], registry: PluginRegistry) {
   plugins.forEach((plugin) => {
-    plugin.unregister();
+    if (typeof plugin.unregister === 'function') {
+      plugin.unregister();
+    }
   });
 }

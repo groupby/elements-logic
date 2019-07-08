@@ -346,6 +346,27 @@ describe('CoreUtils', () => {
       expect(unregisterC).to.be.called;
     });
 
-    it('should clear the registry');
+    it('should not throw when a plugin does not have an unregister function', () => {
+      const plugins: any = [
+        {
+          metadata: { name: 'a' },
+          unregister: () => null,
+        },
+        {
+          metadata: { name: 'b' },
+        },
+        {
+          metadata: { name: 'c' },
+          unregister: () => null,
+        },
+      ];
+      const registry: any = {
+        a: { a: 'a' },
+        b: () => /b/,
+        c: 'c',
+      };
+
+      expect(() => unregisterAllPlugins(plugins, registry)).to.not.throw();
+    });
   });
 });
