@@ -75,14 +75,13 @@ describe('domEventsPlugin', () => {
 
   describe('register()', () => {
     it('should return an exposedValue', () => {
-      const pluginRegistry = { dummyPlugin: 'b' };
       const exposedValue = {
         registerListener: domEventsPlugin.registerListener,
         unregisterListener: domEventsPlugin.unregisterListener,
         dispatchEvent: domEventsPlugin.dispatchEvent,
       };
 
-      const registerReturnValue = domEventsPlugin.register(pluginRegistry);
+      const registerReturnValue = domEventsPlugin.register({ dummyPlugin: 'b' });
 
       expect(registerReturnValue).to.deep.equal(exposedValue);
     });
