@@ -4,7 +4,11 @@ export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'sayt-driver-plugin',
-      depends: [this.eventsPluginName, 'sayt-data-source-plugin']
+      depends: [
+        this.eventsPluginName,
+        'sayt-data-source-plugin',
+        'search-data-source-plugin',
+      ],
     };
   }
 
