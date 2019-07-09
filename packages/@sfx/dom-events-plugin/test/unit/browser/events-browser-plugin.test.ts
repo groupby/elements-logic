@@ -25,16 +25,35 @@ describe('domEventsPlugin', () => {
     });
 
     it('should override default options', () => {
+      const windowObject = { windowProp: 'windowPropValue' };
+      const CustomEvent = () => null;
       const options: any = {
-        foo: 'bar',
-        baz: 'qux',
-        window: {
-          windowProp: 'windowPropValue',
-        },
+        window: windowObject,
+        CustomEvent: CustomEvent,
       };
+
       domEventsPlugin = new DomEventsPlugin(options);
 
-      expect(domEventsPlugin.window).to.deep.equal(options.window);
+      expect(domEventsPlugin.options.window).to.equal(windowObject);
+      expect(domEventsPlugin.options.CustomEvent).to.equal(CustomEvent);
+    });
+
+    it('should set window property with the window option', () => {
+      const windowObject = { windowProp: 'windowPropValue' };
+      const options: any = { window: windowObject };
+
+      domEventsPlugin = new DomEventsPlugin(options);
+
+      expect(domEventsPlugin.window).to.equal(windowObject);
+    });
+
+    it('should set CustomEvent property with the CustomEvent option', () => {
+      const CustomEvent = () => null;
+      const options: any = { CustomEvent: CustomEvent };
+
+      domEventsPlugin = new DomEventsPlugin(options);
+
+      expect(domEventsPlugin.CustomEvent).to.equal(CustomEvent);
     });
 
     it('should throw an error if an invalid window option is provided', () => {
