@@ -1,4 +1,4 @@
-import { expect, sinon, spy, stub } from '../../utils';
+import { expect, stub } from '../../utils';
 import DomEventsPlugin from '../../../src/dom-events-plugin';
 
 describe('domEventsPlugin', () => {
