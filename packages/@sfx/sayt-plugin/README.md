@@ -1,27 +1,16 @@
 # SF-X SAYT Plugin
 
-This package contains the SF-X SAYT Plugin class and related plugin interfaces.
+This package contains the SF-X SAYT Plugin class.
 
 ## Usage
 
-To use the plugin, simply instantiate it:
+To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const core = new Core();
+const saytPlugin = new SaytPlugin(/* options */);
+core.register(saytPlugin);
 ```
+The plugin registers an instance of the [Sayt client](https://www.npmjs.com/package/sayt) with Core.
 
-## Registering a plugin
 
-To register one or more plugins with Core, instantiate the plugins, then
-pass them to `Core.register()`:
-
-```js
-const core = new Core();
-const pluginA = new PluginA();
-const pluginB = new PluginB();
-
-core.register([pluginA, pluginB]);
-```
-
-A plugin may take configuration options in its constructor. Refer to the
-plugin's documentation for details.
+The SaytPlugin constructor can accept options to configure the exposed Sayt client. See the [SaytConfig interface](https://github.com/groupby/sayt-client/blob/develop/src/core/sayt.ts#L77) for available options.
