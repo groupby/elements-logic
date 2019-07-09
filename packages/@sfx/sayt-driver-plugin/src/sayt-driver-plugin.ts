@@ -4,8 +4,12 @@ export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'sayt-driver-plugin',
-      depends: ['events-browser-plugin', 'sayt-data-source-plugin']
+      depends: [this.eventsPluginName, 'sayt-data-source-plugin']
     };
+  }
+
+  get eventsPluginName(): string {
+    return 'events-browser-plugin';
   }
 
   get saytDataEvent(): string {
@@ -30,13 +34,13 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   ready() {
-    this.core['events-browser-plugin'].registerListener(this.saytDataEvent, this.fetchSaytData);
-    this.core['events-browser-plugin'].registerListener(this.saytProductsEvent, this.fetchSaytProducts);
+    this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].registerListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
   unregister() {
-    this.core['events-browser-plugin'].unregisterListener(this.saytDataEvent, this.fetchSaytData);
-    this.core['events-browser-plugin'].unregisterListener(this.saytProductsEvent, this.fetchSaytProducts);
+    this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].unregisterListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
   async fetchSaytData(saytDataQuery: SaytDataPayload) {
@@ -47,7 +51,7 @@ export default class SaytDriverPlugin implements Plugin {
       throw e;
     }
 
-    this.core['events-browser-plugin'].dispatchEvent('sayt-data-response', response);
+    this.core[this.eventsPluginName].dispatchEvent('sayt-data-response', response);
   }
 
   async fetchSaytProducts(query: SaytHoverQuery) {
@@ -58,7 +62,7 @@ export default class SaytDriverPlugin implements Plugin {
       throw e;
     }
 
-    this.core['events-browser-plugin'].dispatchEvent('sayt-products-response', response);
+    this.core[this.eventsPluginName].dispatchEvent('sayt-products-response', response);
   }
 }
 
