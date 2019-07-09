@@ -88,7 +88,7 @@ describe('domEventsPlugin', () => {
   });
 
   describe('registerListener()', () => {
-    it('should call addEventListener with eventName and callback', () => {
+    it('should call window.addEventListener with eventName and callback', () => {
       const eventName = 'fetchProducts';
       const callback = () => null;
       const addEventListener = stub(domEventsPlugin.window, 'addEventListener');
@@ -100,7 +100,7 @@ describe('domEventsPlugin', () => {
   });
 
   describe('unregisterListen()', () => {
-    it('should call removeEventListener with eventName and callback', () => {
+    it('should call window.removeEventListener with eventName and callback', () => {
       const eventName = 'fetchProducts';
       const callback = () => null;
       const removeEventListener = stub(domEventsPlugin.window, 'removeEventListener');
@@ -112,7 +112,7 @@ describe('domEventsPlugin', () => {
   });
 
   describe('dispatchEvent()', () => {
-    it('should call dispatch with eventName and payload', () => {
+    it('should call window.dispatch with eventName and payload', () => {
       const eventName = 'fetchProducts';
       const payload = { a: 'b' };
       const dispatchEvent = stub(domEventsPlugin.window, 'dispatchEvent');
