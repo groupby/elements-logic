@@ -18,7 +18,6 @@ describe('domEventsPlugin', () => {
     it('should throw an error if an invalid window option is provided', () => {
       const invalidOptions = {
         window: undefined,
-        CustomEvent: CustomEvent,
       };
 
       expect(() => new DomEventsPlugin(invalidOptions)).to.throw();
@@ -26,7 +25,6 @@ describe('domEventsPlugin', () => {
 
     it('should throw an error if an invalid CustomEvent constructor is provided', () => {
       const invalidOptions = {
-        windowL: Window,
         CustomEvent: undefined,
       };
 
