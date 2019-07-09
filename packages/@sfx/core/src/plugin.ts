@@ -57,7 +57,7 @@ export interface Plugin {
    * plugin is expected to perform teardown tasks in this function.
    *
    * In this function, the plugin can assume that other plugins are
-   * still available to be used.
+   * still available for use.
    */
   unregister?: () => void;
 }

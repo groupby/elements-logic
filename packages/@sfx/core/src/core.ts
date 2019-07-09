@@ -25,7 +25,7 @@ export default class Core {
 
   /**
    * The plugin directory. This object is a dictionary containing plugin
-   * names as keys and the plugin object as values.
+   * names as keys and the plugin objects as values.
    *
    * Plugins do not have access to this directory.
    */
