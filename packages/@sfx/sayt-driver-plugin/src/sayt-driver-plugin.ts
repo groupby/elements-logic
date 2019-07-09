@@ -8,7 +8,15 @@ export default class SaytDriverPlugin implements Plugin {
     };
   }
 
-  core: PluginRegistry
+  get saytDataEvent(): string {
+    return 'fetch-sayt-data';
+  }
+
+  get saytProductsEvent(): string {
+    return 'fetch-sayt-products';
+  }
+
+  core: PluginRegistry;
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -22,16 +30,21 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   ready() {
-    this.core['events-browser-plugin'].registerListener('fetch-sayt-data', this.fetchSaytData);
-    this.core['events-browser-plugin'].registerListener('fetch-sayt-products', this.fetchSaytProducts);
+    this.core['events-browser-plugin'].registerListener(this.saytDataEvent, this.fetchSaytData);
+    this.core['events-browser-plugin'].registerListener(this.saytProductsEvent, this.fetchSaytProducts);
+  }
+
+  unregister() {
+    this.core['events-browser-plugin'].unregisterListener(this.saytDataEvent, this.fetchSaytData);
+    this.core['events-browser-plugin'].unregisterListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
   async fetchSaytData(saytDataQuery: SaytDataPayload) {
     let response;
     try {
-      response = await this.core['sayt-data-source-plugin'].fetchSaytData(saytDataQuery);
-    } catch(err) {
-      throw err;
+      response = await this.core['sayt-data-source-plugin'].autocomplete(saytDataQuery);
+    } catch(e) {
+      throw e;
     }
 
     this.core['events-browser-plugin'].dispatchEvent('sayt-data-response', response);
@@ -40,9 +53,9 @@ export default class SaytDriverPlugin implements Plugin {
   async fetchSaytProducts(query: SaytHoverQuery) {
     let response;
     try {
-      response = await this.core['search-data-source-plugin'].fetchSaytProducts(query);
-    } catch(err) {
-      throw err;
+      response = await this.core['search-data-source-plugin'].fetchProducts(query);
+    } catch(e) {
+      throw e;
     }
 
     this.core['events-browser-plugin'].dispatchEvent('sayt-products-response', response);
