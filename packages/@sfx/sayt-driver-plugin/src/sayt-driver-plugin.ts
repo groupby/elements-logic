@@ -12,19 +12,10 @@ export default class SaytDriverPlugin implements Plugin {
     };
   }
 
-  get eventsPluginName(): string {
-    return 'events-browser-plugin';
-  }
-
-  get saytDataEvent(): string {
-    return 'fetch-sayt-data';
-  }
-
-  get saytProductsEvent(): string {
-    return 'fetch-sayt-products';
-  }
-
   core: PluginRegistry;
+  eventsPluginName: string = 'events-browser-plugin';
+  saytDataEvent: string = 'fetch-sayt-data';
+  saytProductsEvent: string = 'fetch-sayt-products';
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
