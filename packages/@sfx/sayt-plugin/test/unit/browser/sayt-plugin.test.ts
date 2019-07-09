@@ -9,21 +9,28 @@ describe('SaytPlugin', () => {
     saytPlugin = new SaytPlugin();
   });
 
-  describe('metadata', () => {
-    it('sayt should not have a dependancy', () => {
+  describe('metadata getter', () => {
+    it('should not specify any dependencies', () => {
       expect(saytPlugin.metadata.depends).to.deep.equal([]);
     });
   });
 
-  describe('constructor', () => {
-    it('should combine default and given options', () => {
-      const Sayt = stub(SaytPackage, 'Sayt');
+  describe('constructor()', () => {
+    it('should set a new instance of Sayt with options', () => {
+      const saytInstance = { a: 'a' };
+      const Sayt = stub(SaytPackage, 'Sayt').returns(saytInstance);
 
+      const options: any = { b: 'b' };
+      saytPlugin = new SaytPlugin(options);
+
+      expect(Sayt).to.be.calledWith(options);
+      expect(Sayt.calledWithNew()).to.be.true;
+      expect(saytPlugin.sayt).to.equal(saytInstance);
     });
   });
 
   describe('register()', () => {
-    it('should register and return a sayt instance', () => {
+    it('should return the sayt instance', () => {
       const saytInstance = saytPlugin.sayt = { a: 'a' };
       const registerReturnValue = saytPlugin.register();
 
