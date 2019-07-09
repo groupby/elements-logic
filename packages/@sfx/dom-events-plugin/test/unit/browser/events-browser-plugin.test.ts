@@ -8,6 +8,18 @@ describe('domEventsPlugin', () => {
     domEventsPlugin = new DomEventsPlugin();
   });
 
+  describe('metadata', () => {
+    it('should be named dom_events', () => {
+      const pluginName = domEventsPlugin.metadata.name === 'dom_events';
+
+      expect(pluginName).to.be.true;
+    });
+
+    it('should not have any dependencies', () => {
+      expect(domEventsPlugin.metadata.depends).to.deep.equal([]);
+    })
+  });
+
   describe('constructor()', () => {
     it('should create a DomEventsPlugin instance with default options', () => {
       const defaultOptions = { window: window, CustomEvent: CustomEvent };
