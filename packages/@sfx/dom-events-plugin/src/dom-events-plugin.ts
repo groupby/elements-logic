@@ -1,4 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+
 /**
  * The browser version of the events plugin designed for the SF-X product.
  * This plugin is responsible for exposing methods that will allow other
@@ -7,24 +8,22 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 export default class DomEventsPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'dom_events_plugin',
+      name: 'dom_events',
       depends: [],
     };
   }
 
   /**
-   * The core property is meant to hold a reference to the plugin registry
-   * that is passed in during the plugin registration lifecycle event.
+   * Holds a reference to the plugin registry that is passed in during the
+   * plugin registration lifecycle event.
    */
   core: PluginRegistry;
   /**
-   * The exposedValue property is the value that the Events Browser Plugin
-   * exposes to the Core entity.
+   * Value that the DOM Events Plugin exposes to the Core entity.
    */
   exposedValue: DomEventsPluginExposedValue;
   /**
-   * The options property is the set of configuration values used to set
-   * up the plugin during construction.
+   * Set of configuration values used to set up the plugin during construction.
    */
   options: DomEventsPluginOptions = {
     window: typeof window !== "undefined" ? window : undefined,
@@ -34,16 +33,15 @@ export default class DomEventsPlugin implements Plugin {
   CustomEvent: typeof CustomEvent;
 
   /**
-   * The browser events plugin constructor function which will combine
-   * both the default options and any options passed in. Also the constructor
-   * will accept a window object and a CustomEvent constructor provided
-   * through the options object.
+   * The DOM events plugin constructor function which will combine
+   * both the default options and any options passed in.
    *
    * If either the window object or CustomEvent constructor provided are
    * not valid, the plugin constructor will throw an error.
    *
-   * @param options an object that must contain a window property that is
-   * a reference to the browser Window object.
+   * @param options an object that can contain a reference to the window
+   * property and the CustomEvent constructor under the window and CustomEvent
+   * properties respectively.
    */
   constructor(options: Partial<DomEventsPluginOptions> = {}) {
     this.options = {...this.options, ...options};
@@ -58,17 +56,16 @@ export default class DomEventsPlugin implements Plugin {
       throw new Error('CustomEvent constructor is not valid');
     }
 
-    // Binds
     this.registerListener = this.registerListener.bind(this);
     this.unregisterListener = this.unregisterListener.bind(this);
     this.dispatchEvent = this.dispatchEvent.bind(this);
   }
 
   /**
-   * The register method that accepts a plugin registry object and returns
-   * the exposedValue of the browser events plugin. The exposedValue is an
-   * object that holds references to the registerListener, unregisterListener,
-   * and dispatchEvent methods.
+   * Method to be invoked during the registration step of the plugin lifecycle.
+   * The method returns the exposedValue of the DOM events plugin.
+   * The exposedValue is an object that holds references to the
+   * registerListener, unregisterListener, and dispatchEvent methods.
    *
    * @param plugins a plugin registry object.
    */
@@ -85,33 +82,21 @@ export default class DomEventsPlugin implements Plugin {
   }
 
   /**
-   * Register an event listener for a given event and a callback to be
-   * invoked in response to the same event.
-   *
-   * @param eventName Name of the event to be registered/listened for.
-   * @param callback Callback to be registered with the listener.
+    * [[DomEventsPluginExposedValue.registerListener]]
    */
   registerListener(eventName: string, callback: EventListener) {
     this.window.addEventListener(eventName, callback);
   }
 
   /**
-   * Unregister/remove an event listener for the given event as well as
-   * its corresponding callback function.
-   *
-   * @param eventName Name of the event to unregister.
-   * @param callback Callback to be unregistered along with the event.
+   * [[DomEventsPluginExposedValue.unregisterListener]]
    */
   unregisterListener(eventName: string, callback: EventListener) {
     this.window.removeEventListener(eventName, callback);
   }
 
   /**
-   * Dispatch a given event and provide a payload which will be received
-   * by a listener registered for the given event.
-   *
-   * @param eventName Name of the event to be dispatched.
-   * @param payload Data to accompany the dispatched event.
+   * [[DomEventsPluginExposedValue.dispatchEvent]]
    */
   dispatchEvent(eventName: string, payload?: any) {
     const eventToDispatch = new this.CustomEvent(eventName, { detail: payload });
@@ -121,8 +106,10 @@ export default class DomEventsPlugin implements Plugin {
  }
 
 /**
- * Browser Events Plugin options. This plugin expects a reference to a window
- * object be provided that conforms to the Window type.
+ * DOM Events Plugin options. This plugin can receive a reference to
+ *  a window object that conforms to the Window type as well as a reference
+ * to a CustomEvent constructor that conforms to the CustomEvent constructor
+ * type.
  */
 export interface DomEventsPluginOptions {
   window: Window,
@@ -130,11 +117,31 @@ export interface DomEventsPluginOptions {
 }
 
 /**
- * Browser Events Plugin exposed value. This plugin will return an object
- * of the outlined shape during the plugin registration lifecycle.
+ * DOM Events Plugin exposed value. This plugin will return an object of
+ * the outlined shape during the plugin registration lifecycle.
  */
 export interface DomEventsPluginExposedValue {
+  /**
+  * Registers an event listener for a given event and a callback to be
+  * invoked in response to the same event.
+  *
+  * @param eventName Name of the event to be registered/listened for.
+  * @param callback Callback to be registered with the listener.
+  */
   registerListener: (eventName: string, callback: EventListener) => void,
+  /**
+  * Unregisters an event listener for the given event as well as
+  * its corresponding callback function.
+  *
+  * @param eventName Name of the event to unregister.
+  * @param callback Callback to be unregistered along with the event.
+  */
   unregisterListener: (eventName: string, callback: EventListener) => void,
+  /**
+  * Dispatches an event with the provided name and payload.
+  *
+  * @param eventName Name of the event to be dispatched.
+  * @param payload Data to accompany the dispatched event.
+  */
   dispatchEvent: (eventName: string, payload?: any) => void,
 }
