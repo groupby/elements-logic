@@ -17,7 +17,7 @@ describe('domEventsPlugin', () => {
 
     it('should combine default options and provided options', () => {
       const defaultOptions = { window: window, CustomEvent: CustomEvent };
-      const options: any = { a: 'b', c: 'd', };
+      const options: any = { a: 'b', c: 'd' };
 
       domEventsPlugin = new DomEventsPlugin(options);
 
