@@ -1,38 +1,21 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-import { Sayt } from 'sayt';
+import { Sayt, SaytConfig } from 'sayt';
 
 export default class SaytPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'sayt-plugin',
+      name: 'sayt',
       depends: [],
     };
   }
 
-  core: PluginRegistry;
-  exposedValue: SaytPluginExposedValue;
+  sayt: Sayt;
 
-  getSayt(clientTarget) {
-    let config = {
-      https: true,
-      collection: 'BCProduction',
-      subdomain: clientTarget,
-    };
-
-    return new Sayt(config);
+  constructor(options?: SaytConfig) {
+    this.sayt = new Sayt(options);
   }
 
-  register(plugins: PluginRegistry): SaytPluginExposedValue {
-    this.core = plugins;
-
-    this.exposedValue = {
-      getSayt: this.getSayt,
-    };
-
-    return this.exposedValue;
+  register() {
+    return this.sayt;
   }
-}
-
-export interface SaytPluginExposedValue {
-  getSayt: (clientTarget: string) => Sayt;
 }
