@@ -1,9 +1,10 @@
-import { Plugin, PluginRegistry } from './plugin';
+import { Plugin, PluginDirectory, PluginRegistry } from './plugin';
 import {
   calculateMissingDependencies,
   initPlugins,
   readyPlugins,
   registerPlugins,
+  unregisterPlugins,
 } from './utils/core';
 
 /**
@@ -21,6 +22,14 @@ export default class Core {
    * plugin is discouraged.
    */
   registry: PluginRegistry = Object.create(null);
+
+  /**
+   * The plugin directory. This object is a dictionary containing plugin
+   * names as keys and the plugin objects as values.
+   *
+   * Plugins do not have access to this directory.
+   */
+  directory: PluginDirectory = Object.create(null);
 
   /**
    * Register one or more plugins with Core.
@@ -53,8 +62,19 @@ export default class Core {
       throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
     }
 
-    registerPlugins(plugins, this.registry);
+    registerPlugins(plugins, this.registry, this.directory);
+
     initPlugins(plugins);
     readyPlugins(plugins);
+  }
+
+  /**
+   * Unregisters all plugins. The plugin registry and directory are both
+   * cleared. The optional `unregister` function of each plugin is
+   * called when the plugin is unregistered. The order in which the
+   * plugins are unregistered is unspecified.
+   */
+  unregisterAll() {
+    unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);
   }
 }

@@ -1,4 +1,4 @@
-import { Plugin, PluginRegistry } from '../plugin';
+import { Plugin, PluginDirectory, PluginRegistry } from '../plugin';
 
 /**
  * Calculates the missing dependencies of the given plugins. The given
@@ -29,21 +29,25 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: Plugin
  * each plugin are added to the given registry.
  *
  * @param plugins The plugins to register.
- * @param registry The registry into which to add the plugins.
+ * @param registry The registry into which to add the plugins' exposed values.
+ * @param directory The directory into which to add the plugins.
  * @returns An object containing the keys and values of the new items
  * added to the registry.
  */
-export function registerPlugins(plugins: Plugin[], registry: PluginRegistry): PluginRegistry {
+export function registerPlugins(plugins: Plugin[], registry: PluginRegistry, directory: PluginDirectory): PluginRegistry {
   const newlyRegistered = Object.create(null);
+  const newPlugins = Object.create(null);
 
   plugins.forEach((plugin) => {
     const exposedValue = plugin.register(Object.create(registry));
     const { name } = plugin.metadata;
 
     newlyRegistered[name] = exposedValue;
+    newPlugins[name] = plugin;
   });
 
   Object.assign(registry, newlyRegistered);
+  Object.assign(directory, newPlugins);
   return newlyRegistered;
 }
 
@@ -70,5 +74,27 @@ export function readyPlugins(plugins: Plugin[]) {
     if (typeof plugin.ready === 'function') {
       plugin.ready();
     }
+  });
+}
+
+/**
+ * Unregisters the plugins with the given names from the given registry
+ * and directory.
+ *
+ * @param names The names of the plugins to unregister.
+ * @param registry The registry from which to unregister the plugin's
+ * exposed value.
+ * @param directory The directory from which to unregister the plugin.
+ */
+export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory) {
+  names.forEach((name) => {
+    const plugin = directory[name];
+    if (typeof plugin.unregister === 'function') {
+      plugin.unregister();
+    }
+  });
+  names.forEach((name) => {
+    delete registry[name];
+    delete directory[name];
   });
 }

@@ -14,6 +14,11 @@ describe('Core', () => {
       expect(core.registry).to.be.empty;
       expect(Object.getPrototypeOf(core.registry)).to.be.null;
     });
+
+    it('should create an empty null-prototype plugins directory object', () => {
+      expect(core.directory).to.be.empty;
+      expect(Object.getPrototypeOf(core.directory)).to.be.null;
+    });
   });
 
   describe('register()', () => {
@@ -70,13 +75,42 @@ describe('Core', () => {
 
       core.register(plugins);
 
-      expect(registerPlugins).to.be.calledWith(plugins, sinon.match(core.registry));
+      expect(registerPlugins).to.be.calledWith(
+        plugins,
+        sinon.match(core.registry),
+        sinon.match(core.directory)
+      );
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
       sinon.assert.callOrder(
         registerPlugins,
         initPlugins,
         readyPlugins
+      );
+    });
+  });
+
+  describe('unregisterAll()', () => {
+    it('should call unregisterPlugins with all plugins', () => {
+      const names = ['a', 'b', 'c'];
+      const registry = core.registry = {
+        a: { a: 'a' },
+        b: () => /b/,
+        c: 'c',
+      };
+      const directory = core.directory = {
+        a: { metadata: { name: 'a', depends: [] } },
+        b: { metadata: { name: 'b', depends: ['a'] } },
+        c: { metadata: { name: 'c', depends: ['a'] } },
+      } as any;
+      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+
+      core.unregisterAll();
+
+      expect(unregisterPlugins).to.be.calledWith(
+        names,
+        sinon.match.same(registry),
+        sinon.match.same(directory)
       );
     });
   });

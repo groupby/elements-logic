@@ -51,6 +51,15 @@ export interface Plugin {
    * been initialized and may safely use other plugins.
    */
   ready?: () => void;
+
+  /**
+   * The callback for the unregistration phase of the lifecycle. The
+   * plugin is expected to perform teardown tasks in this function.
+   *
+   * In this function, the plugin can assume that other plugins are
+   * still available for use.
+   */
+  unregister?: () => void;
 }
 
 /**
@@ -80,4 +89,12 @@ export interface PluginMetadata {
  */
 export interface PluginRegistry {
   [key: string]: any;
+}
+
+
+/**
+ * The type of the plugin directory, which holds plugins keyed by name.
+ */
+export interface PluginDirectory {
+  [name: string]: Plugin;
 }
