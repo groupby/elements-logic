@@ -10,20 +10,19 @@ describe('SaytPlugin', () => {
   });
 
   describe('metadata getter', () => {
-    it('should not specify any dependencies', () => {
-      expect(saytPlugin.metadata.depends).to.deep.equal([]);
-    });
-
     it('should have the name `sayt`', () => {
       expect(saytPlugin.metadata.name).to.equal('sayt');
+    });
+
+    it('should not specify any dependencies', () => {
+      expect(saytPlugin.metadata.depends).to.deep.equal([]);
     });
   });
 
   describe('constructor()', () => {
-    it('should set a new instance of Sayt with options', () => {
+    it('should create a new instance of Sayt with options', () => {
       const saytInstance = { a: 'a' };
       const Sayt = stub(SaytPackage, 'Sayt').returns(saytInstance);
-
       const options: any = { b: 'b' };
       saytPlugin = new SaytPlugin(options);
 

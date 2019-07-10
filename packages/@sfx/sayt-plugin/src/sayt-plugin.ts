@@ -1,5 +1,6 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import { Sayt, SaytConfig } from 'sayt';
+
 /**
  * This plugin is responsible for exposing an instance of sayt
  * to Core.
@@ -11,22 +12,24 @@ import { Sayt, SaytConfig } from 'sayt';
       depends: [],
     };
   }
+
   /**
-   * The sayt property is the value that the Sayt Plugin
-   * exposes to the Core entity.
+   * The value that the Sayt plugin exposes to the Core entity.
    */
   sayt: Sayt;
+
   /**
-   * The sayt plugin constructor function can take in optional options. It also instantiates
-   * an instance of sayt, with any given options.
-   * @param options an object that should contain subdomain and collection properties to
-   * create a valid sayt request.
+   * The sayt plugin constructor instantiates an instance of the sayt plugin
+   * and attaches it to this plugin's sayt property.
+   *
+   * @param options The options to instantiate the sayt client with.
    */
   constructor(options?: SaytConfig) {
     this.sayt = new Sayt(options);
   }
+
   /**
-   * The register method returns the instance of sayt.
+   * Returns this plugin's instance of the sayt client.
    */
   register(): Sayt {
     return this.sayt;
