@@ -47,9 +47,8 @@ export default class DomEventsPlugin implements Plugin {
    * If either the window object or CustomEvent constructor provided are
    * not valid, the plugin constructor will throw an error.
    *
-   * @param options an object that can contain a reference to the window
-   * property and the CustomEvent constructor under the window and CustomEvent
-   * properties respectively.
+   * @param options an options object that will be used to configure the
+   * plugin.
    */
   constructor(options: Partial<DomEventsPluginOptions> = {}) {
     this.options = {...this.options, ...options};
@@ -90,21 +89,21 @@ export default class DomEventsPlugin implements Plugin {
   }
 
   /**
-    * [[DomEventsPluginExposedValue.registerListener]]
+    * @see [[DomEventsPluginExposedValue.registerListener]]
    */
   registerListener(eventName: string, callback: EventListener) {
     this.window.addEventListener(eventName, callback);
   }
 
   /**
-   * [[DomEventsPluginExposedValue.unregisterListener]]
+   * @see [[DomEventsPluginExposedValue.unregisterListener]]
    */
   unregisterListener(eventName: string, callback: EventListener) {
     this.window.removeEventListener(eventName, callback);
   }
 
   /**
-   * [[DomEventsPluginExposedValue.dispatchEvent]]
+   * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
   dispatchEvent(eventName: string, payload?: any) {
     const eventToDispatch = new this.CustomEvent(eventName, { detail: payload });
