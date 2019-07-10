@@ -1,4 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+import { Sayt, SaytConfig } from 'sayt';
 
 export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -17,6 +18,11 @@ export default class SaytDriverPlugin implements Plugin {
   saytDataEvent: string = 'fetch-sayt-data';
   saytProductsEvent: string = 'fetch-sayt-products';
 
+  sayt: any = new Sayt({
+    subdomain: 'cvshealth',
+    https: true,
+  });
+
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
     this.fetchSaytProducts = this.fetchSaytProducts.bind(this);
@@ -24,8 +30,6 @@ export default class SaytDriverPlugin implements Plugin {
 
   register(plugins: PluginRegistry) {
     this.core = plugins;
-
-    return {};
   }
 
   ready() {
@@ -38,15 +42,20 @@ export default class SaytDriverPlugin implements Plugin {
     this.core[this.eventsPluginName].unregisterListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
-  async fetchSaytData(saytDataQuery: SaytDataPayload) {
-    let response;
-    try {
-      response = await this.core['sayt-data-source-plugin'].autocomplete(saytDataQuery);
-    } catch(e) {
-      throw e;
-    }
-
+  fetchSaytData(saytDataQuery: SaytDataPayload) {
+    const response = this.sendSaytAPIRequest(saytDataQuery)
     this.core[this.eventsPluginName].dispatchEvent('sayt-data-response', response);
+  }
+
+  sendSaytAPIRequest(saytDataQuery: SaytDataPayload) {
+    const { query, ...config } = saytDataQuery;
+    return this.sayt.autocomplete(query, config, this.autocompleteCallback)
+  }
+
+  autocompleteCallback(x: undefined, response: any) {
+    return response.result.searchTerms.map((term: any) => {
+      return term.value;
+    });
   }
 
   async fetchSaytProducts(query: SaytHoverQuery) {

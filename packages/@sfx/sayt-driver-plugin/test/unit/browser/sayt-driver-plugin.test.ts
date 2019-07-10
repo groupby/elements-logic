@@ -12,7 +12,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('ready', () => {
+  describe('.ready()', () => {
     let registerListener: any;
     beforeEach(() => {
       registerListener = spy(saytDriverPlugin.core['dom_events'], 'registerListener');
@@ -33,7 +33,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('unregister', () => {
+  describe('.unregister()', () => {
     let unregisterListener: any;
     beforeEach(() => {
       unregisterListener = spy(saytDriverPlugin.core['dom_events'], 'unregisterListener');
@@ -41,6 +41,16 @@ describe('Sayt Driver Plugin', () => {
     it('should unregister two event listeners', () => {
       saytDriverPlugin.unregister();
       expect(unregisterListener).to.have.been.calledTwice;
+    });
+  });
+
+  describe('.sendSaytAPIRequest()', () => {
+    it('should make a search call', async () => {
+      const response = await saytDriverPlugin.sendSaytAPIRequest({
+        query: 'soap',
+        collection: 'productsLeaf',
+      });
+      expect(response).to.be.an('array');
     });
   });
 });
