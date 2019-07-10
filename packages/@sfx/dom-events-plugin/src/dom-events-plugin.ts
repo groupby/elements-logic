@@ -29,7 +29,15 @@ export default class DomEventsPlugin implements Plugin {
     window: typeof window !== "undefined" ? window : undefined,
     CustomEvent: typeof CustomEvent !== "undefined" ? CustomEvent : undefined,
   };
+  /**
+   * Holds a reference to the window object which will be used to invoke
+   * various window methods.
+   */
   window: Window;
+  /**
+   * Holds a reference to the CustomEvent constructor will be used to
+   * dispatch custom events.
+   */
   CustomEvent: typeof CustomEvent;
 
   /**
