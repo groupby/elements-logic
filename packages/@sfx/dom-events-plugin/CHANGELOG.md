@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - SFX-157: Added the `DomEventsPlugin` module.
-  - The Core module manages the registration and unregistration of event listeners, as well as dispatching events.
+  - The DomEventsPlugin module manages the registration and unregistration of event listeners, as well as dispatching events.
