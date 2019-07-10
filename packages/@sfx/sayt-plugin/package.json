@@ -2,7 +2,7 @@
   "name": "@sfx/sayt-plugin",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "../../../scripts/build.sh",
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
