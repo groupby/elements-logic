@@ -112,13 +112,17 @@ export default class DomEventsPlugin implements Plugin {
  }
 
 /**
- * DOM Events Plugin options. This plugin can receive a reference to
- *  a window object that conforms to the Window type as well as a reference
- * to a CustomEvent constructor that conforms to the CustomEvent constructor
- * type.
+ * DOM Events Plugin options.
  */
 export interface DomEventsPluginOptions {
+  /**
+   * Will be used to invoke event related methods to add/remove listeners
+   * and dispatch events.
+   */
   window: Window,
+  /**
+   * Will be used to create custom event objects.
+   */
   CustomEvent: typeof CustomEvent,
 }
 
