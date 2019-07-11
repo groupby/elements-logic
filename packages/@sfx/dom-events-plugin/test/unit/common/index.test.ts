@@ -13,10 +13,10 @@ describe('Entry point', () => {
   });
 
   it('should export the DomEventsPluginOptions interface', () => {
-    const test: AssertTypesEqual<DomEventsPluginOptions , DomEventsPluginOptionsExport> = true;
+    const test: AssertTypesEqual<DomEventsPluginOptionsExport , DomEventsPluginOptions> = true;
   });
 
   it('should export the DomEventsPluginExposedValue interface', () => {
-    const test: AssertTypesEqual<DomEventsPluginExposedValue, DomEventsPluginExposedValueExport> = true;
+    const test: AssertTypesEqual<DomEventsPluginExposedValueExport, DomEventsPluginExposedValue> = true;
   });
 });
