@@ -10,9 +10,7 @@ describe('domEventsPlugin', () => {
 
   describe('metadata', () => {
     it('should be named dom_events', () => {
-      const pluginName = domEventsPlugin.metadata.name === 'dom_events';
-
-      expect(pluginName).to.be.true;
+      expect(domEventsPlugin.metadata.name).to.equal('dom_events');
     });
 
     it('should not have any dependencies', () => {
@@ -111,7 +109,7 @@ describe('domEventsPlugin', () => {
     });
   });
 
-  describe('unregisterListen()', () => {
+  describe('unregisterListener()', () => {
     it('should call window.removeEventListener with eventName and callback', () => {
       const eventName = 'fetchProducts';
       const callback = () => null;
