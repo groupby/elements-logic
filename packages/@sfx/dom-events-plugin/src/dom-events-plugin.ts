@@ -23,20 +23,20 @@ export default class DomEventsPlugin implements Plugin {
    */
   exposedValue: DomEventsPluginExposedValue;
   /**
-   * Set of configuration values used to set up the plugin during construction.
+   * Configuration values used to set up the plugin during construction.
    */
   options: DomEventsPluginOptions = {
-    window: typeof window !== "undefined" ? window : undefined,
-    CustomEvent: typeof CustomEvent !== "undefined" ? CustomEvent : undefined,
+    window: typeof window !== 'undefined' ? window : undefined,
+    CustomEvent: typeof CustomEvent !== 'undefined' ? CustomEvent : undefined,
   };
   /**
-   * Holds a reference to the window object which will be used to invoke
+   * Holds a reference to the `window` object, which will be used to invoke
    * various window methods.
    */
   window: Window;
   /**
-   * Holds a reference to the CustomEvent constructor will be used to
-   * dispatch custom events.
+   * Holds a reference to the `CustomEvent` constructor, which will be
+   * used to dispatch custom events.
    */
   CustomEvent: typeof CustomEvent;
 
@@ -44,8 +44,8 @@ export default class DomEventsPlugin implements Plugin {
    * The DOM events plugin constructor function which will combine
    * both the default options and any options passed in.
    *
-   * If either the window object or CustomEvent constructor provided are
-   * not valid, the plugin constructor will throw an error.
+   * If either the `window` object or `CustomEvent` constructor provided
+   * are not valid, the plugin constructor will throw an error.
    *
    * @param options an options object that will be used to configure the
    * plugin.
