@@ -6,14 +6,14 @@ export default class SaytDriverPlugin implements Plugin {
       name: 'sayt-driver-plugin',
       depends: [
         this.eventsPluginName,
-        'sayt-data-source-plugin',
-        'search-data-source-plugin',
+        'sayt_data_source',
+        'search_data_source',
       ],
     };
   }
 
   core: PluginRegistry;
-  eventsPluginName: string = 'events-browser-plugin';
+  eventsPluginName: string = 'dom_events';
   saytDataEvent: string = 'fetch-sayt-data';
   saytProductsEvent: string = 'fetch-sayt-products';
 

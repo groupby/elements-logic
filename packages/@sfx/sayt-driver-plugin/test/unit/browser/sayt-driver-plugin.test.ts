@@ -1,6 +1,6 @@
 import { expect, sinon, spy, stub } from '../../utils';
 import SaytDriverPlugin from '../../../src/sayt-driver-plugin';
-import { EventsBrowserPlugin } from '../../../../events-browser-plugin/src/index';
+import { DomEventsPlugin } from '../../../../dom-events-plugin/src/index';
 
 describe('Sayt Driver Plugin', () => {
   let saytDriverPlugin: any;
@@ -8,14 +8,14 @@ describe('Sayt Driver Plugin', () => {
   beforeEach(() => {
     saytDriverPlugin = new SaytDriverPlugin();
     saytDriverPlugin.register({
-      'events-browser-plugin': new EventsBrowserPlugin(),
+      'events-browser-plugin': new DomEventsPlugin(),
     });
   });
 
   describe('ready', () => {
     let registerListener: any;
     beforeEach(() => {
-      registerListener = spy(saytDriverPlugin.core['events-browser-plugin'], 'registerListener');
+      registerListener = spy(saytDriverPlugin.core['dom_events'], 'registerListener');
     });
     it('should register two event listeners', () => {
       saytDriverPlugin.ready();
@@ -36,7 +36,7 @@ describe('Sayt Driver Plugin', () => {
   describe('unregister', () => {
     let unregisterListener: any;
     beforeEach(() => {
-      unregisterListener = spy(saytDriverPlugin.core['events-browser-plugin'], 'unregisterListener');
+      unregisterListener = spy(saytDriverPlugin.core['dom_events'], 'unregisterListener');
     });
     it('should unregister two event listeners', () => {
       saytDriverPlugin.unregister();
