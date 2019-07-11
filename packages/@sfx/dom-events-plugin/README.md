@@ -1,10 +1,10 @@
 # SF-X DOM Events Plugin
 
-This package contains the SF-X DomEventsPlugin class.
+This package contains the SF-X `DomEventsPlugin` class.
 
 ## Usage
 
-To use the DomEventsPlugin, first instantiate it and then register it with
+To use the `DomEventsPlugin`, first instantiate it and then register it with
 the Core entity:
 
 ```js
@@ -19,7 +19,7 @@ available options.
 
 ## Methods
 ### registerListener()
-Use the registerListener method to register event listeners. The method
+Use the `registerListener` method to register event listeners. The method
 takes an eventName and a callback function.
 
 ```js
@@ -27,7 +27,7 @@ registerListener(eventName, callback);
 ```
 
 ### unregisterListener()
-Use the unregisterListener method to unregister event listeners. The method
+Use the `unregisterListener` method to unregister event listeners. The method
 takes an eventName and a callback function.
 
 ```js
@@ -35,7 +35,7 @@ unregisterListener(eventName, callback);
 ```
 
 ### dispatchEvent()
-Use the dispatchEvent method to dispatch events. The method takes an
+Use the `dispatchEvent` method to dispatch events. The method takes an
 eventName and an option payload which can be used to send information
 with the dispatched event.
 
