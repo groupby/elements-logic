@@ -20,6 +20,14 @@ module.exports = {
 
   module: {
     rules: [{
+      test: path.resolve(__dirname, 'presets', 'core.ts'),
+      use: { loader: 'expose-loader', options: 'sfxCore' }
+    },
+    {
+      test: path.resolve(__dirname, 'presets', 'plugins.ts'),
+      use: { loader: 'expose-loader', options: 'sfxPlugins' }
+    },
+    {
       test: /.(ts|tsx)?$/,
       loader: 'ts-loader',
       exclude: [/node_modules/]

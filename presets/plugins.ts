@@ -1,1 +1,1 @@
-import '@sfx/sayt-plugin';
+export * from '@sfx/dom-events-plugin';
