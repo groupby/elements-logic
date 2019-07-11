@@ -116,7 +116,7 @@ export default class DomEventsPlugin implements Plugin {
  */
 export interface DomEventsPluginOptions {
   /**
-   * Will be used to invoke event related methods to add/remove listeners
+   * Will be used to invoke event-related methods to add/remove listeners
    * and dispatch events.
    */
   window: Window,
@@ -132,26 +132,26 @@ export interface DomEventsPluginOptions {
  */
 export interface DomEventsPluginExposedValue {
   /**
-  * Registers an event listener for a given event and a callback to be
-  * invoked in response to the same event.
-  *
-  * @param eventName Name of the event to be registered/listened for.
-  * @param callback Callback to be registered with the listener.
-  */
+   * Registers an event listener for a given event and a callback to be
+   * invoked in response to the same event.
+   *
+   * @param eventName Name of the event to be registered/listened for.
+   * @param callback Callback to be registered with the listener.
+   */
   registerListener: (eventName: string, callback: EventListener) => void,
   /**
-  * Unregisters an event listener for the given event as well as
-  * its corresponding callback function.
-  *
-  * @param eventName Name of the event to unregister.
-  * @param callback Callback to be unregistered along with the event.
-  */
+   * Unregisters an event listener for the given event as well as
+   * its corresponding callback function.
+   *
+   * @param eventName Name of the event to unregister.
+   * @param callback Callback to be unregistered along with the event.
+   */
   unregisterListener: (eventName: string, callback: EventListener) => void,
   /**
-  * Dispatches an event with the provided name and payload.
-  *
-  * @param eventName Name of the event to be dispatched.
-  * @param payload Data to accompany the dispatched event.
-  */
+   * Dispatches an event with the provided name and payload.
+   *
+   * @param eventName Name of the event to be dispatched.
+   * @param payload Data to accompany the dispatched event.
+   */
   dispatchEvent: (eventName: string, payload?: any) => void,
 }
