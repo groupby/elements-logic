@@ -2,7 +2,7 @@
   "name": "@sfx/sayt-plugin",
   "version": "0.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "../../../scripts/build.sh",
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
@@ -17,5 +17,8 @@
     "directory": "packages/@sfx/sayt-plugin"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sayt": "^0.1.8"
+  }
 }
