@@ -39,5 +39,10 @@ describe('SaytPlugin', () => {
 
       expect(registerReturnValue).to.equal(saytInstance);
     });
+
+    it('should expose an autocomplete method', () => {
+      const exposed = saytPlugin.register();
+      expect(exposed.autocomplete).is.a('function');
+    });
   });
 });
