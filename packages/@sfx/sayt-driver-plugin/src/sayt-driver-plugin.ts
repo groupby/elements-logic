@@ -1,5 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-import { Sayt, SaytConfig } from 'sayt';
+// import { Sayt, SaytConfig } from 'sayt';
 
 export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -7,7 +7,7 @@ export default class SaytDriverPlugin implements Plugin {
       name: 'sayt-driver-plugin',
       depends: [
         this.eventsPluginName,
-        'sayt_data_source',
+        'sayt',
         'search_data_source',
       ],
     };
@@ -17,11 +17,6 @@ export default class SaytDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
   saytDataEvent: string = 'fetch-sayt-data';
   saytProductsEvent: string = 'fetch-sayt-products';
-
-  sayt: any = new Sayt({
-    subdomain: 'cvshealth',
-    https: true,
-  });
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -49,7 +44,7 @@ export default class SaytDriverPlugin implements Plugin {
 
   sendSaytAPIRequest(saytDataQuery: SaytDataPayload) {
     const { query, ...config } = saytDataQuery;
-    return this.sayt.autocomplete(query, config, this.autocompleteCallback)
+    return this.core.sayt.autocomplete(query, config, this.autocompleteCallback)
   }
 
   autocompleteCallback(x: undefined, response: any) {

@@ -20,7 +20,5 @@
   "author": "",
   "license": "MIT",
   "sideEffects": false,
-  "dependencies": {
-    "sayt": "^0.1.8"
-  }
+  "dependencies": {}
 }
