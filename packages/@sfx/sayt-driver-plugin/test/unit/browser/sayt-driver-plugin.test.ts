@@ -5,10 +5,21 @@ import { DomEventsPlugin } from '../../../../dom-events-plugin/src/index';
 describe('Sayt Driver Plugin', () => {
   let saytDriverPlugin: any;
 
+  // const events = new DomEventsPlugin();
+  // const sayt = new SaytPlugin();
+
+
   beforeEach(() => {
     saytDriverPlugin = new SaytDriverPlugin();
     saytDriverPlugin.register({
-      'events-browser-plugin': new DomEventsPlugin(),
+      'dom_events': new DomEventsPlugin(),
+      // 'sayt': new SaytPlugin({
+      //   subdomain: 'cvshealth',
+      //   https: true,
+      // }),
+      sayt: { autocomplete: (query, config, callback) => {
+        return callback();
+      }},
     });
   });
 
@@ -38,9 +49,9 @@ describe('Sayt Driver Plugin', () => {
     beforeEach(() => {
       unregisterListener = spy(saytDriverPlugin.core['dom_events'], 'unregisterListener');
     });
-    it('should unregister two event listeners', () => {
+    it('should unregister the sayt event listener', () => {
       saytDriverPlugin.unregister();
-      expect(unregisterListener).to.have.been.calledTwice;
+      expect(unregisterListener).to.have.been.calledWith(saytDriverPlugin.saytDataEvent, saytDriverPlugin.fetchSaytData);
     });
   });
 
@@ -71,7 +82,8 @@ describe('Sayt Driver Plugin', () => {
       autocompleteCallback = stub(saytDriverPlugin, 'autocompleteCallback');
     });
     it('should make a search call through the sayt client', () => {
-      const autocomplete = stub(saytDriverPlugin.sayt, 'autocomplete').returns(true);
+      // console.log(saytDriverPlugin.core.sayt.autocomplete);
+      const autocomplete = stub(saytDriverPlugin.core.sayt, 'autocomplete').returns(true);
       saytDriverPlugin.sendSaytAPIRequest(saytDataPayload);
       expect(autocomplete).to.be.calledWith(saytDataPayload.query, { collection: 'productsLeaf' }, autocompleteCallback);
     });
