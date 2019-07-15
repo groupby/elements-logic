@@ -1,5 +1,4 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-// import { Sayt, SaytConfig } from 'sayt';
 
 export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -20,7 +19,6 @@ export default class SaytDriverPlugin implements Plugin {
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
-    // this.fetchSaytProducts = this.fetchSaytProducts.bind(this);
   }
 
   register(plugins: PluginRegistry) {
@@ -29,12 +27,10 @@ export default class SaytDriverPlugin implements Plugin {
 
   ready() {
     this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
-    // this.core[this.eventsPluginName].registerListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
   unregister() {
     this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
-    // this.core[this.eventsPluginName].unregisterListener(this.saytProductsEvent, this.fetchSaytProducts);
   }
 
   fetchSaytData(saytDataQuery: SaytDataPayload) {
@@ -52,17 +48,6 @@ export default class SaytDriverPlugin implements Plugin {
       return term.value;
     });
   }
-
-  // async fetchSaytProducts(query: SaytHoverQuery) {
-  //   let response;
-  //   try {
-  //     response = await this.core['search-data-source-plugin'].fetchProducts(query);
-  //   } catch(e) {
-  //     throw e;
-  //   }
-
-  //   this.core[this.eventsPluginName].dispatchEvent('sayt-products-response', response);
-  // }
 }
 
 export interface SaytDataPayload {
