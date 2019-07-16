@@ -1,4 +1,4 @@
-import { expect, sinon, spy, stub } from '../../utils';
+import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
 import { DomEventsPlugin } from '../../../../dom-events-plugin/src/index';
 import { SaytPlugin } from '../../../../sayt-plugin/src';
