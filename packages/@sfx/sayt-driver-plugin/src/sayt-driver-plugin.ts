@@ -24,6 +24,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   saytDataEvent: string = 'sfx::fetch_autocomplete_data';
   saytResponseEvent: string = 'sfx::autocomplete_received_results';
+  saytErrorEvent: string = 'sfx::autocomplete_sayt_error';
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -65,6 +66,9 @@ export default class SaytDriverPlugin implements Plugin {
     const response = this.sendSaytAPIRequest(saytDataQuery);
     response.then((data: any) => {
       this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
+    })
+    .catch((e) => {
+      this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
     });
   }
 
