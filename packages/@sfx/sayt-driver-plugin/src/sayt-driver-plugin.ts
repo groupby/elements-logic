@@ -74,10 +74,11 @@ export default class SaytDriverPlugin implements Plugin {
 
   /**
    * Splits the request payload into the query string and a config object.
-   * Sends a search request to the sayt data plugin.
+   * Sends a search request to the Sayt data plugin with a callback to reformat.
    *
    * @param saytDataQuery Request object received from the event listener.
-   * @returns A promise from the Sayt API that has been reformatted with a callback.
+   * @returns A promise from the Sayt API that has been reformatted
+   * with the passed callback.
    */
   sendSaytAPIRequest(saytDataQuery: SaytDataPayload): Promise<string[]> {
     const { query, ...config } = saytDataQuery;
@@ -91,11 +92,14 @@ export default class SaytDriverPlugin implements Plugin {
    * @param x Sayt client requires a placeholder attribute as the first argument
    * for any callback passed to it.
    * @param response An array search term strings.
+   *
+   * @returns An array of search term strings.
    */
   autocompleteCallback(x: undefined, response: any): string[] {
-    return response.result.searchTerms.map((term: any) => {
-      return term.value;
-    });
+    return response.result.searchTerms.reduce((acc: string[], term: any) => {
+      if (term.value) acc.push(term.value);
+      return acc;
+    }, []);
   }
 }
 

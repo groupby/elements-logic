@@ -74,20 +74,49 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('.autocompleteCallback', () => {
-    const response = {
-      result: {
-        searchTerms: [
-          { value: 'a' , notValue: 'z' },
-          { value: 'b' },
-          { value: 'c' },
-        ],
-      },
-    };
-
+  describe.only('.autocompleteCallback', () => {
     it('should return an array of search term strings from the sayt response', () => {
-      expect(Driver.autocompleteCallback(undefined, response))
-        .to.deep.equal(['a', 'b', 'c']);
+      const response = {
+        result: {
+          searchTerms: [
+            { value: 'a' , notValue: 'z' },
+            { value: 'b' },
+            { value: 'c' },
+          ],
+        },
+      };
+
+      const cbReturn = Driver.autocompleteCallback(undefined, response);
+
+      expect(cbReturn).to.deep.equal(['a', 'b', 'c']);
+    });
+
+    it('should only return entries that have a searchterm value', () => {
+      const response = {
+        result: {
+          searchTerms: [
+            { value: 'a' },
+            {},
+            { value: 'c' },
+          ],
+        },
+      };
+
+      const cbReturn = Driver.autocompleteCallback(undefined, response);
+
+      expect(cbReturn).to.deep.equal(['a', 'c']);
+    });
+
+    it('should return an empty array if there are no searchTerms', () => {
+      const response = {
+        result: {
+          searchTerms: [],
+        },
+      };
+
+      const cbReturn = Driver.autocompleteCallback(undefined, response);
+
+      expect(cbReturn).to.deep.equal([]);
     });
   });
 
