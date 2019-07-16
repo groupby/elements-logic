@@ -28,7 +28,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Event names for listening and dispatching.
    */
-  saytDataEvent: string = 'sfx::fetch_autocomplete_data';
+  saytDataEvent: string = 'sfx::autocomplete_fetch_data';
   saytResponseEvent: string = 'sfx::autocomplete_received_results';
   saytErrorEvent: string = 'sfx::autocomplete_sayt_error';
 
