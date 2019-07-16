@@ -120,7 +120,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('.sendSaytAPIRequest()', () => {
+  describe('.sendSaytApiRequest()', () => {
     const saytDataPayload = {
       query: 'shirt',
       collection: 'backup',
@@ -134,7 +134,7 @@ describe('Sayt Driver Plugin', () => {
     it('should make a search call through the sayt client', () => {
       const autocomplete = spy(Driver.core.sayt, 'autocomplete');
 
-      Driver.sendSaytAPIRequest(saytDataPayload);
+      Driver.sendSaytApiRequest(saytDataPayload);
 
       expect(autocomplete).to.be.calledWith(
         saytDataPayload.query,
@@ -147,7 +147,7 @@ describe('Sayt Driver Plugin', () => {
       autocompleteCallback.returns(['a', 'b']);
       const callbackReturn = autocompleteCallback();
 
-      const returnValue = Driver.sendSaytAPIRequest(saytDataPayload);
+      const returnValue = Driver.sendSaytApiRequest(saytDataPayload);
 
       expect(returnValue).to.eventually.equal(callbackReturn);
     });
@@ -158,22 +158,22 @@ describe('Sayt Driver Plugin', () => {
       query: 'shirt',
     };
     let dispatchEvent;
-    let sendSaytAPIRequest;
+    let sendSaytApiRequest;
 
     beforeEach(() => {
-      sendSaytAPIRequest = stub(Driver, 'sendSaytAPIRequest').callThrough();
+      sendSaytApiRequest = stub(Driver, 'sendSaytApiRequest').callThrough();
       dispatchEvent = spy(Driver.core['dom_events'], 'dispatchEvent');
     });
 
     it('should get a response from Sayt client request method', () => {
       Driver.fetchSaytData(query);
 
-      expect(sendSaytAPIRequest).to.be.calledWith(query);
+      expect(sendSaytApiRequest).to.be.calledWith(query);
     });
 
     it('should dispatch the response through the events plugin', () => {
       const response = { a: 'b' };
-      sendSaytAPIRequest.returns(response);
+      sendSaytApiRequest.returns(response);
 
       Driver.fetchSaytData(query);
 
@@ -182,7 +182,7 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should send an error in an event if the API request fails', () => {
-      sendSaytAPIRequest.rejects('test error');
+      sendSaytApiRequest.rejects('test error');
 
       Driver.fetchSaytData(query);
 

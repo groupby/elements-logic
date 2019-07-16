@@ -75,7 +75,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param saytDataQuery Request object received from the event listener.
    */
   fetchSaytData(saytDataQuery: SaytDataPayload): void {
-    const response = this.sendSaytAPIRequest(saytDataQuery);
+    const response = this.sendSaytApiRequest(saytDataQuery);
     response.then((data: any) => {
       this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
     })
@@ -91,7 +91,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytAPIRequest(saytDataQuery: SaytDataPayload): Promise<string[]> {
+  sendSaytApiRequest(saytDataQuery: SaytDataPayload): Promise<string[]> {
     const { query, ...config } = saytDataQuery;
     return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
   }
