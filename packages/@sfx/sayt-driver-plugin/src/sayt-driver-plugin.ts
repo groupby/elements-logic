@@ -26,10 +26,16 @@ export default class SaytDriverPlugin implements Plugin {
    */
   eventsPluginName: string = 'dom_events';
   /**
-   * Event names for listening and dispatching.
+   * Event name to listen for Sayt autocomplete requests.
    */
   saytDataEvent: string = 'sfx::autocomplete_fetch_data';
+  /**
+   * Event name for sending Sayt autocomplete responses.
+   */
   saytResponseEvent: string = 'sfx::autocomplete_received_results';
+  /**
+   * Event name to listen for Sayt autocomplete errors.
+   */
   saytErrorEvent: string = 'sfx::autocomplete_sayt_error';
 
   constructor() {
@@ -79,8 +85,7 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Splits the request payload into the query string and a config object.
-   * Sends a search request to the Sayt data plugin with a callback to reformat.
+   * Sends a request to the SAYT API with the given query.
    *
    * @param saytDataQuery Request object received from the event listener.
    * @returns A promise from the Sayt API that has been reformatted
@@ -98,7 +103,6 @@ export default class SaytDriverPlugin implements Plugin {
    * @param x Sayt client requires a placeholder attribute as the first argument
    * for any callback passed to it.
    * @param response An array search term strings.
-   *
    * @returns An array of search term strings.
    */
   autocompleteCallback(x: undefined, response: any): string[] {
