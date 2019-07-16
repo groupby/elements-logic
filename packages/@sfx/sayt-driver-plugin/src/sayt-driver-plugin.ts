@@ -33,26 +33,26 @@ export default class SaytDriverPlugin implements Plugin {
     this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
   }
 
-  fetchSaytData(saytDataQuery: SaytDataPayload) {
+  fetchSaytData(saytDataQuery: SaytDataPayload): void {
     const response = this.sendSaytAPIRequest(saytDataQuery)
     response.then((data: any) => {
       this.core[this.eventsPluginName].dispatchEvent('sayt-data-response', data)
     })
   }
 
-  sendSaytAPIRequest(saytDataQuery: SaytDataPayload) {
+  sendSaytAPIRequest(saytDataQuery: SaytDataPayload): Promise<string[]> {
     const { query, ...config } = saytDataQuery;
     return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
   }
 
-  autocompleteCallback(x: undefined, response: any) {
+  autocompleteCallback(x: undefined, response: any): string[] {
     return response.result.searchTerms.map((term: any) => {
       return term.value;
     });
   }
 }
 
-export interface SaytDataPayload {
+interface SaytDataPayload {
   query: string;
   collection?: string;
   language?: string;
@@ -60,13 +60,4 @@ export interface SaytDataPayload {
   searchItems?: number;
   navigationItems?: number;
   fuzzy?: boolean;
-}
-
-export interface SaytHoverQuery {
-  query: string;
-  refinements: Refinement[];
-}
-
-export interface Refinement {
-  [key: string]: string;
 }
