@@ -1,6 +1,7 @@
 import { expect, sinon, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
 import { DomEventsPlugin } from '../../../../dom-events-plugin/src/index';
+import { SaytPlugin } from '../../../../sayt-plugin/src';
 
 describe('Sayt Driver Plugin', () => {
   let Driver: any;
@@ -8,18 +9,15 @@ describe('Sayt Driver Plugin', () => {
   beforeEach(() => {
     Driver = new SaytDriverPlugin();
     Driver.register({
-      'dom_events': new DomEventsPlugin(),
-      // 'sayt': new SaytPlugin({
-      //   subdomain: 'cvshealth',
-      //   https: true,
-      // }),
-      sayt: { autocomplete: (query, config, callback) => {
-        return callback();
-      }},
+      'dom_events': new DomEventsPlugin().register({}),
+      'sayt': new SaytPlugin({
+        subdomain: 'cvshealth',
+        https: true,
+      }).register(),
     });
   });
 
-  describe.only('.register()', () => {
+  describe('.register()', () => {
     beforeEach(() => {
       Driver = {};
     })
@@ -84,36 +82,49 @@ describe('Sayt Driver Plugin', () => {
     beforeEach(() => {
       autocompleteCallback = stub(Driver, 'autocompleteCallback');
     });
+
     it('should make a search call through the sayt client', () => {
-      // console.log(Driver.core.sayt.autocomplete);
-      const autocomplete = stub(Driver.core.sayt, 'autocomplete').returns(true);
+      const autocomplete = spy(Driver.core.sayt, 'autocomplete');
+
       Driver.sendSaytAPIRequest(saytDataPayload);
+
       expect(autocomplete).to.be.calledWith(saytDataPayload.query, { collection: 'productsLeaf' }, autocompleteCallback);
     });
+
     it('should return the result of the Sayt API callback', () => {
       autocompleteCallback.returns(['a', 'b']);
-      expect(Driver.sendSaytAPIRequest(saytDataPayload)).to.equal(autocompleteCallback());
+      const callbackReturn = autocompleteCallback();
+
+      const returnValue = Driver.sendSaytAPIRequest(saytDataPayload);
+
+      expect(returnValue).to.eventually.equal(callbackReturn);
     });
   });
 
-  describe('.fetchSaytData()', () => {
-    const query = {};
+  describe.only('.fetchSaytData()', () => {
+    const query = {
+      query: 'soap',
+    };
     let sendSaytAPIRequest;
 
     beforeEach(() => {
-      sendSaytAPIRequest = stub(Driver, 'sendSaytAPIRequest')
+      sendSaytAPIRequest = stub(Driver, 'sendSaytAPIRequest').callThrough();
     });
+
     it('should get a response from API request method', () => {
       Driver.fetchSaytData(query);
+
       expect(sendSaytAPIRequest).to.be.calledWith(query);
     });
+
     it('should dispatch the response through the events plugin', () => {
       const dispatch = stub(Driver.core['dom_events'], 'dispatchEvent');
-      sendSaytAPIRequest.returns({ a: 'b' });
-      const response = sendSaytAPIRequest();
+      const response = { a: 'b' };
+      sendSaytAPIRequest.returns(response);
+
       Driver.fetchSaytData(query);
-      expect(dispatch).to.be.calledOnce;
-      expect(dispatch.firstCall.args[1]).to.equal(response);
+
+      expect(Promise.resolve(dispatch)).to.be.eventually.calledOnceWith(response);
     });
   });
 });
