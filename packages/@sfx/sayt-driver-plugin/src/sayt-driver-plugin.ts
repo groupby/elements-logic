@@ -35,12 +35,14 @@ export default class SaytDriverPlugin implements Plugin {
 
   fetchSaytData(saytDataQuery: SaytDataPayload) {
     const response = this.sendSaytAPIRequest(saytDataQuery)
-    this.core[this.eventsPluginName].dispatchEvent('sayt-data-response', response);
+    response.then((data: any) => {
+      this.core[this.eventsPluginName].dispatchEvent('sayt-data-response', data)
+    })
   }
 
   sendSaytAPIRequest(saytDataQuery: SaytDataPayload) {
     const { query, ...config } = saytDataQuery;
-    return this.core.sayt.autocomplete(query, config, this.autocompleteCallback)
+    return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
   }
 
   autocompleteCallback(x: undefined, response: any) {
