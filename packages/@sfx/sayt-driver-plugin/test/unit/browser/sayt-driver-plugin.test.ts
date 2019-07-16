@@ -134,7 +134,7 @@ describe('Sayt Driver Plugin', () => {
       sendSaytAPIRequest = stub(Driver, 'sendSaytAPIRequest').callThrough();
     });
 
-    it('should get a response from API request method', () => {
+    it('should get a response from Sayt client request method', () => {
       Driver.fetchSaytData(query);
 
       expect(sendSaytAPIRequest).to.be.calledWith(query);
