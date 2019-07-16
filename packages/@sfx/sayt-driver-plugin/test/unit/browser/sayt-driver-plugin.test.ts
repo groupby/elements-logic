@@ -11,7 +11,7 @@ describe('Sayt Driver Plugin', () => {
     Driver.register({
       'dom_events': new DomEventsPlugin().register({}),
       'sayt': new SaytPlugin({
-        subdomain: 'cvshealth',
+        subdomain: 'macystest',
         https: true,
       }).register(),
     });
@@ -93,8 +93,8 @@ describe('Sayt Driver Plugin', () => {
 
   describe('.sendSaytAPIRequest()', () => {
     const saytDataPayload = {
-      query: 'soap',
-      collection: 'productsLeaf',
+      query: 'shirt',
+      collection: 'backup',
     };
     let autocompleteCallback;
 
@@ -109,7 +109,7 @@ describe('Sayt Driver Plugin', () => {
 
       expect(autocomplete).to.be.calledWith(
         saytDataPayload.query,
-        { collection: 'productsLeaf' },
+        { collection: 'backup' },
         autocompleteCallback,
       );
     });
@@ -126,7 +126,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('.fetchSaytData()', () => {
     const query = {
-      query: 'soap',
+      query: 'shirt',
     };
     let sendSaytAPIRequest;
 
