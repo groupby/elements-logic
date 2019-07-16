@@ -1,5 +1,11 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
+/**
+ * Driver plugin that serves as the link between the Sayt data source
+ * and the view layer. This plugin is responsible for listening to events,
+ * sending search requests to internal data source APIs,
+ * and then emitting the API response back in an event.
+ */
 export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
