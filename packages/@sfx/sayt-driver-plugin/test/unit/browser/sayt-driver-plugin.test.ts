@@ -85,7 +85,7 @@ describe('Sayt Driver Plugin', () => {
       },
     };
 
-    it('should return an array of search terms strings from the sayt response', () => {
+    it('should return an array of search term strings from the sayt response', () => {
       expect(Driver.autocompleteCallback(undefined, response))
         .to.deep.equal(['a', 'b', 'c']);
     });
@@ -128,10 +128,12 @@ describe('Sayt Driver Plugin', () => {
     const query = {
       query: 'shirt',
     };
+    let dispatch;
     let sendSaytAPIRequest;
 
     beforeEach(() => {
       sendSaytAPIRequest = stub(Driver, 'sendSaytAPIRequest').callThrough();
+      dispatch = spy(Driver.core['dom_events'], 'dispatchEvent');
     });
 
     it('should get a response from Sayt client request method', () => {
@@ -141,7 +143,6 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should dispatch the response through the events plugin', () => {
-      const dispatch = stub(Driver.core['dom_events'], 'dispatchEvent');
       const response = { a: 'b' };
       sendSaytAPIRequest.returns(response);
 
@@ -149,6 +150,15 @@ describe('Sayt Driver Plugin', () => {
 
       expect(Promise.resolve(dispatch))
         .to.be.eventually.calledOnceWith(Driver.saytResponseEvent, response);
+    });
+
+    it('should send an error in an event if the API request fails', () => {
+      sendSaytAPIRequest.rejects('test error');
+
+      Driver.fetchSaytData(query);
+
+      expect(Promise.resolve(dispatch))
+        .to.be.eventually.calledOnceWith(Driver.saytErrorEvent, 'test error');
     });
   });
 });
