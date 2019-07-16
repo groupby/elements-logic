@@ -21,37 +21,45 @@ describe('Sayt Driver Plugin', () => {
     beforeEach(() => {
       Driver = {};
     })
+
     it('should keep a reference to all registered plugins', () => {
       const Plugins = {
         a: () => 'a',
         b: () => true,
       }
       Driver = new SaytDriverPlugin();
+
       expect(Driver.core).to.be.undefined;
       Driver.register(Plugins);
+
       expect(Driver.core).to.deep.equal(Plugins);
     });
   });
 
   describe('.ready()', () => {
     let registerListener: any;
+
     beforeEach(() => {
       registerListener = spy(Driver.core['dom_events'], 'registerListener');
     });
+
     it('should register an event listener for receiving sayt API requests', () => {
       Driver.ready();
-      registerListener.getCall(0)
-        .calledWith(Driver.saytDataEvent, Driver.fetchSaytData)
+
+      registerListener.getCall(0).calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
     });
   });
 
   describe('.unregister()', () => {
     let unregisterListener;
+
     beforeEach(() => {
       unregisterListener = spy(Driver.core['dom_events'], 'unregisterListener');
     });
+
     it('should unregister the sayt event listener', () => {
       Driver.unregister();
+
       expect(unregisterListener).to.have.been.calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
     });
   });
@@ -66,6 +74,7 @@ describe('Sayt Driver Plugin', () => {
         ],
       },
     };
+
     it('should return an array of search terms strings from the sayt response', () => {
       expect(Driver.autocompleteCallback(undefined, response))
         .to.deep.equal(['a', 'b', 'c']);
@@ -101,7 +110,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe.only('.fetchSaytData()', () => {
+  describe('.fetchSaytData()', () => {
     const query = {
       query: 'soap',
     };
