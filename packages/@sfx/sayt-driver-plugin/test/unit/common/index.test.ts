@@ -1,5 +1,5 @@
 import { expect } from '../../utils';
-import { SaytDriverPlugin as SaytDriverPluginExport} from '../../../src';
+import { SaytDriverPlugin as SaytDriverPluginExport } from '../../../src';
 import SaytDriverPlugin from '../../../src/sayt-driver-plugin';
 
 describe('Entry point', () => {

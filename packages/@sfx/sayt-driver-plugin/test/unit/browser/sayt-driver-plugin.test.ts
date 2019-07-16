@@ -1,6 +1,6 @@
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
-import { DomEventsPlugin } from '../../../../dom-events-plugin/src/index';
+import { DomEventsPlugin } from '@sfx/dom-events-plugin';
 import { SaytPlugin } from '../../../../sayt-plugin/src';
 
 describe('Sayt Driver Plugin', () => {
@@ -18,12 +18,12 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('get metadata()', () => {
-    it('should specify a plugin name of sayt-driver', () => {
+    it('should specify a plugin name of sayt_driver', () => {
       expect(Driver.metadata.name).to.equal('sayt_driver');
     });
 
     it('should have two dependencies: "dom_events" and "sayt"', () => {
-      expect(Driver.metadata.depends).to.deep.equal(['dom_events', 'sayt']);
+      expect(Driver.metadata.depends).to.have.members(['dom_events', 'sayt']);
     });
   });
 
@@ -36,13 +36,13 @@ describe('Sayt Driver Plugin', () => {
       const Plugins = {
         a: () => 'a',
         b: () => true,
-      }
+      };
       Driver = new SaytDriverPlugin();
 
       expect(Driver.core).to.be.undefined;
       Driver.register(Plugins);
 
-      expect(Driver.core).to.deep.equal(Plugins);
+      expect(Driver.core).to.equal(Plugins);
     });
   });
 
@@ -56,7 +56,7 @@ describe('Sayt Driver Plugin', () => {
     it('should register an event listener for receiving sayt API requests', () => {
       Driver.ready();
 
-      registerListener.getCall(0).calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
+      expect(registerListener).to.be.calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
     });
   });
 
