@@ -107,7 +107,11 @@ describe('Sayt Driver Plugin', () => {
 
       Driver.sendSaytAPIRequest(saytDataPayload);
 
-      expect(autocomplete).to.be.calledWith(saytDataPayload.query, { collection: 'productsLeaf' }, autocompleteCallback);
+      expect(autocomplete).to.be.calledWith(
+        saytDataPayload.query,
+        { collection: 'productsLeaf' },
+        autocompleteCallback,
+      );
     });
 
     it('should return the result of the Sayt API callback', () => {
@@ -143,7 +147,8 @@ describe('Sayt Driver Plugin', () => {
 
       Driver.fetchSaytData(query);
 
-      expect(Promise.resolve(dispatch)).to.be.eventually.calledOnceWith(response);
+      expect(Promise.resolve(dispatch))
+        .to.be.eventually.calledOnceWith(Driver.saytResponseEvent, response);
     });
   });
 });
