@@ -3,17 +3,17 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 export default class SaytDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'sayt-driver-plugin',
+      name: 'sayt_driver',
       depends: [
         this.eventsPluginName,
         'sayt',
-        'search_data_source',
       ],
     };
   }
 
   core: PluginRegistry;
   eventsPluginName: string = 'dom_events';
+
   saytDataEvent: string = 'fetch-sayt-data';
   saytProductsEvent: string = 'fetch-sayt-products';
 

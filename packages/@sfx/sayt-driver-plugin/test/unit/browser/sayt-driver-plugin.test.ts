@@ -17,6 +17,16 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
+  describe('get metadata()', () => {
+    it('should specify a plugin name of sayt-driver', () => {
+      expect(Driver.metadata.name).to.equal('sayt_driver');
+    });
+
+    it('should have two dependencies: "dom_events" and "sayt"', () => {
+      expect(Driver.metadata.depends).to.deep.equal(['dom_events', 'sayt']);
+    });
+  });
+
   describe('.register()', () => {
     beforeEach(() => {
       Driver = {};
