@@ -4,11 +4,11 @@ import { DomEventsPlugin } from '@sfx/dom-events-plugin';
 import { SaytPlugin } from '../../../../sayt-plugin/src';
 
 describe('Sayt Driver Plugin', () => {
-  let Driver: any;
+  let driver;
 
   beforeEach(() => {
-    Driver = new SaytDriverPlugin();
-    Driver.register({
+    driver = new SaytDriverPlugin();
+    driver.register({
       'dom_events': new DomEventsPlugin().register({}),
       'sayt': new SaytPlugin({
         subdomain: 'macystest',
@@ -19,64 +19,64 @@ describe('Sayt Driver Plugin', () => {
 
   describe('get metadata()', () => {
     it('should specify a plugin name of sayt_driver', () => {
-      expect(Driver.metadata.name).to.equal('sayt_driver');
+      expect(driver.metadata.name).to.equal('sayt_driver');
     });
 
     it('should have two dependencies: "dom_events" and "sayt"', () => {
-      expect(Driver.metadata.depends).to.have.members(['dom_events', 'sayt']);
+      expect(driver.metadata.depends).to.have.members(['dom_events', 'sayt']);
     });
   });
 
-  describe('.register()', () => {
+  describe('register()', () => {
     beforeEach(() => {
-      Driver = {};
+      driver = {};
     })
 
     it('should keep a reference to all registered plugins', () => {
-      const Plugins = {
+      const plugins = {
         a: () => 'a',
         b: () => true,
       };
-      Driver = new SaytDriverPlugin();
+      driver = new SaytDriverPlugin();
 
-      expect(Driver.core).to.be.undefined;
-      Driver.register(Plugins);
+      expect(driver.core).to.be.undefined;
+      driver.register(plugins);
 
-      expect(Driver.core).to.equal(Plugins);
+      expect(driver.core).to.equal(plugins);
     });
   });
 
-  describe('.ready()', () => {
-    let registerListener: any;
+  describe('ready()', () => {
+    let registerListener;
 
     beforeEach(() => {
-      registerListener = spy(Driver.core['dom_events'], 'registerListener');
+      registerListener = spy(driver.core['dom_events'], 'registerListener');
     });
 
     it('should register an event listener for receiving sayt API requests', () => {
-      Driver.ready();
+      driver.ready();
 
-      expect(registerListener).to.be.calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
+      expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchSaytData);
     });
   });
 
-  describe('.unregister()', () => {
+  describe('unregister()', () => {
     let unregisterListener;
 
     beforeEach(() => {
-      unregisterListener = spy(Driver.core['dom_events'], 'unregisterListener');
+      unregisterListener = spy(driver.core['dom_events'], 'unregisterListener');
     });
 
     it('should unregister the sayt event listener', () => {
-      Driver.unregister();
+      driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(Driver.saytDataEvent, Driver.fetchSaytData);
+      expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchSaytData);
     });
   });
 
-  describe('.autocompleteCallback', () => {
+  describe('autocompleteCallback()', () => {
     it('should return an array of search term strings from the sayt response', () => {
-      const response = {
+      const terms = {
         result: {
           searchTerms: [
             { value: 'a' , notValue: 'z' },
@@ -86,7 +86,7 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = Driver.autocompleteCallback(undefined, response);
+      const cbReturn = driver.autocompleteCallback(undefined, terms);
 
       expect(cbReturn).to.deep.equal(['a', 'b', 'c']);
     });
@@ -102,7 +102,7 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = Driver.autocompleteCallback(undefined, response);
+      const cbReturn = driver.autocompleteCallback(undefined, response);
 
       expect(cbReturn).to.deep.equal(['a', 'c']);
     });
@@ -114,27 +114,28 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = Driver.autocompleteCallback(undefined, response);
+      const cbReturn = driver.autocompleteCallback(undefined, response);
 
       expect(cbReturn).to.deep.equal([]);
     });
   });
 
-  describe('.sendSaytApiRequest()', () => {
-    const saytDataPayload = {
-      query: 'shirt',
-      collection: 'backup',
-    };
+  describe('sendSaytApiRequest()', () => {
+    let saytDataPayload;
     let autocompleteCallback;
 
     beforeEach(() => {
-      autocompleteCallback = stub(Driver, 'autocompleteCallback');
+      saytDataPayload = {
+        query: 'shirt',
+        collection: 'backup',
+      };
+      autocompleteCallback = stub(driver, 'autocompleteCallback');
     });
 
     it('should make a search call through the sayt client', () => {
-      const autocomplete = spy(Driver.core.sayt, 'autocomplete');
+      const autocomplete = spy(driver.core.sayt, 'autocomplete');
 
-      Driver.sendSaytApiRequest(saytDataPayload);
+      driver.sendSaytApiRequest(saytDataPayload);
 
       expect(autocomplete).to.be.calledWith(
         saytDataPayload.query,
@@ -147,26 +148,27 @@ describe('Sayt Driver Plugin', () => {
       autocompleteCallback.returns(['a', 'b']);
       const callbackReturn = autocompleteCallback();
 
-      const returnValue = Driver.sendSaytApiRequest(saytDataPayload);
+      const returnValue = driver.sendSaytApiRequest(saytDataPayload);
 
       expect(returnValue).to.eventually.equal(callbackReturn);
     });
   });
 
   describe('.fetchSaytData()', () => {
-    const query = {
-      query: 'shirt',
-    };
+    let query;
     let dispatchEvent;
     let sendSaytApiRequest;
 
     beforeEach(() => {
-      sendSaytApiRequest = stub(Driver, 'sendSaytApiRequest').callThrough();
-      dispatchEvent = spy(Driver.core['dom_events'], 'dispatchEvent');
+      query = {
+        query: 'shirt',
+      };
+      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest').callThrough();
+      dispatchEvent = spy(driver.core['dom_events'], 'dispatchEvent');
     });
 
     it('should get a response from Sayt client request method', () => {
-      Driver.fetchSaytData(query);
+      driver.fetchSaytData(query);
 
       expect(sendSaytApiRequest).to.be.calledWith(query);
     });
@@ -175,19 +177,19 @@ describe('Sayt Driver Plugin', () => {
       const response = { a: 'b' };
       sendSaytApiRequest.returns(response);
 
-      Driver.fetchSaytData(query);
+      driver.fetchSaytData(query);
 
       expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(Driver.saytResponseEvent, response);
+        .to.be.eventually.calledOnceWith(driver.saytResponseEvent, response);
     });
 
     it('should send an error in an event if the API request fails', () => {
       sendSaytApiRequest.rejects('test error');
 
-      Driver.fetchSaytData(query);
+      driver.fetchSaytData(query);
 
       expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(Driver.saytErrorEvent, 'test error');
+        .to.be.eventually.calledOnceWith(driver.saytErrorEvent, 'test error');
     });
   });
 });
