@@ -43,8 +43,8 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
+   * Sets the plugin registry to the plugin's internal 'core' property.
    * Callback method for when the plugin is registered in Core.
-   * The method will set the plugin registry to the plugin's internal 'core' property.
    *
    * @param plugins The plugin registry object from Core.
    */
@@ -69,8 +69,8 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Callback for the Sayt data request event listener.
    * Dispatches an event with the response from the sayt data plugin.
+   * Callback for the Sayt data request event listener.
    *
    * @param saytDataQuery Request object received from the event listener.
    */
@@ -85,14 +85,13 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Sends a request to the SAYT API with the given query.
+   * Sends a request to the SAYT API with the given query and config object.
    *
    * @param saytDataQuery Request object received from the event listener.
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytApiRequest(saytDataQuery: SaytDataPayload): Promise<string[]> {
-    const { query, ...config } = saytDataQuery;
+  sendSaytApiRequest({ query, ...config }: SaytDataPayload): Promise<string[]> {
     return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
   }
 
@@ -100,12 +99,11 @@ export default class SaytDriverPlugin implements Plugin {
    * Callback for the Sayt client to transform the search response into
    * relevant information.
    *
-   * @param x Sayt client requires a placeholder attribute as the first argument
-   * for any callback passed to it.
+   * @param error Error from sayt client promise.
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(x: undefined, response: any): string[] {
+  autocompleteCallback(error: Error, response: any): string[] {
     return response.result.searchTerms.reduce((acc: string[], term: any) => {
       if (term.value) acc.push(term.value);
       return acc;
