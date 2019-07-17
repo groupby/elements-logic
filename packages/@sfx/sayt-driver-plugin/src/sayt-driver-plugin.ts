@@ -91,7 +91,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytApiRequest({ query, ...config }: SaytDataPayload): Promise<string[]> {
+  sendSaytApiRequest({ query, ...config }: SaytDataPayload): Promise<string[] | Error> {
     return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
   }
 
@@ -103,7 +103,8 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(error: Error, response: any): string[] {
+  autocompleteCallback(error: Error, response: any): string[] | Error {
+    if (error) return error;
     return response.result.searchTerms.reduce((acc: string[], term: any) => {
       if (term.value) acc.push(term.value);
       return acc;
