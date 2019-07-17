@@ -1,20 +1,25 @@
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
-import { DomEventsPlugin } from '@sfx/dom-events-plugin';
-import { SaytPlugin } from '../../../../sayt-plugin/src';
 
 describe('Sayt Driver Plugin', () => {
   let driver;
+  let dom_events;
+  let sayt;
 
   beforeEach(() => {
+    dom_events = {
+      registerListener: (eventName, data) => null,
+      unregisterListener: (eventName, data) => null,
+      dispatchEvent: (eventName, data) => null,
+    };
+    sayt = {
+      autocomplete: (query, config, callback) => {
+        return new Promise((res, rej) => {
+          res(callback(undefined, 'response'));
+        });
+      },
+    };
     driver = new SaytDriverPlugin();
-    driver.register({
-      'dom_events': new DomEventsPlugin().register({}),
-      'sayt': new SaytPlugin({
-        subdomain: 'macystest',
-        https: true,
-      }).register(),
-    });
   });
 
   describe('get metadata()', () => {
@@ -28,16 +33,11 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('register()', () => {
-    beforeEach(() => {
-      driver = {};
-    })
-
     it('should keep a reference to all registered plugins', () => {
       const plugins = {
         a: () => 'a',
         b: () => true,
       };
-      driver = new SaytDriverPlugin();
 
       expect(driver.core).to.be.undefined;
       driver.register(plugins);
@@ -50,6 +50,9 @@ describe('Sayt Driver Plugin', () => {
     let registerListener;
 
     beforeEach(() => {
+      driver.core = {
+        dom_events,
+      };
       registerListener = spy(driver.core['dom_events'], 'registerListener');
     });
 
@@ -64,6 +67,9 @@ describe('Sayt Driver Plugin', () => {
     let unregisterListener;
 
     beforeEach(() => {
+      driver.core = {
+        dom_events,
+      };
       unregisterListener = spy(driver.core['dom_events'], 'unregisterListener');
     });
 
@@ -125,6 +131,9 @@ describe('Sayt Driver Plugin', () => {
     let autocompleteCallback;
 
     beforeEach(() => {
+      driver.core = {
+        sayt,
+      };
       saytDataPayload = {
         query: 'shirt',
         collection: 'backup',
@@ -160,6 +169,10 @@ describe('Sayt Driver Plugin', () => {
     let sendSaytApiRequest;
 
     beforeEach(() => {
+      driver.core = {
+        dom_events,
+        sayt,
+      };
       query = {
         query: 'shirt',
       };
