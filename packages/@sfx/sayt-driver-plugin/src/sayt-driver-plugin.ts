@@ -1,4 +1,9 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+import {
+  QueryTimeAutocompleteConfig,
+  AutocompleteResponse,
+  AutocompleteSearchTerm,
+} from '@sfx/sayt-plugin';
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
@@ -74,9 +79,9 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param saytDataQuery Request object received from the event listener.
    */
-  fetchSaytData(saytDataQuery: SaytDataPayload): void {
+  fetchSaytData(saytDataQuery: QueryTimeAutocompleteConfigWithQuery): void {
     this.sendSaytApiRequest(saytDataQuery)
-      .then((data: any) => {
+      .then((data) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
       })
       .catch((e) => {
@@ -91,8 +96,8 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytApiRequest({ query, ...config }: SaytDataPayload): Promise<string[] | Error> {
-    return this.core.sayt.autocomplete(query, config, this.autocompleteCallback);
+  sendSaytApiRequest({ query, ...config }: QueryTimeAutocompleteConfigWithQuery): Promise<string[]> {
+    return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 
   /**
@@ -103,24 +108,15 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(error: Error, response: any): string[] | Error {
-    if (error) return error;
-    return response.result.searchTerms.reduce((acc: string[], term: any) => {
-      if (term.value) acc.push(term.value);
-      return acc;
-    }, []);
+  autocompleteCallback(response: AutocompleteResponse): string[] {
+    return response.result.searchTerms.map((term: AutocompleteSearchTerm) => term.value)
+      .filter((term) => term);
   }
 }
 
 /**
- * The type of the sayt data event payload.
+ * The type of the sayt autocomplete request event payload.
  */
-interface SaytDataPayload {
-  query: string;
-  collection?: string;
-  language?: string;
-  numSearchTerms?: number;
-  numNavigations?: number;
-  sortAlphabetically?: boolean;
-  fuzzyMatch?: boolean;
-};
+export interface QueryTimeAutocompleteConfigWithQuery extends QueryTimeAutocompleteConfig {
+  query: string
+}

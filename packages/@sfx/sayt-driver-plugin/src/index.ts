@@ -1,1 +1,4 @@
-export { default as SaytDriverPlugin } from './sayt-driver-plugin';
+export {
+  default as SaytDriverPlugin,
+  QueryTimeAutocompleteConfigWithQuery,
+} from './sayt-driver-plugin';
