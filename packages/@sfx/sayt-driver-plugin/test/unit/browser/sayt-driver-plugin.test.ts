@@ -142,7 +142,7 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      const autocomplete = spy(driver.core.sayt, 'autocomplete');
+      const autocomplete = stub(driver.core.sayt, 'autocomplete').returns(true);
 
       driver.sendSaytApiRequest(saytDataPayload);
 
@@ -154,12 +154,12 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should return the result of the Sayt API callback', () => {
+      const callbackReturn = ['a', 'b'];
       autocompleteCallback.returns(['a', 'b']);
-      const callbackReturn = autocompleteCallback();
 
       const returnValue = driver.sendSaytApiRequest(saytDataPayload);
 
-      expect(returnValue).to.eventually.equal(callbackReturn);
+      return expect(returnValue).to.eventually.deep.equal(callbackReturn);
     });
   });
 
@@ -167,8 +167,10 @@ describe('Sayt Driver Plugin', () => {
     let query;
     let dispatchEvent;
     let sendSaytApiRequest;
+    let response;
 
     beforeEach(() => {
+      response = { a: 'b' };
       driver.core = {
         dom_events,
         sayt,
@@ -176,33 +178,35 @@ describe('Sayt Driver Plugin', () => {
       query = {
         query: 'shirt',
       };
-      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest').callThrough();
+      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
       dispatchEvent = spy(driver.core['dom_events'], 'dispatchEvent');
     });
 
     it('should get a response from Sayt client request method', () => {
+      sendSaytApiRequest.resolves(response);
+
       driver.fetchSaytData(query);
 
       expect(sendSaytApiRequest).to.be.calledWith(query);
     });
 
     it('should dispatch the response through the events plugin', () => {
-      const response = { a: 'b' };
-      sendSaytApiRequest.returns(response);
+      sendSaytApiRequest.resolves(response);
 
       driver.fetchSaytData(query);
 
-      expect(Promise.resolve(dispatchEvent))
+      return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytResponseEvent, response);
     });
 
     it('should send an error in an event if the API request fails', () => {
-      sendSaytApiRequest.rejects('test error');
+      const error = new Error('test error');
+      sendSaytApiRequest.rejects(error);
 
       driver.fetchSaytData(query);
 
-      expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytErrorEvent, 'test error');
+      return expect(Promise.resolve(dispatchEvent))
+        .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
     });
   });
 });

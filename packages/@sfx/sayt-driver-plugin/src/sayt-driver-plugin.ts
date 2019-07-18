@@ -75,13 +75,13 @@ export default class SaytDriverPlugin implements Plugin {
    * @param saytDataQuery Request object received from the event listener.
    */
   fetchSaytData(saytDataQuery: SaytDataPayload): void {
-    const response = this.sendSaytApiRequest(saytDataQuery);
-    response.then((data: any) => {
-      this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
-    })
-    .catch((e) => {
-      this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
-    });
+    this.sendSaytApiRequest(saytDataQuery)
+      .then((data: any) => {
+        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
+      })
+      .catch((e) => {
+        this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
+      });
   }
 
   /**
@@ -99,7 +99,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Callback for the Sayt client to transform the search response into
    * relevant information.
    *
-   * @param error Error from sayt client promise.
+   * @param error Error from sayt client.
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
