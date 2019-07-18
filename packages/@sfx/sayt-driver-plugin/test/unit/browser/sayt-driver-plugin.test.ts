@@ -163,14 +163,13 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('.fetchSaytData()', () => {
+  describe('fetchSaytData()', () => {
     let query;
+    let response;
     let dispatchEvent;
     let sendSaytApiRequest;
-    let response;
 
     beforeEach(() => {
-      response = { a: 'b' };
       driver.core = {
         dom_events,
         sayt,
@@ -178,8 +177,9 @@ describe('Sayt Driver Plugin', () => {
       query = {
         query: 'shirt',
       };
-      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
+      response = { a: 'b' };
       dispatchEvent = spy(driver.core['dom_events'], 'dispatchEvent');
+      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
     it('should get a response from Sayt client request method', () => {
