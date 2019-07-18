@@ -31,7 +31,7 @@ describe('SearchPlugin', () => {
       };
 
       searchPlugin = new SearchDataSourcePlugin(clientId, https, options);
-      //
+
       expect(SearchBrowserBridge).to.be.calledWith(clientId, https, options);
       expect(SearchBrowserBridge.calledWithNew()).to.be.true;
       expect(searchPlugin.browserBridge).to.equal(browserBridgeInstance);
