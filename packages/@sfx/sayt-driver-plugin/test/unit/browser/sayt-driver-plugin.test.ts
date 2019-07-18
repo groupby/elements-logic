@@ -13,11 +13,7 @@ describe('Sayt Driver Plugin', () => {
       dispatchEvent: (eventName, data) => null,
     };
     sayt = {
-      autocomplete: (query, config, callback) => {
-        return new Promise((res, rej) => {
-          res(callback(undefined, 'response'));
-        });
-      },
+      autocomplete: (query, config, callback) => null,
     };
     driver = new SaytDriverPlugin();
   });
@@ -50,10 +46,10 @@ describe('Sayt Driver Plugin', () => {
     let registerListener;
 
     beforeEach(() => {
+      registerListener = dom_events.registerListener = spy();
       driver.core = {
         dom_events,
       };
-      registerListener = spy(driver.core['dom_events'], 'registerListener');
     });
 
     it('should register an event listener for receiving sayt API requests', () => {
@@ -67,10 +63,10 @@ describe('Sayt Driver Plugin', () => {
     let unregisterListener;
 
     beforeEach(() => {
+      unregisterListener = dom_events.unregisterListener = spy();
       driver.core = {
         dom_events,
       };
-      unregisterListener = spy(driver.core['dom_events'], 'unregisterListener');
     });
 
     it('should unregister the sayt event listener', () => {
@@ -92,7 +88,7 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = driver.autocompleteCallback(undefined, terms);
+      const cbReturn = driver.autocompleteCallback(terms);
 
       expect(cbReturn).to.deep.equal(['a', 'b', 'c']);
     });
@@ -108,7 +104,7 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = driver.autocompleteCallback(undefined, response);
+      const cbReturn = driver.autocompleteCallback(response);
 
       expect(cbReturn).to.deep.equal(['a', 'c']);
     });
@@ -120,17 +116,19 @@ describe('Sayt Driver Plugin', () => {
         },
       };
 
-      const cbReturn = driver.autocompleteCallback(undefined, response);
+      const cbReturn = driver.autocompleteCallback(response);
 
       expect(cbReturn).to.deep.equal([]);
     });
   });
 
   describe('sendSaytApiRequest()', () => {
+    let autocomplete;
     let saytDataPayload;
     let autocompleteCallback;
 
     beforeEach(() => {
+      autocomplete = sayt.autocomplete = stub().resolves(autocompleteCallback);
       driver.core = {
         sayt,
       };
@@ -142,14 +140,11 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      const autocomplete = stub(driver.core.sayt, 'autocomplete').returns(true);
-
       driver.sendSaytApiRequest(saytDataPayload);
 
       expect(autocomplete).to.be.calledWith(
         saytDataPayload.query,
         { collection: 'backup' },
-        autocompleteCallback,
       );
     });
 
@@ -170,15 +165,14 @@ describe('Sayt Driver Plugin', () => {
     let sendSaytApiRequest;
 
     beforeEach(() => {
+      dispatchEvent = dom_events.dispatchEvent = spy();
       driver.core = {
         dom_events,
-        sayt,
       };
       query = {
         query: 'shirt',
       };
       response = { a: 'b' };
-      dispatchEvent = spy(driver.core['dom_events'], 'dispatchEvent');
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
