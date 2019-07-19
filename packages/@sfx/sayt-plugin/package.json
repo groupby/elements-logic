@@ -19,6 +19,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "sayt": "^0.1.8"
+    "sayt": "^0.1.9"
   }
 }
