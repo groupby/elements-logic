@@ -2,7 +2,6 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
   QueryTimeAutocompleteConfig,
   AutocompleteResponse,
-  AutocompleteSearchTerm,
 } from '@sfx/sayt-plugin';
 
 /**
@@ -118,5 +117,5 @@ export default class SaytDriverPlugin implements Plugin {
  * The type of the sayt autocomplete request event payload.
  */
 export interface QueryTimeAutocompleteConfigWithQuery extends QueryTimeAutocompleteConfig {
-  query: string
+  query: string;
 }
