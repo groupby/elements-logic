@@ -1,9 +1,9 @@
 import { expect } from '../../utils';
 import { default as SearchPlugin } from '../../../src/search-plugin';
-import { BridgeConfig } from '../../../src/index';
+import { SearchPlugin as SearchExport } from '../../../src/index';
 
 describe('Entry point', () => {
-  it('should export SaytPlugin', () => {
-    // expect(SearchDataSourcePlugin).to.equal(BridgeConfig);
+  it('should export SearchPlugin', () => {
+    expect(SearchPlugin).to.equal(SearchExport);
   });
 });
