@@ -109,7 +109,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An array of search term strings.
    */
   autocompleteCallback(response: AutocompleteResponse): string[] {
-    return response.result.searchTerms.map((term: AutocompleteSearchTerm) => term.value)
+    return response.result.searchTerms.map((term) => term.value)
       .filter((term) => term);
   }
 }
