@@ -45,7 +45,5 @@ describe('SearchPlugin', () => {
 
       expect(registerReturnValue).to.equal(browserBridgeInstance);
     });
-
-  });
-
+  })
 });
