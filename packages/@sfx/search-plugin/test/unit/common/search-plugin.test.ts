@@ -42,6 +42,7 @@ describe('SearchPlugin', () => {
     it('should return the search data source browser bridge instance', () => {
       const browserBridgeInstance = searchPlugin.browserBridge = { a: 'a' };
       const registerReturnValue = searchPlugin.register();
+
       expect(registerReturnValue).to.equal(browserBridgeInstance);
     });
 
