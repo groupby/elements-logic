@@ -1,0 +1,26 @@
+{
+  "name": "@sfx/search-plugin",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "../../../scripts/build.sh",
+    "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
+    "test": "nyc mocha",
+    "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
+    "test:browser": "karma start karma.conf.js",
+    "tdd:browser": "karma start karma.conf.js --no-single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/sfx-logic.git",
+    "directory": "packages/@sfx/search-plugin"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "groupby-api": "^2.6.1"
+  }
+}
