@@ -1,5 +1,5 @@
 import { expect } from '../../utils';
-import { default as SearchDataSourcePlugin } from '../../../src/search-plugin';
+import { default as SearchPlugin } from '../../../src/search-plugin';
 import { BridgeConfig } from '../../../src/index';
 
 describe('Entry point', () => {

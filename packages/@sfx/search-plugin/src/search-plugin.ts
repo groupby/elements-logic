@@ -8,7 +8,7 @@ import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
 export default class SearchPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'search-data-source',
+      name: 'search',
       depends: [],
     };
   }

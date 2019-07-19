@@ -11,8 +11,8 @@ describe('SearchPlugin', () => {
   });
 
   describe('metadata getter', () => {
-    it('should have the name `search-data-source`', () => {
-      expect(searchPlugin.metadata.name).to.equal('search-data-source');
+    it('should have the name `search`', () => {
+      expect(searchPlugin.metadata.name).to.equal('search');
     });
 
     it('should not specify any dependencies', () => {
