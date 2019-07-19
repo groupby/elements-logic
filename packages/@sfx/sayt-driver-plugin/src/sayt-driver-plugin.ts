@@ -100,10 +100,8 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Callback for the Sayt client to transform the search response into
-   * relevant information.
+   * Extracts search terms from the given response.
    *
-   * @param error Error from sayt client.
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
