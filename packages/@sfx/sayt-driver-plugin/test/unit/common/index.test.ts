@@ -13,6 +13,7 @@ describe('Entry point', () => {
   it('should export EventsBrowserPlugin ', () => {
     expect(SaytDriverPluginExport).to.equal(SaytDriverPlugin);
   });
+
   it('should export the QueryTimeAutocompleteConfigWithQuery interface', () => {
     const test: AssertTypesEqual<QueryTimeAutocompleteConfigWithQueryExport, QueryTimeAutocompleteConfigWithQuery> = true;
   });
