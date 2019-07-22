@@ -45,14 +45,12 @@ describe('Sayt Driver Plugin', () => {
   describe('ready()', () => {
     let registerListener;
 
-    beforeEach(() => {
+    it('should register an event listener for receiving sayt API requests', () => {
       registerListener = dom_events.registerListener = spy();
       driver.core = {
         dom_events,
       };
-    });
 
-    it('should register an event listener for receiving sayt API requests', () => {
       driver.ready();
 
       expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchSaytData);
@@ -62,14 +60,12 @@ describe('Sayt Driver Plugin', () => {
   describe('unregister()', () => {
     let unregisterListener;
 
-    beforeEach(() => {
+    it('should unregister the sayt event listener', () => {
       unregisterListener = dom_events.unregisterListener = spy();
       driver.core = {
         dom_events,
       };
-    });
 
-    it('should unregister the sayt event listener', () => {
       driver.unregister();
 
       expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchSaytData);
@@ -194,7 +190,8 @@ describe('Sayt Driver Plugin', () => {
     let autocompleteCallback;
 
     beforeEach(() => {
-      autocomplete = sayt.autocomplete = stub().resolves(autocompleteCallback);
+      autocompleteCallback = stub(driver, 'autocompleteCallback');
+      autocomplete = stub(sayt, 'autocomplete').resolves(autocompleteCallback);
       driver.core = {
         sayt,
       };
@@ -202,7 +199,6 @@ describe('Sayt Driver Plugin', () => {
         query: 'shirt',
         collection: 'backup',
       };
-      autocompleteCallback = stub(driver, 'autocompleteCallback');
     });
 
     it('should make a search call through the sayt client', () => {
@@ -216,7 +212,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should return the result of the Sayt API callback', () => {
       const callbackReturn = ['a', 'b'];
-      autocompleteCallback.returns(['a', 'b']);
+      autocompleteCallback.returns(callbackReturn);
 
       const returnValue = driver.sendSaytApiRequest(saytDataPayload);
 

@@ -14,7 +14,7 @@ import {
 
 
 describe('Entry point', () => {
-  it('should export EventsBrowserPlugin ', () => {
+  it('should export the SaytDriverPlugin', () => {
     expect(SaytDriverPluginExport).to.equal(SaytDriverPlugin);
   });
 
