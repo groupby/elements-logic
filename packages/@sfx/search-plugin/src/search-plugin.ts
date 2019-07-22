@@ -24,9 +24,9 @@ export default class SearchPlugin implements Plugin {
    */
    constructor(options: SearchPluginOptions) {
      const customerId = options.customerId;
-     const https = !options.https ? false : true;
+     const https = !!options.https;
 
-     if(!customerId) {
+     if (!customerId) {
        throw new Error('customerId is not valid');
      }
 
