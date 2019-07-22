@@ -41,4 +41,10 @@ describe('SearchDriverPlugin', () => {
       expect(searchDriverPlugin.core).to.equal(registry);
     });
   });
+
+  describe('ready()', () => {
+    it('should exist as a function', () => {
+      expect(searchDriverPlugin.ready).to.be.a('function');
+    });
+  });
 });

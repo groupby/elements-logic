@@ -30,4 +30,11 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   register(plugins: PluginRegistry): void {
     this.core = plugins;
   }
+
+  /**
+   * 
+   */
+  ready() {
+    // @TODO Attach listeners for events
+  }
 }
