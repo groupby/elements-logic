@@ -19,13 +19,12 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   core: PluginRegistry;
 
   /**
-   * Currently no need for an instructor, but the method needs to
-   * exist for compatibility with Core.
+   * This method needs to exist for compatibility with Core.
    */
-  constructor(options?: object) {}
+  constructor(options?: SearchDriverOptions) {}
 
   /**
-   * 
+   * Accepts the exposed values of all plugins and saves them for later.
    */
   register(plugins: PluginRegistry): void {
     this.core = plugins;
@@ -38,3 +37,5 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
     // @TODO Attach listeners for events
   }
 }
+
+interface SearchDriverOptions {}
