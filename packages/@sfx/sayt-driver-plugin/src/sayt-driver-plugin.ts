@@ -1,8 +1,8 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
-  QueryTimeAutocompleteConfig,
   AutocompleteResponse,
   AutocompleteSearchTerm,
+  QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
 
 /**

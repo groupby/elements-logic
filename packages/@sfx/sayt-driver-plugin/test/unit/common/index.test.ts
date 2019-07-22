@@ -7,8 +7,8 @@ import {
 } from '../../../src';
 import {
   default as SaytDriverPlugin,
-  SearchTermItem,
   AutocompleteResponseSection,
+  SearchTermItem,
   QueryTimeAutocompleteConfigWithQuery,
 } from '../../../src/sayt-driver-plugin';
 
