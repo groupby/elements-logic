@@ -2,8 +2,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
 
 /**
- * This plugin is responsible for exposing an instance of search browserBridge
- * to Core.
+ * This plugin exposes an instance of the GroupBy search client
  */
 export default class SearchPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -17,29 +16,42 @@ export default class SearchPlugin implements Plugin {
    * The values that the Search Data Source plugin expose to the Core entity.
    */
   browserBridge: BrowserBridge;
-  exposedValue: SearchDataSourcePluginExposedValue;
 
   /**
-   * The search data source plugin constructor instantiates an instance of the search browserBridge plugin
-   * and attaches it to this plugin's broswerBridge property.
+   * Instantiates an instance of the search browserBridge plugin
    *
    * @param options The options to instantiate the search data source browser bridge client with.
    */
-  constructor(clientId: string, https: boolean, options?: BridgeConfig) {
-    this.browserBridge = new BrowserBridge(clientId, https, options);
-  }
+   constructor(options: SearchPluginOptions) {
+     const customerId = options.customerId;
+     const https = options.https || true;
+
+     if(!customerId) {
+       throw new Error('customerId is not valid');
+     }
+
+     this.browserBridge = new BrowserBridge(customerId, https, options);
+   }
 
   /**
-   * Returns this plugin's instance of the search clients browser bridge.
+   * Returns this plugin's instance of the search client.
    */
-  register(): BrowserBridge {
+  register() {
     return this.browserBridge;
   }
 }
 
 /**
- * Search Data Source Plugin exposed value.
+ * The type of this plugin's exposed value.
  */
-export interface SearchDataSourcePluginExposedValue {
-  query: Query,
+export interface SearchPluginExposedValue extends BrowserBridge {
+  Query: typeof Query;
+}
+
+/**
+ * The type of this plugin's options.
+ */
+export interface SearchPluginOptions extends BridgeConfig{
+  customerId: string,
+  https?: boolean,
 }

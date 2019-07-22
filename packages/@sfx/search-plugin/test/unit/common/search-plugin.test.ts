@@ -1,5 +1,6 @@
 import { expect, sinon, stub } from '../../utils';
 import SearchPlugin from '../../../src/search-plugin';
+import SearchPluginOptions from '../../../src/search-plugin';
 import { BridgeConfig, Query } from 'groupby-api';
 import * as SearchPackage from 'groupby-api';
 
@@ -7,7 +8,12 @@ describe('SearchPlugin', () => {
   let searchPlugin: any;
 
   beforeEach(() => {
-    searchPlugin = new SearchPlugin('testClientId', true);
+    let options = {
+      customerId: 'testClientId',
+      https: true,
+    };
+
+    searchPlugin = new SearchPlugin(options);
   });
 
   describe('metadata getter', () => {
@@ -24,15 +30,20 @@ describe('SearchPlugin', () => {
     it('should create a new instance of Search BrowserBridge with options', () => {
       const browserBridgeInstance = { a: 'a' };
       const SearchBrowserBridge = stub(SearchPackage, 'BrowserBridge').returns(browserBridgeInstance);
-      const clientId = 'testClientId';
-      const https = true;
-      const options: BridgeConfig = {
+      const config: BridgeConfig = {
         timeout: 2000,
       };
 
-      searchPlugin = new SearchPlugin(clientId, https, options);
+      let options = {
+        customerId: 'testClientId',
+        https: true,
+      };
 
-      expect(SearchBrowserBridge).to.be.calledWith(clientId, https, options);
+      let combinedOptions = {...options, config} ;
+
+      searchPlugin = new SearchPlugin(combinedOptions);
+
+      expect(SearchBrowserBridge).to.be.calledWith('testClientId', true, combinedOptions);
       expect(SearchBrowserBridge.calledWithNew()).to.be.true;
       expect(searchPlugin.browserBridge).to.equal(browserBridgeInstance);
     });
