@@ -9,7 +9,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   get metadata(): PluginMetadata {
     return {
       name: 'search-driver',
-      depends: [],
+      depends: ['dom_events', 'search_data_source'],
     };
   }
 
