@@ -2,6 +2,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
   QueryTimeAutocompleteConfig,
   AutocompleteResponse,
+  AutocompleteSearchTerm,
 } from '@sfx/sayt-plugin';
 
 /**
@@ -105,9 +106,20 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An array search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(response: AutocompleteResponse): string[] {
-    return response.result.searchTerms.map((term) => term.value)
-      .filter((term) => term);
+  autocompleteCallback(response: AutocompleteResponse): AutocompleteResponseSection[] {
+    const searchTerms = {
+      title: '',
+      items: response.result.searchTerms
+        ? this.constructSearchterms(response.result.searchTerms)
+        : [],
+    };
+    return [searchTerms];
+  }
+
+  constructSearchterms(terms: AutocompleteSearchTerm[]): SearchTermItem[] {
+    return terms.map((term) => {
+      return { label: term.value };
+    }).filter((item) => item.label);
   }
 }
 
@@ -116,4 +128,19 @@ export default class SaytDriverPlugin implements Plugin {
  */
 export interface QueryTimeAutocompleteConfigWithQuery extends QueryTimeAutocompleteConfig {
   query: string;
+}
+/**
+ * Data section of the event payload for an autocomplete response.
+ * Ex. searchTerms
+ */
+export interface AutocompleteResponseSection {
+  title: string;
+  items: any[];
+}
+
+/**
+ * Sayt autocomplete item.
+ */
+export interface SearchTermItem {
+  label: string;
 }

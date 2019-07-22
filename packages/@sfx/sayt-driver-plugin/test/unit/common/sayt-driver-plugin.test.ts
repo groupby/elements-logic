@@ -77,48 +77,113 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('autocompleteCallback()', () => {
-    it('should return an array of search term strings from the sayt response', () => {
+    let constructSearchterms;
+
+    beforeEach(() => {
+      constructSearchterms = stub(driver, 'constructSearchterms');
+    });
+
+    it('should return an empty title for the search terms object', () => {
+      const terms = {
+        result: {
+          searchTerms: [],
+        },
+      };
+      const expectedReturn = [
+        {
+          title: '',
+          items: [],
+        },
+      ];
+      constructSearchterms.returns([]);
+
+      const cbReturn = driver.autocompleteCallback(terms);
+
+      expect(cbReturn).to.deep.equal(expectedReturn);
+    });
+
+    it('should return a nested array of search term objects from the sayt response', () => {
       const terms = {
         result: {
           searchTerms: [
-            { value: 'a' , notValue: 'z' },
+            { value: 'a' },
             { value: 'b' },
             { value: 'c' },
           ],
         },
       };
+      const expectedReturn = [
+        {
+          title: '',
+          items: [
+            { label: 'a' },
+            { label: 'b' },
+            { label: 'c' },
+          ],
+        },
+      ];
+      constructSearchterms.returns([
+        { label: 'a' },
+        { label: 'b' },
+        { label: 'c' },
+      ]);
 
       const cbReturn = driver.autocompleteCallback(terms);
 
-      expect(cbReturn).to.deep.equal(['a', 'b', 'c']);
+      expect(cbReturn).to.deep.equal(expectedReturn);
     });
 
-    it('should only return entries that have a searchterm value', () => {
+    it('should return an empty item list if there are no search terms', () => {
       const response = {
         result: {
-          searchTerms: [
-            { value: 'a' },
-            {},
-            { value: 'c' },
-          ],
+          searchTerms: null,
         },
       };
+      const expectedReturn = [
+        {
+          title: '',
+          items: [],
+        },
+      ];
 
       const cbReturn = driver.autocompleteCallback(response);
 
-      expect(cbReturn).to.deep.equal(['a', 'c']);
+      expect(cbReturn).to.deep.equal(expectedReturn);
+    });
+  })
+
+  describe('constructSearchterms()', () => {
+    it('should return search term values as search term labels', () => {
+      const terms = [
+        { value: 'a', notValue: 'z'  },
+        { value: 'b' },
+        { value: 'c' },
+      ];
+      const expectedReturn = [
+        { label: 'a' },
+        { label: 'b' },
+        { label: 'c' },
+      ];
+
+      const searchTerms = driver.constructSearchterms(terms);
+
+      expect(searchTerms).to.deep.equal(expectedReturn);
     });
 
-    it('should return an empty array if there are no searchTerms', () => {
-      const response = {
-        result: {
-          searchTerms: [],
-        },
-      };
+    it('should only return items that have a searchterm value', () => {
+      const terms = [
+        { value: 'a' },
+        {},
+        { value: 'c' },
+      ];
+      const expectedReturn = [
+        { label: 'a' },
+        { label: 'c' },
+      ];
 
-      const cbReturn = driver.autocompleteCallback(response);
+      const searchTerms = driver.constructSearchterms(terms);
 
-      expect(cbReturn).to.deep.equal([]);
+      expect(searchTerms).to.deep.equal(expectedReturn);
     });
   });
 
