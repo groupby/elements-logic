@@ -14,17 +14,20 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   }
 
   /**
-   * 
+   * A reference to the registry of plugins for later use.
    */
-  constructor() {
-  }
+  core: PluginRegistry;
+
+  /**
+   * Currently no need for an instructor, but the method needs to
+   * exist for compatibility with Core.
+   */
+  constructor(options?: object) {}
 
   /**
    * 
    */
-  register(): object {
-    return {
-
-    }
+  register(plugins: PluginRegistry): void {
+    this.core = plugins;
   }
 }

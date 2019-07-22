@@ -23,24 +23,22 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('constructor()', () => {
-    // it('should create a new instance of Sayt with options', () => {
-    //   const saytInstance = { a: 'a' };
-    //   const Sayt = stub(SearchDriverPackage, 'Sayt').returns(saytInstance);
-    //   const options: any = { b: 'b' };
-    //   searchDriverPlugin = new searchDriverPlugin(options);
+    it('should accept an options object', () => {
+      const callback = () => {
+        searchDriverPlugin = new SearchDriverPlugin({ 'a': 1, 'b': 2});
+      }
 
-    //   expect(Sayt).to.be.calledWith(options);
-    //   expect(Sayt.calledWithNew()).to.be.true;
-    //   expect(searchDriverPlugin.sayt).to.equal(saytInstance);
-    // });
+      expect(callback).not.to.throw();
+    });
   });
 
   describe('register()', () => {
-    // it('should return the sayt instance', () => {
-    //   const saytInstance = searchDriverPlugin.sayt = { a: 'a' };
-    //   const registerReturnValue = searchDriverPlugin.register();
+    it('should save the plugin registry for future use', () => {
+      const registry = { 'a': 1, 'b': 2} as any;
 
-    //   expect(registerReturnValue).to.equal(saytInstance);
-    // });
+      searchDriverPlugin.register(registry);
+
+      expect(searchDriverPlugin.core).to.equal(registry);
+    });
   });
 });
