@@ -1,13 +1,13 @@
 import { AssertTypesEqual, expect } from '../../utils';
 import {
-  AutocompleteConfigWithQuery as AutocompleteConfigWithQueryExport,
+  AutocompleteConfig as AutocompleteConfigExport,
   AutocompleteResponseSection as AutocompleteResponseSectionExport,
   SaytDriverPlugin as SaytDriverPluginExport,
   SearchTermItem as SearchTermItemExport,
 } from '../../../src';
 import {
   default as SaytDriverPlugin,
-  AutocompleteConfigWithQuery,
+  AutocompleteConfig,
   AutocompleteResponseSection,
   SearchTermItem,
 } from '../../../src/sayt-driver-plugin';
@@ -18,8 +18,8 @@ describe('Entry point', () => {
     expect(SaytDriverPluginExport).to.equal(SaytDriverPlugin);
   });
 
-  it('should export the AutocompleteConfigWithQuery interface', () => {
-    const test: AssertTypesEqual<AutocompleteConfigWithQueryExport, AutocompleteConfigWithQuery> = true;
+  it('should export the AutocompleteConfig interface', () => {
+    const test: AssertTypesEqual<AutocompleteConfigExport, AutocompleteConfig> = true;
   });
 
   it('should export the AutocompleteResponseSection interface', () => {
