@@ -145,6 +145,7 @@ describe('Sayt Driver Plugin', () => {
           items: [],
         },
       ];
+      constructSearchterms.returns([]);
 
       const cbReturn = driver.autocompleteCallback(response);
 
