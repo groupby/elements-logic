@@ -2,8 +2,8 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 // import { Sayt, SaytConfig } from 'sayt';
 
 /**
- * This plugin is responsible for exposing an instance of sayt
- * to Core.
+ * This plugin is responsible for exposing events that allow
+ * for interacting with GroupBy's Search API.
  */
  export default class SearchDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
