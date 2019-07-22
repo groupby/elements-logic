@@ -1,6 +1,6 @@
 export {
   default as SaytDriverPlugin,
+  AutocompleteConfigWithQuery,
   AutocompleteResponseSection,
-  QueryTimeAutocompleteConfigWithQuery,
   SearchTermItem,
 } from './sayt-driver-plugin';

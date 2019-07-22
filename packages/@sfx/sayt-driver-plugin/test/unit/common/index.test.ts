@@ -1,15 +1,15 @@
 import { AssertTypesEqual, expect } from '../../utils';
 import {
+  AutocompleteConfigWithQuery as AutocompleteConfigWithQueryExport,
   AutocompleteResponseSection as AutocompleteResponseSectionExport,
   SaytDriverPlugin as SaytDriverPluginExport,
   SearchTermItem as SearchTermItemExport,
-  QueryTimeAutocompleteConfigWithQuery as QueryTimeAutocompleteConfigWithQueryExport,
 } from '../../../src';
 import {
   default as SaytDriverPlugin,
+  AutocompleteConfigWithQuery,
   AutocompleteResponseSection,
   SearchTermItem,
-  QueryTimeAutocompleteConfigWithQuery,
 } from '../../../src/sayt-driver-plugin';
 
 
@@ -18,15 +18,15 @@ describe('Entry point', () => {
     expect(SaytDriverPluginExport).to.equal(SaytDriverPlugin);
   });
 
-  it('should export the SearchTermItem interface', () => {
-    const test: AssertTypesEqual<SearchTermItemExport, SearchTermItem> = true;
+  it('should export the AutocompleteConfigWithQuery interface', () => {
+    const test: AssertTypesEqual<AutocompleteConfigWithQueryExport, AutocompleteConfigWithQuery> = true;
   });
 
   it('should export the AutocompleteResponseSection interface', () => {
     const test: AssertTypesEqual<AutocompleteResponseSectionExport, AutocompleteResponseSection> = true;
   });
 
-  it('should export the QueryTimeAutocompleteConfigWithQuery interface', () => {
-    const test: AssertTypesEqual<QueryTimeAutocompleteConfigWithQueryExport, QueryTimeAutocompleteConfigWithQuery> = true;
+  it('should export the SearchTermItem interface', () => {
+    const test: AssertTypesEqual<SearchTermItemExport, SearchTermItem> = true;
   });
 });
