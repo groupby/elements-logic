@@ -77,10 +77,10 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('autocompleteCallback()', () => {
-    let constructSearchterms;
+    let constructSearchTerms;
 
     beforeEach(() => {
-      constructSearchterms = stub(driver, 'constructSearchterms');
+      constructSearchTerms = stub(driver, 'constructSearchTerms');
     });
 
     it('should return an empty title for the search terms object', () => {
@@ -95,7 +95,7 @@ describe('Sayt Driver Plugin', () => {
           items: [],
         },
       ];
-      constructSearchterms.returns([]);
+      constructSearchTerms.returns([]);
 
       const cbReturn = driver.autocompleteCallback(terms);
 
@@ -122,7 +122,7 @@ describe('Sayt Driver Plugin', () => {
           ],
         },
       ];
-      constructSearchterms.returns([
+      constructSearchTerms.returns([
         { label: 'a' },
         { label: 'b' },
         { label: 'c' },
@@ -145,7 +145,7 @@ describe('Sayt Driver Plugin', () => {
           items: [],
         },
       ];
-      constructSearchterms.returns([]);
+      constructSearchTerms.returns([]);
 
       const cbReturn = driver.autocompleteCallback(response);
 
@@ -153,7 +153,7 @@ describe('Sayt Driver Plugin', () => {
     });
   })
 
-  describe('constructSearchterms()', () => {
+  describe('constructSearchTerms()', () => {
     it('should return search term values as search term labels', () => {
       const terms = [
         { value: 'a', notValue: 'z'  },
@@ -166,7 +166,7 @@ describe('Sayt Driver Plugin', () => {
         { label: 'c' },
       ];
 
-      const searchTerms = driver.constructSearchterms(terms);
+      const searchTerms = driver.constructSearchTerms(terms);
 
       expect(searchTerms).to.deep.equal(expectedReturn);
     });
@@ -182,7 +182,7 @@ describe('Sayt Driver Plugin', () => {
         { label: 'c' },
       ];
 
-      const searchTerms = driver.constructSearchterms(terms);
+      const searchTerms = driver.constructSearchTerms(terms);
 
       expect(searchTerms).to.deep.equal(expectedReturn);
     });

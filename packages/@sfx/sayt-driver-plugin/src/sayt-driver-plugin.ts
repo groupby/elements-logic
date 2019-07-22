@@ -110,13 +110,19 @@ export default class SaytDriverPlugin implements Plugin {
     const searchTerms = {
       title: '',
       items: response.result.searchTerms
-        ? this.constructSearchterms(response.result.searchTerms)
+        ? this.constructSearchTerms(response.result.searchTerms)
         : [],
     };
     return [searchTerms];
   }
 
-  constructSearchterms(terms: AutocompleteSearchTerm[]): SearchTermItem[] {
+  /**
+   * Formats a given list of search terms.
+   *
+   * @param terms An array of search terms.
+   * @returns An array of search terms that have been formatted.
+   */
+  constructSearchTerms(terms: AutocompleteSearchTerm[]): SearchTermItem[] {
     return terms.map((term) => {
       return { label: term.value };
     }).filter((item) => item.label);
