@@ -15,7 +15,7 @@ export default class SearchPlugin implements Plugin {
   /**
    * The values that the Search Data Source plugin expose to the Core entity.
    */
-  browserBridge: BrowserBridge;
+  browserBridge: Partial <SearchPluginExposedValue>;
 
   /**
    * Instantiates an instance of the search browserBridge plugin
