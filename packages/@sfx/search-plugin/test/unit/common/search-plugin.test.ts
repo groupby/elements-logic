@@ -33,13 +33,11 @@ describe('SearchPlugin', () => {
       const config: BridgeConfig = {
         timeout: 2000,
       };
-
-      let options = {
+      const options = {
         customerId: 'testClientId',
         https: true,
       };
-
-      let combinedOptions = {...options, config} ;
+      const combinedOptions = {...options, config} ;
 
       searchPlugin = new SearchPlugin(combinedOptions);
 
