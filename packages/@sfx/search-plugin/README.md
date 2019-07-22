@@ -7,7 +7,7 @@ This package contains the SF-X Search Plugin class.
 To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const searchPlugin = new SearchPlugin(clientId: string, https: boolean, /* options */);
+const searchPlugin = new SearchPlugin(/* options -must contain a customerId parameter and valid value*/);
 core.register(searchPlugin);
 ```
 The plugin registers an instance of the [Search API client](https://www.npmjs.com/package/groupby-api) with Core.
