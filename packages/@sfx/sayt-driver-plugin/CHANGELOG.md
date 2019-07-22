@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - SFX-160: Added the `SaytDriverPlugin` module.
-  - The SaytDriverPlugin module acts as a mediator between the logic and view layers for prebuilt modules.
+  - The `SaytDriverPlugin` module acts as a mediator between the Logic and View layers for prebuilt modules.
