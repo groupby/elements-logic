@@ -123,9 +123,10 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An array of search terms that have been formatted.
    */
   constructSearchTerms(terms: AutocompleteSearchTerm[]): SearchTermItem[] {
-    return terms.map((term) => {
-      return { label: term.value };
-    }).filter((item) => item.label);
+    return terms.filter((term) => term.value)
+      .map((term) => {
+        return { label: term.value };
+    });
   }
 }
 
