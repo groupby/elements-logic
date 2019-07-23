@@ -11,7 +11,7 @@ describe('SearchDriverPlugin', () => {
 
   describe('metadata getter', () => {
     it('should have the name `sayt`', () => {
-      expect(searchDriverPlugin.metadata.name).to.equal('search-driver');
+      expect(searchDriverPlugin.metadata.name).to.equal('search_driver');
     });
 
     it('should not specify any dependencies', () => {

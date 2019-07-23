@@ -8,7 +8,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 export default class SearchDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'search-driver',
+      name: 'search_driver',
       depends: ['dom_events', 'search'],
     };
   }
