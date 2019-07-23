@@ -3,7 +3,7 @@ import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plug
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
-  let searchDriverPlugin: any;
+  let searchDriverPlugin;
 
   beforeEach(() => {
     searchDriverPlugin = new SearchDriverPlugin();
@@ -34,7 +34,7 @@ describe('SearchDriverPlugin', () => {
 
   describe('register()', () => {
     it('should save the plugin registry for future use', () => {
-      const registry = { a: 1, b: 2 } as any;
+      const registry: any = { a: 1, b: 2 };
 
       searchDriverPlugin.register(registry);
 
