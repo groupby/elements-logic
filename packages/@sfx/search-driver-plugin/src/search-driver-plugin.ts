@@ -36,7 +36,9 @@ export default class SearchDriverPlugin implements Plugin {
   /**
    * This method needs to exist for compatibility with Core.
    */
-  constructor(options?: SearchDriverOptions) {}
+  constructor() {
+    this.fetchSearchData = this.fetchSearchData.bind(this);
+  }
 
   /**
    * Accepts the exposed values of all plugins and saves them for later.
