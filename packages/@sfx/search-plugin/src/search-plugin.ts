@@ -17,6 +17,7 @@ export default class SearchPlugin implements Plugin {
    */
   browserBridge: SearchPluginExposedValue;
   options: SearchPluginOptions;
+
   /**
    * Instantiates an instance of the search BrowserBridge client.
    *
