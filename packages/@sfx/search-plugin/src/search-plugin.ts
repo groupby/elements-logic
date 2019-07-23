@@ -51,8 +51,8 @@ export default class SearchPlugin implements Plugin {
  */
 export interface SearchPluginExposedValue extends BrowserBridge {
   /**
- * The `Query` builder class. This class provides a declarative way of building a request object.
- */
+   * The `Query` builder class. This class provides a declarative way of building a request object.
+   */
   Query: typeof Query;
 }
 
