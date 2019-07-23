@@ -2,7 +2,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
 
 /**
- * This plugin exposes an instance of the GroupBy search client
+ * This plugin exposes an instance of the GroupBy search client.
  */
 export default class SearchPlugin implements Plugin {
   get metadata(): PluginMetadata {
@@ -18,7 +18,7 @@ export default class SearchPlugin implements Plugin {
   browserBridge: SearchPluginExposedValue;
   options: SearchPluginOptions;
   /**
-   * Instantiates an instance of the search browserBridge plugin
+   * Instantiates an instance of the search BrowserBridge client.
    *
    * @param options The options to instantiate the search data source browser bridge client with.
    */
