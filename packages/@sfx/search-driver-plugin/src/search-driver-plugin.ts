@@ -58,7 +58,11 @@ export default class SearchDriverPlugin implements Plugin {
    * @TODO Ensure `event` is of the correct interface.
    */
   fetchSearchData(event: CustomEvent): void {
-
+    // const searchTerm = event.detail.searchTerm;
+    // @TODO Get search term from data
+    // @TODO Ask search API for results
+    // @TODO Transform data on promise fulfillment (or by passing callback)
+    // @TODO Emit event with final data
   }
 }
 
