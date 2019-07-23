@@ -5,7 +5,7 @@ import { BridgeConfig, Query } from 'groupby-api';
 import * as SearchPackage from 'groupby-api';
 
 describe('SearchPlugin', () => {
-  let searchPlugin: any;
+  let searchPlugin;
 
   beforeEach(() => {
     searchPlugin = new SearchPlugin({ customerId: 'testClientId', https: true });
@@ -22,16 +22,21 @@ describe('SearchPlugin', () => {
   });
 
   describe('constructor()', () => {
-    it('should default https to true', () => {
-      const defaultOptions = { customerId: 'testClientId', https: true };
-
-      expect(searchPlugin.options).to.deep.equal(defaultOptions);
-    });
-
     it('should throw an error if `customerId` is not passed', () => {
-      const invalidOptions = { customerId: undefined };
+      const invalidOptions: any = {};
 
       expect(() => new SearchPlugin(invalidOptions)).to.throw();
+    });
+
+    it('should default https to true', () => {
+      const SearchBrowserBridge = stub(SearchPackage, 'BrowserBridge');
+      const customerId = 'testClientId';
+      const expectedHttps = true;
+      const expectedConfig = {};
+
+      searchPlugin = new SearchPlugin({ customerId });
+
+      expect(SearchBrowserBridge).to.be.calledWith(customerId, expectedHttps, expectedConfig)
     });
 
     it('should create a new instance of Search BrowserBridge with options', () => {
@@ -41,7 +46,7 @@ describe('SearchPlugin', () => {
         timeout: 2000,
       };
       const customerId = 'testClientId';
-      const https = true;
+      const https = false;
       const combinedOptions = { customerId, https, ...config };
 
       searchPlugin = new SearchPlugin(combinedOptions);
@@ -55,6 +60,7 @@ describe('SearchPlugin', () => {
   describe('register()', () => {
     it('should return the search data source browser bridge instance', () => {
       const browserBridgeInstance = searchPlugin.browserBridge = { a: 'a' };
+
       const registerReturnValue = searchPlugin.register();
 
       expect(registerReturnValue).to.equal(browserBridgeInstance);

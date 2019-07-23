@@ -16,7 +16,6 @@ export default class SearchPlugin implements Plugin {
    * The values that the Search Data Source plugin expose to the Core entity.
    */
   browserBridge: SearchPluginExposedValue;
-  options: SearchPluginOptions;
 
   /**
    * Instantiates an instance of the search BrowserBridge client.
@@ -30,7 +29,6 @@ export default class SearchPlugin implements Plugin {
        ...browserBridgeOptions
      } = options;
 
-     this.options = {...this.options, ...options};
      if (!customerId) {
        throw new Error('customerId is not valid');
      }
@@ -52,6 +50,9 @@ export default class SearchPlugin implements Plugin {
  * The type of this plugin's exposed value.
  */
 export interface SearchPluginExposedValue extends BrowserBridge {
+  /**
+ * The `Query` builder class. This class provides a declarative way of building a request object.
+ */
   Query: typeof Query;
 }
 
@@ -59,6 +60,13 @@ export interface SearchPluginExposedValue extends BrowserBridge {
  * The type of this plugin's options.
  */
 export interface SearchPluginOptions extends BridgeConfig{
+  /**
+ * The GroupBy customer ID to include in search requests.
+ */
   customerId: string,
+  /**
+ * Whether or not HTTPS is used. HTTPS is used if this value is `true`.
+ * If not provided, this option defaults to `true`.
+ */
   https?: boolean,
 }
