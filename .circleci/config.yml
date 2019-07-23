@@ -93,7 +93,7 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_core-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events_plugin-
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_plugin-
@@ -150,7 +150,7 @@ workflows:
           requires:
             - generate_cache_key_file
       - build:
-          name: build_dom_events
+          name: build_dom_events_plugin
           <<: *requires_build_core
       - build:
           name: build_sayt_plugin
@@ -162,14 +162,14 @@ workflows:
       - build_final:
           requires:
             - build_core
-            - build_dom_events
+            - build_dom_events_plugin
             - build_sayt_plugin
 
       - unit_test:
           name: unit_test_core
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_dom_events
+          name: unit_test_dom_events_plugin
           <<: *requires_build_final
       - unit_test:
           name: unit_test_sayt_plugin
@@ -180,6 +180,6 @@ workflows:
       - unit_test_final:
           requires:
             - unit_test_core
-            - unit_test_dom_events
+            - unit_test_dom_events_plugin
             - unit_test_sayt_plugin
             - unit_test_sayt_driver_plugin
