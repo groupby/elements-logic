@@ -241,8 +241,8 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should get a response from Sayt client request method', () => {
-      sendSaytApiRequest.resolves(response);
       const saytPayload  = fetchEvent.detail;
+      sendSaytApiRequest.resolves(response);
 
       driver.fetchSaytData(fetchEvent);
 
