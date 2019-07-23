@@ -164,6 +164,7 @@ workflows:
             - build_core
             - build_dom_events_plugin
             - build_sayt_plugin
+            - build_sayt_driver_plugin
 
       - unit_test:
           name: unit_test_core
