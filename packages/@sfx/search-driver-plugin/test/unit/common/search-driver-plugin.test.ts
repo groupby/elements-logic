@@ -15,9 +15,9 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should not specify any dependencies', () => {
-      expect(searchDriverPlugin.metadata.depends).to.deep.equal([
+      expect(searchDriverPlugin.metadata.depends).to.have.members([
         'dom_events',
-        'search_data_source',
+        'search',
       ]);
     });
   });
