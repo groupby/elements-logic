@@ -10,11 +10,11 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('metadata getter', () => {
-    it('should have the name `sayt`', () => {
+    it('should have the name `search_driver`', () => {
       expect(searchDriverPlugin.metadata.name).to.equal('search_driver');
     });
 
-    it('should not specify any dependencies', () => {
+    it('should specify dependencies', () => {
       expect(searchDriverPlugin.metadata.depends).to.have.members([
         'dom_events',
         'search',
