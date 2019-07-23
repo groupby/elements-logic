@@ -73,5 +73,3 @@ export default class SearchDriverPlugin implements Plugin {
     // @TODO Emit event with final data
   }
 }
-
-interface SearchDriverOptions {}
