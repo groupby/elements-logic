@@ -30,7 +30,6 @@ version: 2
 ​
 jobs:
   ## Initialization jobs
-​
   ### generate_cache_key_file
   ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
   ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
@@ -45,7 +44,6 @@ jobs:
             - workflow-start
 ​
   ## Build jobs
-​
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
@@ -104,13 +102,33 @@ jobs:
             - ~/build.tar
 ​
   ## Unit test jobs
-​
   ### unit_test: unit_test_{package}
   ### Runs the tests for {package}.
   unit_test:
-    build:
     <<: *image
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run:
+          name: Test
+          command: |
+            package="${CIRCLE_JOB#unit_test_}"
+            package="${package//_/-}"
+
+            cd "packages/@sfx/${package}"
+            yarn test
+
+  ### unit_test_final
+  ### No-op. This job exists to fan in all the unit test jobs.
+  unit_test_final:
+    <<: *image
+    steps:
+      - run: exit 0
 ​
 workflows:
   version: 2
@@ -153,3 +171,9 @@ workflows:
       - unit test:
           name: unit_test_sayt_driver_plugin
           <<: *requires_build_final
+      - unit_test_final:
+          requires:
+            - unit_test_core
+            - unit_test_dom_events
+            - unit_test_sayt_plugin
+            - unit_test_sayt_driver_plugin
