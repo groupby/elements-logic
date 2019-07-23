@@ -36,6 +36,12 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   ready() {
     // @TODO Attach listeners for events
   }
+
+  /**
+   * @TODO Remove event listeners
+   */
+  unregister(): void {
+  }
 }
 
 interface SearchDriverOptions {}

@@ -47,4 +47,10 @@ describe('SearchDriverPlugin', () => {
       expect(searchDriverPlugin.ready).to.be.a('function');
     });
   });
+
+  describe('unregister()', () => {
+    it('should exist as a function', () => {
+      expect(searchDriverPlugin.unregister).to.be.a('function');
+    });
+  });
 });
