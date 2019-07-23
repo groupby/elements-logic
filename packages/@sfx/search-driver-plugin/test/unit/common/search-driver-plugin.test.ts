@@ -66,4 +66,10 @@ describe('SearchDriverPlugin', () => {
       expect(unregisterListener).to.be.calledWith(SEARCH_REQUEST_EVENT, searchDriverPlugin.fetchSearchData);
     });
   });
+
+  describe('fetchSearchData()', () => {
+    it('should search with the given search term');
+    it('should dispatch an event with the results');
+    it('should dispatch an error event when the search fails');
+  });
 });
