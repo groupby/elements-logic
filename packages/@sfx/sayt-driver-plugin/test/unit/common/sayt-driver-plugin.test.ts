@@ -242,10 +242,11 @@ describe('Sayt Driver Plugin', () => {
 
     it('should get a response from Sayt client request method', () => {
       sendSaytApiRequest.resolves(response);
+      const saytPayload  = fetchEvent.detail;
 
       driver.fetchSaytData(fetchEvent);
 
-      expect(sendSaytApiRequest).to.be.calledWith(fetchEvent.detail);
+      expect(sendSaytApiRequest).to.be.calledWith(saytPayload);
     });
 
     it('should dispatch the response through the events plugin', () => {
