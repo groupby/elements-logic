@@ -13,7 +13,7 @@ export default class SearchPlugin implements Plugin {
   }
 
   /**
-   * The values that the Search Data Source plugin expose to the Core entity.
+   * The value that the Search Data Source plugin exposes to the Core entity.
    */
   browserBridge: SearchPluginExposedValue;
   options: SearchPluginOptions;
