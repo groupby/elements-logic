@@ -60,10 +60,6 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('unregister()', () => {
-    it('should exist as a function', () => {
-      expect(searchDriverPlugin.unregister).to.be.a('function');
-    });
-
     it('should unregister the search request event listener', () => {
       const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
       const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
