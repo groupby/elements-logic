@@ -1,5 +1,6 @@
 import { expect, sinon, spy, stub } from '../../utils';
 import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
+import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT } from '@sfx/search-driver-plugin/src/events';
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
@@ -45,7 +46,7 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.ready();
 
-      expect(registerListener).to.be.calledWith(searchDataEvent, searchDriverPlugin.fetchSearchData);
+      expect(registerListener).to.be.calledWith(SEARCH_REQUEST_EVENT, searchDriverPlugin.fetchSearchData);
     });
   });
 
@@ -62,7 +63,7 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.unregister();
 
-      expect(unregisterListener).to.be.calledWith(searchDataEvent, searchDriverPlugin.fetchSearchData);
+      expect(unregisterListener).to.be.calledWith(SEARCH_REQUEST_EVENT, searchDriverPlugin.fetchSearchData);
     });
   });
 });

@@ -1,4 +1,6 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+import { Request } from '@sfx/search-plugin';
+import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT } from './events';
 // import { Sayt, SaytConfig } from 'sayt';
 
 /**
@@ -24,11 +26,6 @@ export default class SearchDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
-   * Name of the search API plugin.
-   */
-  searchPluginName: string = 'search';
-
-  /**
    * Event name to listen for Search requests.
    */
   searchDataEvent: string = 'sfx::search_fetch_data';
@@ -52,21 +49,29 @@ export default class SearchDriverPlugin implements Plugin {
    */
   ready() {
     // @TODO Attach listeners for events
-    this.core[this.eventsPluginName].registerListener(this.searchDataEvent, this.fetchSearchData);
+    this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
   }
 
   /**
    * @TODO Remove event listeners
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(this.searchDataEvent, this.fetchSearchData);
+    this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
   }
 
   /**
    * @TODO Ensure `event` is of the correct interface.
    */
-  fetchSearchData(event: SearchRequestEvent): void {
+  fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
     const searchTerm = event.detail.searchTerm;
+    //this.core.search.search(searchTerm)
+    //  .then((data) => {
+    //    this.core[this.eventsPluginName].dispatchEvent(this.searchResponseEvent, data);
+    //  })
+    //  .catch((e) => {
+    //    this.core[this.eventsPluginName].dispatchEvent(this.searchErrorEvent, e);
+    //  });
+
     // @TODO Get search term from data
     // @TODO Ask search API for results
     // @TODO Transform data on promise fulfillment (or by passing callback)
@@ -74,8 +79,6 @@ export default class SearchDriverPlugin implements Plugin {
   }
 }
 
-export interface SearchRequestEvent {
-  detail: {
-    searchTerm: string;
-  }
+export interface SearchRequestPayload {
+  searchTerm: string;
 }
