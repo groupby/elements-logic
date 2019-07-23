@@ -58,7 +58,7 @@ export interface SearchPluginExposedValue extends BrowserBridge {
 /**
  * The type of this plugin's options.
  */
-export interface SearchPluginOptions extends BridgeConfig{
+export interface SearchPluginOptions extends BridgeConfig {
   customerId: string,
   https?: boolean,
 }
