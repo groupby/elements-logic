@@ -9,7 +9,7 @@ export default class SearchDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'search-driver',
-      depends: ['dom_events', 'search_data_source'],
+      depends: ['dom_events', 'search'],
     };
   }
 
@@ -22,6 +22,11 @@ export default class SearchDriverPlugin implements Plugin {
    * Name of the events plugin.
    */
   eventsPluginName: string = 'dom_events';
+
+  /**
+   * Name of the search API plugin.
+   */
+  searchPluginName: string = 'search';
 
   /**
    * Event name to listen for Search requests.
