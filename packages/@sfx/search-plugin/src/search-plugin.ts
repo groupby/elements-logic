@@ -61,12 +61,12 @@ export interface SearchPluginExposedValue extends BrowserBridge {
  */
 export interface SearchPluginOptions extends BridgeConfig{
   /**
- * The GroupBy customer ID to include in search requests.
- */
+   * The GroupBy customer ID to include in search requests.
+   */
   customerId: string,
   /**
- * Whether or not HTTPS is used. HTTPS is used if this value is `true`.
- * If not provided, this option defaults to `true`.
- */
+   * Whether or not HTTPS is used. HTTPS is used if this value is `true`.
+   * If not provided, this option defaults to `true`.
+   */
   https?: boolean,
 }
