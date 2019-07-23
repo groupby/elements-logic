@@ -43,10 +43,6 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('ready()', () => {
-    it('should exist as a function', () => {
-      expect(searchDriverPlugin.ready).to.be.a('function');
-    });
-
     it('should register a search request event listener', () => {
       const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
       const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
