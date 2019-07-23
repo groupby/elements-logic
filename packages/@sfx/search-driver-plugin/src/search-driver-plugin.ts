@@ -19,6 +19,16 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
   core: PluginRegistry;
 
   /**
+   * Name of the events plugin.
+   */
+  eventsPluginName: string = 'dom_events';
+
+  /**
+   * Event name to listen for Search requests.
+   */
+  searchDataEvent: string = 'sfx::search_fetch_data';
+
+  /**
    * This method needs to exist for compatibility with Core.
    */
   constructor(options?: SearchDriverOptions) {}
@@ -35,12 +45,20 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
    */
   ready() {
     // @TODO Attach listeners for events
+    this.core[this.eventsPluginName].registerListener(this.searchDataEvent, this.fetchSearchData);
   }
 
   /**
    * @TODO Remove event listeners
    */
   unregister(): void {
+  }
+
+  /**
+   * @TODO Ensure `event` is of the correct interface.
+   */
+  fetchSearchData(event: CustomEvent): void {
+
   }
 }
 

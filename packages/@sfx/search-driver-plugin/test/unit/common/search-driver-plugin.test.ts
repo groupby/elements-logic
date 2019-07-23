@@ -1,5 +1,5 @@
-import { expect, sinon, stub } from '../../utils';
-import SearchDriverPlugin from '../../../src/search-driver-plugin';
+import { expect, sinon, spy, stub } from '../../utils';
+import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
@@ -45,6 +45,21 @@ describe('SearchDriverPlugin', () => {
   describe('ready()', () => {
     it('should exist as a function', () => {
       expect(searchDriverPlugin.ready).to.be.a('function');
+    });
+
+    it('should register a search request event listener', () => {
+      const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
+      const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
+      const registerListener = spy();
+      searchDriverPlugin.core = {
+        [eventsPluginName]: {
+          registerListener,
+        },
+      };
+
+      searchDriverPlugin.ready();
+
+      expect(registerListener).to.be.calledWith(searchDataEvent);
     });
   });
 
