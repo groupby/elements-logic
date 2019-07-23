@@ -79,8 +79,8 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param saytDataQuery Request object received from the event listener.
    */
-  fetchSaytData(saytDataQuery: AutocompleteConfig): void {
-    this.sendSaytApiRequest(saytDataQuery)
+  fetchSaytData(event: CustomEvent): void {
+    this.sendSaytApiRequest(event.detail)
       .then((data) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
       })
