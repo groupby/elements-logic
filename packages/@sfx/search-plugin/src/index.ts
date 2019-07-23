@@ -1,2 +1,2 @@
-export { default as SearchPlugin } from './search-plugin';
+export { default as SearchPlugin, SearchPluginExposedValue, SearchPluginOptions } from './search-plugin';
 export * from 'groupby-api';

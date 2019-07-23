@@ -16,21 +16,25 @@ export default class SearchPlugin implements Plugin {
    * The values that the Search Data Source plugin expose to the Core entity.
    */
   browserBridge: SearchPluginExposedValue;
-
+  options: SearchPluginOptions;
   /**
    * Instantiates an instance of the search browserBridge plugin
    *
    * @param options The options to instantiate the search data source browser bridge client with.
    */
    constructor(options: SearchPluginOptions) {
-     const customerId = options.customerId;
-     const https = !!options.https;
+     const {
+       customerId,
+       https = true,
+       ...browserBridgeOptions
+     } = options;
 
+     this.options = {...this.options, ...options};
      if (!customerId) {
        throw new Error('customerId is not valid');
      }
 
-     const exposedValue: any = new BrowserBridge(customerId, https, options);
+     const exposedValue: any = new BrowserBridge(customerId, https, browserBridgeOptions);
      exposedValue.Query = Query;
      this.browserBridge = exposedValue;
    }
@@ -38,7 +42,7 @@ export default class SearchPlugin implements Plugin {
   /**
    * Returns this plugin's instance of the search client.
    */
-  register() {
+  register(): SearchPluginExposedValue {
     return this.browserBridge;
   }
 }
