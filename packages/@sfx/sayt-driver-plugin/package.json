@@ -1,9 +1,11 @@
 {
-  "name": "@sfx/sayt-plugin",
+  "name": "@sfx/sayt-driver-plugin",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "src/index.ts",
+  "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
   "scripts": {
     "build": "../../../scripts/build.sh",
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
@@ -15,11 +17,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/sfx-logic.git",
-    "directory": "packages/@sfx/sayt-plugin"
+    "directory": "packages/@sfx/sayt-driver-plugin"
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "sayt": "^0.1.9"
-  }
+  "sideEffects": false,
+  "dependencies": {}
 }
