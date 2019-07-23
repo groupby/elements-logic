@@ -4,10 +4,12 @@ import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT } from '@sfx/search-driver-
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
+  const eventsPluginName = 'events';
   let searchDriverPlugin;
 
   beforeEach(() => {
     searchDriverPlugin = new SearchDriverPlugin();
+    searchDriverPlugin.eventsPluginName = eventsPluginName;
   });
 
   describe('metadata getter', () => {
@@ -35,7 +37,6 @@ describe('SearchDriverPlugin', () => {
 
   describe('ready()', () => {
     it('should register a search request event listener', () => {
-      const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
       const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
       const registerListener = spy();
       searchDriverPlugin.core = {
@@ -52,7 +53,6 @@ describe('SearchDriverPlugin', () => {
 
   describe('unregister()', () => {
     it('should unregister the search request event listener', () => {
-      const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
       const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
       const unregisterListener = spy();
       searchDriverPlugin.core = {
@@ -71,14 +71,30 @@ describe('SearchDriverPlugin', () => {
     it('should search with the given search term', () => {
       const searchTerm = 'search term';
       const search = spy(() => Promise.resolve());
-      searchDriverPlugin.core = { search: { search } };
+      searchDriverPlugin.core = {
+        search: { search },
+        events: { dispatchEvent: () => {} },
+      };
 
       searchDriverPlugin.fetchSearchData({ detail: { searchTerm } } as any);
 
       expect(search).to.be.calledWith(searchTerm);
     });
 
-    it('should dispatch an event with the results');
+    it('should dispatch an event with the results', (done) => {
+      const results = { a: 'a' };
+      const dispatchEvent = spy(() => {
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, results);
+        done();
+      });
+      searchDriverPlugin.core = {
+        search: { search: () => Promise.resolve(results) },
+        events: { dispatchEvent },
+      };
+
+      searchDriverPlugin.fetchSearchData({ detail: { searchTerm: '' } } as any);
+    });
+
     it('should dispatch an error event when the search fails');
   });
 });
