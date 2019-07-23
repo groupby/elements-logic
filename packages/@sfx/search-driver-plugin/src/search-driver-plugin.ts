@@ -64,7 +64,7 @@ export default class SearchDriverPlugin implements Plugin {
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
     const searchTerm = event.detail.searchTerm;
-    //this.core.search.search(searchTerm)
+    this.core.search.search(searchTerm)
     //  .then((data) => {
     //    this.core[this.eventsPluginName].dispatchEvent(this.searchResponseEvent, data);
     //  })

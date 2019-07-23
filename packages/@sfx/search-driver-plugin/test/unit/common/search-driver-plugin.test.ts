@@ -68,7 +68,16 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('fetchSearchData()', () => {
-    it('should search with the given search term');
+    it('should search with the given search term', () => {
+      const searchTerm = 'search term';
+      const search = spy(() => Promise.resolve());
+      searchDriverPlugin.core = { search: { search } };
+
+      searchDriverPlugin.fetchSearchData({ detail: { searchTerm } } as any);
+
+      expect(search).to.be.calledWith(searchTerm);
+    });
+
     it('should dispatch an event with the results');
     it('should dispatch an error event when the search fails');
   });
