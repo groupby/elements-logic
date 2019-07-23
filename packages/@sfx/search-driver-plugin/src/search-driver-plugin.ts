@@ -57,6 +57,7 @@ export default class SearchDriverPlugin implements Plugin {
    * @TODO Remove event listeners
    */
   unregister(): void {
+    this.core[this.eventsPluginName].unregisterListener(this.searchDataEvent, this.fetchSearchData);
   }
 
   /**

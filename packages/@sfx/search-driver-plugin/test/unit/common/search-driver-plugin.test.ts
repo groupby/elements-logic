@@ -55,13 +55,28 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.ready();
 
-      expect(registerListener).to.be.calledWith(searchDataEvent);
+      expect(registerListener).to.be.calledWith(searchDataEvent, searchDriverPlugin.fetchSearchData);
     });
   });
 
   describe('unregister()', () => {
     it('should exist as a function', () => {
       expect(searchDriverPlugin.unregister).to.be.a('function');
+    });
+
+    it('should unregister the search request event listener', () => {
+      const eventsPluginName = searchDriverPlugin.eventsPluginName = 'events-plugin';
+      const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
+      const unregisterListener = spy();
+      searchDriverPlugin.core = {
+        [eventsPluginName]: {
+          unregisterListener,
+        },
+      };
+
+      searchDriverPlugin.unregister();
+
+      expect(unregisterListener).to.be.calledWith(searchDataEvent, searchDriverPlugin.fetchSearchData);
     });
   });
 });
