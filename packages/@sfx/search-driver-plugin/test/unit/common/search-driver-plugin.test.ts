@@ -25,7 +25,7 @@ describe('SearchDriverPlugin', () => {
   describe('constructor()', () => {
     it('should accept an options object', () => {
       const callback = () => {
-        searchDriverPlugin = new SearchDriverPlugin({ 'a': 1, 'b': 2});
+        searchDriverPlugin = new SearchDriverPlugin({ a: 1, b: 2 });
       }
 
       expect(callback).not.to.throw();
@@ -34,7 +34,7 @@ describe('SearchDriverPlugin', () => {
 
   describe('register()', () => {
     it('should save the plugin registry for future use', () => {
-      const registry = { 'a': 1, 'b': 2} as any;
+      const registry = { a: 1, b: 2 } as any;
 
       searchDriverPlugin.register(registry);
 
