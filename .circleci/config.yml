@@ -13,11 +13,11 @@ defaults:
     name: Extract archive
     command: |
       [[ ! -r ../build.tar ]] || tar xvf ../build.tar
-​
+
   yarn_install: &yarn_install
     name: Install
     command: yarn
-​
+
   requires_build_core: &requires_build_core
     requires:
       - build_core
@@ -25,9 +25,9 @@ defaults:
   requires_build_final: &requires_build_final
     requires:
       - build_final
-​
-version: 2
-​
+
+version: 2.1
+
 jobs:
   ## Initialization jobs
   ### generate_cache_key_file
@@ -42,8 +42,9 @@ jobs:
           root: ~/
           paths:
             - workflow-start
-​
+
   ## Build jobs
+
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
@@ -67,17 +68,17 @@ jobs:
       - run:
           name: Build
           command: |
-          package="${CIRCLE_JOB#build_}"
-          package="${package//_/-}"
-​
-          cd "packages/@sfx/${package}"
-          yarn build
+            package="${CIRCLE_JOB#build_}"
+            package="${package//_/-}"
+
+            cd "packages/@sfx/${package}"
+            yarn build
       - run: *archive_build
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
           paths:
             - ~/build.tar
-​
+
   build_final:
     <<: *image
     steps:
@@ -100,8 +101,9 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-{{ epoch }}
           paths:
             - ~/build.tar
-​
+
   ## Unit test jobs
+
   ### unit_test: unit_test_{package}
   ### Runs the tests for {package}.
   unit_test:
@@ -129,7 +131,7 @@ jobs:
     <<: *image
     steps:
       - run: exit 0
-​
+
 workflows:
   version: 2
   build_test:
@@ -138,7 +140,7 @@ workflows:
           filters:
             branches:
               ignore: /release\/.*/
-​
+
       - build:
           name: build_core
           requires:
@@ -158,17 +160,17 @@ workflows:
             - build_core
             - build_dom_events
             - build_sayt_plugin
-​
+
       - unit_test:
           name: unit_test_core
           <<: *requires_build_final
-      - unit test:
+      - unit_test:
           name: unit_test_dom_events
           <<: *requires_build_final
-      - unit test:
+      - unit_test:
           name: unit_test_sayt_plugin
           <<: *requires_build_final
-      - unit test:
+      - unit_test:
           name: unit_test_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test_final:
