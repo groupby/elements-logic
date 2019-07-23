@@ -5,7 +5,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
  * This plugin is responsible for exposing events that allow
  * for interacting with GroupBy's Search API.
  */
- export default class SearchDriverPlugin implements Plugin {
+export default class SearchDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'search-driver',
