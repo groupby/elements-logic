@@ -129,6 +129,25 @@ jobs:
             cd "packages/@sfx/${package}"
             yarn test
 
+  unit_test_browser:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run:
+          name: Test
+          command: |
+            package="${CIRCLE_JOB#unit_test_browser_}"
+            package="${package//_/-}"
+
+            cd "packages/@sfx/${package}"
+            yarn test:browser
+
   ### unit_test_final
   ### No-op. This job exists to fan in all the unit test jobs.
   unit_test_final:
@@ -178,9 +197,26 @@ workflows:
       - unit_test:
           name: unit_test_sayt_driver_plugin
           <<: *requires_build_final
+
+      - unit_test_browser:
+          name: unit_test_browser_core
+          <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_dom_events_plugin
+          <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_sayt_plugin
+          <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_sayt_driver_plugin
+          <<: *requires_build_final
       - unit_test_final:
           requires:
             - unit_test_core
             - unit_test_dom_events_plugin
             - unit_test_sayt_plugin
             - unit_test_sayt_driver_plugin
+            - unit_test_browser_core
+            - unit_test_browser_dom_events_plugin
+            - unit_test_browser_sayt_plugin
+            - unit_test_browser_sayt_driver_plugin
