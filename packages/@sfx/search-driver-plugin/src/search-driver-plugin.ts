@@ -1,6 +1,10 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import { Request } from '@sfx/search-plugin';
-import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT } from './events';
+import {
+  SEARCH_REQUEST_EVENT,
+  SEARCH_RESPONSE_EVENT,
+  SEARCH_ERROR_EVENT,
+} from './events';
 // import { Sayt, SaytConfig } from 'sayt';
 
 /**
@@ -68,9 +72,9 @@ export default class SearchDriverPlugin implements Plugin {
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, results);
       })
-    //  .catch((e) => {
-    //    this.core[this.eventsPluginName].dispatchEvent(this.searchErrorEvent, e);
-    //  });
+     .catch((e) => {
+       this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, e);
+     });
 
     // @TODO Get search term from data
     // @TODO Ask search API for results

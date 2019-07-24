@@ -1,6 +1,6 @@
 import { expect, sinon, spy, stub } from '../../utils';
 import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
-import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT } from '@sfx/search-driver-plugin/src/events';
+import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT, SEARCH_ERROR_EVENT } from '@sfx/search-driver-plugin/src/events';
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
@@ -95,6 +95,18 @@ describe('SearchDriverPlugin', () => {
       searchDriverPlugin.fetchSearchData({ detail: { searchTerm: '' } } as any);
     });
 
-    it('should dispatch an error event when the search fails');
+    it('should dispatch an error event when the search fails', (done) => {
+      const error = 'error-object';
+      const dispatchEvent = spy(() => {
+        expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, error);
+        done();
+      });
+      searchDriverPlugin.core = {
+        search: { search: () => Promise.reject(error) },
+        events: { dispatchEvent },
+      };
+
+      searchDriverPlugin.fetchSearchData({ detail: { searchTerm: '' } } as any);
+    });
   });
 });
