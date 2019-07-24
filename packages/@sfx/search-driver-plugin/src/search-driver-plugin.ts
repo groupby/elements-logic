@@ -1,11 +1,9 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-import { Request } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST_EVENT,
   SEARCH_RESPONSE_EVENT,
   SEARCH_ERROR_EVENT,
 } from './events';
-// import { Sayt, SaytConfig } from 'sayt';
 
 /**
  * This plugin is responsible for exposing events that allow
