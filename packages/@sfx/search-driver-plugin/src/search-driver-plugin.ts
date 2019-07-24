@@ -45,12 +45,11 @@ export default class SearchDriverPlugin implements Plugin {
    * 
    */
   ready() {
-    // @TODO Attach listeners for events
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
   }
 
   /**
-   * @TODO Remove event listeners
+   *
    */
   unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
@@ -68,11 +67,6 @@ export default class SearchDriverPlugin implements Plugin {
      .catch((e) => {
        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, e);
      });
-
-    // @TODO Get search term from data
-    // @TODO Ask search API for results
-    // @TODO Transform data on promise fulfillment (or by passing callback)
-    // @TODO Emit event with final data
   }
 }
 
