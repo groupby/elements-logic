@@ -84,7 +84,7 @@ jobs:
           paths:
             - ~/build.tar
 
-  build_final:
+  collect_builds:
     <<: *image
     steps:
       - checkout
@@ -182,16 +182,21 @@ workflows:
       - build:
           name: build_search_plugin
           <<: *requires_build_core
-      - build:
-          name: build_sayt_driver_plugin
-          requires:
-            - build_sayt_plugin
-      - build_final:
+      - collect_builds:
+          name: collect_independent_builds
           requires:
             - build_core
             - build_dom_events_plugin
             - build_sayt_plugin
             - build_search_plugin
+
+      - build:
+          name: build_sayt_driver_plugin
+          requires:
+            - collect_independent_builds
+      - collect_builds:
+          name: build_final
+          requires:
             - build_sayt_driver_plugin
 
       - unit_test:
