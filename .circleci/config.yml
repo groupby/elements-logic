@@ -25,7 +25,6 @@ defaults:
   requires_build_core: &requires_build_core
     requires:
       - build_core
-
   requires_build_final: &requires_build_final
     requires:
       - build_final
@@ -34,6 +33,7 @@ version: 2.1
 
 jobs:
   ## Initialization jobs
+
   ### generate_cache_key_file
   ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
   ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
@@ -84,6 +84,7 @@ jobs:
           paths:
             - ~/build.tar
 
+  ### Restores individual package builds and collects them into a single build archive.
   collect_builds:
     <<: *image
     steps:
@@ -114,7 +115,7 @@ jobs:
   ## Unit test jobs
 
   ### unit_test: unit_test_{package}
-  ### Runs the tests for {package}.
+  ### Runs the Node unit tests for {package}.
   unit_test:
     <<: *image
     steps:
@@ -134,6 +135,8 @@ jobs:
             cd "packages/@sfx/${package}"
             yarn test
 
+  ### unit_test_browser: unit_test_browser_{package}
+  ### Runs the Browser unit tests for {package}.
   unit_test_browser:
     <<: *image
     steps:
