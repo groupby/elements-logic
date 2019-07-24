@@ -221,9 +221,9 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('fetchSaytData()', () => {
-    let query;
-    let response;
     let dispatchEvent;
+    let fetchEvent;
+    let response;
     let sendSaytApiRequest;
 
     beforeEach(() => {
@@ -231,25 +231,28 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      query = {
-        query: 'shirt',
+      fetchEvent = {
+        detail: {
+          query: 'shirt',
+        }
       };
       response = { a: 'b' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
     it('should get a response from Sayt client request method', () => {
+      const saytPayload  = fetchEvent.detail;
       sendSaytApiRequest.resolves(response);
 
-      driver.fetchSaytData(query);
+      driver.fetchSaytData(fetchEvent);
 
-      expect(sendSaytApiRequest).to.be.calledWith(query);
+      expect(sendSaytApiRequest).to.be.calledWith(saytPayload);
     });
 
     it('should dispatch the response through the events plugin', () => {
       sendSaytApiRequest.resolves(response);
 
-      driver.fetchSaytData(query);
+      driver.fetchSaytData(fetchEvent);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytResponseEvent, response);
@@ -259,7 +262,7 @@ describe('Sayt Driver Plugin', () => {
       const error = new Error('test error');
       sendSaytApiRequest.rejects(error);
 
-      driver.fetchSaytData(query);
+      driver.fetchSaytData(fetchEvent);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
