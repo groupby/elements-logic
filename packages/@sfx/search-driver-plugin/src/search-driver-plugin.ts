@@ -28,11 +28,6 @@ export default class SearchDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
-   * Event name to listen for Search requests.
-   */
-  searchDataEvent: string = 'sfx::search_fetch_data';
-
-  /**
    * This method needs to exist for compatibility with Core.
    */
   constructor() {
