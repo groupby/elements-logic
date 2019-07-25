@@ -4,6 +4,9 @@
   "description": "SF-X Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
   "private": true,
   "workspaces": [
+    "packages/@sfx/core",
+    "packages/@sfx/dom-events-plugin",
+    "packages/@sfx/!(*-driver-plugin)",
     "packages/@sfx/*"
   ],
   "scripts": {
