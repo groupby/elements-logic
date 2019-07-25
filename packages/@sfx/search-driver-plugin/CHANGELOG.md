@@ -7,4 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - SFX-159: Added the `SearchDriverPlugin` module.
-  - [@TODO FILL THIS IN]
+  - This plugin listens for a `SEARCH_REQUEST_EVENT` event, makes a
+    search request using the GroupBy API, then dispatches a
+    `SEARCH_RESPONSE_EVENT` event containing the response.
