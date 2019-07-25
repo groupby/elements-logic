@@ -59,7 +59,7 @@ export default class SearchDriverPlugin implements Plugin {
    * @TODO Ensure `event` is of the correct interface.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const searchTerm = event.detail.searchTerm;
+    const searchTerm = event.detail;
     this.core.search.search(searchTerm)
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, results);
@@ -70,6 +70,4 @@ export default class SearchDriverPlugin implements Plugin {
   }
 }
 
-export interface SearchRequestPayload {
-  searchTerm: string;
-}
+export type SearchRequestPayload = string;

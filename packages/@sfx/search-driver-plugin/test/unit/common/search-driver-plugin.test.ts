@@ -76,7 +76,7 @@ describe('SearchDriverPlugin', () => {
         events: { dispatchEvent: () => {} },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: { searchTerm } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: searchTerm } as any);
 
       expect(search).to.be.calledWith(searchTerm);
     });
@@ -92,7 +92,7 @@ describe('SearchDriverPlugin', () => {
         events: { dispatchEvent },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: { searchTerm: '' } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
     });
 
     it('should dispatch an error event when the search fails', (done) => {
@@ -106,7 +106,7 @@ describe('SearchDriverPlugin', () => {
         events: { dispatchEvent },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: { searchTerm: '' } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
     });
   });
 });
