@@ -1,15 +1,41 @@
 # SF-X Search Driver Plugin
 
-This package contains the SF-X Search Driver Plugin class.
+This package contains the SF-X Search Driver plugin.
+
+## Prerequisites
+
+This plugin depends on the following plugins:
+
+- `dom_events`
+- `search`
+
+These plugins must be registered either before or in the same batch as
+this plugin.
 
 ## Usage
-[ @TODO FILL THIS IN]
-<!-- To use the plugin, simply instantiate it and register it with Core:
+
+To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const saytPlugin = new SaytPlugin(/* options */);
-core.register(saytPlugin);
+const searchPlugin = new SearchPlugin();
+core.register(searchPlugin);
 ```
-The plugin registers an instance of the [Sayt client](https://www.npmjs.com/package/sayt) with Core.
 
-The SaytPlugin constructor can accept options to configure the exposed Sayt client. See the [SaytConfig interface](https://github.com/groupby/sayt-client/blob/develop/src/core/sayt.ts#L77) for available options. -->
+This plugin currently does not accept any options.
+
+## Events
+
+This plugin listens for and dispatches a number of events.
+
+### Received
+
+* `sfx::search_request`: When received, a search request to the GroupBy
+  API is made. An `sfx::search_response` event is dispatched with the
+  results.
+
+### Dispatched
+
+* `sfx::search_response`: Dispatched when a search request has
+  completed. Its payload is the result of the request.
+* `sfx::search_error`: Dispatched when an error has occurred during a
+  search request.
