@@ -4,7 +4,7 @@ import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT, SEARCH_ERROR_EVENT } from 
 import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
-  const eventsPluginName = 'events';
+  const eventsPluginName = 'dom_events';
   let searchDriverPlugin;
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('SearchDriverPlugin', () => {
 
     it('should specify dependencies', () => {
       expect(searchDriverPlugin.metadata.depends).to.have.members([
-        'dom_events',
+        eventsPluginName,
         'search',
       ]);
     });
@@ -73,7 +73,7 @@ describe('SearchDriverPlugin', () => {
       const search = spy(() => Promise.resolve());
       searchDriverPlugin.core = {
         search: { search },
-        events: { dispatchEvent: () => {} },
+        [eventsPluginName]: { dispatchEvent: () => {} },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: searchTerm } as any);
@@ -89,7 +89,7 @@ describe('SearchDriverPlugin', () => {
       });
       searchDriverPlugin.core = {
         search: { search: () => Promise.resolve(results) },
-        events: { dispatchEvent },
+        [eventsPluginName]: { dispatchEvent },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
@@ -103,7 +103,7 @@ describe('SearchDriverPlugin', () => {
       });
       searchDriverPlugin.core = {
         search: { search: () => Promise.reject(error) },
-        events: { dispatchEvent },
+        [eventsPluginName]: { dispatchEvent },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
