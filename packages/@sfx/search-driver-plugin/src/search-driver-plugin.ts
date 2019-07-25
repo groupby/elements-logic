@@ -28,35 +28,46 @@ export default class SearchDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
-   * This method needs to exist for compatibility with Core.
+   * Constructs a new instance of the plugin and binds the necessary
+   * callbacks.
    */
   constructor() {
     this.fetchSearchData = this.fetchSearchData.bind(this);
   }
 
   /**
-   * Accepts the exposed values of all plugins and saves them for later.
+   * Saves the plugin registry for later use. This plugin does not
+   * expose a value.
+   *
+   * @param plugins the plugin registry to use.
    */
   register(plugins: PluginRegistry): void {
     this.core = plugins;
   }
 
   /**
-   * 
+   * Registers event listeners. The following events are listened for:
+   *
+   * - [[SEARCH_REQUEST_EVENT]]
    */
   ready() {
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
   }
 
   /**
-   *
+   * Unregisters event listeners.
    */
   unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
   }
 
   /**
-   * @TODO Ensure `event` is of the correct interface.
+   * Performs a search with the given search term and emits the result
+   * through an event. The result is emitted in a
+   * [[SEARCH_RESPONSE_EVENT]] event. If the search fails for any
+   * reason, a [[SEARCH_ERROR_EVENT]] is dispatched with the error.
+   *
+   * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
     const searchTerm = event.detail;
@@ -70,4 +81,8 @@ export default class SearchDriverPlugin implements Plugin {
   }
 }
 
+/**
+ * The type of the search request event payload. The payload is the
+ * search term.
+ */
 export type SearchRequestPayload = string;
