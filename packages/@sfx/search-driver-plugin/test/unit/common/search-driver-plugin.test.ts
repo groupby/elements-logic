@@ -1,7 +1,6 @@
-import { expect, sinon, spy, stub } from '../../utils';
+import { expect, spy } from '../../utils';
 import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
 import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT, SEARCH_ERROR_EVENT } from '@sfx/search-driver-plugin/src/events';
-import * as SearchDriverPackage from 'sayt';
 
 describe('SearchDriverPlugin', () => {
   const eventsPluginName = 'dom_events';
@@ -37,7 +36,6 @@ describe('SearchDriverPlugin', () => {
 
   describe('ready()', () => {
     it('should register a search request event listener', () => {
-      const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
       const registerListener = spy();
       searchDriverPlugin.core = {
         [eventsPluginName]: {
@@ -53,7 +51,6 @@ describe('SearchDriverPlugin', () => {
 
   describe('unregister()', () => {
     it('should unregister the search request event listener', () => {
-      const searchDataEvent = searchDriverPlugin.searchDataEvent = 'search-event';
       const unregisterListener = spy();
       searchDriverPlugin.core = {
         [eventsPluginName]: {
