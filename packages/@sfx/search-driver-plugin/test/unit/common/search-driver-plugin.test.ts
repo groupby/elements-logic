@@ -1,4 +1,4 @@
-import { expect, spy } from '../../utils';
+import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
 import { SEARCH_REQUEST_EVENT, SEARCH_RESPONSE_EVENT, SEARCH_ERROR_EVENT } from '@sfx/search-driver-plugin/src/events';
 
@@ -67,15 +67,14 @@ describe('SearchDriverPlugin', () => {
   describe('fetchSearchData()', () => {
     it('should search with the given search term', () => {
       const searchTerm = 'search term';
-      const search = spy(() => Promise.resolve());
+      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves();
       searchDriverPlugin.core = {
-        search: { search },
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: searchTerm } as any);
 
-      expect(search).to.be.calledWith(searchTerm);
+      expect(sendSearchApiRequest).to.be.calledWith(searchTerm);
     });
 
     it('should dispatch an event with the results', (done) => {
@@ -84,8 +83,8 @@ describe('SearchDriverPlugin', () => {
         expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, results);
         done();
       });
+      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves(results);
       searchDriverPlugin.core = {
-        search: { search: () => Promise.resolve(results) },
         [eventsPluginName]: { dispatchEvent },
       };
 
@@ -93,17 +92,31 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should dispatch an error event when the search fails', (done) => {
-      const error = 'error-object';
+      const error = new Error('error-object');
+      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').rejects(error);
       const dispatchEvent = spy(() => {
         expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, error);
         done();
       });
       searchDriverPlugin.core = {
-        search: { search: () => Promise.reject(error) },
         [eventsPluginName]: { dispatchEvent },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
+    });
+  });
+
+  describe('sendSearchApiRequest()', () => {
+    it('should forward the query to the search plugin', () => {
+      const query = 'search term';
+      const results = Promise.resolve({});
+      const search = stub();
+      search.withArgs(query).returns(results);
+      searchDriverPlugin.core = { search: { search } };
+
+      const retval = searchDriverPlugin.sendSearchApiRequest(query);
+
+      expect(retval).to.equal(results);
     });
   });
 });

@@ -1,4 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+import { BridgeQuery, Results } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST_EVENT,
   SEARCH_RESPONSE_EVENT,
@@ -71,13 +72,22 @@ export default class SearchDriverPlugin implements Plugin {
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
     const searchTerm = event.detail;
-    this.core.search.search(searchTerm)
+    this.sendSearchApiRequest(searchTerm)
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, results);
       })
       .catch((e) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, e);
       });
+  }
+
+  /**
+   * Sends a search request using the GroupBy API.
+   *
+   * @param query the query to send.
+   */
+  sendSearchApiRequest(query: BridgeQuery): Promise<Results> {
+    return this.core.search.search(query);
   }
 }
 
