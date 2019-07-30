@@ -6,13 +6,13 @@ module.exports = {
 
   entry: {
     core: path.resolve(__dirname, 'presets/core.ts'),
-    plugins: path.resolve(__dirname, 'presets/plugins.ts'),
+    'all-plugins': path.resolve(__dirname, 'presets/all-plugins.ts'),
   },
 
   devtool: 'source-map',
 
   output: {
-    filename: '[name].js',
+    filename: 'sfx-[name]-bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
 
