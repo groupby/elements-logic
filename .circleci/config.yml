@@ -106,6 +106,9 @@ jobs:
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_driver_plugin-
       - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_driver_plugin-
+      - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-{{ epoch }}
@@ -197,10 +200,15 @@ workflows:
           name: build_sayt_driver_plugin
           requires:
             - collect_independent_builds
+      - build:
+          name: build_search_driver_plugin
+          requires:
+            - collect_independent_builds
       - collect_builds:
           name: build_final
           requires:
             - build_sayt_driver_plugin
+            - build_search_driver_plugin
 
       - unit_test:
           name: unit_test_core
@@ -216,6 +224,9 @@ workflows:
           <<: *requires_build_final
       - unit_test:
           name: unit_test_sayt_driver_plugin
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_search_driver_plugin
           <<: *requires_build_final
 
       - unit_test_browser:
@@ -233,6 +244,9 @@ workflows:
       - unit_test_browser:
           name: unit_test_browser_sayt_driver_plugin
           <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_search_driver_plugin
+          <<: *requires_build_final
       - unit_test_final:
           requires:
             - unit_test_core
@@ -240,8 +254,10 @@ workflows:
             - unit_test_sayt_plugin
             - unit_test_search_plugin
             - unit_test_sayt_driver_plugin
+            - unit_test_search_driver_plugin
             - unit_test_browser_core
             - unit_test_browser_dom_events_plugin
             - unit_test_browser_sayt_plugin
             - unit_test_browser_search_plugin
             - unit_test_browser_sayt_driver_plugin
+            - unit_test_browser_search_driver_plugin
