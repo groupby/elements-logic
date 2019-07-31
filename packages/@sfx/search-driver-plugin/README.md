@@ -17,8 +17,8 @@ this plugin.
 To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const searchPlugin = new SearchPlugin();
-core.register(searchPlugin);
+const searchDriverPlugin = new SearchDriverPlugin();
+core.register(searchDriverPlugin);
 ```
 
 This plugin currently does not accept any options.
