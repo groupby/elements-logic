@@ -45,6 +45,7 @@ export default class SaytDriverPlugin implements Plugin {
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
+    this.autocompleteCallback = this.autocompleteCallback.bind(this);
   }
 
   /**
