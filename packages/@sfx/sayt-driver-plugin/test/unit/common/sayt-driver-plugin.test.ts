@@ -223,7 +223,8 @@ describe('Sayt Driver Plugin', () => {
   describe('fetchSaytData()', () => {
     let dispatchEvent;
     let fetchEvent;
-    let response;
+    let results;
+    let searchbox;
     let sendSaytApiRequest;
 
     beforeEach(() => {
@@ -236,13 +237,13 @@ describe('Sayt Driver Plugin', () => {
           query: 'shirt',
         }
       };
-      response = { a: 'b' };
+      results =  { a: "b" };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
     it('should get a response from Sayt client request method', () => {
-      const saytPayload  = fetchEvent.detail.results;
-      sendSaytApiRequest.resolves(response);
+      const saytPayload  = fetchEvent.detail;
+      sendSaytApiRequest.resolves(results);
 
       driver.fetchSaytData(fetchEvent);
 
@@ -250,12 +251,12 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should dispatch the response through the events plugin', () => {
-      sendSaytApiRequest.resolves(response);
+      sendSaytApiRequest.resolves(results);
 
       driver.fetchSaytData(fetchEvent);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytResponseEvent, response);
+        .to.be.eventually.calledWith(driver.saytResponseEvent, {results, searchbox});
     });
 
     it('should send an error in an event if the API request fails', () => {
