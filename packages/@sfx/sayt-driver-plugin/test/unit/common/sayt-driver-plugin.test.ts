@@ -236,12 +236,12 @@ describe('Sayt Driver Plugin', () => {
           query: 'shirt',
         }
       };
-      response = { results: { a: 'b' } };
+      response = { a: 'b' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
     it('should get a response from Sayt client request method', () => {
-      const saytPayload  = fetchEvent.detail;
+      const saytPayload  = fetchEvent.detail.results;
       sendSaytApiRequest.resolves(response);
 
       driver.fetchSaytData(fetchEvent);
