@@ -236,7 +236,7 @@ describe('Sayt Driver Plugin', () => {
           query: 'shirt',
         }
       };
-      response = { a: 'b' };
+      response = { a: 'b', b: 'c' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 

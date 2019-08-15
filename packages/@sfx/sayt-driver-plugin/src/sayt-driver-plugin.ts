@@ -81,10 +81,10 @@ export default class SaytDriverPlugin implements Plugin {
    * @param event Event that contains the Sayt API request payload.
    */
   fetchSaytData(event: CustomEvent): void {
-    const { query } = event.detail;
+    const { query, searchbox } = event.detail;
     this.sendSaytApiRequest({ query })
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox: event.detail.searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox });
       })
       .catch((e) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
