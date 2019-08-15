@@ -75,18 +75,16 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Dispatches an event with the response from the sayt data plugin and the origin searchbox id.
+   * Dispatches an event with the response from the sayt data plugin and the associated searchbox ID.
    * Callback for the Sayt data request event listener.
    *
    * @param event Event that contains the Sayt API request payload.
    */
   fetchSaytData(event: CustomEvent): void {
-    const searchbox = { searchbox: event.detail.searchbox };
-    this.sendSaytApiRequest(event.detail)
-      .then((data) => {
-        const dataObject = Object.assign(data, searchbox);
-
-        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, dataObject);
+    const { query } = event.detail;
+    this.sendSaytApiRequest({ query })
+      .then((results) => {
+        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox: event.detail.searchbox });
       })
       .catch((e) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);

@@ -8,6 +8,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - SFX-160: Added the `SaytDriverPlugin` module.
   - The `SaytDriverPlugin` module acts as a mediator between the Logic and View layers for prebuilt modules.
-
-- SFX-295: Added the origin searchbox ID to the `saytResponseEvent`
-  - This allows for multiple sayts to exist and function independently.
+  - SFX-295: Added the associated searchbox ID to response events.
