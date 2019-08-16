@@ -135,9 +135,9 @@ export default class SaytDriverPlugin implements Plugin {
 /**
  * The type of the sayt autocomplete request event payload.
  */
-export interface AutocompleteRequestConfig extends QueryTimeAutocompleteConfig {
+export interface AutocompleteRequestConfig {
   query: string;
-  config?: any;
+  config?: QueryTimeAutocompleteConfig;
   searchbox?: string;
 }
 /**

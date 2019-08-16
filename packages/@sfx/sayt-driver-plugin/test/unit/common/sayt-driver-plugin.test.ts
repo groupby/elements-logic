@@ -2,12 +2,12 @@ import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
 
 describe('Sayt Driver Plugin', () => {
+  let config;
   let driver;
   let dom_events;
   let fetchEvent;
   let sayt;
   let saytDataPayload;
-  let validConfig;
   let queryPayload;
 
   beforeEach(() => {
@@ -20,29 +20,20 @@ describe('Sayt Driver Plugin', () => {
       autocomplete: (query, config, callback) => null,
     };
     driver = new SaytDriverPlugin();
-    validConfig = {
-      config: {
-        collection: 'backup'
-      }
-    };
+    config = {
+      collection: 'backup'
+    }
     fetchEvent = {
       detail: {
         query: 'shirt',
       }
     };
-    // queryPayload = {
-    //   ...fetchEvent.detail,
-    // }
     saytDataPayload = {
       detail: {
         ...fetchEvent.detail,
-        ...validConfig,
+        config,
       }
     };
-
-    // test = {
-    //
-    // }
   });
 
   describe('get metadata()', () => {
@@ -278,7 +269,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchSaytData(fetchEvent);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledWith(driver.saytResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.saytResponseEvent, { results, searchbox });
     });
 
     it('should send an error in an event if the API request fails', () => {
