@@ -4,7 +4,10 @@ import { SaytDriverPlugin } from '../../../src/index';
 describe('Sayt Driver Plugin', () => {
   let driver;
   let dom_events;
+  let fetchEvent;
   let sayt;
+  let saytDataPayload;
+  let validConfig;
 
   beforeEach(() => {
     dom_events = {
@@ -16,6 +19,18 @@ describe('Sayt Driver Plugin', () => {
       autocomplete: (query, config, callback) => null,
     };
     driver = new SaytDriverPlugin();
+    validConfig = { config: { collection: 'backup' } };
+    fetchEvent = {
+      detail: {
+        query: 'shirt',
+      }
+    };
+    saytDataPayload = {
+      detail: {
+        ...fetchEvent.detail,
+        ...validConfig,
+      }
+    };
   });
 
   describe('get metadata()', () => {
@@ -186,7 +201,6 @@ describe('Sayt Driver Plugin', () => {
 
   describe('sendSaytApiRequest()', () => {
     let autocomplete;
-    let saytDataPayload;
     let autocompleteCallback;
 
     beforeEach(() => {
@@ -195,25 +209,14 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         sayt,
       };
-      saytDataPayload = {
-        query: 'shirt',
-        collection: 'backup',
-      };
     });
 
     it('should make a search call through the sayt client', () => {
-      const payload = {
-        query: 'shirt',
-        config: {
-          collection: 'backup'
-        },
-      };
-
-      driver.sendSaytApiRequest(payload);
+      driver.sendSaytApiRequest(saytDataPayload);
 
       expect(autocomplete).to.be.calledWith(
-        payload.query,
-        payload.config,
+        saytDataPayload.query,
+        saytDataPayload.config,
       );
     });
 
@@ -229,50 +232,35 @@ describe('Sayt Driver Plugin', () => {
 
   describe('fetchSaytData()', () => {
     let dispatchEvent;
-    let fetchEvent;
     let results;
     let searchbox;
     let sendSaytApiRequest;
-    let validConfig;
 
     beforeEach(() => {
       dispatchEvent = dom_events.dispatchEvent = spy();
       driver.core = {
         dom_events,
       };
-      fetchEvent = {
-        detail: {
-          query: 'shirt',
-        }
-      };
-      validConfig = { config: { collection: 'backup' } };
       results =  { a: "b" };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
     it('should call sendSaytApiRequest with query from event and undefined config', () => {
-      const saytPayload  = fetchEvent.detail;
+      const saytQueryPayload  = fetchEvent.detail;
       const undefinedConfig = { config: undefined }
       sendSaytApiRequest.resolves(results);
 
       driver.fetchSaytData(fetchEvent);
 
-      expect(sendSaytApiRequest).to.be.calledWith({...saytPayload, ...undefinedConfig});
+      expect(sendSaytApiRequest).to.be.calledWith({...saytQueryPayload, ...undefinedConfig});
     });
 
     it('should call sendSaytApiRequest with query from event and valid config', () => {
-      const fetchEventWithConfig = {
-        detail: {
-          query: 'shirt',
-          ...validConfig,
-        }
-      };
-
       sendSaytApiRequest.resolves(results);
 
-      driver.fetchSaytData(fetchEventWithConfig);
+      driver.fetchSaytData(saytDataPayload);
 
-      expect(sendSaytApiRequest).to.be.calledWith(fetchEventWithConfig.detail)
+      expect(sendSaytApiRequest).to.be.calledWith(saytDataPayload.detail)
     });
 
     it('should dispatch the response through the events plugin', () => {
