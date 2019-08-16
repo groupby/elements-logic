@@ -258,13 +258,10 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should call sendSaytApiRequest with query from event and undefined config', () => {
-      const saytQueryPayload  = fetchEvent.detail;
-      const undefinedConfig = { config: {collection: ''} };
       sendSaytApiRequest.resolves(results);
+      const callSayt = () => { driver.fetchSaytData(fetchEvent) };
 
-      driver.fetchSaytData(fetchEvent);
-
-      expect(sendSaytApiRequest).to.be.calledWith(...saytQueryPayload, undefinedConfig);
+      expect(callSayt).to.not.throw();
     });
 
     it('should call sendSaytApiRequest with query from event and valid config', () => {
@@ -272,7 +269,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.fetchSaytData(saytDataPayload);
 
-      expect(sendSaytApiRequest).to.be.calledWith(saytDataPayload.detail)
+      expect(sendSaytApiRequest).to.be.calledWith(saytDataPayload.detail.query, saytDataPayload.detail.config);
     });
 
     it('should dispatch the response through the events plugin', () => {
