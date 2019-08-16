@@ -19,7 +19,11 @@ describe('Sayt Driver Plugin', () => {
       autocomplete: (query, config, callback) => null,
     };
     driver = new SaytDriverPlugin();
-    validConfig = { config: { collection: 'backup' } };
+    validConfig = {
+      config: {
+        collection: 'backup'
+      }
+    };
     fetchEvent = {
       detail: {
         query: 'shirt',
