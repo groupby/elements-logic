@@ -225,7 +225,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should make a search call through the sayt client', () => {
       driver.sendSaytApiRequest(saytDataPayload.detail.query, saytDataPayload.detail.config );
-      console.log('>>> queryPayload', saytDataPayload)
+
       expect(autocomplete).to.be.calledWith(
         saytDataPayload.detail.query,
         saytDataPayload.detail.config,
@@ -259,12 +259,12 @@ describe('Sayt Driver Plugin', () => {
 
     it('should call sendSaytApiRequest with query from event and undefined config', () => {
       const saytQueryPayload  = fetchEvent.detail;
-      const undefinedConfig = { config: undefined }
+      const undefinedConfig = { config: {collection: ''} };
       sendSaytApiRequest.resolves(results);
 
       driver.fetchSaytData(fetchEvent);
 
-      expect(sendSaytApiRequest).to.be.calledWith({...saytQueryPayload, ...undefinedConfig});
+      expect(sendSaytApiRequest).to.be.calledWith(...saytQueryPayload, undefinedConfig);
     });
 
     it('should call sendSaytApiRequest with query from event and valid config', () => {
