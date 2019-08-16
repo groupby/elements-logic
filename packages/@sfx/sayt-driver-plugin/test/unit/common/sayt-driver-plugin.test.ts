@@ -273,7 +273,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchSaytData(fetchEvent);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledWith(driver.saytResponseEvent, {results, searchbox});
+        .to.be.eventually.calledWith(driver.saytResponseEvent, { results, searchbox });
     });
 
     it('should send an error in an event if the API request fails', () => {
