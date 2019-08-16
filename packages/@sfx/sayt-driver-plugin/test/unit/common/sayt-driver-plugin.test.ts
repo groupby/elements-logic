@@ -8,6 +8,7 @@ describe('Sayt Driver Plugin', () => {
   let sayt;
   let saytDataPayload;
   let validConfig;
+  let queryPayload;
 
   beforeEach(() => {
     dom_events = {
@@ -29,12 +30,19 @@ describe('Sayt Driver Plugin', () => {
         query: 'shirt',
       }
     };
+    // queryPayload = {
+    //   ...fetchEvent.detail,
+    // }
     saytDataPayload = {
       detail: {
         ...fetchEvent.detail,
         ...validConfig,
       }
     };
+
+    // test = {
+    //
+    // }
   });
 
   describe('get metadata()', () => {
@@ -216,11 +224,11 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      driver.sendSaytApiRequest(saytDataPayload);
-
+      driver.sendSaytApiRequest(saytDataPayload.detail.query, saytDataPayload.detail.config );
+      console.log('>>> queryPayload', saytDataPayload)
       expect(autocomplete).to.be.calledWith(
-        saytDataPayload.query,
-        saytDataPayload.config,
+        saytDataPayload.detail.query,
+        saytDataPayload.detail.config,
       );
     });
 
@@ -245,7 +253,7 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      results =  { a: "b" };
+      results =  { a: 'b' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
