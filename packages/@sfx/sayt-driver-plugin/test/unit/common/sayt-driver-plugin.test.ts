@@ -257,7 +257,7 @@ describe('Sayt Driver Plugin', () => {
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
     });
 
-    it('should call sendSaytApiRequest with query from event and undefined config', () => {
+    it('should not throw with undefined config', () => {
       sendSaytApiRequest.resolves(results);
       const callSayt = () => { driver.fetchSaytData(fetchEvent) };
 
