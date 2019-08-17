@@ -5,10 +5,10 @@ describe('Sayt Driver Plugin', () => {
   let config;
   let driver;
   let dom_events;
-  let fetchEvent;
   let sayt;
   let saytDataPayload;
-  let queryPayload;
+  let saytDataUndefinedConfig;
+  let query;
 
   beforeEach(() => {
     dom_events = {
@@ -22,17 +22,20 @@ describe('Sayt Driver Plugin', () => {
     driver = new SaytDriverPlugin();
     config = {
       collection: 'backup'
-    }
-    fetchEvent = {
-      detail: {
-        query: 'shirt',
-      }
+    };
+    query = {
+      query: 'shirt'
     };
     saytDataPayload = {
       detail: {
-        ...fetchEvent.detail,
+        query,
         config,
-      }
+      },
+    };
+    saytDataUndefinedConfig = {
+      detail: {
+        query,
+      },
     };
   });
 
@@ -250,7 +253,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should not throw with undefined config', () => {
       sendSaytApiRequest.resolves(results);
-      const callSayt = () => { driver.fetchSaytData(fetchEvent) };
+      const callSayt = () => { driver.fetchSaytData(saytDataUndefinedConfig) };
 
       expect(callSayt).to.not.throw();
     });
@@ -266,7 +269,7 @@ describe('Sayt Driver Plugin', () => {
     it('should dispatch the response through the events plugin', () => {
       sendSaytApiRequest.resolves(results);
 
-      driver.fetchSaytData(fetchEvent);
+      driver.fetchSaytData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytResponseEvent, { results, searchbox });
@@ -276,7 +279,7 @@ describe('Sayt Driver Plugin', () => {
       const error = new Error('test error');
       sendSaytApiRequest.rejects(error);
 
-      driver.fetchSaytData(fetchEvent);
+      driver.fetchSaytData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
