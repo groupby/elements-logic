@@ -75,7 +75,8 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Dispatches an event with the response from the sayt data plugin and the associated searchbox ID.
+   * Dispatches an event with the response from the sayt data
+   * plugin and the associated searchbox ID.
    * Callback for the Sayt data request event listener.
    *
    * @param event Event that contains the Sayt API request payload.
