@@ -75,15 +75,17 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Dispatches an event with the response from the sayt data plugin.
+   * Dispatches an event with the response from the sayt data
+   * plugin and the associated searchbox ID.
    * Callback for the Sayt data request event listener.
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchSaytData(event: CustomEvent): void {
-    this.sendSaytApiRequest(event.detail)
-      .then((data) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, data);
+  fetchSaytData(event: CustomEvent<AutocompleteRequestConfig>): void {
+    const { query, searchbox, config } = event.detail;
+    this.sendSaytApiRequest(query, config)
+      .then((results) => {
+        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox });
       })
       .catch((e) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
@@ -93,11 +95,12 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Sends a request to the SAYT API with the given query and config object.
    *
-   * @param saytDataQuery Request object received from the event listener.
+   * @param query The search term to send.
+   * @param config Extra query-time configuration to customize the SAYT request.
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytApiRequest({ query, ...config }: AutocompleteRequestConfig): Promise<string[]> {
+  sendSaytApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 
@@ -134,8 +137,10 @@ export default class SaytDriverPlugin implements Plugin {
 /**
  * The type of the sayt autocomplete request event payload.
  */
-export interface AutocompleteRequestConfig extends QueryTimeAutocompleteConfig {
+export interface AutocompleteRequestConfig {
   query: string;
+  config?: QueryTimeAutocompleteConfig;
+  searchbox?: string;
 }
 /**
  * Data section of the event payload for an autocomplete response.
