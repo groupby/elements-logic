@@ -23,9 +23,7 @@ describe('Sayt Driver Plugin', () => {
     config = {
       collection: 'backup'
     };
-    query = {
-      query: 'shirt'
-    };
+    query = 'shirt';
     saytDataPayload = {
       detail: {
         query,
@@ -218,11 +216,11 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      driver.sendSaytApiRequest(saytDataPayload.detail.query, saytDataPayload.detail.config );
+      driver.sendSaytApiRequest(query, config);
 
       expect(autocomplete).to.be.calledWith(
-        saytDataPayload.detail.query,
-        saytDataPayload.detail.config,
+        query,
+        config,
       );
     });
 
@@ -263,7 +261,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.fetchSaytData(saytDataPayload);
 
-      expect(sendSaytApiRequest).to.be.calledWith(saytDataPayload.detail.query, saytDataPayload.detail.config);
+      expect(sendSaytApiRequest).to.be.calledWith(query, config);
     });
 
     it('should dispatch the response through the events plugin', () => {
