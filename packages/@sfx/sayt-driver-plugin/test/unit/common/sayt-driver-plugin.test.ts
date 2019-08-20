@@ -21,7 +21,7 @@ describe('Sayt Driver Plugin', () => {
     };
     driver = new SaytDriverPlugin();
     config = {
-      collection: 'backup'
+      collection: 'backup',
     };
     query = 'shirt';
     saytDataPayload = {
