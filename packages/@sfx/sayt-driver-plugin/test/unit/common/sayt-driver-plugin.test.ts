@@ -8,7 +8,7 @@ describe('Sayt Driver Plugin', () => {
   let sayt;
   let saytDataPayload;
   let saytDataUndefinedConfig;
-  let query;
+  const query = 'shirt';
 
   beforeEach(() => {
     dom_events = {
@@ -23,7 +23,6 @@ describe('Sayt Driver Plugin', () => {
     config = {
       collection: 'backup',
     };
-    query = 'shirt';
     saytDataPayload = {
       detail: {
         query,
