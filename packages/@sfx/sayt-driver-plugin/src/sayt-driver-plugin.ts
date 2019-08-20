@@ -95,7 +95,8 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Sends a request to the SAYT API with the given query and config object.
    *
-   * @param saytDataQuery Request object received from the event listener.
+   * @param query The search term to send.
+   * @param config Extra query-time configuration to customize the SAYT request.
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
