@@ -51,6 +51,10 @@ export default class SaytDriverPlugin implements Plugin {
    * Event name for sending Sayt product responses.
    */
   productResponseEvent: string = 'sfx::sayt_products_response';
+  /**
+   * Event name to listen for Sayt product errors.
+   */
+  productErrorEvent: string = 'sfx::sayt_products_error';
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -115,6 +119,9 @@ export default class SaytDriverPlugin implements Plugin {
     this.sendSearchApiRequest(query, config)
       .then(results => {
         this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, searchbox });
+      })
+      .catch(e => {
+        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, e);
       });
   }
 

@@ -329,6 +329,16 @@ describe('Sayt Driver Plugin', () => {
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, searchbox });
     });
+
+    it('should send an error in an event if the API request fails', () => {
+      const error = new Error('test error');
+      sendSearchApiRequest.rejects(error);
+
+      driver.fetchProductData(saytDataPayload);
+
+      return expect(Promise.resolve(dispatchEvent))
+        .to.be.eventually.calledOnceWith(driver.productErrorEvent, error);
+    });
   });
 
   describe('sendSearchApiRequest', () => {
