@@ -322,9 +322,11 @@ describe('Sayt Driver Plugin', () => {
 
   describe('sendSearchApiRequest', () => {
     let searchStub;
+    let searchCallback;
 
     beforeEach(() => {
       searchStub = stub(search, 'search').resolves({});
+      searchCallback = stub(driver, 'searchCallback');
       driver.core = {
         search,
       };
@@ -339,13 +341,13 @@ describe('Sayt Driver Plugin', () => {
       });
     });
 
-    // it('should return the result of the Sayt API callback', () => {
-    //   const callbackReturn = ['a', 'b'];
-    //   autocompleteCallback.returns(callbackReturn);
+    it('should return the result of the Search API callback', () => {
+      const callbackReturn = { a: 'b' };
+      searchCallback.returns(callbackReturn);
 
-    //   const returnValue = driver.sendSaytApiRequest(saytDataPayload);
+      const returnValue = driver.sendSearchApiRequest(productDataPayload);
 
-    //   return expect(returnValue).to.eventually.deep.equal(callbackReturn);
-    // });
+      return expect(returnValue).to.eventually.deep.equal(callbackReturn);
+    });
   });
 });

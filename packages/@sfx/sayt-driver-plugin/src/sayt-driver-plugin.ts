@@ -131,7 +131,7 @@ export default class SaytDriverPlugin implements Plugin {
    * with the passed callback.
    */
   sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<any> {
-    return this.core.search.search({ query, ...config });
+    return this.core.search.search({ query, ...config }).then(this.searchCallback);
   }
 
   /**
@@ -148,6 +148,10 @@ export default class SaytDriverPlugin implements Plugin {
         : [],
     };
     return [searchTerms];
+  }
+
+  searchCallback(response: any): any {
+    return response;
   }
 
   /**
