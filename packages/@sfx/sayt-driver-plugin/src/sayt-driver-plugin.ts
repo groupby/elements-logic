@@ -18,6 +18,7 @@ export default class SaytDriverPlugin implements Plugin {
       depends: [
         this.eventsPluginName,
         'sayt',
+        'search',
       ],
     };
   }

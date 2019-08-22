@@ -8,6 +8,7 @@ describe('Sayt Driver Plugin', () => {
   let sayt;
   let saytDataPayload;
   let saytDataUndefinedConfig;
+  let productDataPayload;
   const query = 'shirt';
 
   beforeEach(() => {
@@ -34,6 +35,12 @@ describe('Sayt Driver Plugin', () => {
         query,
       },
     };
+    productDataPayload = {
+      detail: {
+        query,
+        config,
+      },
+    };
   });
 
   describe('get metadata()', () => {
@@ -41,8 +48,8 @@ describe('Sayt Driver Plugin', () => {
       expect(driver.metadata.name).to.equal('sayt_driver');
     });
 
-    it('should have two dependencies: "dom_events" and "sayt"', () => {
-      expect(driver.metadata.depends).to.have.members(['dom_events', 'sayt']);
+    it('should have dependencies: "dom_events", "sayt", and "search"', () => {
+      expect(driver.metadata.depends).to.have.members(['dom_events', 'sayt', 'search']);
     });
   });
 
@@ -285,7 +292,27 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('fetchProductData', () => {
+  // describe('fetchProductData', () => {
+  //   let dispatchEvent;
+  //   let results;
+  //   // let searchbox;
+  //   let sendSearchApiRequest;
 
-  });
+  //   beforeEach(() => {
+  //     dispatchEvent = dom_events.dispatchEvent = spy();
+  //     driver.core = {
+  //       dom_events,
+  //     };
+  //     results = { a: 'b' };
+  //     sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
+  //   });
+
+  //   it('should call sendSearchApiRequest with query from event and valid config', () => {
+  //     sendSearchApiRequest.resolves(results);
+
+  //     driver.fetchProductData(productDataPayload);
+
+  //     expect(sendSearchApiRequest).to.be.calledWith(query, config);
+  //   });
+  // });
 });
