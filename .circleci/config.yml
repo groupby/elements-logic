@@ -7,7 +7,7 @@ defaults:
       - image: circleci/node:11.6.0-browsers
   image-minimal: &image-minimal
     docker:
-      - image: gilderlabs/alpine
+      - image: alpine
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
   build_final_cache_partial: &build_final_cache_partial
@@ -48,6 +48,7 @@ jobs:
     working_directory: ~/
     steps:
       - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
+      - run: apk add ca-certificates
       - persist_to_workspace:
           root: ~/
           paths:
