@@ -1,7 +1,13 @@
 defaults:
-  image: &image
+  image-default: &image-default
+    docker:
+      - image: circleci/node:11.6.0
+  image-browsers: &image-browsers
     docker:
       - image: circleci/node:11.6.0-browsers
+  image-minimal: &image-minimal
+    docker:
+      - image: alpine
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
   build_final_cache_partial: &build_final_cache_partial
@@ -38,7 +44,7 @@ jobs:
   ### Stores the current build number in a file to use in unique cache keys and branch names for this workflow.
   ### The build number is guaranteed to be unique per build per project and is suitable for use as an identifier.
   generate_cache_key_file:
-    <<: *image
+    <<: *image-minimal
     working_directory: ~/
     steps:
       - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
@@ -52,7 +58,7 @@ jobs:
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
-    <<: *image
+    <<: *image-default
     steps:
       - checkout
       - attach_workspace:
@@ -86,7 +92,7 @@ jobs:
 
   ### Restores individual package builds and collects them into a single build archive.
   collect_builds:
-    <<: *image
+    <<: *image-minimal
     steps:
       - checkout
       - attach_workspace:
@@ -120,7 +126,7 @@ jobs:
   ### unit_test: unit_test_{package}
   ### Runs the Node unit tests for {package}.
   unit_test:
-    <<: *image
+    <<: *image-default
     steps:
       - checkout
       - attach_workspace:
@@ -141,7 +147,7 @@ jobs:
   ### unit_test_browser: unit_test_browser_{package}
   ### Runs the Browser unit tests for {package}.
   unit_test_browser:
-    <<: *image
+    <<: *image-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -162,7 +168,7 @@ jobs:
   ### unit_test_final
   ### No-op. This job exists to fan in all the unit test jobs.
   unit_test_final:
-    <<: *image
+    <<: *image-minimal
     steps:
       - run: exit 0
 
