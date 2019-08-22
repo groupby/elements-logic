@@ -286,8 +286,6 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('fetchProductData', () => {
-    it('should exist', () => {
-      driver.fetchProductData();
-    });
+
   });
 });
