@@ -141,8 +141,8 @@ export default class SaytDriverPlugin implements Plugin {
    * Sends a request to the Search API with the given query and config object.
    *
    * @param query The search term to send.
-   * @param config Extra query-time configuration to customize the SAYT request.
-   * @returns A promise from the Sayt API that has been reformatted
+   * @param config Extra query-time configuration to customize the Search request.
+   * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
   sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<any> {
