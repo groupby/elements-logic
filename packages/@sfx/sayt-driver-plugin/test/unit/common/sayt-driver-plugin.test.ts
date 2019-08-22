@@ -296,29 +296,28 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  // describe('fetchProductData', () => {
-  //   let dispatchEvent;
-  //   let results;
-  //   // let searchbox;
-  //   let sendSearchApiRequest;
+  describe('fetchProductData', () => {
+    let dispatchEvent;
+    let results;
+    let sendSearchApiRequest;
 
-  //   beforeEach(() => {
-  //     dispatchEvent = dom_events.dispatchEvent = spy();
-  //     driver.core = {
-  //       dom_events,
-  //     };
-  //     results = { a: 'b' };
-  //     sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
-  //   });
+    beforeEach(() => {
+      dispatchEvent = dom_events.dispatchEvent = spy();
+      driver.core = {
+        dom_events,
+      };
+      results = { a: 'b' };
+      sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
+    });
 
-  //   it('should call sendSearchApiRequest with query from event and valid config', () => {
-  //     sendSearchApiRequest.resolves(results);
+    it('should call sendSearchApiRequest with query from event and valid config', () => {
+      sendSearchApiRequest.resolves(results);
 
-  //     driver.fetchProductData(productDataPayload);
+      driver.fetchProductData(productDataPayload);
 
-  //     expect(sendSearchApiRequest).to.be.calledWith(query, config);
-  //   });
-  // });
+      expect(sendSearchApiRequest).to.be.calledWith(query, config);
+    });
+  });
 
   describe('sendSearchApiRequest', () => {
     let searchStub;

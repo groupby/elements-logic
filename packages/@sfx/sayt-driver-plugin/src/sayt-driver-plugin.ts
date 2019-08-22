@@ -108,6 +108,7 @@ export default class SaytDriverPlugin implements Plugin {
   */
   fetchProductData(event: CustomEvent): void {
     const { query, searchbox, config } = event.detail;
+    this.sendSearchApiRequest(query, config);
   }
 
   /**
