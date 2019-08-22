@@ -8,7 +8,6 @@ describe('Sayt Driver Plugin', () => {
   let sayt;
   let search;
   let saytDataPayload;
-  let saytDataUndefinedConfig;
   let productDataPayload;
   const query = 'shirt';
 
@@ -33,11 +32,6 @@ describe('Sayt Driver Plugin', () => {
         query,
         config,
         searchbox: 'some-searchbox-id',
-      },
-    };
-    saytDataUndefinedConfig = {
-      detail: {
-        query,
       },
     };
     productDataPayload = {
@@ -262,13 +256,6 @@ describe('Sayt Driver Plugin', () => {
       results =  { a: 'b' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
       searchbox = 'some-searchbox-id';
-    });
-
-    it('should not throw with undefined config', () => {
-      sendSaytApiRequest.resolves(results);
-      const callSayt = () => { driver.fetchSaytData(saytDataUndefinedConfig) };
-
-      expect(callSayt).to.not.throw();
     });
 
     it('should call sendSaytApiRequest with query from event and valid config', () => {
