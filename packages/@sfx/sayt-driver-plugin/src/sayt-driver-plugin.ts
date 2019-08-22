@@ -42,6 +42,10 @@ export default class SaytDriverPlugin implements Plugin {
    * Event name to listen for Sayt autocomplete errors.
    */
   saytErrorEvent: string = 'sfx::autocomplete_sayt_error';
+  /**
+   * Event name to listen for Sayt product requests.
+   */
+  productDataEvent: string = 'sfx::sayt_products_request';
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -65,6 +69,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].registerListener(this.productDataEvent, this.fetchProductData);
   }
 
   /**

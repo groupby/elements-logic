@@ -63,7 +63,7 @@ describe('Sayt Driver Plugin', () => {
   describe('ready()', () => {
     let registerListener;
 
-    it('should register an event listener for receiving sayt API requests', () => {
+    it('should register event listeners for receiving requests sayt and product data', () => {
       registerListener = dom_events.registerListener = spy();
       driver.core = {
         dom_events,
@@ -72,6 +72,7 @@ describe('Sayt Driver Plugin', () => {
       driver.ready();
 
       expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(registerListener).to.be.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
 
