@@ -32,6 +32,7 @@ describe('Sayt Driver Plugin', () => {
       detail: {
         query,
         config,
+        searchbox: 'some-searchbox-id',
       },
     };
     saytDataUndefinedConfig = {
@@ -260,6 +261,7 @@ describe('Sayt Driver Plugin', () => {
       };
       results =  { a: 'b' };
       sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
+      searchbox = 'some-searchbox-id';
     });
 
     it('should not throw with undefined config', () => {
