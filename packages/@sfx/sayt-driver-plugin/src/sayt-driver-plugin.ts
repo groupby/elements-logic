@@ -92,6 +92,10 @@ export default class SaytDriverPlugin implements Plugin {
       });
   }
 
+  fetchProductData() {
+
+  }
+
   /**
    * Sends a request to the SAYT API with the given query and config object.
    *

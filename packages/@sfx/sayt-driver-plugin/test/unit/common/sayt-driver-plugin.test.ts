@@ -282,4 +282,10 @@ describe('Sayt Driver Plugin', () => {
         .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
     });
   });
+
+  describe('fetchProductData', () => {
+    it('should exist', () => {
+      driver.fetchProductData();
+    });
+  });
 });
