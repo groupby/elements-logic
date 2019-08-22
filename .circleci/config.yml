@@ -102,12 +102,6 @@ jobs:
           at: /home/circleci
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_core-
-      - run:
-          name: temp
-          command: |
-            ls -l ..
-            tar tf ../build.tar
-
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events_plugin-
