@@ -8,6 +8,9 @@ defaults:
   image_minimal: &image_minimal
     docker:
       - image: alpine
+  install_image_minimal_dependencies: &install_image_minimal_dependencies
+    name: Install Alpine dependencies
+    command: apk add ca-certificates
   yarn_cache: &yarn_cache
     key: yarn_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ checksum "yarn.lock" }}
   build_final_cache_partial: &build_final_cache_partial
@@ -48,7 +51,7 @@ jobs:
     working_directory: ~/
     steps:
       - run: echo "$CIRCLE_BUILD_NUM" > workflow-start
-      - run: apk add ca-certificates
+      - run: *install_image_minimal_dependencies
       - persist_to_workspace:
           root: ~/
           paths:
@@ -97,7 +100,7 @@ jobs:
     working_directory: /home/circleci/project
     steps:
       - checkout
-      - run: apk add ca-certificates tar gzip
+      - run: *install_image_minimal_dependencies
       - attach_workspace:
           at: /home/circleci
       - restore_cache:
