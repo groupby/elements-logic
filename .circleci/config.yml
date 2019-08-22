@@ -94,6 +94,7 @@ jobs:
   ### Restores individual package builds and collects them into a single build archive.
   collect_builds:
     <<: *image_minimal
+    working_directory: /home/circleci/project
     steps:
       - checkout
       - run: apk add ca-certificates tar gzip
