@@ -6,6 +6,7 @@ describe('Sayt Driver Plugin', () => {
   let driver;
   let dom_events;
   let sayt;
+  let search;
   let saytDataPayload;
   let saytDataUndefinedConfig;
   let productDataPayload;
@@ -19,6 +20,9 @@ describe('Sayt Driver Plugin', () => {
     };
     sayt = {
       autocomplete: (query, config, callback) => null,
+    };
+    search = {
+      search: (query, callback) => null,
     };
     driver = new SaytDriverPlugin();
     config = {
@@ -315,4 +319,33 @@ describe('Sayt Driver Plugin', () => {
   //     expect(sendSearchApiRequest).to.be.calledWith(query, config);
   //   });
   // });
+
+  describe('sendSearchApiRequest', () => {
+    let searchStub;
+
+    beforeEach(() => {
+      searchStub = stub(search, 'search').resolves({});
+      driver.core = {
+        search,
+      };
+    });
+
+    it('should make a search call through the search client', () => {
+      driver.sendSearchApiRequest(query, config);
+
+      expect(searchStub).to.be.calledWith({
+        query,
+        ...config
+      });
+    });
+
+    // it('should return the result of the Sayt API callback', () => {
+    //   const callbackReturn = ['a', 'b'];
+    //   autocompleteCallback.returns(callbackReturn);
+
+    //   const returnValue = driver.sendSaytApiRequest(saytDataPayload);
+
+    //   return expect(returnValue).to.eventually.deep.equal(callbackReturn);
+    // });
+  });
 });

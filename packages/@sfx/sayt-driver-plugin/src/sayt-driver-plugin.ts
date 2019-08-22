@@ -99,8 +99,15 @@ export default class SaytDriverPlugin implements Plugin {
       });
   }
 
-  fetchProductData() {
-
+  /**
+  * Dispatches an event with the response from the search data
+  * plugin and the associated searchbox ID.
+  * Callback for the Search data request event listener.
+  *
+  * @param event Event that contains the Search API request payload.
+  */
+  fetchProductData(event: CustomEvent): void {
+    const { query, searchbox, config } = event.detail;
   }
 
   /**
@@ -113,6 +120,18 @@ export default class SaytDriverPlugin implements Plugin {
    */
   sendSaytApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
+  }
+
+  /**
+   * Sends a request to the Search API with the given query and config object.
+   *
+   * @param query The search term to send.
+   * @param config Extra query-time configuration to customize the SAYT request.
+   * @returns A promise from the Sayt API that has been reformatted
+   * with the passed callback.
+   */
+  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<any> {
+    return this.core.search.search({ query, ...config });
   }
 
   /**
