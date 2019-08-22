@@ -99,7 +99,7 @@ jobs:
       - checkout
       - run: apk add ca-certificates tar gzip
       - attach_workspace:
-          at: ~/
+          at: /home/circleci
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_core-
       - run:
