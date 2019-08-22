@@ -96,6 +96,7 @@ jobs:
     <<: *image-minimal
     steps:
       - checkout
+      - run: apk add ca-certificates
       - attach_workspace:
           at: ~/
       - restore_cache:
