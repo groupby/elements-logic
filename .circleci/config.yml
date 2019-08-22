@@ -14,11 +14,11 @@ defaults:
     key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-
   archive_build: &archive_build
     name: Archive build
-    command: tar cvf ../build.tar packages/@sfx/*/{dist,esnext}
+    command: tar cvf ../build.tar packages/@sfx/*/dist packages/@sfx/*/esnext
   extract_build_archive: &extract_build_archive
     name: Extract archive
     command: |
-      [[ ! -r ../build.tar ]] || tar xvf ../build.tar
+      [ ! -r ../build.tar ] || tar xvf ../build.tar
       rm -f ../build.tar
 
   git_submodule_install: &git_submodule_install
