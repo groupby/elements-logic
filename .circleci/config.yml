@@ -89,7 +89,7 @@ jobs:
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-{{ .Environment.CIRCLE_JOB }}-{{ epoch }}
           paths:
-            - ~/build.tar
+            - ../build.tar
 
   ### Restores individual package builds and collects them into a single build archive.
   collect_builds:
@@ -127,7 +127,7 @@ jobs:
       - save_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-all-{{ epoch }}
           paths:
-            - ~/build.tar
+            - ../build.tar
 
   ## Unit test jobs
 
