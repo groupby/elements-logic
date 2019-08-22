@@ -43,6 +43,7 @@ describe('Sayt Driver Plugin', () => {
       detail: {
         query,
         config,
+        searchbox: 'some-searchbox-id',
       },
     };
   });
@@ -299,6 +300,7 @@ describe('Sayt Driver Plugin', () => {
   describe('fetchProductData', () => {
     let dispatchEvent;
     let results;
+    let searchbox;
     let sendSearchApiRequest;
 
     beforeEach(() => {
@@ -308,6 +310,7 @@ describe('Sayt Driver Plugin', () => {
       };
       results = { a: 'b' };
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
+      searchbox = 'some-searchbox-id';
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
@@ -316,6 +319,15 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(productDataPayload);
 
       expect(sendSearchApiRequest).to.be.calledWith(query, config);
+    });
+
+    it('should dispatch the response through the events plugin', () => {
+      sendSearchApiRequest.resolves(results);
+
+      driver.fetchProductData(productDataPayload);
+
+      return expect(Promise.resolve(dispatchEvent))
+        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, searchbox });
     });
   });
 
