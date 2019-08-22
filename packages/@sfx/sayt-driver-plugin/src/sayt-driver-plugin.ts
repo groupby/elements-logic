@@ -65,7 +65,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Lifecycle event where the plugin can first safely interact with the registry.
    * The method will register an event listener for listening to Sayt data requests
-   * and trigger its callback for making search requests.
+   * and product data requests.
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
@@ -77,6 +77,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].unregisterListener(this.productDataEvent, this.fetchProductData);
   }
 
   /**

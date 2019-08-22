@@ -88,6 +88,7 @@ describe('Sayt Driver Plugin', () => {
       driver.unregister();
 
       expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(unregisterListener).to.have.been.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
 
