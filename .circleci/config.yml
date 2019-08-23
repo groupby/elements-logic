@@ -178,6 +178,38 @@ jobs:
     steps:
       - run: exit 0
 
+  ## Docs job
+
+  ### docs
+  ### Generates docs for all packages, then commits and pushes to the main release branch.
+  docs:
+    <<: *image
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run: *setup_git
+      - run:
+          name: Checkout release branch
+          command:  git checkout "$(cat ../branch-prefix)/master"
+      - run:
+          name: Docs
+          command: yarn docs
+      - run:
+          name: Commit and push
+          command: |
+            git add docs
+            if git status --porcelain | grep '^M'; then
+              git commit -m "Generate docs"
+              git push -u origin HEAD
+            else
+              echo "No changes to commit."
+            fi
+
 workflows:
   version: 2
   build_test:
@@ -273,3 +305,6 @@ workflows:
             - unit_test_browser_search_plugin
             - unit_test_browser_sayt_driver_plugin
             - unit_test_browser_search_driver_plugin
+      - docs:
+          requires:
+            - unit_test_final
