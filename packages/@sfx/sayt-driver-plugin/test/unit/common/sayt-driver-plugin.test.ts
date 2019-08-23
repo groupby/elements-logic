@@ -360,4 +360,20 @@ describe('Sayt Driver Plugin', () => {
       return expect(returnValue).to.eventually.deep.equal(callbackReturn);
     });
   });
+
+  describe('searchCallback', () => {
+    it('should return an object containing the query and products', () => {
+      const response = {
+        query: 'some-query',
+        records: ['first-product', 'second-product'],
+      };
+
+      const result = driver.searchCallback(response);
+
+      expect(result).to.deep.equal({
+        query: response.query,
+        products: response.records,
+      });
+    });
+  });
 });

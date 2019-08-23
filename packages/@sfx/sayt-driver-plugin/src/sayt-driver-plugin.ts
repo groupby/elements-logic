@@ -114,7 +114,7 @@ export default class SaytDriverPlugin implements Plugin {
   *
   * @param event Event that contains the Search API request payload.
   */
-  fetchProductData(event: CustomEvent): void {
+  fetchProductData(event: CustomEvent) {
     const { query, searchbox, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
@@ -145,7 +145,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
-  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<any> {
+  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<ProductsResponseSection> {
     return this.core.search.search({ query, ...config }).then(this.searchCallback);
   }
 
@@ -165,8 +165,13 @@ export default class SaytDriverPlugin implements Plugin {
     return [searchTerms];
   }
 
-  searchCallback(response: any): any {
-    return response;
+  // @TODO response is of type Results from API-JavaScript
+  searchCallback(response: any): ProductsResponseSection {
+    const { query, records } = response;
+    return {
+      query,
+      products: records,
+    };
   }
 
   /**
@@ -205,4 +210,9 @@ export interface AutocompleteResponseSection {
  */
 export interface SearchTermItem {
   label: string;
+}
+
+export interface ProductsResponseSection {
+  query: string;
+  products: any[];
 }
