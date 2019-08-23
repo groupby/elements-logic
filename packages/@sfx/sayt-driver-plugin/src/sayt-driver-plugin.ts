@@ -152,7 +152,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Extracts search terms from the given response.
    *
-   * @param response An array search term strings.
+   * @param response An array of search term strings.
    * @returns An array of search term strings.
    */
   autocompleteCallback(response: AutocompleteResponse): AutocompleteResponseSection[] {
@@ -166,6 +166,11 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   // @TODO response is of type Results from API-JavaScript
+  /**
+   * Extracts products from the given response.
+   *
+   * @param response An object containing the original query and product records.
+   */
   searchCallback(response: any): ProductsResponseSection {
     const { query, records } = response;
     return {
