@@ -111,7 +111,10 @@ describe('SearchDriverPlugin', () => {
       const query = 'search term';
       const results = Promise.resolve({});
       const search = stub();
-      search.withArgs(query).returns(results);
+      search.withArgs({
+        fields: ['*'],
+        query,
+      }).returns(results);
       searchDriverPlugin.core = { search: { search } };
 
       const retval = searchDriverPlugin.sendSearchApiRequest(query);

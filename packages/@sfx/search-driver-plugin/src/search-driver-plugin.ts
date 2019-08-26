@@ -29,6 +29,13 @@ export default class SearchDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
+   * Default configuration for all searches.
+   */
+  defaultSearchConfig: object = {
+    fields: ['*'],
+  }
+
+  /**
    * Constructs a new instance of the plugin and binds the necessary
    * callbacks.
    */
@@ -86,8 +93,9 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param query the query to send.
    */
-  sendSearchApiRequest(query: BridgeQuery): Promise<Results> {
-    return this.core.search.search(query);
+  sendSearchApiRequest(query: string): Promise<Results> {
+    const fullQuery = { ...this.defaultSearchConfig, query };
+    return this.core.search.search(fullQuery);
   }
 }
 
