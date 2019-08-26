@@ -192,7 +192,7 @@ jobs:
   ### docs
   ### Generates docs for all packages, then commits and pushes to the main release branch.
   docs:
-    <<: *image
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
