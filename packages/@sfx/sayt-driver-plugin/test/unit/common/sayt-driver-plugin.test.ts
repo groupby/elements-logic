@@ -342,11 +342,12 @@ describe('Sayt Driver Plugin', () => {
       };
     });
 
-    it('should make a search call through the search client', () => {
+    it('should make a search call through the search client with all fields', () => {
       driver.sendSearchApiRequest(query, config);
 
       expect(searchStub).to.be.calledWith({
         query,
+        fields: ['*'],
         ...config
       });
     });

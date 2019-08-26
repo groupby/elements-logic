@@ -55,6 +55,12 @@ export default class SaytDriverPlugin implements Plugin {
    * Event name to listen for Sayt product errors.
    */
   productErrorEvent: string = 'sfx::sayt_products_error';
+  /**
+   * Provide default configuration for SAYT product searches.
+   */
+  defaultSearchConfig: object = {
+    fields: ['*'],
+  }
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
@@ -146,7 +152,8 @@ export default class SaytDriverPlugin implements Plugin {
    * with the passed callback.
    */
   sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<ProductsResponseSection> {
-    return this.core.search.search({ query, ...config }).then(this.searchCallback);
+    const allConfig = { ...this.defaultSearchConfig, ...config };
+    return this.core.search.search({ query, ...allConfig }).then(this.searchCallback);
   }
 
   /**
