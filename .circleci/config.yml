@@ -202,9 +202,7 @@ jobs:
       - run: *extract_build_archive
       - run: *yarn_install
       - run: *setup_git
-      - run:
-          name: Submodule Update
-          command: git submodule update --init
+      - run: *git_submodule_install
       - run:
           name: Docs
           command: yarn docs
