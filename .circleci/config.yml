@@ -203,18 +203,21 @@ jobs:
       - run: *yarn_install
       - run: *setup_git
       - run:
+          name: Submodule Update
+          command: git submodule update --init
+      - run:
           name: Docs
           command: yarn docs
-      # - run:
-      #     name: Commit and push
-      #     command: |
-      #       git add docs
-      #       if git status --porcelain | grep '^M'; then
-      #         git commit -m "Generate docs"
-      #         git push -u origin HEAD
-      #       else
-      #         echo "No changes to commit."
-      #       fi
+      - run:
+          name: Commit and push
+          command: |
+            git add docs
+            if git status --porcelain | grep '^M'; then
+              git commit -m "Generate docs"
+              git push -u origin HEAD
+            else
+              echo "No changes to commit."
+            fi
 
 workflows:
   version: 2
