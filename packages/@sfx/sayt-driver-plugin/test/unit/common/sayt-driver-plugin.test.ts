@@ -316,7 +316,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { ...results, searchbox });
     });
 
     it('should send an error in an event if the API request fails', () => {
