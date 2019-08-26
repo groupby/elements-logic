@@ -31,6 +31,15 @@ defaults:
     name: Install
     command: yarn
 
+  setup_git: &setup_git
+    name: Setup Git user
+    command: |
+      git config --global user.email "ops@groupbyinc.com"
+      git config --global user.name "GroupBy Ops"
+      git config --global push.default simple
+      cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
+      chmod +x .git/hooks/prepare-commit-msg
+
   requires_build_core: &requires_build_core
     requires:
       - build_core
@@ -194,9 +203,6 @@ jobs:
       - run: *yarn_install
       - run: *setup_git
       - run:
-          name: Checkout release branch
-          command:  git checkout "$(cat ../branch-prefix)/master"
-      - run:
           name: Docs
           command: yarn docs
       - run:
@@ -308,3 +314,7 @@ workflows:
       - docs:
           requires:
             - unit_test_final
+          # filters:
+          #   branches:
+          #     only:
+          #       - master
