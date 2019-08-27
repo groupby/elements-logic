@@ -190,7 +190,7 @@ export default class SaytDriverPlugin implements Plugin {
         productUrl: 'https://www.google.com',
         // variants: ,
       }
-    })
+    });
     return {
       query,
       products: mappedRecords,
