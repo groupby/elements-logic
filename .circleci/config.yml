@@ -210,7 +210,7 @@ jobs:
           name: Commit and push
           command: |
             git add docs
-            if git status --porcelain | grep '^M'; then
+            if git status --porcelain | grep -e '^M' -e '^A'; then
               git commit -m "Generate docs"
               git push -u origin HEAD
             else
