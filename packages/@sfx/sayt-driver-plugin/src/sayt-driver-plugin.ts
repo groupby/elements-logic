@@ -64,6 +64,9 @@ export default class SaytDriverPlugin implements Plugin {
 
   constructor() {
     this.fetchSaytData = this.fetchSaytData.bind(this);
+    this.fetchProductData = this.fetchProductData.bind(this);
+    this.sendSaytApiRequest = this.sendSaytApiRequest.bind(this);
+    this.sendSearchApiRequest = this.sendSearchApiRequest.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
   }
 
