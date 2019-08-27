@@ -124,7 +124,7 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, searchbox, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { ...results, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, searchbox });
       })
       .catch(e => {
         this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, e);
