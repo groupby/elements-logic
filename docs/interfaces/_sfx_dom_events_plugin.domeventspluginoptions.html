@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/sayt-plugin | SF-X</title>
+	<title>DomEventsPluginOptions | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_sayt_plugin.html">@sfx/sayt-plugin</a>
+					<a href="../modules/_sfx_dom_events_plugin.html">@sfx/dom-events-plugin</a>
+				</li>
+				<li>
+					<a href="_sfx_dom_events_plugin.domeventspluginoptions.html">DomEventsPluginOptions</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/sayt-plugin</h1>
+			<h1>Interface DomEventsPluginOptions</h1>
 		</div>
 	</div>
 </header>
@@ -68,26 +71,102 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-sayt-plugin">SF-X SAYT Plugin</h1>
-					<p>This package contains the SF-X SAYT Plugin class.</p>
-					<h2 id="usage">Usage</h2>
-					<p>To use the plugin, simply instantiate it and register it with Core:</p>
-					<pre><code class="language-js"><span class="hljs-keyword">const</span> saytPlugin = <span class="hljs-keyword">new</span> SaytPlugin(<span class="hljs-comment">/* options */</span>);
-core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
-					<p>The plugin registers an instance of the <a href="https://www.npmjs.com/package/sayt">Sayt client</a> with Core.</p>
-					<p>The SaytPlugin constructor can accept options to configure the exposed Sayt client. See the <a href="https://github.com/groupby/sayt-client/blob/develop/src/core/sayt.ts#L77">SaytConfig interface</a> for available options.</p>
+					<div class="lead">
+						<p>DOM Events Plugin options.</p>
+					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">DomEventsPluginOptions</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_sayt_plugin.saytplugin.html" class="tsd-kind-icon">Sayt<wbr>Plugin</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_dom_events_plugin.domeventspluginoptions.html#customevent" class="tsd-kind-icon">Custom<wbr>Event</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_dom_events_plugin.domeventspluginoptions.html#window" class="tsd-kind-icon">window</a></li>
 							</ul>
 						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="customevent" class="tsd-anchor"></a>
+					<h3>Custom<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">Custom<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/dom-events-plugin/src/dom-events-plugin.ts#L126">dom-events-plugin/src/dom-events-plugin.ts:126</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Will be used to create custom event objects.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5>constructor<span class="tsd-signature-symbol">: </span>function</h5>
+								<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-type-literal tsd-has-type-parameter tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon">new __type&lt;T&gt;<span class="tsd-signature-symbol">(</span>typeArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, eventInitDict<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">CustomEventInit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<aside class="tsd-sources">
+											<ul>
+												<li>Defined in /home/circleci/project/node_modules/typedoc/node_modules/typescript/lib/lib.dom.d.ts:3425</li>
+											</ul>
+										</aside>
+										<h4 class="tsd-type-parameters-title">Type parameters</h4>
+										<ul class="tsd-type-parameters">
+											<li>
+												<h4>T</h4>
+											</li>
+										</ul>
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>typeArg: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> eventInitDict: <span class="tsd-signature-type">CustomEventInit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									</li>
+							</ul>        </li>
+							<li class="tsd-parameter">
+								<h5>prototype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span></h5>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="window" class="tsd-anchor"></a>
+					<h3>window</h3>
+					<div class="tsd-signature tsd-kind-icon">window<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Window</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/dom-events-plugin/src/dom-events-plugin.ts#L122">dom-events-plugin/src/dom-events-plugin.ts:122</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Will be used to invoke event-related methods to add/remove listeners
+							and dispatch events.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -99,53 +178,67 @@ core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html">@sfx/core</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_sfx_core.html">@sfx/core</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
+						<a href="../modules/_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+						<a href="../modules/_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_sayt_plugin.saytplugin.html" class="tsd-kind-icon">Sayt<wbr>Plugin</a>
+								<a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a>
+							</li>
+							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a>
+								<ul>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_sfx_dom_events_plugin.domeventspluginoptions.html#customevent" class="tsd-kind-icon">Custom<wbr>Event</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_sfx_dom_events_plugin.domeventspluginoptions.html#window" class="tsd-kind-icon">window</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>

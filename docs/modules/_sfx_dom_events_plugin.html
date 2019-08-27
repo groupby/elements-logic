@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>TestInterface | SF-X</title>
+	<title>@sfx/dom-events-plugin | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,51 +56,63 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_sfx_sayt_plugin.html">@sfx/sayt-plugin</a>
-				</li>
-				<li>
-					<a href="_sfx_sayt_plugin.testinterface.html">TestInterface</a>
+					<a href="_sfx_dom_events_plugin.html">@sfx/dom-events-plugin</a>
 				</li>
 			</ul>
-			<h1>Interface TestInterface</h1>
+			<h1>Package @sfx/dom-events-plugin</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="target">TestInterface</span>
-					</li>
-				</ul>
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<h1 id="sf-x-dom-events-plugin">SF-X DOM Events Plugin</h1>
+					<p>This package contains the SF-X <code>DomEventsPlugin</code> class.</p>
+					<h2 id="usage">Usage</h2>
+					<p>To use the <code>DomEventsPlugin</code>, first instantiate it and then register it with
+					the Core entity:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> domEventsPlugin = <span class="hljs-keyword">new</span> DomEventsPlugin(<span class="hljs-comment">/* options */</span>);
+core.<span class="hljs-keyword">register</span>(domEventsPlugin);</code></pre>
+					<p>The plugin&#39;s constructor takes an optional options object.
+						Please refer to the <code>DomEventsPluginOptions</code> interface in
+						<a href="src/dom-events-plugin.ts">src/dom-events-plugin.ts</a> for more details on
+					available options.</p>
+					<h2 id="methods">Methods</h2>
+					<h3 id="registerlistener">registerListener()</h3>
+					<p>Use the <code>registerListener</code> method to register event listeners. The method
+					takes an eventName and a callback function.</p>
+					<pre><code class="language-js">register<span class="hljs-constructor">Listener(<span class="hljs-params">eventName</span>, <span class="hljs-params">callback</span>)</span>;</code></pre>
+					<h3 id="unregisterlistener">unregisterListener()</h3>
+					<p>Use the <code>unregisterListener</code> method to unregister event listeners. The method
+					takes an eventName and a callback function.</p>
+					<pre><code class="language-js">unregister<span class="hljs-constructor">Listener(<span class="hljs-params">eventName</span>, <span class="hljs-params">callback</span>)</span>;</code></pre>
+					<h3 id="dispatchevent">dispatchEvent()</h3>
+					<p>Use the <code>dispatchEvent</code> method to dispatch events. The method takes an
+						eventName and an option payload which can be used to send information
+					with the dispatched event.</p>
+					<pre><code class="language-js">dispatch<span class="hljs-constructor">Event(<span class="hljs-params">eventName</span>, <span class="hljs-params">payload</span>)</span>;</code></pre>
+				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
-							<h3>Properties</h3>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="_sfx_sayt_plugin.testinterface.html#label" class="tsd-kind-icon">label</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="label" class="tsd-anchor"></a>
-					<h3>label</h3>
-					<div class="tsd-signature tsd-kind-icon">label<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/ef0197f/packages/@sfx/sayt-plugin/src/index.ts#L15">index.ts:15</a></li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 		</div>
@@ -110,36 +122,61 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_core.html">@sfx/core</a>
+					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
+						<a href="_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+						<a href="_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
 						<ul>
-							<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="_sfx_sayt_plugin.testinterface.html" class="tsd-kind-icon">Test<wbr>Interface</a>
-								<ul>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-										<a href="_sfx_sayt_plugin.testinterface.html#label" class="tsd-kind-icon">label</a>
-									</li>
-								</ul>
+							<li class=" tsd-kind-class tsd-parent-kind-external-module">
+								<a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a>
 							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt_plugin.html#testfunc" class="tsd-kind-icon">test<wbr>Func</a>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="../interfaces/_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a>
 							</li>
-							<li class=" tsd-kind-object-literal tsd-parent-kind-external-module tsd-is-not-exported">
-								<a href="../modules/_sfx_sayt_plugin.html#testobj" class="tsd-kind-icon">test<wbr>Obj</a>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="../interfaces/_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

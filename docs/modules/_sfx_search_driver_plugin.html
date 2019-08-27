@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/sayt-plugin | SF-X</title>
+	<title>@sfx/search-driver-plugin | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_sayt_plugin.html">@sfx/sayt-plugin</a>
+					<a href="_sfx_search_driver_plugin.html">@sfx/search-driver-plugin</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/sayt-plugin</h1>
+			<h1>Package @sfx/search-driver-plugin</h1>
 		</div>
 	</div>
 </header>
@@ -68,14 +68,36 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-sayt-plugin">SF-X SAYT Plugin</h1>
-					<p>This package contains the SF-X SAYT Plugin class.</p>
+					<h1 id="sf-x-search-driver-plugin">SF-X Search Driver Plugin</h1>
+					<p>This package contains the SF-X Search Driver plugin.</p>
+					<h2 id="prerequisites">Prerequisites</h2>
+					<p>This plugin depends on the following plugins:</p>
+					<ul>
+						<li><code>dom_events</code></li>
+						<li><code>search</code></li>
+					</ul>
+					<p>These plugins must be registered either before or in the same batch as
+					this plugin.</p>
 					<h2 id="usage">Usage</h2>
 					<p>To use the plugin, simply instantiate it and register it with Core:</p>
-					<pre><code class="language-js"><span class="hljs-keyword">const</span> saytPlugin = <span class="hljs-keyword">new</span> SaytPlugin(<span class="hljs-comment">/* options */</span>);
-core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
-					<p>The plugin registers an instance of the <a href="https://www.npmjs.com/package/sayt">Sayt client</a> with Core.</p>
-					<p>The SaytPlugin constructor can accept options to configure the exposed Sayt client. See the <a href="https://github.com/groupby/sayt-client/blob/develop/src/core/sayt.ts#L77">SaytConfig interface</a> for available options.</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> searchDriverPlugin = <span class="hljs-keyword">new</span> SearchDriverPlugin();
+core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre>
+					<p>This plugin currently does not accept any options.</p>
+					<h2 id="events">Events</h2>
+					<p>This plugin listens for and dispatches a number of events.</p>
+					<h3 id="received">Received</h3>
+					<ul>
+						<li><code>sfx::search_request</code>: When received, a search request to the GroupBy
+							API is made. An <code>sfx::search_response</code> event is dispatched with the
+						results.</li>
+					</ul>
+					<h3 id="dispatched">Dispatched</h3>
+					<ul>
+						<li><code>sfx::search_response</code>: Dispatched when a search request has
+						completed. Its payload is the result of the request.</li>
+						<li><code>sfx::search_error</code>: Dispatched when an error has occurred during a
+						search request.</li>
+					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -85,9 +107,91 @@ core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_sayt_plugin.saytplugin.html" class="tsd-kind-icon">Sayt<wbr>Plugin</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_sfx_search_driver_plugin.html#searchrequestpayload" class="tsd-kind-icon">Search<wbr>Request<wbr>Payload</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_sfx_search_driver_plugin.html#search_error_event" class="tsd-kind-icon">SEARCH_<wbr>ERROR_<wbr>EVENT</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_sfx_search_driver_plugin.html#search_request_event" class="tsd-kind-icon">SEARCH_<wbr>REQUEST_<wbr>EVENT</a></li>
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="_sfx_search_driver_plugin.html#search_response_event" class="tsd-kind-icon">SEARCH_<wbr>RESPONSE_<wbr>EVENT</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="searchrequestpayload" class="tsd-anchor"></a>
+					<h3>Search<wbr>Request<wbr>Payload</h3>
+					<div class="tsd-signature tsd-kind-icon">Search<wbr>Request<wbr>Payload<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L98">search-driver-plugin/src/search-driver-plugin.ts:98</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of the search request event payload. The payload is the
+							search term.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="search_error_event" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> SEARCH_<wbr>ERROR_<wbr>EVENT</h3>
+					<div class="tsd-signature tsd-kind-icon">SEARCH_<wbr>ERROR_<wbr>EVENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"sfx::search_error"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;sfx::search_error&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/search-driver-plugin/src/events.ts#L15">search-driver-plugin/src/events.ts:15</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fired when an error has occurred during a search request.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="search_request_event" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> SEARCH_<wbr>REQUEST_<wbr>EVENT</h3>
+					<div class="tsd-signature tsd-kind-icon">SEARCH_<wbr>REQUEST_<wbr>EVENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"sfx::search_request"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;sfx::search_request&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/search-driver-plugin/src/events.ts#L4">search-driver-plugin/src/events.ts:4</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fired to request a search. Its payload is the search term to use.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="search_response_event" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> SEARCH_<wbr>RESPONSE_<wbr>EVENT</h3>
+					<div class="tsd-signature tsd-kind-icon">SEARCH_<wbr>RESPONSE_<wbr>EVENT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"sfx::search_response"</span><span class="tsd-signature-symbol"> =&nbsp;&quot;sfx::search_response&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/4f4a1ab/packages/@sfx/search-driver-plugin/src/events.ts#L10">search-driver-plugin/src/events.ts:10</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Fired when a search response has been received from the server.
+							The payload is the search response.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -107,10 +211,10 @@ core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
 					<li class=" tsd-kind-external-module">
 						<a href="_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -129,21 +233,33 @@ core.<span class="hljs-keyword">register</span>(saytPlugin);</code></pre>
 					<li class=" tsd-kind-external-module">
 						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_sayt_plugin.saytplugin.html" class="tsd-kind-icon">Sayt<wbr>Plugin</a>
+								<a href="../classes/_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+								<a href="_sfx_search_driver_plugin.html#searchrequestpayload" class="tsd-kind-icon">Search<wbr>Request<wbr>Payload</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="_sfx_search_driver_plugin.html#search_error_event" class="tsd-kind-icon">SEARCH_<wbr>ERROR_<wbr>EVENT</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="_sfx_search_driver_plugin.html#search_request_event" class="tsd-kind-icon">SEARCH_<wbr>REQUEST_<wbr>EVENT</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="_sfx_search_driver_plugin.html#search_response_event" class="tsd-kind-icon">SEARCH_<wbr>RESPONSE_<wbr>EVENT</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
-					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
 					</li>
