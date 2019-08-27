@@ -210,6 +210,7 @@ jobs:
           name: Commit and push
           command: |
             git add docs
+            # check that there is something to add so git commit will not fail
             if git status --porcelain | grep -e '^M' -e '^A'; then
               git commit -m "Generate docs"
               git push -u origin HEAD
@@ -312,6 +313,7 @@ workflows:
             - unit_test_browser_search_plugin
             - unit_test_browser_sayt_driver_plugin
             - unit_test_browser_search_driver_plugin
+
       - docs:
           requires:
             - unit_test_final
