@@ -315,7 +315,7 @@ workflows:
       - docs:
           requires:
             - unit_test_final
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
+          filters:
+            branches:
+              only:
+                - master
