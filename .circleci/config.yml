@@ -48,7 +48,6 @@ defaults:
       - build_final
 
 version: 2.1
-
 jobs:
   ## Initialization jobs
 
