@@ -363,28 +363,23 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('searchCallback', () => {
-    it('should not throw if product has no visual variants', () => {
-      const response = {
+    let response;
+    beforeEach(() => {
+      response = {
         records: [
           {
             allMeta: {},
           }
         ]
-      }
+      };
+    });
 
+    it('should not throw if product has no visual variants', () => {
       driver.searchCallback(response);
     });
 
     it('should not throw if product has incorrect visual variants', () => {
-      const response = {
-        records: [
-          {
-            allMeta: {
-              visualVariants: {},
-            },
-          }
-        ]
-      }
+      response.records[0].allMeta.visualVariants = {};
 
       driver.searchCallback(response);
     });
