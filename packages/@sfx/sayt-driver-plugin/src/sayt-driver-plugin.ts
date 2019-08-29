@@ -4,7 +4,7 @@ import {
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
-import { Results } from '@sfx/search-plugin';
+import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
@@ -77,7 +77,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param plugins The plugin registry object from Core.
    */
-  register(plugins: PluginRegistry): void {
+  register(plugins: PluginRegistry) {
     this.core = plugins;
   }
 
@@ -85,7 +85,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Lifecycle event where the plugin can first safely interact with the registry.
    * The method will register an event listener for Sayt and product data requests.
    */
-  ready(): void {
+  ready() {
     this.core[this.eventsPluginName].registerListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].registerListener(this.productRequestEvent, this.fetchProductData);
   }
@@ -93,7 +93,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Lifecycle event where the plugin will unregister all event listeners.
    */
-  unregister(): void {
+  unregister() {
     this.core[this.eventsPluginName].unregisterListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].unregisterListener(this.productRequestEvent, this.fetchProductData);
   }
@@ -104,7 +104,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>): void {
+  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>) {
     const { query, searchbox, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
@@ -121,7 +121,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Search API request payload.
    */
-  fetchProductData(event: CustomEvent) {
+  fetchProductData(event: CustomEvent<SearchRequestConfig>) {
     const { query, searchbox, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
@@ -215,14 +215,26 @@ export default class SaytDriverPlugin implements Plugin {
   }
 }
 
+export interface RequestConfig {
+  query: string;
+  searchbox?: string;
+  config?: object;
+}
+
 /**
  * The type of the sayt autocomplete request event payload.
  */
-export interface AutocompleteRequestConfig {
-  query: string;
+export interface AutocompleteRequestConfig extends RequestConfig {
   config?: QueryTimeAutocompleteConfig;
-  searchbox?: string;
 }
+
+/**
+ * The type of the sayt autocomplete request event payload.
+ */
+export interface SearchRequestConfig extends RequestConfig {
+  config?: Partial<SearchRequest>;
+}
+
 /**
  * Data section of the event payload for an autocomplete response.
  * Ex. searchTerms
