@@ -186,6 +186,9 @@ export default class SaytDriverPlugin implements Plugin {
       if (data.visualVariants === undefined) return;
       const firstVariant = data.visualVariants[0];
       if (firstVariant === undefined) return;
+      const nonvisualVariants = firstVariant.nonvisualVariants;
+      // if (!nonvisualVariants || nonvisualVariants.length === 0) return;
+
       return {
         title: data.title,
         price: firstVariant.nonvisualVariants[0].originalPrice,
