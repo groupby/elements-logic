@@ -375,6 +375,20 @@ describe('Sayt Driver Plugin', () => {
       driver.searchCallback(response);
     });
 
+    it('should not throw if product has incorrect visual variants', () => {
+      const response = {
+        records: [
+          {
+            allMeta: {
+              visualVariants: {},
+            },
+          }
+        ]
+      }
+
+      driver.searchCallback(response);
+    });
+
     it.skip('should return an object containing the query and products', () => {
       const response = {
         query: 'some-query',
