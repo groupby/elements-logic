@@ -192,11 +192,11 @@ export default class SaytDriverPlugin implements Plugin {
 
       return {
         title: data.title,
-        price: firstVariant.nonvisualVariants[0].originalPrice,
+        price: nonvisualVariants[0].originalPrice,
         imageSrc: firstVariant.productImage,
         imageAlt: data.title,
         productUrl: 'https://www.google.com',
-        // variants: ,
+        // @TODO Handle variants
       }
     });
     return {
