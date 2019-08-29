@@ -188,6 +188,7 @@ export default class SaytDriverPlugin implements Plugin {
       if (firstVariant === undefined) return;
       const nonvisualVariants = firstVariant.nonvisualVariants;
       if (!nonvisualVariants || !nonvisualVariants.length) return;
+      if (!nonvisualVariants[0]) return;
 
       return {
         title: data.title,

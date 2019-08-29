@@ -390,6 +390,16 @@ describe('Sayt Driver Plugin', () => {
       expect(func).to.not.throw();
     });
 
+    it('should not throw if product has undefined non-visual variant', () => {
+      response.records[0].allMeta.visualVariants = [{
+        nonvisualVariants: [undefined],
+      }];
+
+      const func = () => driver.searchCallback(response);
+
+      expect(func).to.not.throw();
+    });
+
     it.skip('should return an object containing the query and products', () => {
       const response = {
         query: 'some-query',
