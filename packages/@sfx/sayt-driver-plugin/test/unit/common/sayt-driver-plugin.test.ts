@@ -380,14 +380,6 @@ describe('Sayt Driver Plugin', () => {
       expect(func).to.not.throw();
     });
 
-    it('should not throw if product has incorrect visual variants', () => {
-      response.records[0].allMeta.visualVariants = {};
-
-      const func = () => driver.searchCallback(response);
-
-      expect(func).to.not.throw();
-    });
-
     it('should not throw if product has no non-visual variants', () => {
       response.records[0].allMeta.visualVariants = [{
         nonvisualVariants: [],
