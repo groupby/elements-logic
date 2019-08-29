@@ -377,7 +377,7 @@ describe('Sayt Driver Plugin', () => {
     it('should not throw if product has no visual variants', () => {
       const func = () => driver.searchCallback(response);
 
-      expect(func).to.not.throw;
+      expect(func).to.not.throw();
     });
 
     it('should not throw if product has incorrect visual variants', () => {
@@ -385,7 +385,7 @@ describe('Sayt Driver Plugin', () => {
 
       const func = () => driver.searchCallback(response);
 
-      expect(func).to.not.throw;
+      expect(func).to.not.throw();
     });
 
     it('should not throw if product has no non-visual variants', () => {
@@ -393,7 +393,7 @@ describe('Sayt Driver Plugin', () => {
 
       const func = () => driver.searchCallback(response);
 
-      expect(func).to.not.throw;
+      expect(func).to.not.throw();
     });
 
     it.skip('should return an object containing the query and products', () => {
