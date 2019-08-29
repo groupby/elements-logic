@@ -82,8 +82,7 @@ export default class SaytDriverPlugin implements Plugin {
 
   /**
    * Lifecycle event where the plugin can first safely interact with the registry.
-   * The method will register an event listener for listening to Sayt data requests
-   * and product data requests.
+   * The method will register an event listener for Sayt and product data requests.
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
@@ -99,9 +98,8 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Dispatches an event with the response from the sayt data
-   * plugin and the associated searchbox ID.
-   * Callback for the Sayt data request event listener.
+   * Sends a request to the Sayt API for autocomplete terms and dispatches
+   * events on success and failure.
    *
    * @param event Event that contains the Sayt API request payload.
    */
