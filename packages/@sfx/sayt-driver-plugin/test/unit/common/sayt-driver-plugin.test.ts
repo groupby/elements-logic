@@ -79,7 +79,7 @@ describe('Sayt Driver Plugin', () => {
       driver.ready();
 
       expect(registerListener).to.be.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(registerListener).to.be.calledWith(driver.productDataEvent, driver.fetchProductData);
+      expect(registerListener).to.be.calledWith(driver.productRequestEvent, driver.fetchProductData);
     });
   });
 
@@ -95,7 +95,7 @@ describe('Sayt Driver Plugin', () => {
       driver.unregister();
 
       expect(unregisterListener).to.have.been.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(unregisterListener).to.have.been.calledWith(driver.productDataEvent, driver.fetchProductData);
+      expect(unregisterListener).to.have.been.calledWith(driver.productRequestEvent, driver.fetchProductData);
     });
   });
 

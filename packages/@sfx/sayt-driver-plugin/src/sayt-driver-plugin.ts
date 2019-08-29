@@ -46,7 +46,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Event name to listen for Sayt product requests.
    */
-  productDataEvent: string = 'sfx::sayt_products_request';
+  productRequestEvent: string = 'sfx::sayt_products_request';
   /**
    * Event name for sending Sayt product responses.
    */
@@ -86,7 +86,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].registerListener(this.productDataEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].registerListener(this.productRequestEvent, this.fetchProductData);
   }
 
   /**
@@ -94,7 +94,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].unregisterListener(this.productDataEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].unregisterListener(this.productRequestEvent, this.fetchProductData);
   }
 
   /**
