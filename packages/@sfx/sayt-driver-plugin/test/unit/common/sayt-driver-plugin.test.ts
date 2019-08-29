@@ -400,6 +400,47 @@ describe('Sayt Driver Plugin', () => {
       expect(func).to.not.throw();
     });
 
+    it('should return a complete product object', () => {
+      const expectedResponse = {
+        query: undefined,
+        products: [
+          {
+            title: 'some-title',
+            price: 3.99,// num or string?,
+            imageSrc: 'some-link',
+            imageAlt: 'some-title',
+            productUrl: 'some-link',
+          },
+        ],
+      }
+      const input = {
+        records: [
+          {
+            allMeta: {
+              title: 'some-title',
+              visualVariants: [
+                {
+                  productImage: 'some-link',
+                  nonvisualVariants: [
+                    {
+                      originalPrice: 3.99,
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      }
+
+      const actualProduct = driver.searchCallback(input);
+
+      expect(actualProduct).to.deep.equal(expectedResponse);
+      // response.records[0].allMeta.visualVariants = [{
+      //   nonvisualVariants: [undefined],
+      // }];
+    });
+
     it.skip('should return an object containing the query and products', () => {
       const response = {
         query: 'some-query',
