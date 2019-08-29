@@ -34,15 +34,15 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Event name to listen for Sayt autocomplete requests.
    */
-  saytDataEvent: string = 'sfx::autocomplete_fetch_data';
+  autocompleteRequestEvent: string = 'sfx::autocomplete_fetch_data';
   /**
    * Event name for sending Sayt autocomplete responses.
    */
-  saytResponseEvent: string = 'sfx::autocomplete_received_results';
+  autocompleteResponseEvent: string = 'sfx::autocomplete_received_results';
   /**
    * Event name to listen for Sayt autocomplete errors.
    */
-  saytErrorEvent: string = 'sfx::autocomplete_sayt_error';
+  autocompleteErrorEvent: string = 'sfx::autocomplete_sayt_error';
   /**
    * Event name to listen for Sayt product requests.
    */
@@ -85,7 +85,7 @@ export default class SaytDriverPlugin implements Plugin {
    * The method will register an event listener for Sayt and product data requests.
    */
   ready(): void {
-    this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].registerListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].registerListener(this.productDataEvent, this.fetchProductData);
   }
 
@@ -93,7 +93,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Lifecycle event where the plugin will unregister all event listeners.
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].unregisterListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].unregisterListener(this.productDataEvent, this.fetchProductData);
   }
 
@@ -107,10 +107,10 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, searchbox, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, searchbox });
       })
       .catch((e) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.saytErrorEvent, e);
+        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, e);
       });
   }
 

@@ -78,7 +78,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.ready();
 
-      expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchAutocompleteTerms);
+      expect(registerListener).to.be.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
       expect(registerListener).to.be.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
@@ -94,7 +94,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchAutocompleteTerms);
+      expect(unregisterListener).to.have.been.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
       expect(unregisterListener).to.have.been.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
@@ -272,7 +272,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, searchbox });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -282,7 +282,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
+        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, error);
     });
   });
 
