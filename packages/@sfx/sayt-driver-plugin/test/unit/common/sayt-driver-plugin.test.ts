@@ -78,7 +78,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.ready();
 
-      expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchAutocompleteTerms);
       expect(registerListener).to.be.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
@@ -94,7 +94,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchAutocompleteTerms);
       expect(unregisterListener).to.have.been.calledWith(driver.productDataEvent, driver.fetchProductData);
     });
   });
@@ -242,7 +242,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('fetchSaytData()', () => {
+  describe('fetchAutocompleteTerms()', () => {
     let dispatchEvent;
     let results;
     let searchbox;
@@ -261,7 +261,7 @@ describe('Sayt Driver Plugin', () => {
     it('should call sendSaytApiRequest with query from event and valid config', () => {
       sendSaytApiRequest.resolves(results);
 
-      driver.fetchSaytData(saytDataPayload);
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
       expect(sendSaytApiRequest).to.be.calledWith(query, config);
     });
@@ -269,7 +269,7 @@ describe('Sayt Driver Plugin', () => {
     it('should dispatch the response through the events plugin', () => {
       sendSaytApiRequest.resolves(results);
 
-      driver.fetchSaytData(saytDataPayload);
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytResponseEvent, { results, searchbox });
@@ -279,7 +279,7 @@ describe('Sayt Driver Plugin', () => {
       const error = new Error('test error');
       sendSaytApiRequest.rejects(error);
 
-      driver.fetchSaytData(saytDataPayload);
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);

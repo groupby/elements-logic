@@ -63,7 +63,7 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   constructor() {
-    this.fetchSaytData = this.fetchSaytData.bind(this);
+    this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.sendSaytApiRequest = this.sendSaytApiRequest.bind(this);
     this.sendSearchApiRequest = this.sendSearchApiRequest.bind(this);
@@ -85,7 +85,7 @@ export default class SaytDriverPlugin implements Plugin {
    * The method will register an event listener for Sayt and product data requests.
    */
   ready(): void {
-    this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].registerListener(this.saytDataEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].registerListener(this.productDataEvent, this.fetchProductData);
   }
 
@@ -93,7 +93,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Lifecycle event where the plugin will unregister all event listeners.
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchSaytData);
+    this.core[this.eventsPluginName].unregisterListener(this.saytDataEvent, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].unregisterListener(this.productDataEvent, this.fetchProductData);
   }
 
@@ -103,7 +103,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchSaytData(event: CustomEvent<AutocompleteRequestConfig>): void {
+  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>): void {
     const { query, searchbox, config } = event.detail;
     this.sendSaytApiRequest(query, config)
       .then((results) => {
