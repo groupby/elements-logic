@@ -115,12 +115,11 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-  * Dispatches an event with the response from the search data
-  * plugin and the associated searchbox ID.
-  * Callback for the Search data request event listener.
-  *
-  * @param event Event that contains the Search API request payload.
-  */
+   * Sends a request to the Search API for product data and dispatches
+   * events on success and failure.
+   *
+   * @param event Event that contains the Search API request payload.
+   */
   fetchProductData(event: CustomEvent) {
     const { query, searchbox, config } = event.detail;
     this.sendSearchApiRequest(query, config)
