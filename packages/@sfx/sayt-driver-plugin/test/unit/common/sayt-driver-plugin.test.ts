@@ -389,7 +389,9 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should not throw if product has no non-visual variants', () => {
-      response.records[0].allMeta.visualVariants[0].nonvisualVariants = [];
+      response.records[0].allMeta.visualVariants = [{
+        nonvisualVariants: [],
+      }];
 
       const func = () => driver.searchCallback(response);
 
