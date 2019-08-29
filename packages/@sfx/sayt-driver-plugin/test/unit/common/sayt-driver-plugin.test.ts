@@ -363,6 +363,18 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('searchCallback', () => {
+    it('should not throw if product has no visual variants', () => {
+      const response = {
+        records: [
+          {
+            allMeta: {},
+          }
+        ]
+      }
+
+      driver.searchCallback(response);
+    });
+
     it.skip('should return an object containing the query and products', () => {
       const response = {
         query: 'some-query',

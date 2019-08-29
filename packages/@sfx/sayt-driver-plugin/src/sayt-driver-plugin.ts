@@ -182,11 +182,15 @@ export default class SaytDriverPlugin implements Plugin {
   searchCallback(response: Results): ProductsResponseSection {
     const { query, records } = response;
     const mappedRecords = records.map(record => {
+      const data = record.allMeta;
+      if (data.visualVariants === undefined) return;
+      const firstVariant = data.visualVariants[0];
+      if (firstVariant === undefined) return;
       return {
-        title: record.allMeta.title,
-        price: record.allMeta.visualVariants[0].nonvisualVariants[0].originalPrice,
-        imageSrc: record.allMeta.visualVariants[0].productImage,
-        imageAlt: record.allMeta.title,
+        title: data.title,
+        price: firstVariant.nonvisualVariants[0].originalPrice,
+        imageSrc: firstVariant.productImage,
+        imageAlt: data.title,
         productUrl: 'https://www.google.com',
         // variants: ,
       }
