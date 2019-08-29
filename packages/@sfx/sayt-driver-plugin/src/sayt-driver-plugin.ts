@@ -189,13 +189,12 @@ export default class SaytDriverPlugin implements Plugin {
       const nonvisualVariants = firstVariant.nonvisualVariants;
       if (!nonvisualVariants || !nonvisualVariants.length) return;
       if (!nonvisualVariants[0]) return;
-
       return {
         title: data.title,
         price: nonvisualVariants[0].originalPrice,
         imageSrc: firstVariant.productImage,
         imageAlt: data.title,
-        productUrl: 'https://www.google.com',
+        productUrl: firstVariant.productImage,
         // @TODO Handle variants
       }
     });
