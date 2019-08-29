@@ -4,6 +4,7 @@ import {
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
+import { Results } from '@sfx/search-plugin';
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
@@ -172,14 +173,13 @@ export default class SaytDriverPlugin implements Plugin {
     return [searchTerms];
   }
 
-  // @TODO response is of type Results from API-JavaScript
   /**
    * Extracts products from the given response.
    *
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and products.
    */
-  searchCallback(response: any): ProductsResponseSection {
+  searchCallback(response: Results): ProductsResponseSection {
     const { query, records } = response;
     const mappedRecords = records.map(record => {
       return {
