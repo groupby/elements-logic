@@ -65,7 +65,7 @@ export default class SaytDriverPlugin implements Plugin {
   constructor() {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
-    this.sendSaytApiRequest = this.sendSaytApiRequest.bind(this);
+    this.sendAutocompleteApiRequest = this.sendAutocompleteApiRequest.bind(this);
     this.sendSearchApiRequest = this.sendSearchApiRequest.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
   }
@@ -105,7 +105,7 @@ export default class SaytDriverPlugin implements Plugin {
    */
   fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>): void {
     const { query, searchbox, config } = event.detail;
-    this.sendSaytApiRequest(query, config)
+    this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(this.saytResponseEvent, { results, searchbox });
       })
@@ -140,7 +140,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendSaytApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
+  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 

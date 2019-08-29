@@ -211,7 +211,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('sendSaytApiRequest()', () => {
+  describe('sendAutocompleteApiRequest()', () => {
     let autocomplete;
     let autocompleteCallback;
 
@@ -224,7 +224,7 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      driver.sendSaytApiRequest(query, config);
+      driver.sendAutocompleteApiRequest(query, config);
 
       expect(autocomplete).to.be.calledWith(
         query,
@@ -236,7 +236,7 @@ describe('Sayt Driver Plugin', () => {
       const callbackReturn = ['a', 'b'];
       autocompleteCallback.returns(callbackReturn);
 
-      const returnValue = driver.sendSaytApiRequest(saytDataPayload);
+      const returnValue = driver.sendAutocompleteApiRequest(saytDataPayload);
 
       return expect(returnValue).to.eventually.deep.equal(callbackReturn);
     });
@@ -246,7 +246,7 @@ describe('Sayt Driver Plugin', () => {
     let dispatchEvent;
     let results;
     let searchbox;
-    let sendSaytApiRequest;
+    let sendAutocompleteApiRequest;
 
     beforeEach(() => {
       dispatchEvent = dom_events.dispatchEvent = spy();
@@ -254,20 +254,20 @@ describe('Sayt Driver Plugin', () => {
         dom_events,
       };
       results =  { a: 'b' };
-      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
+      sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
       searchbox = 'some-searchbox-id';
     });
 
-    it('should call sendSaytApiRequest with query from event and valid config', () => {
-      sendSaytApiRequest.resolves(results);
+    it('should call sendAutocompleteApiRequest with query from event and valid config', () => {
+      sendAutocompleteApiRequest.resolves(results);
 
       driver.fetchAutocompleteTerms(saytDataPayload);
 
-      expect(sendSaytApiRequest).to.be.calledWith(query, config);
+      expect(sendAutocompleteApiRequest).to.be.calledWith(query, config);
     });
 
     it('should dispatch the response through the events plugin', () => {
-      sendSaytApiRequest.resolves(results);
+      sendAutocompleteApiRequest.resolves(results);
 
       driver.fetchAutocompleteTerms(saytDataPayload);
 
@@ -277,7 +277,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should send an error in an event if the API request fails', () => {
       const error = new Error('test error');
-      sendSaytApiRequest.rejects(error);
+      sendAutocompleteApiRequest.rejects(error);
 
       driver.fetchAutocompleteTerms(saytDataPayload);
 
