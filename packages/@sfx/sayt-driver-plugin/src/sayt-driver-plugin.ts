@@ -69,6 +69,7 @@ export default class SaytDriverPlugin implements Plugin {
     this.sendAutocompleteApiRequest = this.sendAutocompleteApiRequest.bind(this);
     this.sendSearchApiRequest = this.sendSearchApiRequest.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
+    this.filterRecord = this.filterRecord.bind(this);
   }
 
   /**
@@ -182,13 +183,9 @@ export default class SaytDriverPlugin implements Plugin {
   searchCallback(response: Results): ProductsResponseSection {
     const { query, records } = response;
     const mappedRecords = records.map(record => {
-      const data = record.allMeta;
-      if (data.visualVariants === undefined) return;
-      const firstVariant = data.visualVariants[0];
-      if (firstVariant === undefined) return;
-      const nonvisualVariants = firstVariant.nonvisualVariants;
-      if (!nonvisualVariants || !nonvisualVariants.length) return;
-      if (!nonvisualVariants[0]) return;
+      const filter = this.filterRecord(record);
+      if (filter === undefined) return;
+      const { data, firstVariant, nonvisualVariants } = filter;
       return {
         title: data.title,
         price: nonvisualVariants[0].originalPrice,
@@ -197,11 +194,26 @@ export default class SaytDriverPlugin implements Plugin {
         productUrl: firstVariant.productImage,
         // @TODO Handle variants
       }
-    });
+    }).filter(record => record);
     return {
       query,
       products: mappedRecords,
     };
+  }
+
+  filterRecord(record) {
+    const data = record.allMeta;
+    if (data.visualVariants === undefined) return;
+    const firstVariant = data.visualVariants[0];
+    if (firstVariant === undefined) return;
+    const nonvisualVariants = firstVariant.nonvisualVariants;
+    if (!nonvisualVariants || !nonvisualVariants.length) return;
+    if (!nonvisualVariants[0]) return;
+    return {
+      data,
+      firstVariant,
+      nonvisualVariants,
+    }
   }
 
   /**

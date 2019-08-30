@@ -362,6 +362,41 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
+  describe('filterRecord', () => {
+    let record;
+    beforeEach(() => {
+      record = {
+        allMeta: {},
+      };
+    });
+
+    it('should return falsy if product has no visual variants', () => {
+      const result = driver.filterRecord(record);
+
+      expect(result).to.not.be.ok;
+    });
+
+    it('should return falsy if product has no non-visual variants', () => {
+      record.allMeta.visualVariants = [{
+        nonvisualVariants: [],
+      }];
+
+      const result = driver.filterRecord(record);
+
+      expect(result).to.not.be.ok;
+    });
+
+    it('should not throw if product has undefined non-visual variant', () => {
+      record.allMeta.visualVariants = [{
+        nonvisualVariants: [undefined],
+      }];
+
+      const result = driver.filterRecord(record);
+
+      expect(result).to.not.be.ok;
+    });
+  });
+
   describe('searchCallback', () => {
     let response;
     beforeEach(() => {
@@ -372,32 +407,6 @@ describe('Sayt Driver Plugin', () => {
           }
         ]
       };
-    });
-
-    it('should not throw if product has no visual variants', () => {
-      const func = () => driver.searchCallback(response);
-
-      expect(func).to.not.throw();
-    });
-
-    it('should not throw if product has no non-visual variants', () => {
-      response.records[0].allMeta.visualVariants = [{
-        nonvisualVariants: [],
-      }];
-
-      const func = () => driver.searchCallback(response);
-
-      expect(func).to.not.throw();
-    });
-
-    it('should not throw if product has undefined non-visual variant', () => {
-      response.records[0].allMeta.visualVariants = [{
-        nonvisualVariants: [undefined],
-      }];
-
-      const func = () => driver.searchCallback(response);
-
-      expect(func).to.not.throw();
     });
 
     it('should return a complete product object', () => {
@@ -425,6 +434,42 @@ describe('Sayt Driver Plugin', () => {
               }],
             }],
           },
+        }],
+      };
+
+      const actualProduct = driver.searchCallback(input);
+
+      expect(actualProduct).to.deep.equal(expectedResponse);
+    });
+
+    it('should filter out an incomplete product object', () => {
+      const expectedResponse = {
+        query: undefined,
+        products: [
+          {
+            title: 'some-title',
+            price: 3.99,
+            imageSrc: 'some-link',
+            imageAlt: 'some-title',
+            productUrl: 'some-link',
+          },
+        ],
+      };
+
+      const input = {
+        records: [{
+          allMeta: {
+            title: 'some-title',
+            visualVariants: [{
+              productImage: 'some-link',
+              nonvisualVariants: [{
+                originalPrice: 3.99,
+              }],
+            }],
+          },
+        },
+        {
+          allMeta: {},
         }],
       };
 
