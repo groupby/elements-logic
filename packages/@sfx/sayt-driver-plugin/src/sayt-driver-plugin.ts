@@ -4,7 +4,7 @@ import {
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
-import { Results, Request as SearchRequest } from '@sfx/search-plugin';
+import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
@@ -208,7 +208,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing relevant product data,
    * or undefined if record is invalid.
    */
-  filterRecord(record) {
+  filterRecord(record: Record): any | undefined {
     const data = record.allMeta;
     if (data.visualVariants === undefined) return;
     const firstVariant = data.visualVariants[0];
