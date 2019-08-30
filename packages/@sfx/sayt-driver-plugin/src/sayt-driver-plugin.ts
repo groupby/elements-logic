@@ -220,7 +220,7 @@ export default class SaytDriverPlugin implements Plugin {
       data,
       firstVariant,
       nonvisualVariants,
-    }
+    };
   }
 
   /**
