@@ -443,34 +443,55 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should filter out an incomplete product object', () => {
-      const expectedResponse = {
-        query: undefined,
-        products: [
-          {
-            title: 'some-title',
-            price: 3.99,
-            imageSrc: 'some-link',
-            imageAlt: 'some-title',
-            productUrl: 'some-link',
-          },
-        ],
+      const goodObject = {
+        allMeta: {
+          title: 'some-title',
+          visualVariants: [{
+            productImage: 'some-link',
+            nonvisualVariants: [{
+              originalPrice: 3.99,
+            }],
+          }],
+        },
+      };
+
+      const badObject1 = {
+        allMeta: {}
+      };
+
+      const badObject2 = {
+        allMeta: {
+          title: 'some-title',
+          visualVariants: [],
+        }
+      };
+
+      const expectedGoodObject = {
+        title: 'some-title',
+        price: 3.99,
+        imageSrc: 'some-link',
+        imageAlt: 'some-title',
+        productUrl: 'some-link',
       };
 
       const input = {
-        records: [{
-          allMeta: {
-            title: 'some-title',
-            visualVariants: [{
-              productImage: 'some-link',
-              nonvisualVariants: [{
-                originalPrice: 3.99,
-              }],
-            }],
-          },
-        },
-        {
-          allMeta: {},
-        }],
+        records: [
+          goodObject,
+          goodObject,
+          badObject1,
+          badObject2,
+          badObject2,
+          goodObject,
+        ],
+      };
+
+      const expectedResponse = {
+        query: undefined,
+        products: [
+          expectedGoodObject,
+          expectedGoodObject,
+          expectedGoodObject,
+        ],
       };
 
       const actualProduct = driver.searchCallback(input);
