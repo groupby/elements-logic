@@ -175,10 +175,10 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Extracts products from the given response.
+   * Extracts query and products from the given response.
    *
    * @param response An object containing the original query and product records.
-   * @returns An object containing the query and products.
+   * @returns An object containing the query and an array of valid simplified products.
    */
   searchCallback(response: Results): ProductsResponseSection {
     const { query, records } = response;
@@ -201,6 +201,13 @@ export default class SaytDriverPlugin implements Plugin {
     };
   }
 
+  /**
+   * Parses a given product record for valid data.
+   *
+   * @param record An object containing the product record data.
+   * @returns An object containing relevant product data,
+   * or undefined if record is invalid.
+   */
   filterRecord(record) {
     const data = record.allMeta;
     if (data.visualVariants === undefined) return;
