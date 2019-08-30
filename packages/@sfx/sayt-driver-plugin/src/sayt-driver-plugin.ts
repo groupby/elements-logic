@@ -69,7 +69,7 @@ export default class SaytDriverPlugin implements Plugin {
     this.sendAutocompleteApiRequest = this.sendAutocompleteApiRequest.bind(this);
     this.sendSearchApiRequest = this.sendSearchApiRequest.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
-    this.filterRecord = this.filterRecord.bind(this);
+    this.parseRecord = this.parseRecord.bind(this);
   }
 
   /**
@@ -183,7 +183,7 @@ export default class SaytDriverPlugin implements Plugin {
   searchCallback(response: Results): ProductsResponseSection {
     const { query, records } = response;
     const mappedRecords = records.map(record => {
-      const filter = this.filterRecord(record);
+      const filter = this.parseRecord(record);
       if (filter === undefined) return;
       const { data, firstVariant, nonvisualVariants } = filter;
       return {
@@ -208,7 +208,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing relevant product data,
    * or undefined if record is invalid.
    */
-  filterRecord(record: Record): any | undefined {
+  parseRecord(record: Record): any | undefined {
     const data = record.allMeta;
     if (data.visualVariants === undefined) return;
     const firstVariant = data.visualVariants[0];

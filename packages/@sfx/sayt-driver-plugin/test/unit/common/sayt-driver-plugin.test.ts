@@ -362,7 +362,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('filterRecord', () => {
+  describe('parseRecord', () => {
     let record;
     beforeEach(() => {
       record = {
@@ -371,7 +371,7 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should return falsy if product has no visual variants', () => {
-      const result = driver.filterRecord(record);
+      const result = driver.parseRecord(record);
 
       expect(result).to.not.be.ok;
     });
@@ -381,7 +381,7 @@ describe('Sayt Driver Plugin', () => {
         nonvisualVariants: [],
       }];
 
-      const result = driver.filterRecord(record);
+      const result = driver.parseRecord(record);
 
       expect(result).to.not.be.ok;
     });
@@ -391,7 +391,7 @@ describe('Sayt Driver Plugin', () => {
         nonvisualVariants: [undefined],
       }];
 
-      const result = driver.filterRecord(record);
+      const result = driver.parseRecord(record);
 
       expect(result).to.not.be.ok;
     });
