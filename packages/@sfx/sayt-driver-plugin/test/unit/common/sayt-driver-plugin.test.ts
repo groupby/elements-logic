@@ -498,19 +498,5 @@ describe('Sayt Driver Plugin', () => {
 
       expect(actualProduct).to.deep.equal(expectedResponse);
     });
-
-    it.skip('should return an object containing the query and products', () => {
-      const response = {
-        query: 'some-query',
-        records: ['first-product', 'second-product'],
-      };
-
-      const result = driver.searchCallback(response);
-
-      expect(result).to.deep.equal({
-        query: response.query,
-        products: response.records,
-      });
-    });
   });
 });
