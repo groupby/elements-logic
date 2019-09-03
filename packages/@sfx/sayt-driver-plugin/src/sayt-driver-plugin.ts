@@ -208,7 +208,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing relevant product data,
    * or undefined if record is invalid.
    */
-  parseRecord(record: Record): any | undefined {
+  parseRecord(record: Record): any {
     const data = record.allMeta;
     if (data.visualVariants === undefined) return;
     const firstVariant = data.visualVariants[0];
