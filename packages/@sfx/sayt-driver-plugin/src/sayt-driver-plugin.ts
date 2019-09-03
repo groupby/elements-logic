@@ -154,8 +154,8 @@ export default class SaytDriverPlugin implements Plugin {
    * with the passed callback.
    */
   sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<ProductsResponseSection> {
-    const allConfig = { ...this.defaultSearchConfig, ...config };
-    return this.core.search.search({ query, ...allConfig }).then(this.searchCallback);
+    return this.core.search.search({ ...this.defaultSearchConfig, query, ...config })
+      .then(this.searchCallback);
   }
 
   /**
