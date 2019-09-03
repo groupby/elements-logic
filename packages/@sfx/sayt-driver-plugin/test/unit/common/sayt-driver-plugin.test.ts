@@ -370,30 +370,41 @@ describe('Sayt Driver Plugin', () => {
       };
     });
 
-    it('should return falsy if product has no visual variants', () => {
-      const result = driver.parseRecord(record);
+    it('should throw if product has no visual variants', () => {
+      const callback = () => driver.parseRecord(record);
 
-      expect(result).to.not.be.ok;
+      expect(callback).to.throw();
     });
 
-    it('should return falsy if product has no non-visual variants', () => {
+    it('should throw if product has no non-visual variants', () => {
       record.allMeta.visualVariants = [{
         nonvisualVariants: [],
       }];
+      const callback = () => driver.parseRecord(record);
 
-      const result = driver.parseRecord(record);
-
-      expect(result).to.not.be.ok;
+      expect(callback).to.throw();
     });
 
-    it('should not throw if product has undefined non-visual variant', () => {
+    it('should throw if product has undefined non-visual variant', () => {
       record.allMeta.visualVariants = [{
         nonvisualVariants: [undefined],
       }];
+      const callback = () => driver.parseRecord(record);
+
+      expect(callback).to.throw();
+    });
+
+    it('should return data segments if product has valid data', () => {
+      const nonvisualVariants = [{}, {}];
+      const firstVariant = { nonvisualVariants };
+      const data = {
+        visualVariants: [ firstVariant ],
+      };
+      record = { allMeta: data };
 
       const result = driver.parseRecord(record);
 
-      expect(result).to.not.be.ok;
+      expect(result).to.deep.equal({ data, firstVariant, nonvisualVariants });
     });
   });
 

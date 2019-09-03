@@ -181,11 +181,16 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing the query and an array of valid simplified products.
    */
   searchCallback(response: Results): ProductsResponseSection {
+    let filter;
     const { query, records } = response;
     const mappedRecords = records.map(record => {
-      const filter = this.parseRecord(record);
-      if (filter === undefined) return;
+      try {
+        filter = this.parseRecord(record);
+      } catch(error) {
+        return;
+      }
       const { data, firstVariant, nonvisualVariants } = filter;
+
       return {
         title: data.title,
         price: nonvisualVariants[0].originalPrice,
@@ -202,20 +207,17 @@ export default class SaytDriverPlugin implements Plugin {
   }
 
   /**
-   * Parses a given product record for valid data.
+   * Parses a given product record for valid data. Throws an error if data is invalid.
    *
    * @param record An object containing the product record data.
-   * @returns An object containing relevant product data,
-   * or undefined if record is invalid.
+   * @returns An object containing relevant product data.
    */
   parseRecord(record: Record): any {
     const data = record.allMeta;
-    if (data.visualVariants === undefined) return;
     const firstVariant = data.visualVariants[0];
-    if (firstVariant === undefined) return;
     const nonvisualVariants = firstVariant.nonvisualVariants;
-    if (!nonvisualVariants || !nonvisualVariants.length) return;
-    if (!nonvisualVariants[0]) return;
+    if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
+
     return {
       data,
       firstVariant,
