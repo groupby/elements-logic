@@ -199,7 +199,7 @@ export default class SaytDriverPlugin implements Plugin {
         productUrl: firstVariant.productImage,
         // @TODO Handle variants
       }
-    }).filter(record => record);
+    }).filter(Boolean);
     return {
       query,
       products: mappedRecords,
