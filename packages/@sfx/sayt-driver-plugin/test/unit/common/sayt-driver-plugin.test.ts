@@ -364,6 +364,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('parseRecord', () => {
     let record;
+
     beforeEach(() => {
       record = {
         allMeta: {},
@@ -410,6 +411,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('searchCallback', () => {
     let response;
+
     beforeEach(() => {
       response = {
         records: [
