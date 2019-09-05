@@ -70,7 +70,7 @@ describe('Sayt Driver Plugin', () => {
   describe('ready()', () => {
     let registerListener;
 
-    it('should register event listeners for receiving requests sayt and product data', () => {
+    it('should register event listeners for sayt and product data requests', () => {
       registerListener = dom_events.registerListener = spy();
       driver.core = {
         dom_events,
