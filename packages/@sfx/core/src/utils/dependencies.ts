@@ -20,7 +20,9 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
 }
 
 export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyGraph {
-  return Object.create(null);
+  return graphs.reduce((merged, graph) => {
+    return Object.assign(merged, graph);
+  }, Object.create(null));
 }
 
 /**

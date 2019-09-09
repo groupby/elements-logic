@@ -77,5 +77,30 @@ describe('DependencyUtils', () => {
 
       expect(Object.getPrototypeOf(dependencies)).to.be.null;
     });
+
+    it('should merge disjunct graphs', () => {
+      const first = {
+        a: ['b'],
+        b: [],
+        c: ['c'],
+      };
+      const second = {
+        d: ['e', 'f'],
+        e: [],
+        f: [],
+      };
+      const third = {};
+
+      const merged = mergeDependencyGraphs(first, second, third);
+
+      expect(merged).to.deep.equal({
+        a: ['b'],
+        b: [],
+        c: ['c'],
+        d: ['e', 'f'],
+        e: [],
+        f: [],
+      });
+    });
   });
 });
