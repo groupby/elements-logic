@@ -6,7 +6,7 @@ import { Plugin } from '../plugin';
  * @param plugins The plugins from which to build the graph.
  * @returns The completed dependency graph.
  */
-export function createDependencyGraph(plugins: Plugin[]): DependencyGraph {
+export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
   return plugins.reduce((dependencyGraph, { metadata: { name, depends } }) => {
     if (!dependencyGraph[name]) dependencyGraph[name] = [];
 

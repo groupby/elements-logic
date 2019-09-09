@@ -6,7 +6,7 @@ import {
 describe('DependencyUtils', () => {
   describe('createDependencyGraph()', () => {
     it('should return an object without inherited properties', () => {
-      const dependencies = createDependencyGraph([]);
+      const dependencies = createDependencyGraph();
 
       expect(Object.getPrototypeOf(dependencies)).to.be.null;
     });
