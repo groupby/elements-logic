@@ -19,7 +19,7 @@ describe('DependencyUtils', () => {
       expect(dependencies).to.deep.equal({});
     });
 
-    it('should create an empty object when given plugins with no dependencies', () => {
+    it('should include names of the plugins passed in as terminal nodes', () => {
       const plugins: any = [
         { metadata: { name: 'a', depends: [] } },
         { metadata: { name: 'b', depends: [] } },
@@ -28,10 +28,14 @@ describe('DependencyUtils', () => {
 
       const dependencies = createDependencyGraph(plugins);
 
-      expect(dependencies).to.deep.equal({});
+      expect(dependencies).to.deep.equal({
+        a: [],
+        b: [],
+        c: [],
+      });
     });
 
-    it('should create an object with a mapping from a dependency to the names of the plugins that depend on it', () => {
+    it('should include the names of the dependencies as non-terminal nodes', () => {
       const plugins: any = [
         { metadata: { name: 'a', depends: ['a_dep'] } },
         { metadata: { name: 'b', depends: ['b_dep', 'a_dep'] } },
@@ -41,6 +45,9 @@ describe('DependencyUtils', () => {
       const dependencies = createDependencyGraph(plugins);
 
       expect(dependencies).to.deep.equal({
+        a: [],
+        b: [],
+        c: [],
         a_dep: ['a', 'b'],
         b_dep: ['b'],
       });

@@ -2,6 +2,8 @@ import { Plugin } from '../plugin';
 
 export function createDependencyGraph(plugins: Plugin[]): DependencyGraph {
   return plugins.reduce((dependencyGraph, { metadata: { name, depends } }) => {
+    if (!dependencyGraph[name]) dependencyGraph[name] = [];
+
     depends.forEach((dependency) => {
       if (!dependencyGraph[dependency]) dependencyGraph[dependency] = [];
       dependencyGraph[dependency].push(name);
