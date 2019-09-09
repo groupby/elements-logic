@@ -21,7 +21,11 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
 
 export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyGraph {
   return graphs.reduce((merged, graph) => {
-    return Object.assign(merged, graph);
+    Object.keys(graph).forEach((key) => {
+      if (!merged[key]) merged[key] = [];
+      merged[key].push(...graph[key]);
+    });
+    return merged;
   }, Object.create(null));
 }
 

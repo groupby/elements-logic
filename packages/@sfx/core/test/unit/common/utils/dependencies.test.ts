@@ -102,5 +102,36 @@ describe('DependencyUtils', () => {
         f: [],
       });
     });
+
+    it('should merge the values of non-disjunct graphs', () => {
+      const first = {
+        a: ['b'],
+        b: [],
+        c: ['c'],
+      };
+      const second = {
+        a: ['d'],
+        d: ['e', 'f'],
+        e: [],
+      };
+      const third = {};
+      const fourth = {
+        a: ['f'],
+        b: [],
+        d: [],
+        f: [],
+      };
+
+      const merged = mergeDependencyGraphs(first, second, third, fourth);
+
+      expect(merged).to.deep.equal({
+        a: ['b', 'd', 'f'],
+        b: [],
+        c: ['c'],
+        d: ['e', 'f'],
+        e: [],
+        f: [],
+      });
+    });
   });
 });
