@@ -1,5 +1,11 @@
 import { Plugin } from '../plugin';
 
+/**
+ * Builds a dependency graph from the given plugins.
+ *
+ * @param plugins The plugins from which to build the graph.
+ * @returns The completed dependency graph.
+ */
 export function createDependencyGraph(plugins: Plugin[]): DependencyGraph {
   return plugins.reduce((dependencyGraph, { metadata: { name, depends } }) => {
     if (!dependencyGraph[name]) dependencyGraph[name] = [];
@@ -14,9 +20,16 @@ export function createDependencyGraph(plugins: Plugin[]): DependencyGraph {
 }
 
 /**
- * The type of the plugin dependency graph. The graph is a mapping from a
- * plugin name to all the names of the plugins that depend on it.
+ * The type of the plugin dependency graph. The dependency graph is a
+ * directed graph whose vertices are plugins and whose edges are
+ * "depended-on" relations. For example, an edge going from plugin A to
+ * plugin B means that A is depended on by B (that is, B depends on A).
+ *
+ * The graph is represented as an adjacency list, which itself is
+ * represented as an object whose keys are plugin names and whose values
+ * are lists of the names of dependent plugins.
  */
 export interface DependencyGraph {
+  /** The names of each plugin's dependents. */
   [name: string]: string[];
 }
