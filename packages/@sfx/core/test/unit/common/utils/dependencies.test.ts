@@ -52,5 +52,21 @@ describe('DependencyUtils', () => {
         b_dep: ['b'],
       });
     });
+
+    it('should support circular dependencies', () => {
+      const plugins: any = [
+        { metadata: { name: 'a', depends: ['b'] } },
+        { metadata: { name: 'b', depends: ['a'] } },
+        { metadata: { name: 'c', depends: ['c'] } },
+      ];
+
+      const dependencies = createDependencyGraph(plugins);
+
+      expect(dependencies).to.deep.equal({
+        a: ['b'],
+        b: ['a'],
+        c: ['c'],
+      });
+    });
   });
 });
