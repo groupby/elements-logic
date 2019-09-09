@@ -1,7 +1,14 @@
 import { Plugin } from '../plugin';
 
 export function createDependencyGraph(plugins: Plugin[]): DependencyGraph {
-  return Object.create(null);
+  return plugins.reduce((dependencyGraph, { metadata: { name, depends } }) => {
+    depends.forEach((dependency) => {
+      if (!dependencyGraph[dependency]) dependencyGraph[dependency] = [];
+      dependencyGraph[dependency].push(name);
+    });
+
+    return dependencyGraph;
+  }, Object.create(null));
 }
 
 /**

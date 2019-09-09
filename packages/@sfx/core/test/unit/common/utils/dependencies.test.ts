@@ -30,5 +30,20 @@ describe('DependencyUtils', () => {
 
       expect(dependencies).to.deep.equal({});
     });
+
+    it('should create an object with a mapping from a dependency to the names of the plugins that depend on it', () => {
+      const plugins: any = [
+        { metadata: { name: 'a', depends: ['a_dep'] } },
+        { metadata: { name: 'b', depends: ['b_dep', 'a_dep'] } },
+        { metadata: { name: 'c', depends: [] } },
+      ];
+
+      const dependencies = createDependencyGraph(plugins);
+
+      expect(dependencies).to.deep.equal({
+        a_dep: ['a', 'b'],
+        b_dep: ['b'],
+      });
+    });
   });
 });
