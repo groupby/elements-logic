@@ -5,13 +5,18 @@ import {
 
 describe('DependencyUtils', () => {
   describe('createDependencyGraph()', () => {
-    it('should return an empty dictionary object given an empty array', () => {
+    it('should return an object without inherited properties', () => {
+      const dependencies = createDependencyGraph([]);
+
+      expect(Object.getPrototypeOf(dependencies)).to.be.null;
+    });
+
+    it('should return an empty object given an empty array', () => {
       const plugins = [];
 
       const dependencies = createDependencyGraph(plugins);
 
       expect(dependencies).to.deep.equal({});
-      expect(Object.getPrototypeOf(dependencies)).to.be.null;
     });
 
     it('should create an empty object when given plugins with no dependencies', () => {
