@@ -19,6 +19,10 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
   }, Object.create(null));
 }
 
+export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyGraph {
+  return Object.create(null);
+}
+
 /**
  * The type of the plugin dependency graph. The dependency graph is a
  * directed graph whose vertices are plugins and whose edges are

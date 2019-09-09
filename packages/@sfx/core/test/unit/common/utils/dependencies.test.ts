@@ -1,6 +1,7 @@
 import { expect, spy } from '../../../utils';
 import {
   createDependencyGraph,
+  mergeDependencyGraphs,
 } from '../../../../src/utils/dependencies';
 
 describe('DependencyUtils', () => {
@@ -67,6 +68,14 @@ describe('DependencyUtils', () => {
         b: ['a'],
         c: ['c'],
       });
+    });
+  });
+
+  describe('mergeDependencyGraphs()', () => {
+    it('should return an object without inherited properties', () => {
+      const dependencies = mergeDependencyGraphs();
+
+      expect(Object.getPrototypeOf(dependencies)).to.be.null;
     });
   });
 });
