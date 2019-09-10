@@ -12,11 +12,9 @@ import { Plugin, PluginDirectory, PluginRegistry } from '../plugin';
 export function calculateMissingDependencies(plugins: Plugin[], registry: PluginRegistry): string[] {
   const available = [
     ...Object.keys(registry),
-    ...plugins.map(({ metadata: { name }}) => name),
+    ...plugins.map(({ metadata: { name } }) => name),
   ];
-  const required = plugins.reduce((memo, plugin) => {
-    return [...memo, ...plugin.metadata.depends];
-  }, []);
+  const required = plugins.reduce((memo, plugin) => [...memo, ...plugin.metadata.depends], []);
   const availableSet = new Set(available);
   const requiredSet = new Set(required);
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));

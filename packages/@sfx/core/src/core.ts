@@ -72,7 +72,7 @@ export default class Core {
   register(plugins: Plugin[]) {
     const missingDependencies = calculateMissingDependencies(plugins, this.registry);
     if (missingDependencies.length) {
-      throw new Error('Missing dependencies: ' + missingDependencies.join(', '));
+      throw new Error(`Missing dependencies: ${missingDependencies.join(', ')}`);
     }
 
     registerPlugins(plugins, this.registry, this.directory);
