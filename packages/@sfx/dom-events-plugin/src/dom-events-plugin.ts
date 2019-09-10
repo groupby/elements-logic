@@ -18,10 +18,12 @@ export default class DomEventsPlugin implements Plugin {
    * plugin registration lifecycle event.
    */
   core: PluginRegistry;
+
   /**
    * Value that the DOM Events Plugin exposes to the Core entity.
    */
   exposedValue: DomEventsPluginExposedValue;
+
   /**
    * Configuration values used to set up the plugin during construction.
    */
@@ -29,11 +31,13 @@ export default class DomEventsPlugin implements Plugin {
     window: typeof window !== 'undefined' ? window : undefined,
     CustomEvent: typeof CustomEvent !== 'undefined' ? CustomEvent : undefined,
   };
+
   /**
    * Holds a reference to the `window` object, which will be used to invoke
    * various window methods.
    */
   window: Window;
+
   /**
    * Holds a reference to the `CustomEvent` constructor, which will be
    * used to dispatch custom events.
@@ -51,7 +55,7 @@ export default class DomEventsPlugin implements Plugin {
    * plugin.
    */
   constructor(options: Partial<DomEventsPluginOptions> = {}) {
-    this.options = {...this.options, ...options};
+    this.options = { ...this.options, ...options };
     this.window = this.options.window;
     this.CustomEvent = this.options.CustomEvent;
 
@@ -119,11 +123,11 @@ export interface DomEventsPluginOptions {
    * Will be used to invoke event-related methods to add/remove listeners
    * and dispatch events.
    */
-  window: Window,
+  window: Window;
   /**
    * Will be used to create custom event objects.
    */
-  CustomEvent: typeof CustomEvent,
+  CustomEvent: typeof CustomEvent;
 }
 
 /**
@@ -138,7 +142,7 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to be registered/listened for.
    * @param callback Callback to be registered with the listener.
    */
-  registerListener: (eventName: string, callback: EventListener) => void,
+  registerListener: (eventName: string, callback: EventListener) => void;
   /**
    * Unregisters an event listener for the given event as well as
    * its corresponding callback function.
@@ -146,12 +150,12 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to unregister.
    * @param callback Callback to be unregistered along with the event.
    */
-  unregisterListener: (eventName: string, callback: EventListener) => void,
+  unregisterListener: (eventName: string, callback: EventListener) => void;
   /**
    * Dispatches an event with the provided name and payload.
    *
    * @param eventName Name of the event to be dispatched.
    * @param payload Data to accompany the dispatched event.
    */
-  dispatchEvent: (eventName: string, payload?: any) => void,
+  dispatchEvent: (eventName: string, payload?: any) => void;
 }
