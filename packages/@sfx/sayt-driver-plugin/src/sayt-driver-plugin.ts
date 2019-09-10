@@ -231,8 +231,6 @@ export default class SaytDriverPlugin implements Plugin {
    */
   constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
-      .map((term) => {
-        return { label: term.value };
-    });
+      .map((term) => ({ label: term.value }));
   }
 }
