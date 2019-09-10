@@ -29,7 +29,7 @@ export default class SearchDriverPlugin implements Plugin {
   /**
    * Name of the events plugin.
    */
-  eventsPluginName: string = 'dom_events';
+  eventsPluginName = 'dom_events';
 
   /**
    * Default configuration for all searches.
