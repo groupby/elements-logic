@@ -73,9 +73,9 @@ describe('DependencyUtils', () => {
 
   describe('mergeDependencyGraphs()', () => {
     it('should return an object without inherited properties', () => {
-      const dependencies = mergeDependencyGraphs();
+      const merged = mergeDependencyGraphs();
 
-      expect(Object.getPrototypeOf(dependencies)).to.be.null;
+      expect(Object.getPrototypeOf(merged)).to.be.null;
     });
 
     it('should merge disjunct graphs', () => {
