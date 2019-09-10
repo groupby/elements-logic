@@ -32,7 +32,11 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: Plugin
  * @returns An object containing the keys and values of the new items
  * added to the registry.
  */
-export function registerPlugins(plugins: Plugin[], registry: PluginRegistry, directory: PluginDirectory): PluginRegistry {
+export function registerPlugins(
+  plugins: Plugin[], 
+  registry: PluginRegistry, 
+  directory: PluginDirectory
+): PluginRegistry {
   const newlyRegistered = Object.create(null);
   const newPlugins = Object.create(null);
 
