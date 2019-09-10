@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "bundle": "webpack",
-    "docs": "typedoc --options ./typedoc.js packages"
+    "docs": "typedoc --options ./typedoc.js packages",
+    "lint:scripts": "yarn run eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "yarn run eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn"
   },
   "repository": {
     "type": "git",
@@ -35,6 +37,7 @@
     "eslint": "^6.3.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-only-warn": "^1.0.1",
     "expose-loader": "^0.7.5",
     "karma": "^4.1.0",
     "karma-chai": "^0.1.0",
