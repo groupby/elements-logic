@@ -9,6 +9,7 @@ import {
 import {
   DependencyGraph,
   createDependencyGraph,
+  mergeDependencyGraphs,
 } from './utils/dependencies';
 
 /**
@@ -74,6 +75,7 @@ export default class Core {
     }
 
     registerPlugins(plugins, this.registry, this.directory);
+    this.dependencyGraph = mergeDependencyGraphs(this.dependencyGraph, createDependencyGraph(plugins));
 
     initPlugins(plugins);
     readyPlugins(plugins);

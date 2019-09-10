@@ -1,6 +1,7 @@
 import { expect, sinon, stub } from '../../utils';
 import Core from '../../../src/core';
 import * as CoreUtils from '../../../src/utils/core';
+import * as DependencyUtils from '../../../src/utils/dependencies';
 
 describe('Core', () => {
   let core: Core;
@@ -92,6 +93,29 @@ describe('Core', () => {
         initPlugins,
         readyPlugins
       );
+    });
+
+    it('should update the dependency graph', () => {
+      const plugins: any = [
+        {
+          metadata: {
+            name: 'b',
+            depends: [],
+          },
+        },
+      ];
+      const dependencies = core.dependencyGraph = { a: [] };
+      const newDependencies = { b: [] };
+      const mergedDependencies = { a: [], b: [] };
+      const createDependencyGraph = stub(DependencyUtils, 'createDependencyGraph').returns(newDependencies);
+      const mergeDependencyGraphs = stub(DependencyUtils, 'mergeDependencyGraphs').returns(mergedDependencies);
+      calculateMissingDependencies.returns([]);
+
+      core.register(plugins);
+
+      expect(createDependencyGraph).to.be.calledWith(plugins);
+      expect(mergeDependencyGraphs).to.be.calledWith(dependencies, newDependencies);
+      expect(core.dependencyGraph).to.deep.equal(mergedDependencies);
     });
   });
 
