@@ -82,12 +82,13 @@ export default class Core {
   }
 
   /**
-   * Unregisters all plugins. The plugin registry and directory are both
-   * cleared. The optional `unregister` function of each plugin is
-   * called when the plugin is unregistered. The order in which the
-   * plugins are unregistered is unspecified.
+   * Unregisters all plugins. The plugin registry, directory and
+   * dependency graph are all cleared. The optional `unregister`
+   * function of each plugin is called when the plugin is unregistered.
+   * The order in which the plugins are unregistered is unspecified.
    */
   unregisterAll() {
     unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);
+    this.dependencyGraph = createDependencyGraph();
   }
 }

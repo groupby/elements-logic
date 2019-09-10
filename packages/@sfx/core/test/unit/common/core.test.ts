@@ -142,5 +142,14 @@ describe('Core', () => {
         sinon.match.same(directory)
       );
     });
+
+    it('should clear dependency graph', () => {
+      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+      core.dependencyGraph = { a: ['a'] };
+
+      core.unregisterAll();
+
+      expect(core.dependencyGraph).to.be.empty;
+    });
   });
 });
