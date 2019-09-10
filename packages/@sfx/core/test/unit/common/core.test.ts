@@ -19,6 +19,11 @@ describe('Core', () => {
       expect(core.directory).to.be.empty;
       expect(Object.getPrototypeOf(core.directory)).to.be.null;
     });
+
+    it('should create an empty null-prototype plugin dependency graph object', () => {
+      expect(core.dependencyGraph).to.be.empty;
+      expect(Object.getPrototypeOf(core.dependencyGraph)).to.be.null;
+    });
   });
 
   describe('register()', () => {

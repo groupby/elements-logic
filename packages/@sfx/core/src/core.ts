@@ -6,6 +6,10 @@ import {
   registerPlugins,
   unregisterPlugins,
 } from './utils/core';
+import {
+  DependencyGraph,
+  createDependencyGraph,
+} from './utils/dependencies';
 
 /**
  * The core of the SF-X plugin system. This entity is responsible for
@@ -30,6 +34,13 @@ export default class Core {
    * Plugins do not have access to this directory.
    */
   directory: PluginDirectory = Object.create(null);
+
+  /**
+   * An object with plugin names mapped to the names of the plugins that
+   * depend on it. This dependency graph is represented as an adjacency
+   * list.
+   */
+  dependencyGraph: DependencyGraph = createDependencyGraph();
 
   /**
    * Register one or more plugins with Core.
