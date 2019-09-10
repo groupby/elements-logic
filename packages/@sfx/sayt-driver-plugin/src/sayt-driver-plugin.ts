@@ -59,7 +59,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Provide default configuration for SAYT product searches.
    */
-  defaultSearchConfig: object = {
+  defaultSearchConfig: Partial<SearchRequest> = {
     fields: ['*'],
   }
 
