@@ -19,6 +19,14 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
   }, Object.create(null));
 }
 
+/**
+ * Deeply merges the given dependency graphs without modifying the
+ * original graphs. When a property exists in more than one graph, the
+ * corresponding arrays are concatenated.
+ *
+ * @param graphs The dependency graphs to merge.
+ * @returns The merged dependency graph.
+ */
 export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyGraph {
   return graphs.reduce((merged, graph) => {
     Object.keys(graph).forEach((key) => {
