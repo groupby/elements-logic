@@ -78,6 +78,22 @@ describe('DependencyUtils', () => {
       expect(Object.getPrototypeOf(merged)).to.be.null;
     });
 
+    it('should "merge" one graph', () => {
+      const first = {
+        a: ['b'],
+        b: [],
+        c: ['c'],
+      };
+
+      const merged = mergeDependencyGraphs(first);
+
+      expect(merged).to.deep.equal({
+        a: ['b'],
+        b: [],
+        c: ['c'],
+      });
+    });
+
     it('should merge disjunct graphs', () => {
       const first = {
         a: ['b'],
