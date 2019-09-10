@@ -5,7 +5,7 @@ import { Sayt, SaytConfig } from 'sayt';
  * This plugin is responsible for exposing an instance of sayt
  * to Core.
  */
- export default class SaytPlugin implements Plugin {
+export default class SaytPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'sayt',
