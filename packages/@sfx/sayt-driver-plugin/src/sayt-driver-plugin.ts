@@ -176,10 +176,9 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and an array of valid simplified products.
    */
-  searchCallback(response: Results): ProductsResponseSection {
-    let filter;
-    const { query, records } = response;
+  searchCallback({ query, records }: Results): ProductsResponseSection {
     const mappedRecords = records.map(record => {
+      let filter;
       try {
         filter = this.parseRecord(record);
       } catch(error) {
@@ -196,6 +195,7 @@ export default class SaytDriverPlugin implements Plugin {
         // @TODO Handle variants
       }
     }).filter(Boolean);
+
     return {
       query,
       products: mappedRecords,
