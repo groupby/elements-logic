@@ -87,7 +87,7 @@ jobs:
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
-    <<: *image_default
+    <<: *image_lint
     steps:
       - checkout
       - attach_workspace:
@@ -157,7 +157,7 @@ jobs:
   ### unit_test: unit_test_{package}
   ### Runs the Node unit tests for {package}.
   unit_test:
-    <<: *image_default
+    <<: *image_lint
     steps:
       - checkout
       - attach_workspace:
@@ -208,7 +208,7 @@ jobs:
   ### docs
   ### Generates docs for all packages, then commits and pushes to the main release branch.
   docs:
-    <<: *image_default
+    <<: *image_lint
     steps:
       - checkout
       - attach_workspace:
