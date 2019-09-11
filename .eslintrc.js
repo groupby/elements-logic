@@ -1,33 +1,33 @@
-{
-    "env": {
-        "browser": true,
-        "es6": true,
-        "node": true
+module.exports = {
+    env: {
+        browser: true,
+        es6: true,
+        node: true
     },
-    "extends": [
+    extends: [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "airbnb-base"
     ],
-    "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly"
+    globals: {
+        Atomics: "readonly",
+        SharedArrayBuffer: "readonly"
     },
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": 2018,
-        "sourceType": "module",
-        "project": [
+    parser: "@typescript-eslint/parser",
+    parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: "module",
+        project: [
             "./tsconfig.json",
             "./packages/**/tsconfig.json"
           ]
         },
-    "plugins": [
+    plugins: [
         "@typescript-eslint"
     ],
-    "settings": {
+    settings: {
         "import/extensions": [".js",".jsx",".ts",".tsx"],
         "import/parsers": {
           "@typescript-eslint/parser": [".ts",".tsx"]
@@ -38,7 +38,7 @@
              }
          }
     },
-    "rules": {
+    rules: {
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": "error",
         "no-useless-constructor": "off",
@@ -47,6 +47,13 @@
         "space-before-function-paren": "off",
         "no-param-reassign": ["error", { "props": true }],
         "no-plusplus": "off",
-        "no-nested-ternary": "off"
+        "no-nested-ternary": "off",
+        "comma-dangle": ["error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+    }]
     }
 }

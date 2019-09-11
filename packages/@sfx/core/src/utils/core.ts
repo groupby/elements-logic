@@ -33,8 +33,8 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: Plugin
  * added to the registry.
  */
 export function registerPlugins(
-  plugins: Plugin[], 
-  registry: PluginRegistry, 
+  plugins: Plugin[],
+  registry: PluginRegistry,
   directory: PluginDirectory
 ): PluginRegistry {
   const newlyRegistered = Object.create(null);

@@ -80,7 +80,7 @@ jobs:
       - restore_cache: *build_final_cache_partial
       - run: *extract_build_archive
       - run: *yarn_install
-      - run: yarn run lint:scripts:circleci
+      - run: yarn run lint:scripts:ci
 
   ## Build jobs
 
