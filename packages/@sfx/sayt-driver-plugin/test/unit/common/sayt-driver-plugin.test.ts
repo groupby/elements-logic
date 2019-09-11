@@ -232,7 +232,7 @@ describe('Sayt Driver Plugin', () => {
       );
     });
 
-    it('should return the result of the Sayt API callback', () => {
+    it('should resolve to the result of the Sayt API callback', () => {
       const callbackReturn = ['a', 'b'];
       autocompleteCallback.returns(callbackReturn);
 
@@ -286,7 +286,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('fetchProductData', () => {
+  describe('fetchProductData()', () => {
     let dispatchEvent;
     let results;
     let searchbox;
@@ -330,7 +330,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('sendSearchApiRequest', () => {
+  describe('sendSearchApiRequest()', () => {
     let searchStub;
     let searchCallback;
 
@@ -362,7 +362,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('parseRecord', () => {
+  describe('parseRecord()', () => {
     let record;
 
     beforeEach(() => {
@@ -409,7 +409,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('searchCallback', () => {
+  describe('searchCallback()', () => {
     let response;
 
     beforeEach(() => {
@@ -435,7 +435,6 @@ describe('Sayt Driver Plugin', () => {
           },
         ],
       };
-
       const input = {
         records: [{
           allMeta: {
