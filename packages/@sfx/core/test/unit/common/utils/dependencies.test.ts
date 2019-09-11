@@ -2,6 +2,7 @@ import { expect, spy } from '../../../utils';
 import {
   createDependencyGraph,
   mergeDependencyGraphs,
+  removeFromDependencyGraph,
 } from '../../../../src/utils/dependencies';
 
 describe('DependencyUtils', () => {
@@ -147,6 +148,24 @@ describe('DependencyUtils', () => {
         d: ['e', 'f'],
         e: [],
         f: [],
+      });
+    });
+  });
+
+  describe('removeFromDependencyGraph()', () => {
+    it('should remove nothing given no plugin names', () => {
+      const graph = {
+        a: [],
+        b: ['a', 'c'],
+        c: [],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, []);
+
+      expect(newGraph).to.deep.equal({
+        a: [],
+        b: ['a', 'c'],
+        c: [],
       });
     });
   });

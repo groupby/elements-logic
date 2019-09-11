@@ -37,6 +37,10 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
   }, Object.create(null));
 }
 
+export function removeFromDependencyGraph(graph: DependencyGraph, names: string[]): DependencyGraph {
+  return graph;
+}
+
 /**
  * The type of the plugin dependency graph. The dependency graph is a
  * directed graph whose vertices are plugins and whose edges are
