@@ -247,7 +247,7 @@ export interface RequestConfig<T> {
 export interface AutocompleteRequestConfig extends RequestConfig<QueryTimeAutocompleteConfig> {}
 
 /**
- * The type of the sayt autocomplete request event payload.
+ * The type of the sayt products request event payload.
  */
 export interface SearchRequestConfig extends RequestConfig<SearchRequest> {}
 
@@ -267,6 +267,9 @@ export interface SearchTermItem {
   label: string;
 }
 
+/**
+ * Data section of the event payload for a products response.
+ */
 export interface ProductsResponseSection {
   query: string;
   products: any[];
