@@ -8,6 +8,9 @@ defaults:
   image_minimal: &image_minimal
     docker:
       - image: alpine
+  image_lint: &image_lint
+    docker:
+      - image: circleci/node:12.4.0
   install_image_minimal_dependencies: &install_image_minimal_dependencies
     name: Install Alpine dependencies
     command: apk add ca-certificates
@@ -68,7 +71,7 @@ jobs:
 
   ## Linting job
   lint:
-    <<: *image_default
+    <<: *image_lint
     steps:
       - checkout
       - attach_workspace:
