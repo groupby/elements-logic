@@ -13,7 +13,8 @@
     "bundle": "webpack",
     "docs": "typedoc --options ./typedoc.js packages",
     "lint:scripts": "yarn run eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
-    "lint:scripts:fix": "yarn run eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn"
+    "lint:scripts:fix": "yarn run eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:circleci": "yarn run eslint ./packages/@sfx/*/src/ --ext .ts --max-warnings 0"
   },
   "repository": {
     "type": "git",

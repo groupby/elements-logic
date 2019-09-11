@@ -66,6 +66,19 @@ jobs:
           paths:
             - workflow-start
 
+  ## Linting job
+  lint:
+    <<: *image_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - restore_cache: *build_final_cache_partial
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run: yarn run lint:scripts:circleci
+
   ## Build jobs
 
   ### build: build_{package}
@@ -226,7 +239,7 @@ workflows:
           filters:
             branches:
               ignore: /release\/.*/
-
+      - lint         
       - build:
           name: build_core
           requires:
