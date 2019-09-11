@@ -28,34 +28,42 @@ export default class SaytDriverPlugin implements Plugin {
    * Holds reference to the plugin registry that is received in registration.
    */
   core: PluginRegistry;
+  
   /**
    * Name of the events plugin.
    */
   eventsPluginName: string = 'dom_events';
+
   /**
    * Event name to listen for Sayt autocomplete requests.
    */
   autocompleteRequestEvent: string = 'sfx::autocomplete_fetch_data';
+
   /**
    * Event name for sending Sayt autocomplete responses.
    */
   autocompleteResponseEvent: string = 'sfx::autocomplete_received_results';
+
   /**
    * Event name to listen for Sayt autocomplete errors.
    */
   autocompleteErrorEvent: string = 'sfx::autocomplete_sayt_error';
+
   /**
    * Event name to listen for Sayt product requests.
    */
   productRequestEvent: string = 'sfx::sayt_products_request';
+
   /**
    * Event name for sending Sayt product responses.
    */
   productResponseEvent: string = 'sfx::sayt_products_response';
+
   /**
    * Event name to listen for Sayt product errors.
    */
   productErrorEvent: string = 'sfx::sayt_products_error';
+
   /**
    * Provide default configuration for SAYT product searches.
    */

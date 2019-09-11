@@ -1,5 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-import { BridgeQuery, Results } from '@sfx/search-plugin';
+import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST_EVENT,
   SEARCH_RESPONSE_EVENT,
@@ -31,7 +31,7 @@ export default class SearchDriverPlugin implements Plugin {
   /**
    * Default configuration for all searches.
    */
-  defaultSearchConfig: object = {
+  defaultSearchConfig: Partial<SearchRequest> = {
     fields: ['*'],
   }
 
