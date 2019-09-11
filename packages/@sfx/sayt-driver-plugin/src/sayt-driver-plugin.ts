@@ -235,6 +235,9 @@ export default class SaytDriverPlugin implements Plugin {
   }
 }
 
+/**
+ * The base configuration accepted for making search or sayt requests.
+ */
 export interface RequestConfig<T> {
   query: string;
   searchbox?: string;
