@@ -38,21 +38,22 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
 }
 
 export function removeFromDependencyGraph(graph: DependencyGraph, names: string[]): DependencyGraph {
-  const newGraph = cloneDependencyGraph(graph);
+  const namesSet = new Set(names);
 
-  names.forEach((name) => {
-    delete newGraph[name];
-  });
+  const newGraph = Object.keys(graph).reduce((clone, plugin) => {
+    clone[plugin] = graph[plugin].filter((depender) => !namesSet.has(depender));
+    return clone;
+  }, Object.create(null));
+
+  const errors = names
+    .filter((name) => newGraph[name].length > 0)
+    .map((name) => `${name} is required by: ${newGraph[name].join(', ')}.`);
+
+  if (errors.length > 0) throw new Error(`Failed to remove dependencies.\n${errors.join('\n')}`);
+
+  names.forEach((name) => { delete newGraph[name] });
 
   return newGraph;
-}
-
-export function cloneDependencyGraph(graph: DependencyGraph): DependencyGraph {
-  return Object.keys(graph).reduce(
-    (clone, plugin) => {
-      clone[plugin] = [...graph[plugin]];
-      return clone;
-    }, Object.create(null));
 }
 
 /**

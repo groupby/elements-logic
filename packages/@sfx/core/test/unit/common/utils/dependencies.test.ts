@@ -1,6 +1,5 @@
 import { expect, spy } from '../../../utils';
 import {
-  cloneDependencyGraph,
   createDependencyGraph,
   mergeDependencyGraphs,
   removeFromDependencyGraph,
@@ -170,6 +169,18 @@ describe('DependencyUtils', () => {
       });
     });
 
+    it('should throw when attempting to remove a plugin that will break a dependency', () => {
+      const graph = {
+        a: ['b'],
+        b: [],
+        c: [],
+      };
+
+      const callback = () => removeFromDependencyGraph(graph, ['a']);
+
+      expect(callback).to.throw();
+    });
+
     it('should return a new graph with the specified dependencies removed', () => {
       const graph = {
         a: [],
@@ -181,7 +192,7 @@ describe('DependencyUtils', () => {
       const newGraph = removeFromDependencyGraph(graph, ['a', 'd']);
 
       expect(newGraph).to.deep.equal({
-        b: ['a', 'c'],
+        b: ['c'],
         c: [],
       });
     });
@@ -229,21 +240,6 @@ describe('DependencyUtils', () => {
       expect(newGraph).to.deep.equal({
         c: [],
       });
-    });
-  });
-
-  describe('cloneDependencyGraph()', () => {
-    it('should return a deep clone', () => {
-      const original = {
-        a: ['b'],
-        b: [],
-      };
-
-      const clone = cloneDependencyGraph(original);
-
-      expect(clone).to.deep.equal(original);
-      expect(clone.a).not.to.equal(original.a);
-      expect(clone.b).not.to.equal(original.b);
     });
   });
 });
