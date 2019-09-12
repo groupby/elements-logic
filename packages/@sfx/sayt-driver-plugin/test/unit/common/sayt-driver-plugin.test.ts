@@ -6,8 +6,9 @@ describe('Sayt Driver Plugin', () => {
   let driver;
   let dom_events;
   let sayt;
+  let search;
   let saytDataPayload;
-  let saytDataUndefinedConfig;
+  let productDataPayload;
   const query = 'shirt';
 
   beforeEach(() => {
@@ -19,6 +20,9 @@ describe('Sayt Driver Plugin', () => {
     sayt = {
       autocomplete: (query, config, callback) => null,
     };
+    search = {
+      search: (query, callback) => null,
+    };
     driver = new SaytDriverPlugin();
     config = {
       collection: 'backup',
@@ -27,11 +31,14 @@ describe('Sayt Driver Plugin', () => {
       detail: {
         query,
         config,
+        searchbox: 'some-searchbox-id',
       },
     };
-    saytDataUndefinedConfig = {
+    productDataPayload = {
       detail: {
         query,
+        config,
+        searchbox: 'some-searchbox-id',
       },
     };
   });
@@ -41,8 +48,8 @@ describe('Sayt Driver Plugin', () => {
       expect(driver.metadata.name).to.equal('sayt_driver');
     });
 
-    it('should have two dependencies: "dom_events" and "sayt"', () => {
-      expect(driver.metadata.depends).to.have.members(['dom_events', 'sayt']);
+    it('should have dependencies: "dom_events", "sayt", and "search"', () => {
+      expect(driver.metadata.depends).to.have.members(['dom_events', 'sayt', 'search']);
     });
   });
 
@@ -63,7 +70,7 @@ describe('Sayt Driver Plugin', () => {
   describe('ready()', () => {
     let registerListener;
 
-    it('should register an event listener for receiving sayt API requests', () => {
+    it('should register event listeners for sayt and product data requests', () => {
       registerListener = dom_events.registerListener = spy();
       driver.core = {
         dom_events,
@@ -71,7 +78,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.ready();
 
-      expect(registerListener).to.be.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(registerListener).to.be.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
+      expect(registerListener).to.be.calledWith(driver.productRequestEvent, driver.fetchProductData);
     });
   });
 
@@ -86,7 +94,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(driver.saytDataEvent, driver.fetchSaytData);
+      expect(unregisterListener).to.have.been.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
+      expect(unregisterListener).to.have.been.calledWith(driver.productRequestEvent, driver.fetchProductData);
     });
   });
 
@@ -202,7 +211,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('sendSaytApiRequest()', () => {
+  describe('sendAutocompleteApiRequest()', () => {
     let autocomplete;
     let autocompleteCallback;
 
@@ -215,7 +224,7 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should make a search call through the sayt client', () => {
-      driver.sendSaytApiRequest(query, config);
+      driver.sendAutocompleteApiRequest(query, config);
 
       expect(autocomplete).to.be.calledWith(
         query,
@@ -223,21 +232,21 @@ describe('Sayt Driver Plugin', () => {
       );
     });
 
-    it('should return the result of the Sayt API callback', () => {
+    it('should resolve to the result of the Sayt API callback', () => {
       const callbackReturn = ['a', 'b'];
       autocompleteCallback.returns(callbackReturn);
 
-      const returnValue = driver.sendSaytApiRequest(saytDataPayload);
+      const returnValue = driver.sendAutocompleteApiRequest(saytDataPayload);
 
       return expect(returnValue).to.eventually.deep.equal(callbackReturn);
     });
   });
 
-  describe('fetchSaytData()', () => {
+  describe('fetchAutocompleteTerms()', () => {
     let dispatchEvent;
     let results;
     let searchbox;
-    let sendSaytApiRequest;
+    let sendAutocompleteApiRequest;
 
     beforeEach(() => {
       dispatchEvent = dom_events.dispatchEvent = spy();
@@ -245,41 +254,261 @@ describe('Sayt Driver Plugin', () => {
         dom_events,
       };
       results =  { a: 'b' };
-      sendSaytApiRequest = stub(driver, 'sendSaytApiRequest');
+      sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
+      searchbox = 'some-searchbox-id';
     });
 
-    it('should not throw with undefined config', () => {
-      sendSaytApiRequest.resolves(results);
-      const callSayt = () => { driver.fetchSaytData(saytDataUndefinedConfig) };
+    it('should call sendAutocompleteApiRequest with query from event and valid config', () => {
+      sendAutocompleteApiRequest.resolves(results);
 
-      expect(callSayt).to.not.throw();
-    });
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
-    it('should call sendSaytApiRequest with query from event and valid config', () => {
-      sendSaytApiRequest.resolves(results);
-
-      driver.fetchSaytData(saytDataPayload);
-
-      expect(sendSaytApiRequest).to.be.calledWith(query, config);
+      expect(sendAutocompleteApiRequest).to.be.calledWith(query, config);
     });
 
     it('should dispatch the response through the events plugin', () => {
-      sendSaytApiRequest.resolves(results);
+      sendAutocompleteApiRequest.resolves(results);
 
-      driver.fetchSaytData(saytDataPayload);
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, searchbox });
     });
 
     it('should send an error in an event if the API request fails', () => {
       const error = new Error('test error');
-      sendSaytApiRequest.rejects(error);
+      sendAutocompleteApiRequest.rejects(error);
 
-      driver.fetchSaytData(saytDataPayload);
+      driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.saytErrorEvent, error);
+        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, error);
+    });
+  });
+
+  describe('fetchProductData()', () => {
+    let dispatchEvent;
+    let results;
+    let searchbox;
+    let sendSearchApiRequest;
+
+    beforeEach(() => {
+      dispatchEvent = dom_events.dispatchEvent = spy();
+      driver.core = {
+        dom_events,
+      };
+      results = { a: 'b' };
+      sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
+      searchbox = 'some-searchbox-id';
+    });
+
+    it('should call sendSearchApiRequest with query from event and valid config', () => {
+      sendSearchApiRequest.resolves(results);
+
+      driver.fetchProductData(productDataPayload);
+
+      expect(sendSearchApiRequest).to.be.calledWith(query, config);
+    });
+
+    it('should dispatch the response through the events plugin', () => {
+      sendSearchApiRequest.resolves(results);
+
+      driver.fetchProductData(productDataPayload);
+
+      return expect(Promise.resolve(dispatchEvent))
+        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, searchbox });
+    });
+
+    it('should send an error in an event if the API request fails', () => {
+      const error = new Error('test error');
+      sendSearchApiRequest.rejects(error);
+
+      driver.fetchProductData(saytDataPayload);
+
+      return expect(Promise.resolve(dispatchEvent))
+        .to.be.eventually.calledOnceWith(driver.productErrorEvent, error);
+    });
+  });
+
+  describe('sendSearchApiRequest()', () => {
+    let searchStub;
+    let searchCallback;
+
+    beforeEach(() => {
+      searchStub = stub(search, 'search').resolves({});
+      searchCallback = stub(driver, 'searchCallback');
+      driver.core = {
+        search,
+      };
+    });
+
+    it('should make a search call through the search client with all fields', () => {
+      driver.sendSearchApiRequest(query, config);
+
+      expect(searchStub).to.be.calledWith({
+        query,
+        fields: ['*'],
+        ...config
+      });
+    });
+
+    it('should return the result of the Search API callback', () => {
+      const callbackReturn = { a: 'b' };
+      searchCallback.returns(callbackReturn);
+
+      const returnValue = driver.sendSearchApiRequest(productDataPayload);
+
+      return expect(returnValue).to.eventually.deep.equal(callbackReturn);
+    });
+  });
+
+  describe('parseRecord()', () => {
+    let record;
+
+    beforeEach(() => {
+      record = {
+        allMeta: {},
+      };
+    });
+
+    it('should throw if product has no visual variants', () => {
+      const callback = () => driver.parseRecord(record);
+
+      expect(callback).to.throw();
+    });
+
+    it('should throw if product has no non-visual variants', () => {
+      record.allMeta.visualVariants = [{
+        nonvisualVariants: [],
+      }];
+      const callback = () => driver.parseRecord(record);
+
+      expect(callback).to.throw();
+    });
+
+    it('should throw if product has undefined non-visual variant', () => {
+      record.allMeta.visualVariants = [{
+        nonvisualVariants: [undefined],
+      }];
+      const callback = () => driver.parseRecord(record);
+
+      expect(callback).to.throw();
+    });
+
+    it('should return data segments if product has valid data', () => {
+      const nonvisualVariants = [{}, {}];
+      const firstVariant = { nonvisualVariants };
+      const data = {
+        visualVariants: [ firstVariant ],
+      };
+      record = { allMeta: data };
+
+      const result = driver.parseRecord(record);
+
+      expect(result).to.deep.equal({ data, firstVariant, nonvisualVariants });
+    });
+  });
+
+  describe('searchCallback()', () => {
+    let response;
+
+    beforeEach(() => {
+      response = {
+        records: [
+          {
+            allMeta: {},
+          }
+        ]
+      };
+    });
+
+    it('should return a complete product object', () => {
+      const expectedResponse = {
+        query: undefined,
+        products: [
+          {
+            title: 'some-title',
+            price: 3.99,
+            imageSrc: 'some-link',
+            imageAlt: 'some-title',
+            productUrl: 'some-link',
+          },
+        ],
+      };
+      const input = {
+        records: [{
+          allMeta: {
+            title: 'some-title',
+            visualVariants: [{
+              productImage: 'some-link',
+              nonvisualVariants: [{
+                originalPrice: 3.99,
+              }],
+            }],
+          },
+        }],
+      };
+
+      const actualProduct = driver.searchCallback(input);
+
+      expect(actualProduct).to.deep.equal(expectedResponse);
+    });
+
+    it('should filter out an incomplete product object', () => {
+      const goodObject = {
+        allMeta: {
+          title: 'some-title',
+          visualVariants: [{
+            productImage: 'some-link',
+            nonvisualVariants: [{
+              originalPrice: 3.99,
+            }],
+          }],
+        },
+      };
+
+      const badObject1 = {
+        allMeta: {}
+      };
+
+      const badObject2 = {
+        allMeta: {
+          title: 'some-title',
+          visualVariants: [],
+        }
+      };
+
+      const expectedGoodObject = {
+        title: 'some-title',
+        price: 3.99,
+        imageSrc: 'some-link',
+        imageAlt: 'some-title',
+        productUrl: 'some-link',
+      };
+
+      const input = {
+        records: [
+          goodObject,
+          goodObject,
+          badObject1,
+          badObject2,
+          badObject2,
+          goodObject,
+        ],
+      };
+
+      const expectedResponse = {
+        query: undefined,
+        products: [
+          expectedGoodObject,
+          expectedGoodObject,
+          expectedGoodObject,
+        ],
+      };
+
+      const actualProduct = driver.searchCallback(input);
+
+      expect(actualProduct).to.deep.equal(expectedResponse);
     });
   });
 });

@@ -72,7 +72,7 @@ describe('SearchDriverPlugin', () => {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: searchTerm } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { value: searchTerm } } as any);
 
       expect(sendSearchApiRequest).to.be.calledWith(searchTerm);
     });
@@ -111,7 +111,10 @@ describe('SearchDriverPlugin', () => {
       const query = 'search term';
       const results = Promise.resolve({});
       const search = stub();
-      search.withArgs(query).returns(results);
+      search.withArgs({
+        fields: ['*'],
+        query,
+      }).returns(results);
       searchDriverPlugin.core = { search: { search } };
 
       const retval = searchDriverPlugin.sendSearchApiRequest(query);

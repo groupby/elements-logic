@@ -1,5 +1,5 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-import { BridgeQuery, Results } from '@sfx/search-plugin';
+import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST_EVENT,
   SEARCH_RESPONSE_EVENT,
@@ -27,6 +27,13 @@ export default class SearchDriverPlugin implements Plugin {
    * Name of the events plugin.
    */
   eventsPluginName: string = 'dom_events';
+
+  /**
+   * Default configuration for all searches.
+   */
+  defaultSearchConfig: Partial<SearchRequest> = {
+    fields: ['*'],
+  }
 
   /**
    * Constructs a new instance of the plugin and binds the necessary
@@ -71,7 +78,7 @@ export default class SearchDriverPlugin implements Plugin {
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const searchTerm = event.detail;
+    const searchTerm = event.detail.value;
     this.sendSearchApiRequest(searchTerm)
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, results);
@@ -86,8 +93,9 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param query the query to send.
    */
-  sendSearchApiRequest(query: BridgeQuery): Promise<Results> {
-    return this.core.search.search(query);
+  sendSearchApiRequest(query: string): Promise<Results> {
+    const fullQuery = { ...this.defaultSearchConfig, query };
+    return this.core.search.search(fullQuery);
   }
 }
 
@@ -95,4 +103,7 @@ export default class SearchDriverPlugin implements Plugin {
  * The type of the search request event payload. The payload is the
  * search term.
  */
-export type SearchRequestPayload = string;
+export interface SearchRequestPayload {
+  value: string;
+  searchbox?: string;
+}
