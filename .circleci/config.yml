@@ -71,7 +71,7 @@ jobs:
 
   ## Linting job
   lint:
-    <<: *image_lint
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
@@ -87,7 +87,7 @@ jobs:
   ### build: build_{package}
   ### Builds {package} and stores them in a cache.
   build:
-    <<: *image_lint
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
@@ -157,7 +157,7 @@ jobs:
   ### unit_test: unit_test_{package}
   ### Runs the Node unit tests for {package}.
   unit_test:
-    <<: *image_lint
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
