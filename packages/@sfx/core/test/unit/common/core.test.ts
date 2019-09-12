@@ -84,14 +84,14 @@ describe('Core', () => {
       expect(registerPlugins).to.be.calledWith(
         plugins,
         sinon.match(core.registry),
-        sinon.match(core.directory)
+        sinon.match(core.directory),
       );
       expect(initPlugins).to.be.calledWith(plugins);
       expect(readyPlugins).to.be.calledWith(plugins);
       sinon.assert.callOrder(
         registerPlugins,
         initPlugins,
-        readyPlugins
+        readyPlugins,
       );
     });
 
@@ -201,7 +201,7 @@ describe('Core', () => {
       expect(unregisterPlugins).to.be.calledWith(
         names,
         sinon.match.same(registry),
-        sinon.match.same(directory)
+        sinon.match.same(directory),
       );
     });
 

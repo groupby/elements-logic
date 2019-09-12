@@ -28,7 +28,7 @@ describe('CoreUtils', () => {
             depends: ['z'],
           },
         },
-      ]
+      ];
 
       const missing = calculateMissingDependencies(plugins, registry);
 
@@ -40,7 +40,7 @@ describe('CoreUtils', () => {
         a: 'aa',
         b: 'bb',
         c: 'cc',
-      }
+      };
       const plugins: any = [
         {
           metadata: {
@@ -54,7 +54,7 @@ describe('CoreUtils', () => {
             depends: ['b'],
           },
         },
-      ]
+      ];
 
       const missing = calculateMissingDependencies(plugins, registry);
 
@@ -147,11 +147,11 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: { name: 'a' },
-          register: (r) => localRegistryA = r,
+          register: (r) => { localRegistryA = r; },
         },
         {
           metadata: { name: 'b' },
-          register: (r) => localRegistryB = r,
+          register: (r) => { localRegistryB = r; },
         },
       ];
       const registry: any = {};
@@ -228,6 +228,7 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: { name: 'x' },
+          // eslint-disable-next-line
           register: (plugins) => {
             delete plugins.a;
             plugins.b = 'bb';
