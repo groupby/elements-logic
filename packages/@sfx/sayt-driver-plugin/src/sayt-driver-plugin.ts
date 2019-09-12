@@ -75,6 +75,7 @@ export default class SaytDriverPlugin implements Plugin {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
+    this.searchCallback = this.searchCallback.bind(this);
   }
 
   /**
