@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+// eslint-disable-next-line
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,

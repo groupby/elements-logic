@@ -182,12 +182,12 @@ describe('Sayt Driver Plugin', () => {
 
       expect(cbReturn).to.deep.equal(expectedReturn);
     });
-  })
+  });
 
   describe('constructSearchTerms()', () => {
     it('should return search term values as search term labels', () => {
       const terms = [
-        { value: 'a', notValue: 'z'  },
+        { value: 'a', notValue: 'z' },
         { value: 'b' },
         { value: 'c' },
       ];

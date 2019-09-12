@@ -28,6 +28,7 @@
     "tabSize": 2
   },
   "include": [
-    "src"
+    "src",
+    "test"
   ]
 }

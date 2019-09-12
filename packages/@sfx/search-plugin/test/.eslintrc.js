@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     env: {
         browser: true,
@@ -19,9 +21,9 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2018,
         sourceType: "module",
+        tsconfigRootDir: __dirname,
         project: [
-            "./tsconfig.json",
-            "./packages/**/tsconfig.json"
+            path.resolve(__dirname, "../tsconfig.json"),
           ]
         },
     plugins: [
@@ -45,17 +47,13 @@ module.exports = {
         "@typescript-eslint/no-useless-constructor": "error",
         "func-style": "off",
         "space-before-function-paren": "off",
-        "no-param-reassign": ["error", { "props": true }],
         "no-plusplus": "off",
         "no-nested-ternary": "off",
-        "comma-dangle": ["error", {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-    }],
-        "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
-        "@typescript-eslint/unbound-method": "off"
+        "no-multi-assign": "off",
+        "no-undef": "off",
+        "no-unused-expressions": "off",
+        "max-len": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/explicit-function-return-type": "off"
     }
 }
