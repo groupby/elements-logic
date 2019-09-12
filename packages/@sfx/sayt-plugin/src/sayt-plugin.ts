@@ -1,4 +1,5 @@
-import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+// eslint-disable-next-line
+import { Plugin, PluginMetadata } from '@sfx/core';
 import { Sayt, SaytConfig } from 'sayt';
 
 /**

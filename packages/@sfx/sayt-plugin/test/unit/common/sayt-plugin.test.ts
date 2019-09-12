@@ -1,6 +1,7 @@
-import { expect, sinon, stub } from '../../utils';
-import SaytPlugin from '../../../src/sayt-plugin';
+
 import * as SaytPackage from 'sayt';
+import { expect, stub } from '../../utils';
+import SaytPlugin from '../../../src/sayt-plugin';
 
 describe('SaytPlugin', () => {
   let saytPlugin: any;

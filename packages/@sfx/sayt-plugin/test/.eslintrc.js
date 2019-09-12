@@ -54,6 +54,8 @@ module.exports = {
         "no-unused-expressions": "off",
         "max-len": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "camelcase": "off",
+        "@typescript-eslint/camelcase": "off"
     }
 }
