@@ -78,10 +78,10 @@ export default class SearchDriverPlugin implements Plugin {
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const searchTerm = event.detail.value;
+    const { value: searchTerm, searchbox } = event.detail;
     this.sendSearchApiRequest(searchTerm)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, results);
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, { results, searchbox });
       })
       .catch((e) => {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, e);
