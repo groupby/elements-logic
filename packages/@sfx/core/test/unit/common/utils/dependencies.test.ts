@@ -1,5 +1,6 @@
 import { expect, spy } from '../../../utils';
 import {
+  cloneDependencyGraph,
   createDependencyGraph,
   mergeDependencyGraphs,
   removeFromDependencyGraph,
@@ -167,6 +168,51 @@ describe('DependencyUtils', () => {
         b: ['a', 'c'],
         c: [],
       });
+    });
+
+    it('should return a new graph with the specified dependencies removed', () => {
+      const graph = {
+        a: [],
+        b: ['a', 'c'],
+        c: [],
+        d: [],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, ['a', 'd']);
+
+      expect(newGraph).to.deep.equal({
+        b: ['a', 'c'],
+        c: [],
+      });
+    });
+
+    it('should not modify the original graph', () => {
+      const dependersOfPluginA = [];
+      const graph = {
+        a: dependersOfPluginA,
+        b: ['a', 'c'],
+        c: [],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, ['a']);
+
+      expect(newGraph).not.to.equal(graph);
+      expect(graph.a).to.equal(dependersOfPluginA);
+    });
+  });
+
+  describe('cloneDependencyGraph()', () => {
+    it('should return a deep clone', () => {
+      const original = {
+        a: ['b'],
+        b: [],
+      };
+
+      const clone = cloneDependencyGraph(original);
+
+      expect(clone).to.deep.equal(original);
+      expect(clone.a).not.to.equal(original.a);
+      expect(clone.b).not.to.equal(original.b);
     });
   });
 });
