@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SearchPluginOptions | SF-X</title>
+	<title>SearchRequestPayload | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_sfx_search_plugin.html">@sfx/search-plugin</a>
+					<a href="../modules/_sfx_search_driver_plugin.html">@sfx/search-driver-plugin</a>
 				</li>
 				<li>
-					<a href="_sfx_search_plugin.searchpluginoptions.html">SearchPluginOptions</a>
+					<a href="_sfx_search_driver_plugin.searchrequestpayload.html">SearchRequestPayload</a>
 				</li>
 			</ul>
-			<h1>Interface SearchPluginOptions</h1>
+			<h1>Interface SearchRequestPayload</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The type of this plugin&#39;s options.</p>
+						<p>The type of the search request event payload. The payload is the
+						search term.</p>
 					</div>
 				</div>
 			</section>
@@ -80,12 +81,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="tsd-signature-type">BridgeConfig</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">SearchPluginOptions</span>
-							</li>
-						</ul>
+						<span class="target">SearchRequestPayload</span>
 					</li>
 				</ul>
 			</section>
@@ -96,10 +92,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_search_plugin.searchpluginoptions.html#customerid" class="tsd-kind-icon">customer<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_search_plugin.searchpluginoptions.html#https" class="tsd-kind-icon">https</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_sfx_search_plugin.searchpluginoptions.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_sfx_search_plugin.searchpluginoptions.html#timeout" class="tsd-kind-icon">timeout</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_search_driver_plugin.searchrequestpayload.html#searchbox" class="tsd-kind-icon">searchbox</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_search_driver_plugin.searchrequestpayload.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,55 +102,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="customerid" class="tsd-anchor"></a>
-					<h3>customer<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">customer<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="searchbox" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> searchbox</h3>
+					<div class="tsd-signature tsd-kind-icon">searchbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/search-plugin/src/search-plugin.ts#L66">search-plugin/src/search-plugin.ts:66</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L108">search-driver-plugin/src/search-driver-plugin.ts:108</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The GroupBy customer ID to include in search requests.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="https" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> https</h3>
-					<div class="tsd-signature tsd-kind-icon">https<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/search-plugin/src/search-plugin.ts#L71">search-plugin/src/search-plugin.ts:71</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether or not HTTPS is used. HTTPS is used if this value is <code>true</code>.
-							If not provided, this option defaults to <code>true</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="proxyurl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> proxy<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">proxy<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from BridgeConfig.proxyUrl</p>
-						<ul>
-							<li>Defined in /home/circleci/project/node_modules/groupby-api/dist/core/bridge.d.ts:58</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from BridgeConfig.timeout</p>
-						<ul>
-							<li>Defined in /home/circleci/project/node_modules/groupby-api/dist/core/bridge.d.ts:57</li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L107">search-driver-plugin/src/search-driver-plugin.ts:107</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -180,10 +141,10 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
 					</li>
 				</ul>
@@ -202,41 +163,41 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a>
+								<a href="../classes/_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a>
 							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a>
+								<a href="_sfx_search_driver_plugin.searchrequestpayload.html" class="tsd-kind-icon">Search<wbr>Request<wbr>Payload</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_sfx_search_plugin.searchpluginoptions.html#customerid" class="tsd-kind-icon">customer<wbr>Id</a>
+										<a href="_sfx_search_driver_plugin.searchrequestpayload.html#searchbox" class="tsd-kind-icon">searchbox</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_sfx_search_plugin.searchpluginoptions.html#https" class="tsd-kind-icon">https</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_sfx_search_plugin.searchpluginoptions.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_sfx_search_plugin.searchpluginoptions.html#timeout" class="tsd-kind-icon">timeout</a>
+										<a href="_sfx_search_driver_plugin.searchrequestpayload.html#value" class="tsd-kind-icon">value</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_search_driver_plugin.html#search_error_event" class="tsd-kind-icon">SEARCH_<wbr>ERROR_<wbr>EVENT</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_search_driver_plugin.html#search_request_event" class="tsd-kind-icon">SEARCH_<wbr>REQUEST_<wbr>EVENT</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_search_driver_plugin.html#search_response_event" class="tsd-kind-icon">SEARCH_<wbr>RESPONSE_<wbr>EVENT</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
