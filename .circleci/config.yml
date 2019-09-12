@@ -1,10 +1,10 @@
 defaults:
   image_default: &image_default
     docker:
-      - image: circleci/node:11.6.0
+      - image: circleci/node:12.4.0
   image_browsers: &image_browsers
     docker:
-      - image: circleci/node:11.6.0-browsers
+      - image: circleci/node:12.4.0-browsers
   image_minimal: &image_minimal
     docker:
       - image: alpine
@@ -208,7 +208,7 @@ jobs:
   ### docs
   ### Generates docs for all packages, then commits and pushes to the main release branch.
   docs:
-    <<: *image_lint
+    <<: *image_default
     steps:
       - checkout
       - attach_workspace:
