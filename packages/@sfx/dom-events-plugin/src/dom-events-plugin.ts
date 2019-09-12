@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
 /**
@@ -6,6 +7,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
  * plugins to register, unregister, and dispatch events.
  */
 export default class DomEventsPlugin implements Plugin {
+  // eslint-disable-next-line
   get metadata(): PluginMetadata {
     return {
       name: 'dom_events',
@@ -95,21 +97,21 @@ export default class DomEventsPlugin implements Plugin {
   /**
     * @see [[DomEventsPluginExposedValue.registerListener]]
    */
-  registerListener(eventName: string, callback: EventListener) {
+  registerListener(eventName: string, callback: EventListener): void {
     this.window.addEventListener(eventName, callback);
   }
 
   /**
    * @see [[DomEventsPluginExposedValue.unregisterListener]]
    */
-  unregisterListener(eventName: string, callback: EventListener) {
+  unregisterListener(eventName: string, callback: EventListener): void {
     this.window.removeEventListener(eventName, callback);
   }
 
   /**
    * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
-  dispatchEvent<T = any>(eventName: string, payload?: T) {
+  dispatchEvent<T = any>(eventName: string, payload?: T): void {
     const eventToDispatch = new this.CustomEvent<T>(eventName, { detail: payload });
     this.window.dispatchEvent(eventToDispatch);
   }
@@ -157,5 +159,6 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to be dispatched.
    * @param payload Data to accompany the dispatched event.
    */
+  // eslint-disable-next-line
   dispatchEvent: (eventName: string, payload?: any) => void;
 }

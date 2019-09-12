@@ -15,18 +15,18 @@ describe('domEventsPlugin', () => {
 
     it('should not have any dependencies', () => {
       expect(domEventsPlugin.metadata.depends).to.deep.equal([]);
-    })
+    });
   });
 
   describe('constructor()', () => {
     it('should create a DomEventsPlugin instance with default options', () => {
-      const defaultOptions = { window: window, CustomEvent: CustomEvent };
+      const defaultOptions = { window, CustomEvent };
 
       expect(domEventsPlugin.options).to.deep.equal(defaultOptions);
     });
 
     it('should combine default options and provided options', () => {
-      const defaultOptions = { window: window, CustomEvent: CustomEvent };
+      const defaultOptions = { window, CustomEvent };
       const options: any = { a: 'b', c: 'd' };
 
       domEventsPlugin = new DomEventsPlugin(options);
@@ -39,7 +39,7 @@ describe('domEventsPlugin', () => {
       const CustomEvent = () => null;
       const options: any = {
         window: windowObject,
-        CustomEvent: CustomEvent,
+        CustomEvent,
       };
 
       domEventsPlugin = new DomEventsPlugin(options);
@@ -59,7 +59,7 @@ describe('domEventsPlugin', () => {
 
     it('should set CustomEvent property with the CustomEvent option', () => {
       const CustomEvent = () => null;
-      const options: any = { CustomEvent: CustomEvent };
+      const options: any = { CustomEvent };
 
       domEventsPlugin = new DomEventsPlugin(options);
 
