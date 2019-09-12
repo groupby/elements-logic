@@ -28,7 +28,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Holds reference to the plugin registry that is received in registration.
    */
   core: PluginRegistry;
-  
+
   /**
    * Name of the events plugin.
    */
@@ -74,6 +74,7 @@ export default class SaytDriverPlugin implements Plugin {
   constructor() {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
+    this.autocompleteCallback = this.autocompleteCallback.bind(this);
   }
 
   /**
