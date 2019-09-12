@@ -56,6 +56,7 @@ module.exports = {
         "functions": "never"
     }],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
-        "@typescript-eslint/unbound-method": "off"
+        "@typescript-eslint/unbound-method": "off",
+        "class-methods-use-this": "off"
     }
 }
