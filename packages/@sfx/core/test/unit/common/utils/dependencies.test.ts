@@ -199,6 +199,37 @@ describe('DependencyUtils', () => {
       expect(newGraph).not.to.equal(graph);
       expect(graph.a).to.equal(dependersOfPluginA);
     });
+
+    it('should remove plugin chains', () => {
+      const graph = {
+        a: ['b'],
+        b: [],
+        c: [],
+        d: ['c'],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, ['a', 'b']);
+
+      expect(newGraph).to.deep.equal({
+        c: [],
+        d: ['c'],
+      });
+    });
+
+    it('should remove circularly dependent plugins', () => {
+      const graph = {
+        a: ['b'],
+        b: ['a'],
+        c: [],
+        d: ['d'],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, ['a', 'b', 'd']);
+
+      expect(newGraph).to.deep.equal({
+        c: [],
+      });
+    });
   });
 
   describe('cloneDependencyGraph()', () => {
