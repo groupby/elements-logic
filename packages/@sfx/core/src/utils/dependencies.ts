@@ -16,6 +16,15 @@ export interface DependencyGraph {
 }
 
 /**
+ * Creates an empty dependency graph.
+ *
+ * @returns An empty dependency graph
+ */
+function createEmptyGraph(): DependencyGraph {
+  return Object.create(null);
+}
+
+/**
  * Builds a dependency graph from the given plugins.
  *
  * @param plugins The plugins from which to build the graph.
@@ -31,7 +40,7 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
     });
 
     return dependencyGraph;
-  }, Object.create(null));
+  }, createEmptyGraph());
 }
 
 /**
@@ -49,7 +58,7 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
       merged[key].push(...graph[key]);
     });
     return merged;
-  }, Object.create(null));
+  }, createEmptyGraph());
 }
 
 /**
@@ -69,7 +78,7 @@ export function removeFromDependencyGraph(graph: DependencyGraph, names: string[
   const newGraph = Object.keys(graph).reduce((clone, plugin) => {
     clone[plugin] = graph[plugin].filter((depender) => !namesSet.has(depender));
     return clone;
-  }, Object.create(null));
+  }, createEmptyGraph());
 
   const errors = names
     .filter((name) => newGraph[name].length > 0)
