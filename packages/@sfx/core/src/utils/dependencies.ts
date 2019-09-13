@@ -19,6 +19,7 @@ export interface DependencyGraph {
  * Creates an empty dependency graph.
  *
  * @returns An empty dependency graph
+ * @hidden
  */
 function createEmptyGraph(): DependencyGraph {
   return Object.create(null);
