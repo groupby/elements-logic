@@ -1,6 +1,6 @@
 const path = require('path');
-
-console.log(__dirname, 'dirname')
+console.log('dirName', __dirname)
+console.log('path.resolve', path.resolve(__dirname, "../tsconfig.json"))
 module.exports = {
     env: {
         browser: true,
@@ -22,10 +22,6 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2018,
         sourceType: "module",
-        // tsconfigRootDir: "/Users/groupby/Documents/sfx/sfx-logic/packages/@sfx/core/",
-        // project: [
-        //     "./tsconfig.json",
-        //   ]
         tsconfigRootDir: __dirname,
         project: [
             path.resolve(__dirname, "../tsconfig.json"),
@@ -59,7 +55,6 @@ module.exports = {
         "no-unused-expressions": "off",
         "max-len": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "no-param-reassign": "off"
+        "@typescript-eslint/explicit-function-return-type": "off"
     }
 }
