@@ -37,6 +37,17 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
   }, Object.create(null));
 }
 
+/**
+ * Removes the specified names from the given dependency graph. The
+ * corresponding properties are deleted and the dependency lists are
+ * updated. The original graph is not modified.
+ *
+ * @param graph The graph to remove plugins from.
+ * @param names The names of the plugins to remove from the graph.
+ * @returns The resulting graph with the given names removed.
+ * @throws If one or more names cannot be removed from the graph without
+ *         breaking a dependency.
+ */
 export function removeFromDependencyGraph(graph: DependencyGraph, names: string[]): DependencyGraph {
   const namesSet = new Set(names);
 
