@@ -1,6 +1,21 @@
 import { Plugin } from '../plugin';
 
 /**
+ * The type of the plugin dependency graph. The dependency graph is a
+ * directed graph whose vertices are plugins and whose edges are
+ * "depended-on" relations. For example, an edge going from plugin A to
+ * plugin B means that A is depended on by B (that is, B depends on A).
+ *
+ * The graph is represented as an adjacency list, which itself is
+ * represented as an object whose keys are plugin names and whose values
+ * are lists of the names of dependent plugins.
+ */
+export interface DependencyGraph {
+  /** The names of each plugin's dependents. */
+  [name: string]: string[];
+}
+
+/**
  * Builds a dependency graph from the given plugins.
  *
  * @param plugins The plugins from which to build the graph.
@@ -65,19 +80,4 @@ export function removeFromDependencyGraph(graph: DependencyGraph, names: string[
   names.forEach((name) => { delete newGraph[name] });
 
   return newGraph;
-}
-
-/**
- * The type of the plugin dependency graph. The dependency graph is a
- * directed graph whose vertices are plugins and whose edges are
- * "depended-on" relations. For example, an edge going from plugin A to
- * plugin B means that A is depended on by B (that is, B depends on A).
- *
- * The graph is represented as an adjacency list, which itself is
- * represented as an object whose keys are plugin names and whose values
- * are lists of the names of dependent plugins.
- */
-export interface DependencyGraph {
-  /** The names of each plugin's dependents. */
-  [name: string]: string[];
 }
