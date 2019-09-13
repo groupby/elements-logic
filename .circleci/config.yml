@@ -78,6 +78,7 @@ jobs:
       - run: *extract_build_archive
       - run: *yarn_install
       - run: yarn run lint:scripts:ci
+      - run: yarn run lint:tests:ci
 
   ## Build jobs
 

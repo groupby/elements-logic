@@ -21,10 +21,14 @@ module.exports = {
     parserOptions: {
         ecmaVersion: 2018,
         sourceType: "module",
-        tsconfigRootDir: __dirname,
+        tsconfigRootDir: "/Users/groupby/Documents/sfx/sfx-logic/packages/@sfx/core/",
         project: [
-            path.resolve(__dirname, "../tsconfig.json"),
+            "./tsconfig.json",
           ]
+        // tsconfigRootDir: __dirname,
+        // project: [
+        //     path.resolve(__dirname, "../tsconfig.json"),
+        //   ]
         },
     plugins: [
         "@typescript-eslint"
@@ -54,6 +58,7 @@ module.exports = {
         "no-unused-expressions": "off",
         "max-len": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "no-param-reassign": "off"
     }
 }

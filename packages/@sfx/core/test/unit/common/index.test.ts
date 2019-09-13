@@ -14,14 +14,17 @@ describe('Entry point', () => {
   });
 
   it('should export the Plugin interface', () => {
+    // eslint-disable-next-line
     const test: AssertTypesEqual<Plugin, PluginExport> = true;
   });
 
   it('should export the PluginMetadata interface', () => {
+    // eslint-disable-next-line
     const test: AssertTypesEqual<PluginMetadata, PluginMetadataExport> = true;
   });
 
   it('should export the PluginRegistry interface', () => {
+    // eslint-disable-next-line
     const test: AssertTypesEqual<PluginRegistry, PluginRegistryExport> = true;
   });
 });
