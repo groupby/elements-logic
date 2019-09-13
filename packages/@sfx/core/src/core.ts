@@ -81,6 +81,10 @@ export default class Core {
     readyPlugins(plugins);
   }
 
+  unregister(plugins: string[]) {
+    unregisterPlugins(plugins, this.registry, this.directory);
+  }
+
   /**
    * Unregisters all plugins. The plugin registry, directory and
    * dependency graph are all cleared. The optional `unregister`

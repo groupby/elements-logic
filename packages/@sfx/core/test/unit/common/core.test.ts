@@ -119,6 +119,31 @@ describe('Core', () => {
     });
   });
 
+  describe('unregister()', () => {
+    it('should call unregisterPlugins with the given plugins', () => {
+      const names = ['a', 'c'];
+      const registry = core.registry = {
+        a: { a: 'a' },
+        b: () => /b/,
+        c: 'c',
+      };
+      const directory = core.directory = {
+        a: { metadata: { name: 'a', depends: [] } },
+        b: { metadata: { name: 'b', depends: ['a'] } },
+        c: { metadata: { name: 'c', depends: ['a'] } },
+      } as any;
+      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+
+      core.unregister(names);
+
+      expect(unregisterPlugins).to.be.calledWith(
+        names,
+        sinon.match.same(registry),
+        sinon.match.same(directory)
+      );
+    });
+  });
+
   describe('unregisterAll()', () => {
     it('should call unregisterPlugins with all plugins', () => {
       const names = ['a', 'b', 'c'];
