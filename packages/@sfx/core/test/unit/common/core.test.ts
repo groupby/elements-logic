@@ -169,6 +169,16 @@ describe('Core', () => {
 
       expect(core.dependencyGraph).to.deep.equal(updatedGraph);
     });
+
+    it('should throw and not unregister plugins if a dependency would be broken', () => {
+      const names = ['a'];
+      removeFromDependencyGraph.throws();
+
+      const callback = () => core.unregister(names);
+
+      expect(callback).to.throw();
+      expect(unregisterPlugins).to.not.be.called;
+    });
   });
 
   describe('unregisterAll()', () => {

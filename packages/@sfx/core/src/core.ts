@@ -83,8 +83,9 @@ export default class Core {
   }
 
   unregister(plugins: string[]) {
+    const updatedGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
     unregisterPlugins(plugins, this.registry, this.directory);
-    this.dependencyGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
+    this.dependencyGraph = updatedGraph;
   }
 
   /**
