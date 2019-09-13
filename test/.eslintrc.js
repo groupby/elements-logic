@@ -1,5 +1,6 @@
 const path = require('path');
 console.log('dirName', __dirname)
+console.log('in test lint file')
 console.log('path.resolve', path.resolve(__dirname, "../tsconfig.json"))
 module.exports = {
     env: {
@@ -55,6 +56,8 @@ module.exports = {
         "no-unused-expressions": "off",
         "max-len": "off",
         "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/camelcase": "off",
+        "camelcase": "off"
     }
 }

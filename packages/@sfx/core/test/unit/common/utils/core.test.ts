@@ -230,7 +230,9 @@ describe('CoreUtils', () => {
           metadata: { name: 'x' },
           // eslint-disable-next-line
           register: (plugins) => {
+            // eslint-disable-next-line
             delete plugins.a;
+            // eslint-disable-next-line
             plugins.b = 'bb';
           },
         },

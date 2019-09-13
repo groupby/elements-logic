@@ -1,3 +1,4 @@
+console.log('in global eslint')
 module.exports = {
     env: {
         browser: true,
@@ -57,6 +58,6 @@ module.exports = {
     }],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
         "@typescript-eslint/unbound-method": "off",
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
     }
 }
