@@ -82,6 +82,15 @@ export default class Core {
     readyPlugins(plugins);
   }
 
+  /**
+   * Unregisters the given plugins. The plugin registry, directory and
+   * dependency graph are all updated. The optional `unregister`
+   * function of each plugin is called with the plugin is unregistered.
+   * The order in which the plugins are unregistered is unspecified.
+   *
+   * @param plugins The names of the plugins to unregister.
+   * @throws If unregistering a plugin will break a dependency.
+   */
   unregister(plugins: string[]) {
     const updatedGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
     unregisterPlugins(plugins, this.registry, this.directory);
