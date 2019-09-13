@@ -11,7 +11,7 @@ import { Plugin } from '../plugin';
  * are lists of the names of dependent plugins.
  */
 export interface DependencyGraph {
-  /** The names of each plugin's dependents. */
+  /** The names of each plugin's dependers. */
   [name: string]: string[];
 }
 
