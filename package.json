@@ -15,7 +15,7 @@
     "lint:scripts": "eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
     "lint:scripts:fix": "eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn",
     "lint:tests": "eslint ./packages/@sfx/*/test/ --ext .ts --plugin only-warn",
-    "lint:scripts:ci": "eslint ./packages/@sfx/*/src/ --ext .ts --max-warnings 0",
+    "lint:scripts:ci": "eslint ./packages/@sfx/*/src/ ./packages/@sfx/*/test/ --ext .ts --max-warnings 0",
     "lint:tests:ci": "eslint ./packages/@sfx/*/test/ --ext .ts --max-warnings 0"
   },
   "repository": {
