@@ -10,6 +10,7 @@ import {
   DependencyGraph,
   createDependencyGraph,
   mergeDependencyGraphs,
+  removeFromDependencyGraph,
 } from './utils/dependencies';
 
 /**
@@ -83,6 +84,7 @@ export default class Core {
 
   unregister(plugins: string[]) {
     unregisterPlugins(plugins, this.registry, this.directory);
+    this.dependencyGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
   }
 
   /**

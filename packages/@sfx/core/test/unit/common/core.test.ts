@@ -120,19 +120,34 @@ describe('Core', () => {
   });
 
   describe('unregister()', () => {
-    it('should call unregisterPlugins with the given plugins', () => {
-      const names = ['a', 'c'];
-      const registry = core.registry = {
+    let removeFromDependencyGraph;
+    let unregisterPlugins;
+    let registry;
+    let directory;
+    let dependencyGraph;
+
+    beforeEach(() => {
+      removeFromDependencyGraph = stub(DependencyUtils, 'removeFromDependencyGraph');
+      unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+      registry = core.registry = {
         a: { a: 'a' },
         b: () => /b/,
         c: 'c',
       };
-      const directory = core.directory = {
+      directory = core.directory = {
         a: { metadata: { name: 'a', depends: [] } },
         b: { metadata: { name: 'b', depends: ['a'] } },
         c: { metadata: { name: 'c', depends: ['a'] } },
       } as any;
-      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
+      dependencyGraph = core.dependencyGraph = {
+        a: ['b', 'c'],
+        b: [],
+        c: [],
+      };
+    });
+
+    it('should call unregisterPlugins with the given plugins', () => {
+      const names = ['a', 'c'];
 
       core.unregister(names);
 
@@ -141,6 +156,18 @@ describe('Core', () => {
         sinon.match.same(registry),
         sinon.match.same(directory)
       );
+    });
+
+    it('should update the dependency graph', () => {
+      const names = ['b', 'c'];
+      const updatedGraph = {
+        a: [],
+      };
+      removeFromDependencyGraph.returns(updatedGraph);
+
+      core.unregister(names);
+
+      expect(core.dependencyGraph).to.deep.equal(updatedGraph);
     });
   });
 
