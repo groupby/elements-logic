@@ -1,4 +1,6 @@
+// eslint-disable-next-line
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+// eslint-disable-next-line
 import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST,
@@ -61,7 +63,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * - [[SEARCH_REQUEST]]
    */
-  ready() {
+  ready(): void {
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
