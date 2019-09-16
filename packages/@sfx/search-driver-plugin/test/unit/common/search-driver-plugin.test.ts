@@ -64,7 +64,7 @@ describe('SearchDriverPlugin', () => {
     });
   });
 
-  describe.only('fetchSearchData()', () => {
+  describe('fetchSearchData()', () => {
     it('should search with the given search term', () => {
       const searchTerm = 'search term';
       const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves();
