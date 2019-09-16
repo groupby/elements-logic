@@ -199,16 +199,17 @@ describe('DependencyUtils', () => {
 
     it('should not modify the original graph', () => {
       const dependersOfPluginA = [];
-      const graph = {
+      const originalGraph = {
         a: dependersOfPluginA,
         b: ['a', 'c'],
         c: [],
       };
 
-      const newGraph = removeFromDependencyGraph(graph, ['a']);
+      const newGraph = removeFromDependencyGraph(originalGraph, ['a']);
 
-      expect(newGraph).not.to.equal(graph);
-      expect(graph.a).to.equal(dependersOfPluginA);
+      expect(newGraph).not.to.equal(originalGraph);
+      expect(originalGraph.a).to.equal(dependersOfPluginA);
+      expect(newGraph).not.to.have.any.keys('a');
     });
 
     it('should remove plugin chains', () => {
