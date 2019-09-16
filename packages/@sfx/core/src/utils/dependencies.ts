@@ -1,14 +1,15 @@
 import { Plugin } from '../plugin';
 
 /**
- * The type of the plugin dependency graph. The dependency graph is a
- * directed graph whose vertices are plugins and whose edges are
- * "depended-on" relations. For example, an edge going from plugin A to
- * plugin B means that A is depended on by B (that is, B depends on A).
+ * The type of a plugin dependency graph. This dependency graph
+ * represents the reverse dependency relationships of the plugins: a
+ * plugin points to the plugins that list it as a dependency. For
+ * example, plugin A will point to plugin B if B lists A as a
+ * dependency.
  *
  * The graph is represented as an adjacency list, which itself is
  * represented as an object whose keys are plugin names and whose values
- * are lists of the names of dependent plugins.
+ * are lists of the names of the depending plugins.
  */
 export interface DependencyGraph {
   /** The names of each plugin's dependers. */
