@@ -1,7 +1,5 @@
 const path = require('path');
-console.log('dirName', __dirname)
-console.log('in test lint file')
-console.log('path.resolve', path.resolve(__dirname, "../tsconfig.json"))
+
 module.exports = {
     env: {
         browser: true,

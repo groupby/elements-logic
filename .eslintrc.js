@@ -1,4 +1,3 @@
-console.log('in global eslint')
 module.exports = {
     env: {
         browser: true,

@@ -11,10 +11,10 @@
     "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
     "test:browser": "karma start karma.conf.js",
     "tdd:browser": "karma start karma.conf.js --no-single-run",
-    "lint:scripts": "../../../node_modules/.bin/eslint ./src/ --ext .ts --plugin only-warn",
-    "lint:scripts:fix": "../../../node_modules/.bin/eslint ./src/ --fix --ext .ts --plugin only-warn",
-    "lint:tests": "../../../node_modules/.bin/eslint ./test/ --ext .ts --plugin only-warn",
-    "lint:tests:fix": "../../../node_modules/.bin/eslint ./test/ --ext .ts --fix --plugin only-warn"
+    "lint:scripts": "eslint ./src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./test/ --ext .ts --fix --no-eslintrc -c ../../../test/.eslintrc.js --plugin only-warn"
   },
   "repository": {
     "type": "git",
