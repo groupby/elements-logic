@@ -241,5 +241,18 @@ describe('DependencyUtils', () => {
         c: [],
       });
     });
+
+    it('should ignore plugins that are not present', () => {
+      const graph = {
+        a: ['b'],
+        b: [],
+      };
+
+      const newGraph = removeFromDependencyGraph(graph, ['b', 'z']);
+
+      expect(newGraph).to.deep.equal({
+        a: [],
+      });
+    });
   });
 });

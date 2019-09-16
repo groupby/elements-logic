@@ -79,7 +79,8 @@ export function readyPlugins(plugins: Plugin[]) {
 
 /**
  * Unregisters the plugins with the given names from the given registry
- * and directory.
+ * and directory. It is safe to attempt to unregister a plugin that is
+ * not registered.
  *
  * @param names The names of the plugins to unregister.
  * @param registry The registry from which to unregister the plugin's
@@ -89,7 +90,7 @@ export function readyPlugins(plugins: Plugin[]) {
 export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory) {
   names.forEach((name) => {
     const plugin = directory[name];
-    if (typeof plugin.unregister === 'function') {
+    if (plugin && typeof plugin.unregister === 'function') {
       plugin.unregister();
     }
   });

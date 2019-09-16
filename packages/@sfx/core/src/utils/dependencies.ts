@@ -65,7 +65,8 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
 /**
  * Removes the specified names from the given dependency graph. The
  * corresponding properties are deleted and the dependency lists are
- * updated. The original graph is not modified.
+ * updated. The original graph is not modified. It is safe to attempt to
+ * remove a name that is not in the graph.
  *
  * @param graph The graph to remove plugins from.
  * @param names The names of the plugins to remove from the graph.
@@ -82,7 +83,7 @@ export function removeFromDependencyGraph(graph: DependencyGraph, names: string[
   }, createEmptyGraph());
 
   const errors = names
-    .filter((name) => newGraph[name].length > 0)
+    .filter((name) => newGraph[name] && newGraph[name].length > 0)
     .map((name) => `${name} is required by: ${newGraph[name].join(', ')}.`);
 
   if (errors.length > 0) throw new Error(`Failed to remove dependencies.\n${errors.join('\n')}`);
