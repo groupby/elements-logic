@@ -1,5 +1,13 @@
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
+import {
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ERROR,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_PRODUCTS_ERROR,
+} from '@sfx/events';
 
 describe('Sayt Driver Plugin', () => {
   let config;
@@ -78,8 +86,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.ready();
 
-      expect(registerListener).to.be.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(registerListener).to.be.calledWith(driver.productRequestEvent, driver.fetchProductData);
+      expect(registerListener).to.be.calledWith(AUTOCOMPLETE_REQUEST, driver.fetchAutocompleteTerms);
+      expect(registerListener).to.be.calledWith(SAYT_PRODUCTS_REQUEST, driver.fetchProductData);
     });
   });
 
@@ -94,8 +102,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(unregisterListener).to.have.been.calledWith(driver.productRequestEvent, driver.fetchProductData);
+      expect(unregisterListener).to.have.been.calledWith(AUTOCOMPLETE_REQUEST, driver.fetchAutocompleteTerms);
+      expect(unregisterListener).to.have.been.calledWith(SAYT_PRODUCTS_REQUEST, driver.fetchProductData);
     });
   });
 
@@ -272,7 +280,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, group });
+        .to.be.eventually.calledOnceWith(AUTOCOMPLETE_RESPONSE, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -282,7 +290,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, { error, group });
+        .to.be.eventually.calledOnceWith(AUTOCOMPLETE_ERROR, { error, group });
     });
   });
 
@@ -316,7 +324,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -326,7 +334,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productErrorEvent, { error, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_ERROR, { error, group });
     });
   });
 

@@ -1,5 +1,17 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ERROR,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_PRODUCTS_ERROR,
+  AutocompleteRequestPayload,
+  AutocompleteResultGroup,
+  AutocompleteSearchTermItem,
+  AutocompleteResponsePayload,
+} from '@sfx/events';
+import {
   AutocompleteResponse,
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
@@ -35,36 +47,6 @@ export default class SaytDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
-   * Event name to listen for Sayt autocomplete requests.
-   */
-  autocompleteRequestEvent: string = 'sfx::autocomplete_fetch_data';
-
-  /**
-   * Event name for sending Sayt autocomplete responses.
-   */
-  autocompleteResponseEvent: string = 'sfx::autocomplete_received_results';
-
-  /**
-   * Event name to listen for Sayt autocomplete errors.
-   */
-  autocompleteErrorEvent: string = 'sfx::autocomplete_sayt_error';
-
-  /**
-   * Event name to listen for Sayt product requests.
-   */
-  productRequestEvent: string = 'sfx::sayt_products_request';
-
-  /**
-   * Event name for sending Sayt product responses.
-   */
-  productResponseEvent: string = 'sfx::sayt_products_response';
-
-  /**
-   * Event name to listen for Sayt product errors.
-   */
-  productErrorEvent: string = 'sfx::sayt_products_error';
-
-  /**
    * Provide default configuration for SAYT product searches.
    */
   defaultSearchConfig: Partial<SearchRequest> = {
@@ -93,16 +75,16 @@ export default class SaytDriverPlugin implements Plugin {
    * The method will register an event listener for Sayt and product data requests.
    */
   ready() {
-    this.core[this.eventsPluginName].registerListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].registerListener(this.productRequestEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].registerListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].registerListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
 
   /**
    * Lifecycle event where the plugin will unregister all event listeners.
    */
   unregister() {
-    this.core[this.eventsPluginName].unregisterListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].unregisterListener(this.productRequestEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].unregisterListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].unregisterListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
 
   /**
@@ -115,10 +97,10 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, group });
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, { results, group });
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { error, group });
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_ERROR, { error, group });
       });
   }
 
@@ -132,10 +114,10 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, group });
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, { results, group });
       })
       .catch(error => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { error, group });
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, { error, group });
       });
   }
 
@@ -248,6 +230,7 @@ export default class SaytDriverPlugin implements Plugin {
 /**
  * The base configuration accepted for making search or sayt requests.
  */
+//\
 export interface RequestConfig<T> {
   query: string;
   group?: string;
