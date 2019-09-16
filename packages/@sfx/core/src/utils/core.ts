@@ -22,7 +22,7 @@ export function calculateMissingDependencies(
   const requiredSet = new Set(required);
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));
 
-  return Array.from(difference.values()).sort();
+  return       Array.from(difference.values()).sort();
 }
 
 /**
