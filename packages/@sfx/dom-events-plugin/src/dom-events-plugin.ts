@@ -105,11 +105,11 @@ export default class DomEventsPlugin implements Plugin {
   /**
    * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
-  dispatchEvent(eventName: string, payload?: any) {
+  dispatchEvent<T = any>(eventName: string, payload?: T) {
     const eventToDispatch = new this.CustomEvent(eventName, { detail: payload });
     this.window.dispatchEvent(eventToDispatch);
   }
- }
+}
 
 /**
  * DOM Events Plugin options.
