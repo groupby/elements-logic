@@ -61,7 +61,7 @@ This project ships with [ESLint](https://eslint.org/) in order to enforce consis
 
 ### Package specific linting
 
-The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual web component packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
+The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
 
 To lint files in an individual package, run the following commands, corresponding with the desired directory:
 
@@ -83,7 +83,7 @@ To lint all the SFX-Logic packages at once, run the following commands at the ro
 
 `yarn lint:scripts` - Lint all files within the `src` and `stories` directory.
 
-`yarn lint:tests` - Lint all the files within the `test` directory.
+`yarn lint:tests` - Lint all files within the `test` directory.
 
 `yarn lint:script:fix` - Runs automated lint fixes on all files within the `src` directory.
 

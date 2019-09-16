@@ -14,7 +14,7 @@
     "docs": "typedoc --options ./typedoc.js packages",
     "lint:scripts": "eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
     "lint:scripts:fix": "eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn",
-    "lint:tests": "eslint ./packages/@sfx/*/test/ --ext --no-eslintrc -c ./test/.eslintrc.js --plugin only-warn",
+    "lint:tests": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./test/.eslintrc.js --plugin only-warn",
     "lint:tests:fix": "eslint ./packages/@sfx/*/test/ --fix --ext .ts --no-eslintrc -c ./test/.eslintrc.js --plugin only-warn",
     "lint:scripts:ci": "eslint ./packages/@sfx/*/src/ --ext .ts --max-warnings 0",
     "lint:tests:ci": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./test/.eslintrc.js --max-warnings 0"

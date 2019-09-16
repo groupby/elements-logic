@@ -21,7 +21,7 @@ import {
   AutocompleteResponse,
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
-} from '@sfx/sayt-plugin';
+} from '../../sayt-plugin/src';
 // eslint-disable-next-line
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
