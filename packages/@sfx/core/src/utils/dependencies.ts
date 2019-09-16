@@ -32,16 +32,18 @@ function createEmptyGraph(): DependencyGraph {
  * @returns The completed dependency graph.
  */
 export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
-  return plugins.reduce((dependencyGraph, { metadata: { name, depends } }) => {
+  const dependencyGraph = createEmptyGraph();
+
+  plugins.forEach(({ metadata: { name, depends } }) => {
     if (!dependencyGraph[name]) dependencyGraph[name] = [];
 
     depends.forEach((dependency) => {
       if (!dependencyGraph[dependency]) dependencyGraph[dependency] = [];
       dependencyGraph[dependency].push(name);
     });
+  });
 
-    return dependencyGraph;
-  }, createEmptyGraph());
+  return dependencyGraph;
 }
 
 /**
