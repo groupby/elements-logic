@@ -56,6 +56,40 @@ yarn tdd:browser
 
 Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
 
+## Linting
+This project ships with [ESLint](https://eslint.org/) in order to enforce consistency across *.ts files.
+
+### Package specific linting
+
+The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual web component packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
+
+To lint files in an individual package, run the following commands, corresponding with the desired directory:
+
+`yarn lint:scripts` - Lint all files within the `src` directory.
+
+`yarn lint:tests` - Lint all files within the `test` directory.
+
+
+To run the automated lint fixes, run the following commands, corresponding with the desired directory:
+
+`yarn lint:scripts:fix` - Runs automated lint fixes on all files within the `src` directory.
+
+`yarn lint:tests:fix` - Runs automated lint fixes on all files within the `test` directory.
+
+
+### Project wide linting
+
+To lint all the SFX-Logic packages at once, run the following commands at the root of the monorepo:
+
+`yarn lint:scripts` - Lint all files within the `src` and `stories` directory.
+
+`yarn lint:tests` - Lint all the files within the `test` directory.
+
+`yarn lint:script:fix` - Runs automated lint fixes on all files within the `src` directory.
+
+`yarn lint:tests:fix` - Runs automated lint fixes on all files within the `test` directory.
+
+
 ##Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
