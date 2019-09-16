@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
-  "module": "src/index.ts",
   "scripts": {
     "build": "../../../scripts/build.sh",
     "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
