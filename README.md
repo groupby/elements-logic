@@ -90,7 +90,7 @@ To lint all the SFX-Logic packages at once, run the following commands at the ro
 `yarn lint:tests:fix` - Runs automated lint fixes on all files within the `test` directory.
 
 
-##Documentation
+## Documentation
 The following command will generate documentation for each module in the `packages` directory. It uses [TypeDoc](https://typedoc.org/) and outputs to the `docs` directory.
 ```sh
 yarn docs

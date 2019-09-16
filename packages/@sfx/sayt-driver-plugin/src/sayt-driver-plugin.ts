@@ -19,9 +19,12 @@ import {
 } from '@sfx/events';
 import {
   AutocompleteResponse,
+  // eslint-disable-next-line
   AutocompleteSearchTerm,
+  // eslint-disable-next-line
   QueryTimeAutocompleteConfig,
-} from '../../sayt-plugin/src';
+  // eslint-disable-next-line
+} from '@sfx/sayt-plugin';
 // eslint-disable-next-line
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
