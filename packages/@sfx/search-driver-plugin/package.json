@@ -19,5 +19,8 @@
     "directory": "packages/@sfx/search-driver-plugin"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@sfx/events": "groupby/sfx-events#17b270513313fed9985afa60cae96729be216be6"
+  }
 }
