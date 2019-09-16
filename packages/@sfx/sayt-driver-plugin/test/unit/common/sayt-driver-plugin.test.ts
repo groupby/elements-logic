@@ -432,7 +432,6 @@ describe('Sayt Driver Plugin', () => {
 
     it('should return a complete product object', () => {
       const expectedResponse = {
-        query: undefined,
         products: [
           {
             title: 'some-title',
@@ -506,7 +505,6 @@ describe('Sayt Driver Plugin', () => {
       };
 
       const expectedResponse = {
-        query: undefined,
         products: [
           expectedGoodObject,
           expectedGoodObject,
