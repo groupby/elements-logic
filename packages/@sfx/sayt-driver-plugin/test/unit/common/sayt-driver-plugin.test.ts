@@ -282,7 +282,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, error);
+        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, { error, searchbox });
     });
   });
 
@@ -326,7 +326,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productErrorEvent, error);
+        .to.be.eventually.calledOnceWith(driver.productErrorEvent, { error, searchbox });
     });
   });
 

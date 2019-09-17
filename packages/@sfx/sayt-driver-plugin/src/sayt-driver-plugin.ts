@@ -117,8 +117,8 @@ export default class SaytDriverPlugin implements Plugin {
       .then((results) => {
         this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, searchbox });
       })
-      .catch((e) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { e, searchbox });
+      .catch((error) => {
+        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { error, searchbox });
       });
   }
 
@@ -134,8 +134,8 @@ export default class SaytDriverPlugin implements Plugin {
       .then(results => {
         this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, searchbox });
       })
-      .catch(e => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { e, searchbox });
+      .catch(error => {
+        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { error, searchbox });
       });
   }
 

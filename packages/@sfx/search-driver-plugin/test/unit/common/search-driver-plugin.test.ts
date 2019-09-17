@@ -65,9 +65,19 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('fetchSearchData()', () => {
+    let results;
+    let searchbox;
+    let sendSearchApiRequest;
+
+    beforeEach(() => {
+      results = { a: 'a' };
+      searchbox = undefined;
+      sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
+    });
+
     it('should search with the given search term', () => {
       const searchTerm = 'search term';
-      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves();
+      sendSearchApiRequest.resolves();
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
@@ -78,13 +88,12 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should dispatch an event with the results and the searchbox if present', (done) => {
-      const results = { a: 'a' };
-      const searchbox = 'searchbox';
       const dispatchEvent = spy(() => {
         expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, searchbox });
         done();
       });
-      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves(results);
+      searchbox = 'searchbox';
+      sendSearchApiRequest.resolves(results);
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent },
       };
@@ -93,12 +102,11 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should send an undefined searchbox if one is not provided', (done) => {
-      const results = { a: 'a' };
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, searchbox: undefined });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, searchbox });
         done();
       });
-      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').resolves(results);
+      sendSearchApiRequest.resolves(results);
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent },
       };
@@ -108,11 +116,11 @@ describe('SearchDriverPlugin', () => {
 
     it('should dispatch an error event when the search fails', (done) => {
       const error = new Error('error-object');
-      const sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest').rejects(error);
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, error);
+        expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, { error, searchbox });
         done();
       });
+      sendSearchApiRequest.rejects(error);
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent },
       };
