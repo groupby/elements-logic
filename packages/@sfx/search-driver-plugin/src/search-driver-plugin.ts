@@ -84,7 +84,7 @@ export default class SearchDriverPlugin implements Plugin {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, { results, searchbox });
       })
       .catch((e) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, e);
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, { e, searchbox });
       });
   }
 
