@@ -10,6 +10,7 @@ import {
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
   AutocompleteResponsePayload,
+  AutocompleteErrorPayload,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
@@ -100,10 +101,12 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, { results, group });
+        const payload: AutocompleteResponsePayload = { results, group };
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, payload);
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_ERROR, { error, group });
+        const payload: AutocompleteErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_ERROR, payload);
       });
   }
 
@@ -134,7 +137,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
+  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<AutocompleteResultGroup[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 
