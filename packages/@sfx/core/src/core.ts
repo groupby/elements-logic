@@ -6,6 +6,12 @@ import {
   registerPlugins,
   unregisterPlugins,
 } from './utils/core';
+import {
+  DependencyGraph,
+  createDependencyGraph,
+  mergeDependencyGraphs,
+  removeFromDependencyGraph,
+} from './utils/dependencies';
 
 /**
  * The core of the SF-X plugin system. This entity is responsible for
@@ -30,6 +36,13 @@ export default class Core {
    * Plugins do not have access to this directory.
    */
   directory: PluginDirectory = Object.create(null);
+
+  /**
+   * An object with plugin names mapped to the names of the plugins that
+   * depend on it. This dependency graph is represented as an adjacency
+   * list.
+   */
+  dependencyGraph: DependencyGraph = createDependencyGraph();
 
   /**
    * Register one or more plugins with Core.
@@ -63,18 +76,35 @@ export default class Core {
     }
 
     registerPlugins(plugins, this.registry, this.directory);
+    this.dependencyGraph = mergeDependencyGraphs(this.dependencyGraph, createDependencyGraph(plugins));
 
     initPlugins(plugins);
     readyPlugins(plugins);
   }
 
   /**
-   * Unregisters all plugins. The plugin registry and directory are both
-   * cleared. The optional `unregister` function of each plugin is
-   * called when the plugin is unregistered. The order in which the
-   * plugins are unregistered is unspecified.
+   * Unregisters the given plugins. The plugin registry, directory and
+   * dependency graph are all updated. The optional `unregister`
+   * function of each plugin is called when the plugin is unregistered.
+   * The order in which the plugins are unregistered is unspecified.
+   *
+   * @param plugins The names of the plugins to unregister.
+   * @throws If unregistering a plugin will break a dependency.
+   */
+  unregister(plugins: string[]): void {
+    const updatedGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
+    unregisterPlugins(plugins, this.registry, this.directory);
+    this.dependencyGraph = updatedGraph;
+  }
+
+  /**
+   * Unregisters all plugins. The plugin registry, directory and
+   * dependency graph are all cleared. The optional `unregister`
+   * function of each plugin is called when the plugin is unregistered.
+   * The order in which the plugins are unregistered is unspecified.
    */
   unregisterAll() {
     unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);
+    this.dependencyGraph = createDependencyGraph();
   }
 }

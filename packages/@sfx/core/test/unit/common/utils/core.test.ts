@@ -476,5 +476,33 @@ describe('CoreUtils', () => {
 
       expect(() => unregisterPlugins(names, registry, directory)).to.not.throw();
     });
+
+    it('should ignore plugins not in the directory', () => {
+      const names = ['a', 'c', 'z'];
+      const bValue = () => /b/;
+      const directory: any = {
+        a: {
+          metadata: { name: 'a' },
+          unregister: () => null,
+        },
+        b: {
+          metadata: { name: 'b' },
+          unregister: () => null,
+        },
+        c: {
+          metadata: { name: 'c' },
+          unregister: () => null,
+        },
+      };
+      const registry: any = {
+        a: { a: 'a' },
+        b: bValue,
+        c: 'c',
+      };
+
+      unregisterPlugins(names, registry, directory);
+
+      expect(registry).to.deep.equal({ b: bValue });
+    });
   });
 });
