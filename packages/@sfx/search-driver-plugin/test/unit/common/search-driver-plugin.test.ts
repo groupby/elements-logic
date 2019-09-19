@@ -66,12 +66,12 @@ describe('SearchDriverPlugin', () => {
 
   describe('fetchSearchData()', () => {
     let results;
-    let searchbox;
+    let group;
     let sendSearchApiRequest;
 
     beforeEach(() => {
       results = { a: 'a' };
-      searchbox = undefined;
+      group = undefined;
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
     });
 
@@ -87,23 +87,23 @@ describe('SearchDriverPlugin', () => {
       expect(sendSearchApiRequest).to.be.calledWith(searchTerm);
     });
 
-    it('should dispatch an event with the results and the searchbox if present', (done) => {
+    it('should dispatch an event with the results and the group if present', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, searchbox });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, group });
         done();
       });
-      searchbox = 'searchbox';
+      group = 'group';
       sendSearchApiRequest.resolves(results);
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: { value: 'search', searchbox } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { value: 'search', group } } as any);
     });
 
-    it('should send an undefined searchbox if one is not provided', (done) => {
+    it('should send an undefined group if one is not provided', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, searchbox });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE_EVENT, { results, group });
         done();
       });
       sendSearchApiRequest.resolves(results);
@@ -117,7 +117,7 @@ describe('SearchDriverPlugin', () => {
     it('should dispatch an error event when the search fails', (done) => {
       const error = new Error('error-object');
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, { error, searchbox });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_ERROR_EVENT, { error, group });
         done();
       });
       sendSearchApiRequest.rejects(error);

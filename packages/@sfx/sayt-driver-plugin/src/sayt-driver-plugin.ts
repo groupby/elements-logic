@@ -112,13 +112,13 @@ export default class SaytDriverPlugin implements Plugin {
    * @param event Event that contains the Sayt API request payload.
    */
   fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>) {
-    const { query, searchbox, config } = event.detail;
+    const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, group });
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { error, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { error, group });
       });
   }
 
@@ -129,13 +129,13 @@ export default class SaytDriverPlugin implements Plugin {
    * @param event Event that contains the Search API request payload.
    */
   fetchProductData(event: CustomEvent<SearchRequestConfig>) {
-    const { query, searchbox, config } = event.detail;
+    const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, group });
       })
       .catch(error => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { error, searchbox });
+        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { error, group });
       });
   }
 
@@ -250,7 +250,7 @@ export default class SaytDriverPlugin implements Plugin {
  */
 export interface RequestConfig<T> {
   query: string;
-  searchbox?: string;
+  group?: string;
   config?: T;
 }
 

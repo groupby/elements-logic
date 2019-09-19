@@ -31,14 +31,14 @@ describe('Sayt Driver Plugin', () => {
       detail: {
         query,
         config,
-        searchbox: 'some-searchbox-id',
+        group: 'some-group-id',
       },
     };
     productDataPayload = {
       detail: {
         query,
         config,
-        searchbox: 'some-searchbox-id',
+        group: 'some-group-id',
       },
     };
   });
@@ -245,7 +245,7 @@ describe('Sayt Driver Plugin', () => {
   describe('fetchAutocompleteTerms()', () => {
     let dispatchEvent;
     let results;
-    let searchbox;
+    let group;
     let sendAutocompleteApiRequest;
 
     beforeEach(() => {
@@ -255,7 +255,7 @@ describe('Sayt Driver Plugin', () => {
       };
       results =  { a: 'b' };
       sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
-      searchbox = 'some-searchbox-id';
+      group = 'some-group-id';
     });
 
     it('should call sendAutocompleteApiRequest with query from event and valid config', () => {
@@ -272,7 +272,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -282,14 +282,14 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, { error, searchbox });
+        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, { error, group });
     });
   });
 
   describe('fetchProductData()', () => {
     let dispatchEvent;
     let results;
-    let searchbox;
+    let group;
     let sendSearchApiRequest;
 
     beforeEach(() => {
@@ -299,7 +299,7 @@ describe('Sayt Driver Plugin', () => {
       };
       results = { a: 'b' };
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
-      searchbox = 'some-searchbox-id';
+      group = 'some-group-id';
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
@@ -316,7 +316,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, searchbox });
+        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -326,7 +326,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productErrorEvent, { error, searchbox });
+        .to.be.eventually.calledOnceWith(driver.productErrorEvent, { error, group });
     });
   });
 
