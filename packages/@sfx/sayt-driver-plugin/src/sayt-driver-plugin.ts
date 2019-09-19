@@ -12,6 +12,7 @@ import {
   AutocompleteResponsePayload,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
+  SaytProductsErrorPayload,
 } from '@sfx/events';
 import {
   AutocompleteResponse,
@@ -115,11 +116,13 @@ export default class SaytDriverPlugin implements Plugin {
   fetchProductData(event: CustomEvent<SaytProductsRequestPayload>) {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then(results => {
-        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, { results, group });
+      .then(products => {
+        const payload: SaytProductsResponsePayload = { products, group };
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
       })
       .catch(error => {
-        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, { error, group });
+        const payload: SaytProductsErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, payload);
       });
   }
 
