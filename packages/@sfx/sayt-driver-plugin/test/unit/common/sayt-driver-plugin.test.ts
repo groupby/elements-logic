@@ -324,7 +324,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { results, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { products: results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
