@@ -85,7 +85,7 @@ export default class Core {
   /**
    * Unregisters the given plugins. The plugin registry, directory and
    * dependency graph are all updated. The optional `unregister`
-   * function of each plugin is called with the plugin is unregistered.
+   * function of each plugin is called when the plugin is unregistered.
    * The order in which the plugins are unregistered is unspecified.
    *
    * @param plugins The names of the plugins to unregister.
