@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AutocompleteRequestConfig | SF-X</title>
+	<title>DependencyGraph | SF-X</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_sfx_sayt_driver_plugin.html">@sfx/sayt-driver-plugin</a>
+					<a href="../modules/_sfx_core.html">@sfx/core</a>
 				</li>
 				<li>
-					<a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html">AutocompleteRequestConfig</a>
+					<a href="_sfx_core.dependencygraph.html">DependencyGraph</a>
 				</li>
 			</ul>
-			<h1>Interface AutocompleteRequestConfig</h1>
+			<h1>Interface DependencyGraph</h1>
 		</div>
 	</div>
 </header>
@@ -72,73 +72,36 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The type of the sayt autocomplete request event payload.</p>
+						<p>The type of a plugin dependency graph. This dependency graph
+							represents the reverse dependency relationships of the plugins: a
+							plugin points to the plugins that list it as a dependency. For
+							example, plugin A will point to plugin B if B lists A as a
+						dependency.</p>
 					</div>
+					<p>The graph is represented as an adjacency list, which itself is
+						represented as an object whose keys are plugin names and whose values
+					are lists of the names of the depending plugins.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="_sfx_sayt_driver_plugin.requestconfig.html" class="tsd-signature-type">RequestConfig</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">QueryTimeAutocompleteConfig</span><span class="tsd-signature-symbol">&gt;</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">AutocompleteRequestConfig</span>
-							</li>
-						</ul>
+						<span class="target">DependencyGraph</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel-group tsd-index-group">
-				<h2>Index</h2>
-				<section class="tsd-panel tsd-index-panel">
-					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-inherited">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#query" class="tsd-kind-icon">query</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#searchbox" class="tsd-kind-icon">searchbox</a></li>
-							</ul>
-						</section>
+			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-external-module">
+				<h3 class="tsd-before-signature">Indexable</h3>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The names of each plugin&#39;s dependers.</p>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">QueryTimeAutocompleteConfig</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="_sfx_sayt_driver_plugin.requestconfig.html">RequestConfig</a>.<a href="_sfx_sayt_driver_plugin.requestconfig.html#config">config</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L254">sayt-driver-plugin/src/sayt-driver-plugin.ts:254</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="query" class="tsd-anchor"></a>
-					<h3>query</h3>
-					<div class="tsd-signature tsd-kind-icon">query<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="_sfx_sayt_driver_plugin.requestconfig.html">RequestConfig</a>.<a href="_sfx_sayt_driver_plugin.requestconfig.html#query">query</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L252">sayt-driver-plugin/src/sayt-driver-plugin.ts:252</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="searchbox" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> searchbox</h3>
-					<div class="tsd-signature tsd-kind-icon">searchbox<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="_sfx_sayt_driver_plugin.requestconfig.html">RequestConfig</a>.<a href="_sfx_sayt_driver_plugin.requestconfig.html#searchbox">searchbox</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L253">sayt-driver-plugin/src/sayt-driver-plugin.ts:253</a></li>
-						</ul>
-					</aside>
-				</section>
+					<p>The graph is represented as an adjacency list, which itself is
+						represented as an object whose keys are plugin names and whose values
+					are lists of the names of the depending plugins.</p>
+				</div>
 			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
@@ -147,13 +110,13 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_sfx_core.html">@sfx/core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -169,53 +132,63 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Plugin</a>
+								<a href="../classes/_sfx_core.core.html" class="tsd-kind-icon">Core</a>
 							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html" class="tsd-kind-icon">Autocomplete<wbr>Request<wbr>Config</a>
-								<ul>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#config" class="tsd-kind-icon">config</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#query" class="tsd-kind-icon">query</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_sfx_sayt_driver_plugin.autocompleterequestconfig.html#searchbox" class="tsd-kind-icon">searchbox</a>
-									</li>
-								</ul>
+								<a href="_sfx_core.dependencygraph.html" class="tsd-kind-icon">Dependency<wbr>Graph</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt_driver_plugin.autocompleteresponsesection.html" class="tsd-kind-icon">Autocomplete<wbr>Response<wbr>Section</a>
+								<a href="_sfx_core.plugin.html" class="tsd-kind-icon">Plugin</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt_driver_plugin.productsresponsesection.html" class="tsd-kind-icon">Products<wbr>Response<wbr>Section</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-								<a href="_sfx_sayt_driver_plugin.requestconfig.html" class="tsd-kind-icon">Request<wbr>Config</a>
+								<a href="_sfx_core.plugindirectory.html" class="tsd-kind-icon">Plugin<wbr>Directory</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt_driver_plugin.searchrequestconfig.html" class="tsd-kind-icon">Search<wbr>Request<wbr>Config</a>
+								<a href="_sfx_core.pluginmetadata.html" class="tsd-kind-icon">Plugin<wbr>Metadata</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_sayt_driver_plugin.searchtermitem.html" class="tsd-kind-icon">Search<wbr>Term<wbr>Item</a>
+								<a href="_sfx_core.pluginregistry.html" class="tsd-kind-icon">Plugin<wbr>Registry</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#calculatemissingdependencies" class="tsd-kind-icon">calculate<wbr>Missing<wbr>Dependencies</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#createdependencygraph" class="tsd-kind-icon">create<wbr>Dependency<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#initplugins" class="tsd-kind-icon">init<wbr>Plugins</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#mergedependencygraphs" class="tsd-kind-icon">merge<wbr>Dependency<wbr>Graphs</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#readyplugins" class="tsd-kind-icon">ready<wbr>Plugins</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#registerplugins" class="tsd-kind-icon">register<wbr>Plugins</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#removefromdependencygraph" class="tsd-kind-icon">remove<wbr>From<wbr>Dependency<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#unregisterplugins" class="tsd-kind-icon">unregister<wbr>Plugins</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
 					</li>

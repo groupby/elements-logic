@@ -93,6 +93,7 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_core.core.html#dependencygraph" class="tsd-kind-icon">dependency<wbr>Graph</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_core.core.html#directory" class="tsd-kind-icon">directory</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_core.core.html#registry" class="tsd-kind-icon">registry</a></li>
 							</ul>
@@ -101,6 +102,7 @@
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_core.core.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_core.core.html#unregister" class="tsd-kind-icon">unregister</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_core.core.html#unregisterall" class="tsd-kind-icon">unregister<wbr>All</a></li>
 							</ul>
 						</section>
@@ -110,12 +112,29 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="dependencygraph" class="tsd-anchor"></a>
+					<h3>dependency<wbr>Graph</h3>
+					<div class="tsd-signature tsd-kind-icon">dependency<wbr>Graph<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_sfx_core.dependencygraph.html" class="tsd-signature-type">DependencyGraph</a><span class="tsd-signature-symbol"> =&nbsp;createDependencyGraph()</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L45">core/src/core.ts:45</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An object with plugin names mapped to the names of the plugins that
+								depend on it. This dependency graph is represented as an adjacency
+							list.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="directory" class="tsd-anchor"></a>
 					<h3>directory</h3>
 					<div class="tsd-signature tsd-kind-icon">directory<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_sfx_core.plugindirectory.html" class="tsd-signature-type">PluginDirectory</a><span class="tsd-signature-symbol"> =&nbsp;Object.create(null)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/core/src/core.ts#L32">core/src/core.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L38">core/src/core.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -132,7 +151,7 @@
 					<div class="tsd-signature tsd-kind-icon">registry<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_sfx_core.pluginregistry.html" class="tsd-signature-type">PluginRegistry</a><span class="tsd-signature-symbol"> =&nbsp;Object.create(null)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/core/src/core.ts#L24">core/src/core.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L30">core/src/core.ts:30</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -158,7 +177,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/core/src/core.ts#L59">core/src/core.ts:59</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L72">core/src/core.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -198,6 +217,45 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="unregister" class="tsd-anchor"></a>
+					<h3>unregister</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">unregister<span class="tsd-signature-symbol">(</span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L94">core/src/core.ts:94</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Unregisters the given plugins. The plugin registry, directory and
+										dependency graph are all updated. The optional <code>unregister</code>
+										function of each plugin is called when the plugin is unregistered.
+									The order in which the plugins are unregistered is unspecified.</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>throws</dt>
+									<dd><p>If unregistering a plugin will break a dependency.</p>
+									</dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>plugins: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The names of the plugins to unregister.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="unregisterall" class="tsd-anchor"></a>
 					<h3>unregister<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -207,15 +265,15 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/2b4c77d/packages/@sfx/core/src/core.ts#L77">core/src/core.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/bf44052/packages/@sfx/core/src/core.ts#L106">core/src/core.ts:106</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Unregisters all plugins. The plugin registry and directory are both
-										cleared. The optional <code>unregister</code> function of each plugin is
-										called when the plugin is unregistered. The order in which the
-									plugins are unregistered is unspecified.</p>
+									<p>Unregisters all plugins. The plugin registry, directory and
+										dependency graph are all cleared. The optional <code>unregister</code>
+										function of each plugin is called when the plugin is unregistered.
+									The order in which the plugins are unregistered is unspecified.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -261,6 +319,9 @@
 								<a href="_sfx_core.core.html" class="tsd-kind-icon">Core</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_sfx_core.core.html#dependencygraph" class="tsd-kind-icon">dependency<wbr>Graph</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
 										<a href="_sfx_core.core.html#directory" class="tsd-kind-icon">directory</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
@@ -270,9 +331,15 @@
 										<a href="_sfx_core.core.html#register" class="tsd-kind-icon">register</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_sfx_core.core.html#unregister" class="tsd-kind-icon">unregister</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
 										<a href="_sfx_core.core.html#unregisterall" class="tsd-kind-icon">unregister<wbr>All</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="../interfaces/_sfx_core.dependencygraph.html" class="tsd-kind-icon">Dependency<wbr>Graph</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
 								<a href="../interfaces/_sfx_core.plugin.html" class="tsd-kind-icon">Plugin</a>
@@ -290,13 +357,22 @@
 								<a href="../modules/_sfx_core.html#calculatemissingdependencies" class="tsd-kind-icon">calculate<wbr>Missing<wbr>Dependencies</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#createdependencygraph" class="tsd-kind-icon">create<wbr>Dependency<wbr>Graph</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
 								<a href="../modules/_sfx_core.html#initplugins" class="tsd-kind-icon">init<wbr>Plugins</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#mergedependencygraphs" class="tsd-kind-icon">merge<wbr>Dependency<wbr>Graphs</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module">
 								<a href="../modules/_sfx_core.html#readyplugins" class="tsd-kind-icon">ready<wbr>Plugins</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module">
 								<a href="../modules/_sfx_core.html#registerplugins" class="tsd-kind-icon">register<wbr>Plugins</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="../modules/_sfx_core.html#removefromdependencygraph" class="tsd-kind-icon">remove<wbr>From<wbr>Dependency<wbr>Graph</a>
 							</li>
 							<li class=" tsd-kind-function tsd-parent-kind-external-module">
 								<a href="../modules/_sfx_core.html#unregisterplugins" class="tsd-kind-icon">unregister<wbr>Plugins</a>
