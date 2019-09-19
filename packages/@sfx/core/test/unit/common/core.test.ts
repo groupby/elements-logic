@@ -206,8 +206,8 @@ describe('Core', () => {
     });
 
     it('should clear dependency graph', () => {
-      const unregisterPlugins = stub(CoreUtils, 'unregisterPlugins');
       core.dependencyGraph = { a: ['a'] };
+      stub(CoreUtils, 'unregisterPlugins');
 
       core.unregisterAll();
 
