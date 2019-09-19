@@ -4,6 +4,8 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
+  SearchResponsePayload,
+  SearchErrorPayload,
 } from '@sfx/events';
 
 /**
@@ -81,10 +83,12 @@ export default class SearchDriverPlugin implements Plugin {
     const { value: searchTerm, group } = event.detail;
     this.sendSearchApiRequest(searchTerm)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, { results, group });
+        const payload: SearchResponsePayload = { results, group };
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR, { error, group });
+        const payload: SearchErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR, payload);
       });
   }
 
