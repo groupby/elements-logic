@@ -4,6 +4,7 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
+  SearchRequestPayload,
   SearchResponsePayload,
   SearchErrorPayload,
 } from '@sfx/events';
@@ -80,7 +81,7 @@ export default class SearchDriverPlugin implements Plugin {
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { value: searchTerm, group } = event.detail;
+    const { query: searchTerm, group } = event.detail;
     this.sendSearchApiRequest(searchTerm)
       .then((results) => {
         const payload: SearchResponsePayload = { results, group };
@@ -101,13 +102,4 @@ export default class SearchDriverPlugin implements Plugin {
     const fullQuery = { ...this.defaultSearchConfig, query };
     return this.core.search.search(fullQuery);
   }
-}
-
-/**
- * The type of the search request event payload. The payload is the
- * search term.
- */
-export interface SearchRequestPayload {
-  value: string;
-  group?: string;
 }

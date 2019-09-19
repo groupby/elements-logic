@@ -82,7 +82,7 @@ describe('SearchDriverPlugin', () => {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
 
-      searchDriverPlugin.fetchSearchData({ detail: { value: searchTerm } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query: searchTerm } } as any);
 
       expect(sendSearchApiRequest).to.be.calledWith(searchTerm);
     });
