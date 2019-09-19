@@ -25,6 +25,25 @@ describe('SearchDriverPlugin', () => {
     });
   });
 
+  describe('constructor()', () => {
+    it('should save a passed product transformer as a transformProduct property', () => {
+      const productTransformer = (product) => 123;
+
+      const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
+
+      expect(searchDriverPlugin.transformProduct).to.equal(productTransformer);
+    });
+
+    it('should have a default identity transformProduct property if no transformer is passed', () => {
+      const searchDriverPlugin = new SearchDriverPlugin();
+      const object = { some: 'object' };
+
+      const result = searchDriverPlugin.transformProduct(object as any);
+
+      expect(result).to.equal(object);
+    });
+  });
+
   describe('register()', () => {
     it('should save the plugin registry for future use', () => {
       const registry: any = { a: 1, b: 2 };
@@ -133,7 +152,13 @@ describe('SearchDriverPlugin', () => {
   describe('sendSearchApiRequest()', () => {
     it('should forward the query to the search plugin', () => {
       const query = 'search term';
-      const results = Promise.resolve({});
+      const results = Promise.resolve({ search: 'results' });
+      const searchCallback = stub(searchDriverPlugin, 'searchCallback');
+      const searchCallbackResponse = {
+        originalResponse: { full: 'response' },
+        products: ['product 1', 'product 2'],
+      };
+      searchCallback.returns(searchCallbackResponse);
       const search = stub();
       search.withArgs({
         fields: ['*'],
@@ -141,9 +166,69 @@ describe('SearchDriverPlugin', () => {
       }).returns(results);
       searchDriverPlugin.core = { search: { search } };
 
-      const retval = searchDriverPlugin.sendSearchApiRequest(query);
+      const result = searchDriverPlugin.sendSearchApiRequest(query);
 
-      expect(retval).to.equal(results);
+      return expect(result).to.eventually.equal(searchCallbackResponse);
+    });
+  });
+
+  describe('searchCallback()', () => {
+    let response;
+    const firstProductTitle = 'first-product';
+    const secondProductTitle = 'second-product';
+
+    beforeEach(() => {
+      response = {
+        records: [
+          {
+            allMeta: {
+              title: firstProductTitle,
+            },
+          },
+          {
+            allMeta: {
+              title: secondProductTitle,
+            }
+          }
+        ],
+      }
+    });
+
+    it('should return a response with products', () => {
+      const result = searchDriverPlugin.searchCallback(response);
+
+      expect(result.products).to.have.lengthOf(2);
+      expect(result.products[0].allMeta.title).to.equal(firstProductTitle);
+      expect(result.products[1].allMeta.title).to.equal(secondProductTitle);
+    });
+
+    it('should map products using the transform function', () => {
+      const key2 = 'value2';
+      searchDriverPlugin.transformProduct = (product) => ({
+        key1: product.allMeta.title,
+        key2,
+      });
+
+      const result = searchDriverPlugin.searchCallback(response);
+
+      expect(result.products[0].key1).to.equal(firstProductTitle);
+      expect(result.products[0].key2).to.equal(key2);
+      expect(result.products[1].key1).to.equal(secondProductTitle);
+      expect(result.products[1].key2).to.equal(key2);
+    });
+
+    it('should filter out any products that map to falsy', () => {
+      searchDriverPlugin.transformProduct = (product, i) => {
+        if (i == 1) return;
+        return {
+          key1: product.allMeta.title,
+        }
+      };
+
+      const result = searchDriverPlugin.searchCallback(response);
+
+      expect(result.products).to.have.lengthOf(1);
+      expect(result.products[0].key1).to.equal(firstProductTitle);
     });
   });
 });

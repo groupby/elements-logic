@@ -1,13 +1,14 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Results, Request as SearchRequest } from '@sfx/search-plugin';
+import { Record, Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
+  ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
+  SearchResponseSection,
   SearchErrorPayload,
 } from '@sfx/events';
 
@@ -15,7 +16,7 @@ import {
  * This plugin is responsible for exposing events that allow
  * for interacting with GroupBy's Search API.
  */
-export default class SearchDriverPlugin implements Plugin {
+export default class SearchDriverPlugin<P = Record> implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'search_driver',
@@ -41,11 +42,24 @@ export default class SearchDriverPlugin implements Plugin {
   }
 
   /**
+   * Default product transformer identity function.
+   * Intended to be overwritten by passing a custom product transformer.
+   *
+   * @param product The product to be returned as-is.
+   */
+  transformProduct: ProductTransformer<P> = ((product: Record): Record => product) as any;
+
+  /**
    * Constructs a new instance of the plugin and binds the necessary
    * callbacks.
    */
-  constructor() {
+  constructor(options?: SearchDriverOptions) {
     this.fetchSearchData = this.fetchSearchData.bind(this);
+    this.searchCallback = this.searchCallback.bind(this);
+
+    if (options && options.productTransformer) {
+      this.transformProduct = options.productTransformer;
+    }
   }
 
   /**
@@ -86,7 +100,7 @@ export default class SearchDriverPlugin implements Plugin {
     const { query, group } = event.detail;
     this.sendSearchApiRequest(query)
       .then((results) => {
-        const payload: SearchResponsePayload = { results, group };
+        const payload: SearchResponsePayload<P> = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
       })
       .catch((error) => {
@@ -100,8 +114,33 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param query the query to send.
    */
-  sendSearchApiRequest(query: string): Promise<Results> {
+  sendSearchApiRequest(query: string): Promise<SearchResponseSection<P>> {
     const fullQuery = { ...this.defaultSearchConfig, query };
-    return this.core.search.search(fullQuery);
+    return this.core.search.search(fullQuery)
+      .then(this.searchCallback);
   }
+
+  /**
+   * Extracts query and products from the given response.
+   * Calls `this.transformProduct` on each product found in the response.
+   * Filters out any products that map to a falsy value.
+   *
+   * @param response An object containing the original query and product records.
+   * @returns An object containing the query and an array of valid simplified products.
+   */
+  searchCallback(response: Results): SearchResponseSection<P> {
+    const { records } = response;
+    const mappedRecords = records
+      .map(this.transformProduct)
+      .filter(Boolean);
+
+    return {
+      originalResponse: response,
+      products: mappedRecords,
+    };
+  }
+}
+
+export interface SearchDriverOptions {
+  productTransformer?: ProductTransformer<any>;
 }

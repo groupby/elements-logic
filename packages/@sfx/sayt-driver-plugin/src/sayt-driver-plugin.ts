@@ -12,6 +12,7 @@ import {
   AutocompleteSearchTermItem,
   AutocompleteResponsePayload,
   AutocompleteErrorPayload,
+  ProductTransformer,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
@@ -34,7 +35,7 @@ import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
  * sending search requests to internal data source APIs,
  * and then emitting the API response back in an event.
  */
-export default class SaytDriverPlugin implements Plugin {
+export default class SaytDriverPlugin<P = Record> implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'sayt_driver',
@@ -63,11 +64,27 @@ export default class SaytDriverPlugin implements Plugin {
     fields: ['*'],
   }
 
-  constructor() {
+  /**
+   * Default product transformer identity function.
+   * Intended to be overwritten by passing a custom product transformer.
+   *
+   * @param product The product to be returned as-is.
+   */
+  transformProduct: ProductTransformer<P> = ((product: Record): Record => product) as any;
+
+  /**
+   * Binds relevant functions. Sets transformProduct property if a
+   * product transformer function is passed.
+   */
+  constructor(options?: SaytDriverOptions) {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
     this.searchCallback = this.searchCallback.bind(this);
+
+    if (options && options.productTransformer) {
+      this.transformProduct = options.productTransformer;
+    }
   }
 
   /**
@@ -126,7 +143,7 @@ export default class SaytDriverPlugin implements Plugin {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then((results) => {
-        const payload: SaytProductsResponsePayload = {
+        const payload: SaytProductsResponsePayload<P> = {
           ...results,
           group,
         };
@@ -158,7 +175,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
-  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload> {
+  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload<P>> {
     return this.core.search.search({ ...this.defaultSearchConfig, query, ...config })
       .then(this.searchCallback);
   }
@@ -181,56 +198,21 @@ export default class SaytDriverPlugin implements Plugin {
 
   /**
    * Extracts query and products from the given response.
+   * Calls `this.transformProduct` on each product found in the response.
+   * Filters out any products that map to a falsy value.
    *
    * @param response An object containing the original search response.
    * @returns An object containing an array of valid simplified products and the original response.
    */
-  searchCallback(searchResponse: Results): SaytProductsResponsePayload {
+  searchCallback(searchResponse: Results): SaytProductsResponsePayload<P> {
     const { records } = searchResponse;
-    const mappedRecords = records.map((record) => {
-      let filter;
-      try {
-        filter = this.parseRecord(record);
-      } catch (error) {
-        return;
-      }
-      const { data, firstVariant, nonvisualVariants } = filter;
-
-      // eslint-disable-next-line consistent-return
-      return {
-        title: data.title,
-        price: nonvisualVariants[0].originalPrice,
-        imageSrc: firstVariant.productImage,
-        imageAlt: data.title,
-        productUrl: firstVariant.productImage,
-        // @TODO Handle variants
-      };
-    }).filter(Boolean);
+    const mappedRecords = records
+      .map(this.transformProduct)
+      .filter(Boolean);
 
     return {
       products: mappedRecords,
       originalResponse: searchResponse,
-    };
-  }
-
-  /**
-   * Parses a given product record for valid data. Throws an error if data is invalid.
-   *
-   * @param record An object containing the product record data.
-   * @returns An object containing relevant product data.
-   */
-  // TODO add return type to replace 'any'
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  parseRecord(record: Record): any {
-    const data = record.allMeta;
-    const firstVariant = data.visualVariants[0];
-    const { nonvisualVariants } = firstVariant;
-    if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
-
-    return {
-      data,
-      firstVariant,
-      nonvisualVariants,
     };
   }
 
@@ -244,4 +226,8 @@ export default class SaytDriverPlugin implements Plugin {
     return terms.filter((term) => term.value)
       .map((term) => ({ label: term.value }));
   }
+}
+
+export interface SaytDriverOptions {
+  productTransformer?: ProductTransformer<any>;
 }

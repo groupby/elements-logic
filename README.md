@@ -124,3 +124,39 @@ yarn bundle
 ```
 
 The resulting bundles can be found within the `dist` directory at the root of the repo.
+
+## Usage
+To use sfx-logic, point to a bundle with a script tag:
+
+```html
+<script src="your-sfx-logic-bundle"></script>
+```
+
+You can now instantiate Core and the plugins:
+
+```js
+const core = new sfxCore.Core();
+const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
+const saytPlugin = new sfxPlugins.SaytPlugin({subdomain: 'apparel', collection: 'products'});
+const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
+const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel', collection: 'products', area: 'Storefront'});
+const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
+
+// register all plugins with core
+core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
+```
+
+If you are additionally using `sfx-view`, or require the search data to be transformed to be ready for your own views, you should define a productTransformer function that accepts a `Record` (ie. a product as it is returned from a search) and pass it to the `saytDriverPlugin` and `searchDriverPlugin`:
+
+```js
+function productTransformer(record) {
+  // ... transform a record/product in some way and return it
+  return newProduct;
+}
+
+const core = new sfxCore.Core();
+// ...instantiate other plugins
+
+const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
+const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer });
+```
