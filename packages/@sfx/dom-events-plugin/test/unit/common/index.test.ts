@@ -13,12 +13,12 @@ describe('Entry point', () => {
   });
 
   it('should export the DomEventsPluginOptions interface', () => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const test: AssertTypesEqual<DomEventsPluginOptionsExport, DomEventsPluginOptions> = true;
   });
 
   it('should export the DomEventsPluginExposedValue interface', () => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const test: AssertTypesEqual<DomEventsPluginExposedValueExport, DomEventsPluginExposedValue> = true;
   });
 });

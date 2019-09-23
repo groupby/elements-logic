@@ -1,5 +1,6 @@
 import { expect, spy, stub } from '../../utils';
 import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import SearchDriverPlugin from '@sfx/search-driver-plugin/src/search-driver-plugin';
 
 describe('SearchDriverPlugin', () => {

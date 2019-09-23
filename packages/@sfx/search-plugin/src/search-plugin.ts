@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginMetadata } from '@sfx/core';
 import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
 

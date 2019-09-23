@@ -1,6 +1,6 @@
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST,

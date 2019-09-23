@@ -1,6 +1,6 @@
 import { AssertTypesEqual, expect } from '../../utils';
 // eslint-disable-next-line
-import { default as SearchPlugin, SearchPluginExposedValue, SearchPluginOptions } from '../../../src/search-plugin';
+import SearchPlugin, { SearchPluginExposedValue, SearchPluginOptions } from '../../../src/search-plugin';
 import {
   SearchPlugin as SearchPluginExport,
   SearchPluginExposedValue as SearchPluginExposedValueExport,
@@ -14,12 +14,12 @@ describe('Entry point', () => {
   });
 
   it('should export the SearchPluginExposedValue interface', () => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const test: AssertTypesEqual<SearchPluginExposedValueExport, SearchPluginExposedValue> = true;
   });
 
   it('should export the SearchPluginOptions interface', () => {
-    // eslint-disable-next-line
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const test: AssertTypesEqual<SearchPluginOptionsExport, SearchPluginOptions> = true;
   });
 });

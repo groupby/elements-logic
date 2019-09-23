@@ -1,6 +1,6 @@
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-duplicates
 import { BridgeConfig } from 'groupby-api';
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-duplicates
 import * as SearchPackage from 'groupby-api';
 import { expect, stub } from '../../utils';
 import SearchPlugin from '../../../src/search-plugin';

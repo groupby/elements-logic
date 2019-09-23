@@ -58,6 +58,7 @@ module.exports = {
         "max-len": "off",
         "no-multi-assign": "off",
         "no-nested-ternary": "off",
+        "no-param-reassign": "off",
         "no-plusplus": "off",
         "no-undef": "off",
         "no-unused-expressions": "off",

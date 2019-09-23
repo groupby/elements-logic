@@ -228,12 +228,9 @@ describe('CoreUtils', () => {
       const plugins: any = [
         {
           metadata: { name: 'x' },
-          // eslint-disable-next-line
-          register: (plugins) => {
-            // eslint-disable-next-line
-            delete plugins.a;
-            // eslint-disable-next-line
-            plugins.b = 'bb';
+          register: (pluginArray) => {
+            delete pluginArray.a;
+            pluginArray.b = 'bb';
           },
         },
       ];

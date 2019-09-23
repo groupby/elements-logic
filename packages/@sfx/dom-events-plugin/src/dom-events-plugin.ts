@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
 /**
@@ -7,7 +7,6 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
  * plugins to register, unregister, and dispatch events.
  */
 export default class DomEventsPlugin implements Plugin {
-  // eslint-disable-next-line
   get metadata(): PluginMetadata {
     return {
       name: 'dom_events',
@@ -159,6 +158,6 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to be dispatched.
    * @param payload Data to accompany the dispatched event.
    */
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   dispatchEvent: (eventName: string, payload?: any) => void;
 }

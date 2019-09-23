@@ -1,4 +1,4 @@
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 // eslint-disable-next-line
 import {
@@ -19,13 +19,12 @@ import {
 } from '@sfx/events';
 import {
   AutocompleteResponse,
-  // eslint-disable-next-line
+  // eslint-disable-next-line import/no-extraneous-dependencies
   AutocompleteSearchTerm,
-  // eslint-disable-next-line
+  // eslint-disable-next-line import/no-extraneous-dependencies
   QueryTimeAutocompleteConfig,
-  // eslint-disable-next-line
 } from '@sfx/sayt-plugin';
-// eslint-disable-next-line
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
 /**
@@ -195,7 +194,7 @@ export default class SaytDriverPlugin implements Plugin {
       }
       const { data, firstVariant, nonvisualVariants } = filter;
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line consistent-return
       return {
         title: data.title,
         price: nonvisualVariants[0].originalPrice,
@@ -217,7 +216,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param record An object containing the product record data.
    * @returns An object containing relevant product data.
    */
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parseRecord(record: Record): any {
     const data = record.allMeta;
     const firstVariant = data.visualVariants[0];
