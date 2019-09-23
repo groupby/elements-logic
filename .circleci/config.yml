@@ -66,19 +66,6 @@ jobs:
           paths:
             - workflow-start
 
-  ## Linting job
-  lint:
-    <<: *image_default
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/
-      - restore_cache: *yarn_cache
-      - run: *extract_build_archive
-      - run: *yarn_install
-      - run: yarn run lint:scripts:ci
-      - run: yarn run lint:tests:ci
-
   ## Build jobs
 
   ### build: build_{package}
@@ -231,6 +218,22 @@ jobs:
               echo "No changes to commit."
             fi
 
+  ## Linting jobs
+
+  ### lint
+  ### Runs the lint check across the entire project.
+  lint:
+    <<: *image_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run: yarn run lint:scripts:ci
+      - run: yarn run lint:tests:ci
+
 workflows:
   version: 2
   build_test:
@@ -238,7 +241,8 @@ workflows:
       - generate_cache_key_file:
           filters:
             branches:
-              ignore: /release\/.*/      
+              ignore: /release\/.*/
+
       - build:
           name: build_core
           requires:
@@ -325,10 +329,11 @@ workflows:
             - unit_test_browser_search_plugin
             - unit_test_browser_sayt_driver_plugin
             - unit_test_browser_search_driver_plugin
+
       - lint:
           requires:
-            - generate_cache_key_file
             - build_final
+
       - docs:
           requires:
             - unit_test_final

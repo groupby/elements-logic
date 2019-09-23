@@ -22,41 +22,41 @@ module.exports = {
         project: [
             "./tsconfig.json",
             "./packages/**/tsconfig.json"
-          ]
-        },
+        ]
+    },
     plugins: [
         "@typescript-eslint"
     ],
     settings: {
-        "import/extensions": [".js",".jsx",".ts",".tsx"],
+        "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
         "import/parsers": {
-          "@typescript-eslint/parser": [".ts",".tsx"]
-         },
-         "import/resolver": {
-             "node": {
-                 "extensions": [".js",".jsx",".ts",".tsx"]
-             }
-         }
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     },
     rules: {
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error",
-        "no-useless-constructor": "off",
-        "@typescript-eslint/no-useless-constructor": "error",
-        "func-style": "off",
-        "space-before-function-paren": "off",
-        "no-param-reassign": ["error", { "props": true }],
-        "no-plusplus": "off",
-        "no-nested-ternary": "off",
-        "comma-dangle": ["error", {
-        "arrays": "always-multiline",
-        "objects": "always-multiline",
-        "imports": "always-multiline",
-        "exports": "always-multiline",
-        "functions": "never"
-    }],
         "@typescript-eslint/explicit-function-return-type": ["error", { allowExpressions: true }],
+        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-useless-constructor": "error",
         "@typescript-eslint/unbound-method": "off",
         "class-methods-use-this": "off",
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never"
+        }],
+        "func-style": "off",
+        "no-nested-ternary": "off",
+        "no-unused-vars": "off",
+        "no-param-reassign": ["error", { "props": true }],
+        "no-plusplus": "off",
+        "no-useless-constructor": "off",
+        "space-before-function-paren": "off",
     }
 }

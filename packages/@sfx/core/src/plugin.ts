@@ -89,7 +89,7 @@ export interface PluginMetadata {
  * the name of a plugin and its exposed value.
  */
 export interface PluginRegistry {
-// eslint-disable-next-line
+  // eslint-disable-next-line
   [key: string]: any;
 }
 
