@@ -92,11 +92,7 @@ export function readyPlugins(plugins: Plugin[]): void {
  * exposed value.
  * @param directory The directory from which to unregister the plugin.
  */
-export function unregisterPlugins(
-  names: string[],
-  registry: PluginRegistry,
-  directory: PluginDirectory
-): void {
+export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory): void {
   names.forEach((name) => {
     const plugin = directory[name];
     if (plugin && typeof plugin.unregister === 'function') {
