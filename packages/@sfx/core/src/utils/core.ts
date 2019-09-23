@@ -100,9 +100,7 @@ export function unregisterPlugins(names: string[], registry: PluginRegistry, dir
     }
   });
   names.forEach((name) => {
-    // eslint-disable-next-line
     delete registry[name];
-    // eslint-disable-next-line
     delete directory[name];
   });
 }
