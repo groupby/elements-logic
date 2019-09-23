@@ -57,7 +57,7 @@ yarn tdd:browser
 Test coverage is also provided using [Istanbul](https://github.com/istanbuljs/istanbuljs).
 
 ## Linting
-This project ships with [ESLint](https://eslint.org/) configuration to enforce consistenct code style across `*.ts` files.
+This project ships with [ESLint](https://eslint.org/) configuration to enforce a consistent code style across `*.ts` files.
 
 ### Package-specific linting
 
