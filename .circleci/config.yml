@@ -187,6 +187,22 @@ jobs:
     steps:
       - run: exit 0
 
+  ## Linting jobs
+
+  ### lint
+  ### Runs the lint check across the entire project.
+  lint:
+    <<: *image_default
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/
+      - restore_cache: *yarn_cache
+      - run: *extract_build_archive
+      - run: *yarn_install
+      - run: yarn run lint:scripts:ci
+      - run: yarn run lint:tests:ci
+
   ## Docs job
 
   ### docs
@@ -217,22 +233,6 @@ jobs:
             else
               echo "No changes to commit."
             fi
-
-  ## Linting jobs
-
-  ### lint
-  ### Runs the lint check across the entire project.
-  lint:
-    <<: *image_default
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/
-      - restore_cache: *yarn_cache
-      - run: *extract_build_archive
-      - run: *yarn_install
-      - run: yarn run lint:scripts:ci
-      - run: yarn run lint:tests:ci
 
 workflows:
   version: 2
