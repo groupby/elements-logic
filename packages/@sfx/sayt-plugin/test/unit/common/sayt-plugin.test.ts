@@ -1,4 +1,3 @@
-
 import * as SaytPackage from 'sayt';
 import { expect, stub } from '../../utils';
 import SaytPlugin from '../../../src/sayt-plugin';

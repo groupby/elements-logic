@@ -236,7 +236,7 @@ describe('Sayt Driver Plugin', () => {
 
       expect(autocomplete).to.be.calledWith(
         query,
-        config,
+        config
       );
     });
 

@@ -11,7 +11,7 @@ module.exports = {
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "airbnb-base"
+        "airbnb-base",
     ],
     globals: {
         Atomics: "readonly",
@@ -24,38 +24,45 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: [
             path.resolve(__dirname, "../tsconfig.json"),
-          ]
-        },
+        ]
+    },
     plugins: [
         "@typescript-eslint"
     ],
     settings: {
-        "import/extensions": [".js",".jsx",".ts",".tsx"],
+        "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
         "import/parsers": {
-          "@typescript-eslint/parser": [".ts",".tsx"]
-         },
-         "import/resolver": {
-             "node": {
-                 "extensions": [".js",".jsx",".ts",".tsx"]
-             }
-         }
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     },
     rules: {
-        "no-unused-vars": "off",
+        "@typescript-eslint/camelcase": "off",
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-unused-vars": "error",
-        "no-useless-constructor": "off",
         "@typescript-eslint/no-useless-constructor": "error",
+        "camelcase": "off",
+        "comma-dangle": ["error", {
+            "arrays": "always-multiline",
+            "objects": "always-multiline",
+            "imports": "always-multiline",
+            "exports": "always-multiline",
+            "functions": "never"
+        }],
         "func-style": "off",
-        "space-before-function-paren": "off",
-        "no-plusplus": "off",
-        "no-nested-ternary": "off",
+        "max-len": "off",
         "no-multi-assign": "off",
+        "no-nested-ternary": "off",
+        "no-plusplus": "off",
         "no-undef": "off",
         "no-unused-expressions": "off",
-        "max-len": "off",
-        "@typescript-eslint/no-explicit-any": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/camelcase": "off",
-        "camelcase": "off"
+        "no-unused-vars": "off",
+        "no-useless-constructor": "off",
+        "space-before-function-paren": "off",
     }
 }

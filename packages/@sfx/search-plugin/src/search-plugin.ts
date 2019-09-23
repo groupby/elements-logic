@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line
 import { Plugin, PluginMetadata } from '@sfx/core';
 import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
@@ -35,8 +34,7 @@ export default class SearchPlugin implements Plugin {
       throw new Error('customerId is not valid');
     }
 
-    // eslint-disable-next-line
-    const exposedValue: any = new BrowserBridge(customerId, https, browserBridgeOptions);
+    const exposedValue = new BrowserBridge(customerId, https, browserBridgeOptions) as SearchPluginExposedValue;
     exposedValue.Query = Query;
     this.browserBridge = exposedValue;
   }
