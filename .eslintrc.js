@@ -54,7 +54,7 @@ module.exports = {
         "func-style": "off",
         "no-nested-ternary": "off",
         "no-unused-vars": "off",
-        "no-param-reassign": ["error", { "props": true }],
+        "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": "off",
         "no-useless-constructor": "off",
         "space-before-function-paren": "off",
