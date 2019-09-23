@@ -57,6 +57,10 @@ module.exports = {
         "no-param-reassign": ["error", { "props": false }],
         "no-plusplus": "off",
         "no-useless-constructor": "off",
-        "space-before-function-paren": "off",
+        "space-before-function-paren": ["error", {
+            "anonymous": "never",
+            "named": "always",
+            "asyncArrow": "always"
+        }]
     }
 }

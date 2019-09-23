@@ -64,6 +64,10 @@ module.exports = {
         "no-unused-expressions": "off",
         "no-unused-vars": "off",
         "no-useless-constructor": "off",
-        "space-before-function-paren": "off",
+        "space-before-function-paren": ["error", {
+            "anonymous": "never",
+            "named": "always",
+            "asyncArrow": "always"
+        }]
     }
 }
