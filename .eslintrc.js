@@ -52,6 +52,7 @@ module.exports = {
             "functions": "never"
         }],
         "func-style": "off",
+        "max-len": ["error", { "code": 120 }],
         "no-nested-ternary": "off",
         "no-unused-vars": "off",
         "no-param-reassign": ["error", { "props": false }],

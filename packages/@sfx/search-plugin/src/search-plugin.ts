@@ -6,7 +6,7 @@ import { BridgeConfig, BrowserBridge, Query } from 'groupby-api';
  * This plugin exposes an instance of the GroupBy search client.
  */
 export default class SearchPlugin implements Plugin {
-  get metadata(): PluginMetadata {
+  get metadata (): PluginMetadata {
     return {
       name: 'search',
       depends: [],
@@ -23,7 +23,7 @@ export default class SearchPlugin implements Plugin {
    *
    * @param options The options to instantiate the search data source browser bridge client with.
    */
-  constructor(options: SearchPluginOptions) {
+  constructor (options: SearchPluginOptions) {
     const {
       customerId,
       https = true,
@@ -42,7 +42,7 @@ export default class SearchPlugin implements Plugin {
   /**
    * Returns this plugin's instance of the search client.
    */
-  register(): SearchPluginExposedValue {
+  register (): SearchPluginExposedValue {
     return this.browserBridge;
   }
 }

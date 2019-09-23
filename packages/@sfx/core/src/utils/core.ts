@@ -9,7 +9,7 @@ import { Plugin, PluginDirectory, PluginRegistry } from '../plugin';
  * @param registry The plugin registry containing all registered plugins.
  * @returns An array of names of missing plugins.
  */
-export function calculateMissingDependencies(
+export function calculateMissingDependencies (
   plugins: Plugin[],
   registry: PluginRegistry
 ): string[] {
@@ -35,7 +35,7 @@ export function calculateMissingDependencies(
  * @returns An object containing the keys and values of the new items
  * added to the registry.
  */
-export function registerPlugins(
+export function registerPlugins (
   plugins: Plugin[],
   registry: PluginRegistry,
   directory: PluginDirectory
@@ -61,7 +61,7 @@ export function registerPlugins(
  *
  * @param plugins The plugins to initialize.
  */
-export function initPlugins(plugins: Plugin[]): void {
+export function initPlugins (plugins: Plugin[]): void {
   plugins.forEach((plugin) => {
     if (typeof plugin.init === 'function') {
       plugin.init();
@@ -74,7 +74,7 @@ export function initPlugins(plugins: Plugin[]): void {
  *
  * @param plugins The plugins to ready.
  */
-export function readyPlugins(plugins: Plugin[]): void {
+export function readyPlugins (plugins: Plugin[]): void {
   plugins.forEach((plugin) => {
     if (typeof plugin.ready === 'function') {
       plugin.ready();
@@ -92,7 +92,7 @@ export function readyPlugins(plugins: Plugin[]): void {
  * exposed value.
  * @param directory The directory from which to unregister the plugin.
  */
-export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory): void {
+export function unregisterPlugins (names: string[], registry: PluginRegistry, directory: PluginDirectory): void {
   names.forEach((name) => {
     const plugin = directory[name];
     if (plugin && typeof plugin.unregister === 'function') {

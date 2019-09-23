@@ -34,7 +34,7 @@ import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
  * and then emitting the API response back in an event.
  */
 export default class SaytDriverPlugin implements Plugin {
-  get metadata(): PluginMetadata {
+  get metadata (): PluginMetadata {
     return {
       name: 'sayt_driver',
       depends: [
@@ -62,7 +62,7 @@ export default class SaytDriverPlugin implements Plugin {
     fields: ['*'],
   }
 
-  constructor() {
+  constructor () {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
@@ -75,7 +75,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param plugins The plugin registry object from Core.
    */
-  register(plugins: PluginRegistry): void {
+  register (plugins: PluginRegistry): void {
     this.core = plugins;
   }
 
@@ -217,7 +217,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing relevant product data.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  parseRecord(record: Record): any {
+  parseRecord (record: Record): any {
     const data = record.allMeta;
     const firstVariant = data.visualVariants[0];
     const { nonvisualVariants } = firstVariant;
