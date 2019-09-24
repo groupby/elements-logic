@@ -305,7 +305,7 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      results = { a: 'b' };
+      results = [{ a: 'b' }];
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
       group = 'some-group-id';
     });
