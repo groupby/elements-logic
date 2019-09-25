@@ -119,8 +119,11 @@ export default class SaytDriverPlugin implements Plugin {
   fetchProductData(event: CustomEvent<SaytProductsRequestPayload>) {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then(products => {
-        const payload: SaytProductsResponsePayload = { products, group };
+      .then(results => {
+        const payload: SaytProductsResponsePayload = {
+          ...results,
+          group,
+        };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
       })
       .catch(error => {
@@ -149,7 +152,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
-  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<AutocompleteResultGroup[]> {
+  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload> {
     return this.core.search.search({ ...this.defaultSearchConfig, query, ...config })
       .then(this.searchCallback);
   }
