@@ -91,7 +91,7 @@ export default class Core {
    * @param plugins The names of the plugins to unregister.
    * @throws If unregistering a plugin will break a dependency.
    */
-  unregister(plugins: string[]): void {
+  unregister (plugins: string[]): void {
     const updatedGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
     unregisterPlugins(plugins, this.registry, this.directory);
     this.dependencyGraph = updatedGraph;

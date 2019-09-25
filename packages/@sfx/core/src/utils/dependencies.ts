@@ -22,7 +22,7 @@ export interface DependencyGraph {
  * @returns An empty dependency graph.
  * @hidden
  */
-function createEmptyGraph(): DependencyGraph {
+function createEmptyGraph (): DependencyGraph {
   return Object.create(null);
 }
 
@@ -32,7 +32,7 @@ function createEmptyGraph(): DependencyGraph {
  * @param plugins The plugins from which to build the graph.
  * @returns The completed dependency graph.
  */
-export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
+export function createDependencyGraph (plugins: Plugin[] = []): DependencyGraph {
   const dependencyGraph = createEmptyGraph();
 
   plugins.forEach(({ metadata: { name, depends } }) => {
@@ -55,7 +55,7 @@ export function createDependencyGraph(plugins: Plugin[] = []): DependencyGraph {
  * @param graphs The dependency graphs to merge.
  * @returns The merged dependency graph.
  */
-export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyGraph {
+export function mergeDependencyGraphs (...graphs: DependencyGraph[]): DependencyGraph {
   return graphs.reduce((merged, graph) => {
     Object.keys(graph).forEach((key) => {
       if (!merged[key]) merged[key] = [];
@@ -77,7 +77,7 @@ export function mergeDependencyGraphs(...graphs: DependencyGraph[]): DependencyG
  * @throws If one or more names cannot be removed from the graph without
  *         breaking a dependency.
  */
-export function removeFromDependencyGraph(graph: DependencyGraph, names: string[]): DependencyGraph {
+export function removeFromDependencyGraph (graph: DependencyGraph, names: string[]): DependencyGraph {
   const namesSet = new Set(names);
 
   const newGraph = Object.keys(graph).reduce((clone, plugin) => {
@@ -91,7 +91,7 @@ export function removeFromDependencyGraph(graph: DependencyGraph, names: string[
 
   if (errors.length > 0) throw new Error(`Failed to remove dependencies.\n${errors.join('\n')}`);
 
-  names.forEach((name) => { delete newGraph[name] });
+  names.forEach((name) => { delete newGraph[name]; });
 
   return newGraph;
 }
