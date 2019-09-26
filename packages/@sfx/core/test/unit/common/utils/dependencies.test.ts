@@ -1,4 +1,4 @@
-import { expect, spy } from '../../../utils';
+import { expect } from '../../../utils';
 import {
   createDependencyGraph,
   mergeDependencyGraphs,
