@@ -5,7 +5,14 @@ import {
   readyPlugins,
   registerPlugins,
   unregisterPlugins,
-} from '../../../../src/utils/core';
+} from '@sfx/core/src/utils/core';
+// import {
+//   calculateMissingDependencies,
+//   initPlugins,
+//   readyPlugins,
+//   registerPlugins,
+//   unregisterPlugins,
+// } from '../../../../src/utils/core';
 
 describe('CoreUtils', () => {
   describe('calculateMissingDependencies()', () => {
