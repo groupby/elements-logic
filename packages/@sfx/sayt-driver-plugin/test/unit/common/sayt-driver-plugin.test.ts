@@ -296,7 +296,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('fetchProductData()', () => {
     let dispatchEvent;
-    let results;
+    let products;
     let group;
     let sendSearchApiRequest;
 
@@ -305,13 +305,13 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      results = [{ a: 'b' }];
+      products = [{ a: 'b' }];
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
       group = 'some-group-id';
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves({ products });
 
       driver.fetchProductData(productDataPayload);
 
@@ -319,12 +319,12 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should dispatch the response through the events plugin', () => {
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves({ products });
 
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { products: results, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { products, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
