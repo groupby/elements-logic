@@ -1,7 +1,10 @@
 const eslint = require('./scripts/config/.eslintrc.js')
+// console.log('eslint', eslint)
 
 module.exports = eslint;
-// const path = require('path');
+;
+
+// const path = require('path')
 
 // module.exports = {
 //   env: {
