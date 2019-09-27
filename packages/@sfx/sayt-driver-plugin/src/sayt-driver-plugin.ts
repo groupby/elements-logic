@@ -182,34 +182,35 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Extracts query and products from the given response.
    *
-   * @param response An object containing the original query and product records.
-   * @returns An object containing the query and an array of valid simplified products.
+   * @param response An object containing the original search response.
+   * @returns An object containing an array of valid simplified products, and the original response.
    */
-  searchCallback({ records }: Results): SaytProductsResponsePayload {
-    const mappedRecords = records.map((record) => {
-      let filter;
-      try {
-        filter = this.parseRecord(record);
-      } catch (error) {
-        return;
+    searchCallback(searchResponse: Results): SaytProductsResponsePayload {
+        const { records } = searchResponse;
+        const mappedRecords = records.map(record => {
+          let filter;
+          try {
+            filter = this.parseRecord(record);
+          } catch(error) {
+            return;
+          }
+          const { data, firstVariant, nonvisualVariants } = filter;
+    
+          return {
+            title: data.title,
+            price: nonvisualVariants[0].originalPrice,
+            imageSrc: firstVariant.productImage,
+            imageAlt: data.title,
+            productUrl: firstVariant.productImage,
+            // @TODO Handle variants
+          }
+        }).filter(Boolean);
+    
+        return {
+          products: mappedRecords,
+          originalResponse: searchResponse,
+        };
       }
-      const { data, firstVariant, nonvisualVariants } = filter;
-
-      // eslint-disable-next-line consistent-return
-      return {
-        title: data.title,
-        price: nonvisualVariants[0].originalPrice,
-        imageSrc: firstVariant.productImage,
-        imageAlt: data.title,
-        productUrl: firstVariant.productImage,
-        // @TODO Handle variants
-      };
-    }).filter(Boolean);
-
-    return {
-      products: mappedRecords,
-    };
-  }
 
   /**
    * Parses a given product record for valid data. Throws an error if data is invalid.
