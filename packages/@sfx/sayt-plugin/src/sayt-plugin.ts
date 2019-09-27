@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata } from '@sfx/core';
 import { Sayt, SaytConfig } from 'sayt';
 

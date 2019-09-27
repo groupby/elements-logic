@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 // eslint-disable-next-line
 import {
@@ -19,12 +19,12 @@ import {
 } from '@sfx/events';
 import {
   AutocompleteResponse,
-  // eslint-disable-next-line import/no-extraneous-dependencies
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   AutocompleteSearchTerm,
-  // eslint-disable-next-line import/no-extraneous-dependencies
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
-// eslint-disable-next-line import/no-extraneous-dependencies
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
 /**
