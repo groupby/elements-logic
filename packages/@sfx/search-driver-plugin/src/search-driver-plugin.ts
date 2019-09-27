@@ -1,10 +1,13 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
-  SEARCH_REQUEST_EVENT,
-  SEARCH_RESPONSE_EVENT,
-  SEARCH_ERROR_EVENT,
-} from './events';
+  SEARCH_REQUEST,
+  SEARCH_RESPONSE,
+  SEARCH_ERROR,
+  SearchRequestPayload,
+  SearchResponsePayload,
+  SearchErrorPayload,
+} from '@sfx/events';
 
 /**
  * This plugin is responsible for exposing events that allow
@@ -56,35 +59,37 @@ export default class SearchDriverPlugin implements Plugin {
   /**
    * Registers event listeners. The following events are listened for:
    *
-   * - [[SEARCH_REQUEST_EVENT]]
+   * - [[SEARCH_REQUEST]]
    */
   ready() {
-    this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
+    this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
   /**
    * Unregisters event listeners.
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST_EVENT, this.fetchSearchData);
+    this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
   /**
    * Performs a search with the given search term and emits the result
    * through an event. The result is emitted in a
-   * [[SEARCH_RESPONSE_EVENT]] event. If the search fails for any
-   * reason, a [[SEARCH_ERROR_EVENT]] is dispatched with the error.
+   * [[SEARCH_RESPONSE]] event. If the search fails for any
+   * reason, a [[SEARCH_ERROR]] is dispatched with the error.
    *
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { value: searchTerm, group } = event.detail;
-    this.sendSearchApiRequest(searchTerm)
+    const { query, group } = event.detail;
+    this.sendSearchApiRequest(query)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE_EVENT, { results, group });
+        const payload: SearchResponsePayload = { results, group };
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR_EVENT, { error, group });
+        const payload: SearchErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(SEARCH_ERROR, payload);
       });
   }
 
@@ -97,13 +102,4 @@ export default class SearchDriverPlugin implements Plugin {
     const fullQuery = { ...this.defaultSearchConfig, query };
     return this.core.search.search(fullQuery);
   }
-}
-
-/**
- * The type of the search request event payload. The payload is the
- * search term.
- */
-export interface SearchRequestPayload {
-  value: string;
-  group?: string;
 }

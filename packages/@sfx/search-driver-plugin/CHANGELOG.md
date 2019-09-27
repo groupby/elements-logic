@@ -10,3 +10,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - This plugin listens for a `SEARCH_REQUEST_EVENT` event, makes a
     search request using the GroupBy API, then dispatches a
     `SEARCH_RESPONSE_EVENT` event containing the response.
+  - SFX-248: The `@sfx/events` package is used for event names and payload interfaces.

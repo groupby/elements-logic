@@ -95,6 +95,13 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/nyc-config-typescript/-/nyc-config-typescript-0.1.3.tgz#944d15b3ebdb71f963a628daffaa25ade981bb86"
   integrity sha512-EzRFg92bRSD1W/zeuNkeGwph0nkWf+pP2l/lYW4/5hav7RjKKBN5kV1Ix7Tvi0CMu3pC4Wi/U7rNisiJMR3ORg==
 
+"@sfx/events@groupby/sfx-events#9d18c2024a54fa4289c11bb717f5a03c9cce06cf":
+  version "0.0.0"
+  resolved "https://codeload.github.com/groupby/sfx-events/tar.gz/9d18c2024a54fa4289c11bb717f5a03c9cce06cf"
+  dependencies:
+    groupby-api "^2.6.2"
+    sayt "^0.1.9"
+
 "@sinonjs/commons@^1", "@sinonjs/commons@^1.0.2", "@sinonjs/commons@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.4.0.tgz#7b3ec2d96af481d7a0321252e7b1c94724ec5a78"

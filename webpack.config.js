@@ -28,7 +28,7 @@ module.exports = {
       use: { loader: 'expose-loader', options: 'sfxPlugins' }
     },
     {
-      test: /.(ts|tsx)?$/,
+      test: /\.tsx?$/,
       loader: 'ts-loader',
       exclude: [/node_modules/]
     }]

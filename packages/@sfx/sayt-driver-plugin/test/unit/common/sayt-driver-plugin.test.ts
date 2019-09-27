@@ -1,5 +1,13 @@
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
+import {
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ERROR,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_PRODUCTS_ERROR,
+} from '@sfx/events';
 
 describe('Sayt Driver Plugin', () => {
   let config;
@@ -78,8 +86,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.ready();
 
-      expect(registerListener).to.be.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(registerListener).to.be.calledWith(driver.productRequestEvent, driver.fetchProductData);
+      expect(registerListener).to.be.calledWith(AUTOCOMPLETE_REQUEST, driver.fetchAutocompleteTerms);
+      expect(registerListener).to.be.calledWith(SAYT_PRODUCTS_REQUEST, driver.fetchProductData);
     });
   });
 
@@ -94,8 +102,8 @@ describe('Sayt Driver Plugin', () => {
 
       driver.unregister();
 
-      expect(unregisterListener).to.have.been.calledWith(driver.autocompleteRequestEvent, driver.fetchAutocompleteTerms);
-      expect(unregisterListener).to.have.been.calledWith(driver.productRequestEvent, driver.fetchProductData);
+      expect(unregisterListener).to.have.been.calledWith(AUTOCOMPLETE_REQUEST, driver.fetchAutocompleteTerms);
+      expect(unregisterListener).to.have.been.calledWith(SAYT_PRODUCTS_REQUEST, driver.fetchProductData);
     });
   });
 
@@ -272,7 +280,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteResponseEvent, { results, group });
+        .to.be.eventually.calledOnceWith(AUTOCOMPLETE_RESPONSE, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -282,13 +290,13 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchAutocompleteTerms(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.autocompleteErrorEvent, { error, group });
+        .to.be.eventually.calledOnceWith(AUTOCOMPLETE_ERROR, { error, group });
     });
   });
 
   describe('fetchProductData()', () => {
     let dispatchEvent;
-    let results;
+    let products;
     let group;
     let sendSearchApiRequest;
 
@@ -297,13 +305,13 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      results = { a: 'b' };
+      products = [{ a: 'b' }];
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
       group = 'some-group-id';
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves({ products });
 
       driver.fetchProductData(productDataPayload);
 
@@ -311,12 +319,12 @@ describe('Sayt Driver Plugin', () => {
     });
 
     it('should dispatch the response through the events plugin', () => {
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves({ products });
 
       driver.fetchProductData(productDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productResponseEvent, { results, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { products, group });
     });
 
     it('should send an error in an event if the API request fails', () => {
@@ -326,7 +334,7 @@ describe('Sayt Driver Plugin', () => {
       driver.fetchProductData(saytDataPayload);
 
       return expect(Promise.resolve(dispatchEvent))
-        .to.be.eventually.calledOnceWith(driver.productErrorEvent, { error, group });
+        .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_ERROR, { error, group });
     });
   });
 
@@ -424,7 +432,6 @@ describe('Sayt Driver Plugin', () => {
 
     it('should return a complete product object', () => {
       const expectedResponse = {
-        query: undefined,
         products: [
           {
             title: 'some-title',
@@ -498,7 +505,6 @@ describe('Sayt Driver Plugin', () => {
       };
 
       const expectedResponse = {
-        query: undefined,
         products: [
           expectedGoodObject,
           expectedGoodObject,

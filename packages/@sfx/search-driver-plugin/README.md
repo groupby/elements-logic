@@ -26,16 +26,19 @@ This plugin currently does not accept any options.
 ## Events
 
 This plugin listens for and dispatches a number of events.
+These events are defined in the [`@sfx/events`][sfx-events] package.
+
+[sfx-events]: https://github.com/groupby/sfx-events
 
 ### Received
 
-* `sfx::search_request`: When received, a search request to the GroupBy
-  API is made. An `sfx::search_response` event is dispatched with the
+* `SEARCH_REQUEST`: When received, a search request to the GroupBy
+  API is made. A `SEARCH_RESPONSE` event is dispatched with the
   results.
 
 ### Dispatched
 
-* `sfx::search_response`: Dispatched when a search request has
+* `SEARCH_RESPONSE`: Dispatched when a search request has
   completed. Its payload is the result of the request.
-* `sfx::search_error`: Dispatched when an error has occurred during a
+* `SEARCH_ERROR`: Dispatched when an error has occurred during a
   search request.

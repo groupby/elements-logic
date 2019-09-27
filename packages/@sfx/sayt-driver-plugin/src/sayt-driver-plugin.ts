@@ -1,5 +1,21 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
+  AUTOCOMPLETE_REQUEST,
+  AUTOCOMPLETE_RESPONSE,
+  AUTOCOMPLETE_ERROR,
+  SAYT_PRODUCTS_REQUEST,
+  SAYT_PRODUCTS_RESPONSE,
+  SAYT_PRODUCTS_ERROR,
+  AutocompleteRequestPayload,
+  AutocompleteResultGroup,
+  AutocompleteSearchTermItem,
+  AutocompleteResponsePayload,
+  AutocompleteErrorPayload,
+  SaytProductsRequestPayload,
+  SaytProductsResponsePayload,
+  SaytProductsErrorPayload,
+} from '@sfx/events';
+import {
   AutocompleteResponse,
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
@@ -35,36 +51,6 @@ export default class SaytDriverPlugin implements Plugin {
   eventsPluginName: string = 'dom_events';
 
   /**
-   * Event name to listen for Sayt autocomplete requests.
-   */
-  autocompleteRequestEvent: string = 'sfx::autocomplete_fetch_data';
-
-  /**
-   * Event name for sending Sayt autocomplete responses.
-   */
-  autocompleteResponseEvent: string = 'sfx::autocomplete_received_results';
-
-  /**
-   * Event name to listen for Sayt autocomplete errors.
-   */
-  autocompleteErrorEvent: string = 'sfx::autocomplete_sayt_error';
-
-  /**
-   * Event name to listen for Sayt product requests.
-   */
-  productRequestEvent: string = 'sfx::sayt_products_request';
-
-  /**
-   * Event name for sending Sayt product responses.
-   */
-  productResponseEvent: string = 'sfx::sayt_products_response';
-
-  /**
-   * Event name to listen for Sayt product errors.
-   */
-  productErrorEvent: string = 'sfx::sayt_products_error';
-
-  /**
    * Provide default configuration for SAYT product searches.
    */
   defaultSearchConfig: Partial<SearchRequest> = {
@@ -93,16 +79,16 @@ export default class SaytDriverPlugin implements Plugin {
    * The method will register an event listener for Sayt and product data requests.
    */
   ready() {
-    this.core[this.eventsPluginName].registerListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].registerListener(this.productRequestEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].registerListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].registerListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
 
   /**
    * Lifecycle event where the plugin will unregister all event listeners.
    */
   unregister() {
-    this.core[this.eventsPluginName].unregisterListener(this.autocompleteRequestEvent, this.fetchAutocompleteTerms);
-    this.core[this.eventsPluginName].unregisterListener(this.productRequestEvent, this.fetchProductData);
+    this.core[this.eventsPluginName].unregisterListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
+    this.core[this.eventsPluginName].unregisterListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
 
   /**
@@ -111,14 +97,16 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestConfig>) {
+  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestPayload>) {
     const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteResponseEvent, { results, group });
+        const payload: AutocompleteResponsePayload = { results, group };
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, payload);
       })
       .catch((error) => {
-        this.core[this.eventsPluginName].dispatchEvent(this.autocompleteErrorEvent, { error, group });
+        const payload: AutocompleteErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_ERROR, payload);
       });
   }
 
@@ -128,14 +116,19 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Search API request payload.
    */
-  fetchProductData(event: CustomEvent<SearchRequestConfig>) {
+  fetchProductData(event: CustomEvent<SaytProductsRequestPayload>) {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then(results => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productResponseEvent, { results, group });
+        const payload: SaytProductsResponsePayload = {
+          ...results,
+          group,
+        };
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
       })
       .catch(error => {
-        this.core[this.eventsPluginName].dispatchEvent(this.productErrorEvent, { error, group });
+        const payload: SaytProductsErrorPayload = { error, group };
+        this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, payload);
       });
   }
 
@@ -147,7 +140,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<string[]> {
+  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<AutocompleteResultGroup[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 
@@ -159,7 +152,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
-  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<ProductsResponseSection> {
+  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload> {
     return this.core.search.search({ ...this.defaultSearchConfig, query, ...config })
       .then(this.searchCallback);
   }
@@ -170,7 +163,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An array of search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(response: AutocompleteResponse): AutocompleteResponseSection[] {
+  autocompleteCallback(response: AutocompleteResponse): AutocompleteResultGroup[] {
     const searchTerms = {
       title: '',
       items: response.result.searchTerms
@@ -186,7 +179,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and an array of valid simplified products.
    */
-  searchCallback({ query, records }: Results): ProductsResponseSection {
+  searchCallback({ records }: Results): SaytProductsResponsePayload {
     const mappedRecords = records.map(record => {
       let filter;
       try {
@@ -207,7 +200,6 @@ export default class SaytDriverPlugin implements Plugin {
     }).filter(Boolean);
 
     return {
-      query,
       products: mappedRecords,
     };
   }
@@ -237,53 +229,10 @@ export default class SaytDriverPlugin implements Plugin {
    * @param terms An array of search terms.
    * @returns An array of search terms that have been formatted.
    */
-  constructSearchTerms(terms: AutocompleteSearchTerm[]): SearchTermItem[] {
+  constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
       .map((term) => {
         return { label: term.value };
     });
   }
-}
-
-/**
- * The base configuration accepted for making search or sayt requests.
- */
-export interface RequestConfig<T> {
-  query: string;
-  group?: string;
-  config?: T;
-}
-
-/**
- * The type of the sayt autocomplete request event payload.
- */
-export interface AutocompleteRequestConfig extends RequestConfig<QueryTimeAutocompleteConfig> {}
-
-/**
- * The type of the sayt products request event payload.
- */
-export interface SearchRequestConfig extends RequestConfig<SearchRequest> {}
-
-/**
- * Data section of the event payload for an autocomplete response.
- * Ex. searchTerms
- */
-export interface AutocompleteResponseSection {
-  title: string;
-  items: any[];
-}
-
-/**
- * Sayt autocomplete item.
- */
-export interface SearchTermItem {
-  label: string;
-}
-
-/**
- * Data section of the event payload for a products response.
- */
-export interface ProductsResponseSection {
-  query: string;
-  products: any[];
 }
