@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
+/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
-// eslint-disable-next-line
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
@@ -19,13 +18,11 @@ import {
 } from '@sfx/events';
 import {
   AutocompleteResponse,
-  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   AutocompleteSearchTerm,
-  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
+/* eslint-disable */
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
