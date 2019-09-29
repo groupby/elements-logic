@@ -110,7 +110,8 @@ export default class DomEventsPlugin implements Plugin {
   /**
    * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
-  dispatchEvent<T = any>(eventName: string, payload?: T): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatchEvent<T = any> (eventName: string, payload?: T): void {
     const eventToDispatch = new this.CustomEvent<T>(eventName, { detail: payload });
     this.window.dispatchEvent(eventToDispatch);
   }

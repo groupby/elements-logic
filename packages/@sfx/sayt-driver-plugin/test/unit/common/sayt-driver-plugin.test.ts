@@ -1,5 +1,3 @@
-import { expect, spy, stub } from '../../utils';
-import { SaytDriverPlugin } from '../../../src/index';
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
@@ -8,6 +6,8 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
 } from '@sfx/events';
+import { expect, spy, stub } from '../../utils';
+import { SaytDriverPlugin } from '../../../src/index';
 
 describe('Sayt Driver Plugin', () => {
   let config;

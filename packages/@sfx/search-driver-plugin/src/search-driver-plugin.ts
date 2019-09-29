@@ -63,14 +63,14 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * - [[SEARCH_REQUEST]]
    */
-  ready(): void {
+  ready (): void {
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
   /**
    * Unregisters event listeners.
    */
-  unregister(): void {
+  unregister (): void {
     this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
@@ -82,7 +82,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param event the event whose payload is the search term.
    */
-  fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
+  fetchSearchData (event: CustomEvent<SearchRequestPayload>): void {
     const { query, group } = event.detail;
     this.sendSearchApiRequest(query)
       .then((results) => {
