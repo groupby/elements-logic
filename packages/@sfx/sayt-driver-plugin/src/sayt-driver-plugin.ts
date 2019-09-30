@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, import/no-unresolved */
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
   AUTOCOMPLETE_REQUEST,
@@ -16,13 +16,15 @@ import {
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   AutocompleteResponse,
   AutocompleteSearchTerm,
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
-/* eslint-disable */
+
 
 /**
  * Driver plugin that serves as the link between the Sayt data source
@@ -80,7 +82,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Lifecycle event where the plugin can first safely interact with the registry.
    * The method will register an event listener for Sayt and product data requests.
    */
-  ready(): void {
+  ready (): void {
     this.core[this.eventsPluginName].registerListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].registerListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
@@ -88,7 +90,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Lifecycle event where the plugin will unregister all event listeners.
    */
-  unregister(): void {
+  unregister (): void {
     this.core[this.eventsPluginName].unregisterListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].unregisterListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
@@ -99,7 +101,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestPayload>): void {
+  fetchAutocompleteTerms (event: CustomEvent<AutocompleteRequestPayload>): void {
     const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
@@ -118,17 +120,17 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Search API request payload.
    */
-  fetchProductData(event: CustomEvent<SaytProductsRequestPayload>): void {
+  fetchProductData (event: CustomEvent<SaytProductsRequestPayload>): void {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then(results => {
+      .then((results) => {
         const payload: SaytProductsResponsePayload = {
           ...results,
           group,
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
       })
-      .catch(error => {
+      .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, payload);
       });
@@ -142,7 +144,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Sayt API that has been reformatted
    * with the passed callback.
    */
-  sendAutocompleteApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<AutocompleteResultGroup[]> {
+  sendAutocompleteApiRequest (query: string, config: QueryTimeAutocompleteConfig): Promise<AutocompleteResultGroup[]> {
     return this.core.sayt.autocomplete(query, config).then(this.autocompleteCallback);
   }
 
@@ -154,7 +156,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns A promise from the Search API that has been reformatted
    * with the passed callback.
    */
-  sendSearchApiRequest(query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload> {
+  sendSearchApiRequest (query: string, config: QueryTimeAutocompleteConfig): Promise<SaytProductsResponsePayload> {
     return this.core.search.search({ ...this.defaultSearchConfig, query, ...config })
       .then(this.searchCallback);
   }
@@ -165,7 +167,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An array of search term strings.
    * @returns An array of search term strings.
    */
-  autocompleteCallback(response: AutocompleteResponse): AutocompleteResultGroup[] {
+  autocompleteCallback (response: AutocompleteResponse): AutocompleteResultGroup[] {
     const searchTerms = {
       title: '',
       items: response.result.searchTerms
@@ -181,8 +183,8 @@ export default class SaytDriverPlugin implements Plugin {
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and an array of valid simplified products.
    */
-  searchCallback({ records }: Results): SaytProductsResponsePayload {
-    const mappedRecords = records.map(record => {
+  searchCallback ({ records }: Results): SaytProductsResponsePayload {
+    const mappedRecords = records.map((record) => {
       let filter;
       try {
         filter = this.parseRecord(record);
@@ -233,7 +235,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param terms An array of search terms.
    * @returns An array of search terms that have been formatted.
    */
-  constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
+  constructSearchTerms (terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
       .map((term) => ({ label: term.value }));
   }

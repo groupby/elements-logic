@@ -13,10 +13,6 @@ module.exports = {
         "airbnb-base",
         "../scripts/config/.eslintrc.js"
     ],
-    globals: {
-        Atomics: "readonly",
-        SharedArrayBuffer: "readonly"
-    },
     parser: "@typescript-eslint/parser",
     parserOptions: {
         ecmaVersion: 2018,
@@ -26,20 +22,6 @@ module.exports = {
             path.resolve(__dirname, "../tsconfig.json"),
           ]
         },
-    plugins: [
-        "@typescript-eslint"
-    ],
-    settings: {
-        "import/extensions": [".js",".jsx",".ts",".tsx"],
-        "import/parsers": {
-          "@typescript-eslint/parser": [".ts",".tsx"]
-         },
-         "import/resolver": {
-             "node": {
-                 "extensions": [".js",".jsx",".ts",".tsx"]
-             }
-         }
-    },
     rules: {
       "@typescript-eslint/camelcase": "off",
       "@typescript-eslint/explicit-function-return-type": "off",
