@@ -19,7 +19,9 @@ import {
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   AutocompleteResponse,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   AutocompleteSearchTerm,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   QueryTimeAutocompleteConfig,
 } from '@sfx/sayt-plugin';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
