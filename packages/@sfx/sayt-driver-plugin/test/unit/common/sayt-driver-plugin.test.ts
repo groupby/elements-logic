@@ -418,7 +418,7 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('searchCallback()', () => {
-    it('should return a complete product object', () => {
+    it('should return a complete product object, along with the original response', () => {
       const expectedResponse = {
         products: [
           {
@@ -443,8 +443,20 @@ describe('Sayt Driver Plugin', () => {
           },
         }],
       };
+      const expectedResponse = {
+        products: [
+          {
+            title: 'some-title',
+            price: 3.99,
+            imageSrc: 'some-link',
+            imageAlt: 'some-title',
+            productUrl: 'some-link',
+          },
+        ],
+        originalResponse: response,
+      };
 
-      const actualProduct = driver.searchCallback(input);
+      const actualProduct = driver.searchCallback(response);
 
       expect(actualProduct).to.deep.equal(expectedResponse);
     });
@@ -498,6 +510,7 @@ describe('Sayt Driver Plugin', () => {
           expectedGoodObject,
           expectedGoodObject,
         ],
+        originalResponse: input,
       };
 
       const actualProduct = driver.searchCallback(input);
