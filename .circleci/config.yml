@@ -199,6 +199,7 @@ jobs:
           at: ~/
       - restore_cache: *yarn_cache
       - run: *extract_build_archive
+      - run: *git_submodule_install
       - run: *yarn_install
       - run: yarn run lint:scripts:ci
       - run: yarn run lint:tests:ci
