@@ -183,7 +183,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Extracts query and products from the given response.
    *
    * @param response An object containing the original search response.
-   * @returns An object containing an array of valid simplified products, and the original response.
+   * @returns An object containing an array of valid simplified products and the original response.
    */
     searchCallback(searchResponse: Results): SaytProductsResponsePayload {
         const { records } = searchResponse;
