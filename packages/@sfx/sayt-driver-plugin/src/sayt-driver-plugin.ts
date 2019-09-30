@@ -23,6 +23,7 @@ import {
   AutocompleteSearchTerm,
   // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   QueryTimeAutocompleteConfig,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 } from '@sfx/sayt-plugin';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
