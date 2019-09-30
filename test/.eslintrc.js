@@ -11,7 +11,7 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "airbnb-base",
-        "../.eslintrc.js"
+        "../scripts/config/.eslintrc.js"
     ],
     globals: {
         Atomics: "readonly",
