@@ -419,18 +419,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('searchCallback()', () => {
     it('should return a complete product object, along with the original response', () => {
-      const expectedResponse = {
-        products: [
-          {
-            title: 'some-title',
-            price: 3.99,
-            imageSrc: 'some-link',
-            imageAlt: 'some-title',
-            productUrl: 'some-link',
-          },
-        ],
-      };
-      const input = {
+      const response = {
         records: [{
           allMeta: {
             title: 'some-title',
@@ -442,6 +431,7 @@ describe('Sayt Driver Plugin', () => {
             }],
           },
         }],
+        
       };
       const expectedResponse = {
         products: [
