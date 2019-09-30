@@ -69,7 +69,7 @@ export default class Core {
    *
    * @param plugins An array of plugin instances to register.
    */
-  register (plugins: Plugin[]): void {
+  register(plugins: Plugin[]): void {
     const missingDependencies = calculateMissingDependencies(plugins, this.registry);
     if (missingDependencies.length) {
       throw new Error(`Missing dependencies: ${missingDependencies.join(', ')}`);
@@ -91,7 +91,7 @@ export default class Core {
    * @param plugins The names of the plugins to unregister.
    * @throws If unregistering a plugin will break a dependency.
    */
-  unregister (plugins: string[]): void {
+  unregister(plugins: string[]): void {
     const updatedGraph = removeFromDependencyGraph(this.dependencyGraph, plugins);
     unregisterPlugins(plugins, this.registry, this.directory);
     this.dependencyGraph = updatedGraph;
@@ -103,7 +103,7 @@ export default class Core {
    * function of each plugin is called when the plugin is unregistered.
    * The order in which the plugins are unregistered is unspecified.
    */
-  unregisterAll (): void {
+  unregisterAll(): void {
     unregisterPlugins(Object.keys(this.directory), this.registry, this.directory);
     this.dependencyGraph = createDependencyGraph();
   }

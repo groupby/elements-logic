@@ -16,7 +16,7 @@ import {
  * for interacting with GroupBy's Search API.
  */
 export default class SearchDriverPlugin implements Plugin {
-  get metadata (): PluginMetadata {
+  get metadata(): PluginMetadata {
     return {
       name: 'search_driver',
       depends: [this.eventsPluginName, 'search'],
@@ -44,7 +44,7 @@ export default class SearchDriverPlugin implements Plugin {
    * Constructs a new instance of the plugin and binds the necessary
    * callbacks.
    */
-  constructor () {
+  constructor() {
     this.fetchSearchData = this.fetchSearchData.bind(this);
   }
 
@@ -54,7 +54,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param plugins the plugin registry to use.
    */
-  register (plugins: PluginRegistry): void {
+  register(plugins: PluginRegistry): void {
     this.core = plugins;
   }
 
@@ -63,14 +63,14 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * - [[SEARCH_REQUEST]]
    */
-  ready (): void {
+  ready(): void {
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
   /**
    * Unregisters event listeners.
    */
-  unregister (): void {
+  unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
@@ -82,7 +82,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param event the event whose payload is the search term.
    */
-  fetchSearchData (event: CustomEvent<SearchRequestPayload>): void {
+  fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
     const { query, group } = event.detail;
     this.sendSearchApiRequest(query)
       .then((results) => {
@@ -100,7 +100,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * @param query the query to send.
    */
-  sendSearchApiRequest (query: string): Promise<Results> {
+  sendSearchApiRequest(query: string): Promise<Results> {
     const fullQuery = { ...this.defaultSearchConfig, query };
     return this.core.search.search(fullQuery);
   }

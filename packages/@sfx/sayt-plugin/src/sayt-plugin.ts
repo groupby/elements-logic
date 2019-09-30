@@ -7,7 +7,7 @@ import { Sayt, SaytConfig } from 'sayt';
  * to Core.
  */
 export default class SaytPlugin implements Plugin {
-  get metadata (): PluginMetadata {
+  get metadata(): PluginMetadata {
     return {
       name: 'sayt',
       depends: [],
@@ -25,14 +25,14 @@ export default class SaytPlugin implements Plugin {
    *
    * @param options The options to instantiate the sayt client with.
    */
-  constructor (options?: SaytConfig) {
+  constructor(options?: SaytConfig) {
     this.sayt = new Sayt(options);
   }
 
   /**
    * Returns this plugin's instance of the sayt client.
    */
-  register (): Sayt {
+  register(): Sayt {
     return this.sayt;
   }
 }

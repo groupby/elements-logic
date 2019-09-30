@@ -7,7 +7,7 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
  * plugins to register, unregister, and dispatch events.
  */
 export default class DomEventsPlugin implements Plugin {
-  get metadata (): PluginMetadata {
+  get metadata(): PluginMetadata {
     return {
       name: 'dom_events',
       depends: [],
@@ -55,7 +55,7 @@ export default class DomEventsPlugin implements Plugin {
    * @param options an options object that will be used to configure the
    * plugin.
    */
-  constructor (options: Partial<DomEventsPluginOptions> = {}) {
+  constructor(options: Partial<DomEventsPluginOptions> = {}) {
     this.options = { ...this.options, ...options };
     this.window = this.options.window;
     this.CustomEvent = this.options.CustomEvent;
@@ -81,7 +81,7 @@ export default class DomEventsPlugin implements Plugin {
    *
    * @param plugins a plugin registry object.
    */
-  register (plugins: PluginRegistry): DomEventsPluginExposedValue {
+  register(plugins: PluginRegistry): DomEventsPluginExposedValue {
     this.core = plugins;
 
     this.exposedValue = {
@@ -96,14 +96,14 @@ export default class DomEventsPlugin implements Plugin {
   /**
     * @see [[DomEventsPluginExposedValue.registerListener]]
    */
-  registerListener (eventName: string, callback: EventListener): void {
+  registerListener(eventName: string, callback: EventListener): void {
     this.window.addEventListener(eventName, callback);
   }
 
   /**
    * @see [[DomEventsPluginExposedValue.unregisterListener]]
    */
-  unregisterListener (eventName: string, callback: EventListener): void {
+  unregisterListener(eventName: string, callback: EventListener): void {
     this.window.removeEventListener(eventName, callback);
   }
 
@@ -111,7 +111,7 @@ export default class DomEventsPlugin implements Plugin {
    * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  dispatchEvent<T = any> (eventName: string, payload?: T): void {
+  dispatchEvent<T = any>(eventName: string, payload?: T): void {
     const eventToDispatch = new this.CustomEvent<T>(eventName, { detail: payload });
     this.window.dispatchEvent(eventToDispatch);
   }
