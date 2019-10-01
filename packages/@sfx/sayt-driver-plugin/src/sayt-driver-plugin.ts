@@ -217,6 +217,7 @@ export default class SaytDriverPlugin implements Plugin {
    * @param record An object containing the product record data.
    * @returns An object containing relevant product data.
    */
+  // TODO add return type to replace 'any'
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parseRecord(record: Record): any {
     const data = record.allMeta;
