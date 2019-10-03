@@ -431,7 +431,6 @@ describe('Sayt Driver Plugin', () => {
             }],
           },
         }],
-        
       };
       const expectedResponse = {
         products: [
