@@ -91,7 +91,7 @@ export function removeFromDependencyGraph(graph: DependencyGraph, names: string[
 
   if (errors.length > 0) throw new Error(`Failed to remove dependencies.\n${errors.join('\n')}`);
 
-  names.forEach((name) => { delete newGraph[name] });
+  names.forEach((name) => { delete newGraph[name]; });
 
   return newGraph;
 }

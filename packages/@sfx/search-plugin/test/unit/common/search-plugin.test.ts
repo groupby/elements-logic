@@ -1,8 +1,9 @@
-import { expect, sinon, stub } from '../../utils';
-import SearchPlugin from '../../../src/search-plugin';
-import { SearchPluginOptions, SearchPluginExposedValue } from '../../../src/search-plugin';
-import { BridgeConfig, Query } from 'groupby-api';
+// eslint-disable-next-line import/no-duplicates
+import { BridgeConfig } from 'groupby-api';
+// eslint-disable-next-line import/no-duplicates
 import * as SearchPackage from 'groupby-api';
+import { expect, stub } from '../../utils';
+import SearchPlugin from '../../../src/search-plugin';
 
 describe('SearchPlugin', () => {
   let searchPlugin;
@@ -36,7 +37,7 @@ describe('SearchPlugin', () => {
 
       searchPlugin = new SearchPlugin({ customerId });
 
-      expect(SearchBrowserBridge).to.be.calledWith(customerId, expectedHttps, expectedConfig)
+      expect(SearchBrowserBridge).to.be.calledWith(customerId, expectedHttps, expectedConfig);
     });
 
     it('should create a new instance of Search BrowserBridge with options', () => {
@@ -65,5 +66,5 @@ describe('SearchPlugin', () => {
 
       expect(registerReturnValue).to.equal(browserBridgeInstance);
     });
-  })
+  });
 });

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 
 /**
@@ -18,10 +19,12 @@ export default class DomEventsPlugin implements Plugin {
    * plugin registration lifecycle event.
    */
   core: PluginRegistry;
+
   /**
    * Value that the DOM Events Plugin exposes to the Core entity.
    */
   exposedValue: DomEventsPluginExposedValue;
+
   /**
    * Configuration values used to set up the plugin during construction.
    */
@@ -29,11 +32,13 @@ export default class DomEventsPlugin implements Plugin {
     window: typeof window !== 'undefined' ? window : undefined,
     CustomEvent: typeof CustomEvent !== 'undefined' ? CustomEvent : undefined,
   };
+
   /**
    * Holds a reference to the `window` object, which will be used to invoke
    * various window methods.
    */
   window: Window;
+
   /**
    * Holds a reference to the `CustomEvent` constructor, which will be
    * used to dispatch custom events.
@@ -51,7 +56,7 @@ export default class DomEventsPlugin implements Plugin {
    * plugin.
    */
   constructor(options: Partial<DomEventsPluginOptions> = {}) {
-    this.options = {...this.options, ...options};
+    this.options = { ...this.options, ...options };
     this.window = this.options.window;
     this.CustomEvent = this.options.CustomEvent;
 
@@ -91,21 +96,22 @@ export default class DomEventsPlugin implements Plugin {
   /**
     * @see [[DomEventsPluginExposedValue.registerListener]]
    */
-  registerListener(eventName: string, callback: EventListener) {
+  registerListener(eventName: string, callback: EventListener): void {
     this.window.addEventListener(eventName, callback);
   }
 
   /**
    * @see [[DomEventsPluginExposedValue.unregisterListener]]
    */
-  unregisterListener(eventName: string, callback: EventListener) {
+  unregisterListener(eventName: string, callback: EventListener): void {
     this.window.removeEventListener(eventName, callback);
   }
 
   /**
    * @see [[DomEventsPluginExposedValue.dispatchEvent]]
    */
-  dispatchEvent<T = any>(eventName: string, payload?: T) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatchEvent<T = any>(eventName: string, payload?: T): void {
     const eventToDispatch = new this.CustomEvent<T>(eventName, { detail: payload });
     this.window.dispatchEvent(eventToDispatch);
   }
@@ -119,11 +125,11 @@ export interface DomEventsPluginOptions {
    * Will be used to invoke event-related methods to add/remove listeners
    * and dispatch events.
    */
-  window: Window,
+  window: Window;
   /**
    * Will be used to create custom event objects.
    */
-  CustomEvent: typeof CustomEvent,
+  CustomEvent: typeof CustomEvent;
 }
 
 /**
@@ -138,7 +144,7 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to be registered/listened for.
    * @param callback Callback to be registered with the listener.
    */
-  registerListener: (eventName: string, callback: EventListener) => void,
+  registerListener: (eventName: string, callback: EventListener) => void;
   /**
    * Unregisters an event listener for the given event as well as
    * its corresponding callback function.
@@ -146,12 +152,13 @@ export interface DomEventsPluginExposedValue {
    * @param eventName Name of the event to unregister.
    * @param callback Callback to be unregistered along with the event.
    */
-  unregisterListener: (eventName: string, callback: EventListener) => void,
+  unregisterListener: (eventName: string, callback: EventListener) => void;
   /**
    * Dispatches an event with the provided name and payload.
    *
    * @param eventName Name of the event to be dispatched.
    * @param payload Data to accompany the dispatched event.
    */
-  dispatchEvent: (eventName: string, payload?: any) => void,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  dispatchEvent: (eventName: string, payload?: any) => void;
 }

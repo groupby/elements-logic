@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
 import {
   AUTOCOMPLETE_REQUEST,
@@ -15,11 +16,16 @@ import {
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
 } from '@sfx/events';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   AutocompleteResponse,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   AutocompleteSearchTerm,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
   QueryTimeAutocompleteConfig,
+  // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 } from '@sfx/sayt-plugin';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Record, Request as SearchRequest } from '@sfx/search-plugin';
 
 /**
@@ -48,7 +54,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Name of the events plugin.
    */
-  eventsPluginName: string = 'dom_events';
+  eventsPluginName = 'dom_events';
 
   /**
    * Provide default configuration for SAYT product searches.
@@ -70,7 +76,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param plugins The plugin registry object from Core.
    */
-  register(plugins: PluginRegistry) {
+  register(plugins: PluginRegistry): void {
     this.core = plugins;
   }
 
@@ -78,7 +84,7 @@ export default class SaytDriverPlugin implements Plugin {
    * Lifecycle event where the plugin can first safely interact with the registry.
    * The method will register an event listener for Sayt and product data requests.
    */
-  ready() {
+  ready(): void {
     this.core[this.eventsPluginName].registerListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].registerListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
@@ -86,7 +92,7 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Lifecycle event where the plugin will unregister all event listeners.
    */
-  unregister() {
+  unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(AUTOCOMPLETE_REQUEST, this.fetchAutocompleteTerms);
     this.core[this.eventsPluginName].unregisterListener(SAYT_PRODUCTS_REQUEST, this.fetchProductData);
   }
@@ -97,7 +103,7 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Sayt API request payload.
    */
-  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestPayload>) {
+  fetchAutocompleteTerms(event: CustomEvent<AutocompleteRequestPayload>): void {
     const { query, group, config } = event.detail;
     this.sendAutocompleteApiRequest(query, config)
       .then((results) => {
@@ -116,17 +122,17 @@ export default class SaytDriverPlugin implements Plugin {
    *
    * @param event Event that contains the Search API request payload.
    */
-  fetchProductData(event: CustomEvent<SaytProductsRequestPayload>) {
+  fetchProductData(event: CustomEvent<SaytProductsRequestPayload>): void {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then(results => {
+      .then((results) => {
         const payload: SaytProductsResponsePayload = {
           ...results,
           group,
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
       })
-      .catch(error => {
+      .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_ERROR, payload);
       });
@@ -180,15 +186,16 @@ export default class SaytDriverPlugin implements Plugin {
    * @returns An object containing the query and an array of valid simplified products.
    */
   searchCallback({ records }: Results): SaytProductsResponsePayload {
-    const mappedRecords = records.map(record => {
+    const mappedRecords = records.map((record) => {
       let filter;
       try {
         filter = this.parseRecord(record);
-      } catch(error) {
+      } catch (error) {
         return;
       }
       const { data, firstVariant, nonvisualVariants } = filter;
 
+      // eslint-disable-next-line consistent-return
       return {
         title: data.title,
         price: nonvisualVariants[0].originalPrice,
@@ -196,7 +203,7 @@ export default class SaytDriverPlugin implements Plugin {
         imageAlt: data.title,
         productUrl: firstVariant.productImage,
         // @TODO Handle variants
-      }
+      };
     }).filter(Boolean);
 
     return {
@@ -210,10 +217,12 @@ export default class SaytDriverPlugin implements Plugin {
    * @param record An object containing the product record data.
    * @returns An object containing relevant product data.
    */
+  // TODO add return type to replace 'any'
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   parseRecord(record: Record): any {
     const data = record.allMeta;
     const firstVariant = data.visualVariants[0];
-    const nonvisualVariants = firstVariant.nonvisualVariants;
+    const { nonvisualVariants } = firstVariant;
     if (!nonvisualVariants[0]) throw new Error('No nonvisual variants');
 
     return {
@@ -231,8 +240,6 @@ export default class SaytDriverPlugin implements Plugin {
    */
   constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
-      .map((term) => {
-        return { label: term.value };
-    });
+      .map((term) => ({ label: term.value }));
   }
 }

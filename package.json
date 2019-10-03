@@ -11,7 +11,13 @@
   ],
   "scripts": {
     "bundle": "webpack",
-    "docs": "typedoc --options ./typedoc.js packages"
+    "docs": "typedoc --options ./typedoc.js packages",
+    "lint:scripts": "eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:ci": "eslint ./packages/@sfx/*/src/ --ext .ts --max-warnings 0",
+    "lint:tests": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./packages/@sfx/*/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:ci": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
   },
   "repository": {
     "type": "git",
@@ -28,9 +34,15 @@
     "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
     "@types/mocha": "^5.2.7",
     "@types/node": "^12.0.8",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "chai": "^4.2.0",
-    "expose-loader": "^0.7.5",
     "chai-as-promised": "^7.1.1",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-only-warn": "^1.0.1",
+    "expose-loader": "^0.7.5",
     "karma": "^4.1.0",
     "karma-chai": "^0.1.0",
     "karma-chrome-launcher": "^2.2.0",

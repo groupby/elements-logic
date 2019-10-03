@@ -30,6 +30,7 @@ export interface Plugin {
    * @param plugins The plugin registry containing all other plugins.
    * @returns The value to expose in the registry.
    */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   register: (plugins: PluginRegistry) => any;
 
   /**
@@ -88,6 +89,7 @@ export interface PluginMetadata {
  * the name of a plugin and its exposed value.
  */
 export interface PluginRegistry {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

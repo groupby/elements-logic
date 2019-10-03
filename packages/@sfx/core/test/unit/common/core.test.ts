@@ -124,6 +124,7 @@ describe('Core', () => {
     let unregisterPlugins;
     let registry;
     let directory;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     let dependencyGraph;
 
     beforeEach(() => {

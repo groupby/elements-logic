@@ -1,5 +1,3 @@
-import { expect, spy, stub } from '../../utils';
-import { SaytDriverPlugin } from '../../../src/index';
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
@@ -8,6 +6,8 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
 } from '@sfx/events';
+import { expect, spy, stub } from '../../utils';
+import { SaytDriverPlugin } from '../../../src/index';
 
 describe('Sayt Driver Plugin', () => {
   let config;
@@ -21,15 +21,15 @@ describe('Sayt Driver Plugin', () => {
 
   beforeEach(() => {
     dom_events = {
-      registerListener: (eventName, data) => null,
-      unregisterListener: (eventName, data) => null,
-      dispatchEvent: (eventName, data) => null,
+      registerListener: () => null,
+      unregisterListener: () => null,
+      dispatchEvent: () => null,
     };
     sayt = {
-      autocomplete: (query, config, callback) => null,
+      autocomplete: () => null,
     };
     search = {
-      search: (query, callback) => null,
+      search: () => null,
     };
     driver = new SaytDriverPlugin();
     config = {
@@ -182,12 +182,12 @@ describe('Sayt Driver Plugin', () => {
 
       expect(cbReturn).to.deep.equal(expectedReturn);
     });
-  })
+  });
 
   describe('constructSearchTerms()', () => {
     it('should return search term values as search term labels', () => {
       const terms = [
-        { value: 'a', notValue: 'z'  },
+        { value: 'a', notValue: 'z' },
         { value: 'b' },
         { value: 'c' },
       ];
@@ -236,7 +236,7 @@ describe('Sayt Driver Plugin', () => {
 
       expect(autocomplete).to.be.calledWith(
         query,
-        config,
+        config
       );
     });
 
@@ -261,7 +261,7 @@ describe('Sayt Driver Plugin', () => {
       driver.core = {
         dom_events,
       };
-      results =  { a: 'b' };
+      results = { a: 'b' };
       sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
       group = 'some-group-id';
     });
@@ -356,7 +356,7 @@ describe('Sayt Driver Plugin', () => {
       expect(searchStub).to.be.calledWith({
         query,
         fields: ['*'],
-        ...config
+        ...config,
       });
     });
 
@@ -407,7 +407,7 @@ describe('Sayt Driver Plugin', () => {
       const nonvisualVariants = [{}, {}];
       const firstVariant = { nonvisualVariants };
       const data = {
-        visualVariants: [ firstVariant ],
+        visualVariants: [firstVariant],
       };
       record = { allMeta: data };
 
@@ -418,18 +418,6 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('searchCallback()', () => {
-    let response;
-
-    beforeEach(() => {
-      response = {
-        records: [
-          {
-            allMeta: {},
-          }
-        ]
-      };
-    });
-
     it('should return a complete product object', () => {
       const expectedResponse = {
         products: [
@@ -475,14 +463,14 @@ describe('Sayt Driver Plugin', () => {
       };
 
       const badObject1 = {
-        allMeta: {}
+        allMeta: {},
       };
 
       const badObject2 = {
         allMeta: {
           title: 'some-title',
           visualVariants: [],
-        }
+        },
       };
 
       const expectedGoodObject = {

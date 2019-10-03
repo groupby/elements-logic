@@ -9,14 +9,15 @@ import { Plugin, PluginDirectory, PluginRegistry } from '../plugin';
  * @param registry The plugin registry containing all registered plugins.
  * @returns An array of names of missing plugins.
  */
-export function calculateMissingDependencies(plugins: Plugin[], registry: PluginRegistry): string[] {
+export function calculateMissingDependencies(
+  plugins: Plugin[],
+  registry: PluginRegistry
+): string[] {
   const available = [
     ...Object.keys(registry),
-    ...plugins.map(({ metadata: { name }}) => name),
+    ...plugins.map(({ metadata: { name } }) => name),
   ];
-  const required = plugins.reduce((memo, plugin) => {
-    return [...memo, ...plugin.metadata.depends];
-  }, []);
+  const required = plugins.reduce((memo, plugin) => [...memo, ...plugin.metadata.depends], []);
   const availableSet = new Set(available);
   const requiredSet = new Set(required);
   const difference = new Set(Array.from(requiredSet).filter((p) => !availableSet.has(p)));
@@ -34,7 +35,11 @@ export function calculateMissingDependencies(plugins: Plugin[], registry: Plugin
  * @returns An object containing the keys and values of the new items
  * added to the registry.
  */
-export function registerPlugins(plugins: Plugin[], registry: PluginRegistry, directory: PluginDirectory): PluginRegistry {
+export function registerPlugins(
+  plugins: Plugin[],
+  registry: PluginRegistry,
+  directory: PluginDirectory
+): PluginRegistry {
   const newlyRegistered = Object.create(null);
   const newPlugins = Object.create(null);
 
@@ -56,7 +61,7 @@ export function registerPlugins(plugins: Plugin[], registry: PluginRegistry, dir
  *
  * @param plugins The plugins to initialize.
  */
-export function initPlugins(plugins: Plugin[]) {
+export function initPlugins(plugins: Plugin[]): void {
   plugins.forEach((plugin) => {
     if (typeof plugin.init === 'function') {
       plugin.init();
@@ -69,7 +74,7 @@ export function initPlugins(plugins: Plugin[]) {
  *
  * @param plugins The plugins to ready.
  */
-export function readyPlugins(plugins: Plugin[]) {
+export function readyPlugins(plugins: Plugin[]): void {
   plugins.forEach((plugin) => {
     if (typeof plugin.ready === 'function') {
       plugin.ready();
@@ -87,7 +92,7 @@ export function readyPlugins(plugins: Plugin[]) {
  * exposed value.
  * @param directory The directory from which to unregister the plugin.
  */
-export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory) {
+export function unregisterPlugins(names: string[], registry: PluginRegistry, directory: PluginDirectory): void {
   names.forEach((name) => {
     const plugin = directory[name];
     if (plugin && typeof plugin.unregister === 'function') {

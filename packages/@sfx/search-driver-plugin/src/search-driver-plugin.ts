@@ -1,4 +1,6 @@
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@sfx/core';
+// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Results, Request as SearchRequest } from '@sfx/search-plugin';
 import {
   SEARCH_REQUEST,
@@ -29,7 +31,7 @@ export default class SearchDriverPlugin implements Plugin {
   /**
    * Name of the events plugin.
    */
-  eventsPluginName: string = 'dom_events';
+  eventsPluginName = 'dom_events';
 
   /**
    * Default configuration for all searches.
@@ -61,7 +63,7 @@ export default class SearchDriverPlugin implements Plugin {
    *
    * - [[SEARCH_REQUEST]]
    */
-  ready() {
+  ready(): void {
     this.core[this.eventsPluginName].registerListener(SEARCH_REQUEST, this.fetchSearchData);
   }
 
