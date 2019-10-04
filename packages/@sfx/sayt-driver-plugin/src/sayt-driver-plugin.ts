@@ -182,10 +182,11 @@ export default class SaytDriverPlugin implements Plugin {
   /**
    * Extracts query and products from the given response.
    *
-   * @param response An object containing the original query and product records.
-   * @returns An object containing the query and an array of valid simplified products.
+   * @param response An object containing the original search response.
+   * @returns An object containing an array of valid simplified products and the original response.
    */
-  searchCallback({ records }: Results): SaytProductsResponsePayload {
+  searchCallback(searchResponse: Results): SaytProductsResponsePayload {
+    const { records } = searchResponse;
     const mappedRecords = records.map((record) => {
       let filter;
       try {
@@ -208,6 +209,7 @@ export default class SaytDriverPlugin implements Plugin {
 
     return {
       products: mappedRecords,
+      originalResponse: searchResponse,
     };
   }
 
