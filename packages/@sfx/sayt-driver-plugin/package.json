@@ -26,6 +26,6 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#1955f6a404f5c3ed3434b2254f60d57e607c346e"
+    "@sfx/events": "groupby/sfx-events#c4a4853a424992db9c170fea6990dc2a52c3061e"
   }
 }
