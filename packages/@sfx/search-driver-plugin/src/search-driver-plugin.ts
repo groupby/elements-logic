@@ -46,6 +46,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * Intended to be overwritten by passing a custom product transformer.
    *
    * @param product The product to be returned as-is.
+   * @returns The received product object.
    */
   transformProduct: ProductTransformer<P> = ((product: Record): Record => product) as any;
 
