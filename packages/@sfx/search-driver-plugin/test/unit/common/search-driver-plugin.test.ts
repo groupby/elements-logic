@@ -211,10 +211,10 @@ describe('SearchDriverPlugin', () => {
 
       const result = searchDriverPlugin.searchCallback(response);
 
-      expect(result.products[0].key1).to.equal(firstProductTitle);
-      expect(result.products[0].key2).to.equal(key2);
-      expect(result.products[1].key1).to.equal(secondProductTitle);
-      expect(result.products[1].key2).to.equal(key2);
+      expect(result.products).to.deep.equal([
+        { key1: firstProductTitle, key2 },
+        { key1: secondProductTitle, key2 },
+      ]);
     });
 
     it('should filter out any products that map to falsy', () => {
