@@ -188,10 +188,10 @@ describe('SearchDriverPlugin', () => {
           {
             allMeta: {
               title: secondProductTitle,
-            }
-          }
+            },
+          },
         ],
-      }
+      };
     });
 
     it('should return a response with products', () => {
@@ -222,7 +222,7 @@ describe('SearchDriverPlugin', () => {
         if (i == 1) return;
         return {
           key1: product.allMeta.title,
-        }
+        };
       };
 
       const result = searchDriverPlugin.searchCallback(response);

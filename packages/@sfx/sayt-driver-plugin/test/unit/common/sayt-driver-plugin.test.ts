@@ -6,9 +6,9 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
 } from '@sfx/events';
+import searchDriverPlugin from '@sfx/search-driver-plugin/dist/search-driver-plugin';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
-import searchDriverPlugin from '@sfx/search-driver-plugin/dist/search-driver-plugin';
 
 describe('Sayt Driver Plugin', () => {
   let config;
@@ -406,10 +406,10 @@ describe('Sayt Driver Plugin', () => {
           {
             allMeta: {
               title: secondProductTitle,
-            }
-          }
+            },
+          },
         ],
-      }
+      };
     });
 
     it('should return a response with products', () => {
@@ -432,7 +432,7 @@ describe('Sayt Driver Plugin', () => {
       expect(result.products).to.deep.equal([
         { key1: firstProductTitle, key2 },
         { key1: secondProductTitle, key2 },
-      ])
+      ]);
     });
 
     it('should filter out any products that map to falsy values', () => {
@@ -440,7 +440,7 @@ describe('Sayt Driver Plugin', () => {
         if (i == 1) return;
         return {
           key1: product.allMeta.title,
-        }
+        };
       };
 
       const result = driver.searchCallback(response);
