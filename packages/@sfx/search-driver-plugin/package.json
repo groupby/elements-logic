@@ -25,6 +25,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#6cc0210443a350182313f97e5d6862e551a4c26d"
+    "@sfx/events": "groupby/sfx-events#1955f6a404f5c3ed3434b2254f60d57e607c346e"
   }
 }
