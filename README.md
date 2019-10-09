@@ -146,7 +146,7 @@ const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
 core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 ```
 
-If you are additionally using `sfx-view`, or require the search data to be transformed to be ready for your own views, you should define a productTransformer function that accepts a `Record` (ie. a product as it is returned from a search), returns a `Product` (ie. a product in the format needed for `sfx-view` or your own views) and pass it to the `saytDriverPlugin` and `searchDriverPlugin`:
+If you are additionally using `sfx-view`, or require the search data to be transformed to be ready for your own views, you should define a `productTransformer` function that accepts a `Record` (a product as it is returned from a search), returns a `Product` (a product in the format needed for `sfx-view` or your own views) and pass it to the `saytDriverPlugin` and `searchDriverPlugin`:
 
 ```js
 function productTransformer(record) {
