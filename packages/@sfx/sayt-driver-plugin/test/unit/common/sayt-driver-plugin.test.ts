@@ -53,7 +53,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('constructor()', () => {
     it('should save a passed product transformer as a transformProduct property', () => {
-      const productTransformer = ((product) => 123) as any;
+      const productTransformer: any = ((product) => 123);
 
       const driver = new SaytDriverPlugin({ productTransformer });
 
@@ -390,9 +390,9 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('searchCallback()', () => {
-    let response;
     const firstProductTitle = 'first-product';
     const secondProductTitle = 'second-product';
+    let response;
 
     beforeEach(() => {
       response = {

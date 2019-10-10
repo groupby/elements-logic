@@ -44,23 +44,21 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Default product transformer identity function.
-   * Intended to be overwritten by passing a custom product transformer.
-   *
-   * @param product The product to be returned as-is.
-   * @returns The received product object.
+   * The product transformer that will transform a [[Record]] to
+   * the desired form.
    */
-  transformProduct: ProductTransformer<P> = ((product: Record): Record => product) as any;
+  transformProduct: ProductTransformer<P>;
 
   /**
    * Constructs a new instance of the plugin and binds the necessary
    * callbacks.
    */
-  constructor(options: SearchDriverOptions = {}) {
+  constructor(options: SearchDriverOptions<P> = {}) {
     this.fetchSearchData = this.fetchSearchData.bind(this);
     this.searchCallback = this.searchCallback.bind(this);
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       productTransformer = ((product: Record): Record => product) as any,
     } = options;
 
@@ -127,7 +125,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Extracts query and products from the given response.
-   * Calls `this.transformProduct` on each product found in the response.
+   * Calls [[transformProduct]] on each product found in the response.
    * Filters out any products that map to a falsy value.
    *
    * @param response An object containing the original query and product records.
@@ -144,6 +142,15 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   }
 }
 
-export interface SearchDriverOptions {
-  productTransformer?: ProductTransformer<Product>;
+/**
+ * The configuration options for [[SearchDriver]].
+ *
+ * @typeparam P The product type.
+ */
+export interface SearchDriverOptions<P> {
+  /**
+   * A function to transform a [[Record]] from the GroupBy Search API
+   * to the desired form.
+   */
+  productTransformer?: ProductTransformer<P>;
 }
