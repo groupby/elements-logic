@@ -208,9 +208,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
    */
   searchCallback(searchResponse: Results): SaytProductsResponsePayload<P> {
     const { records } = searchResponse;
-    const mappedRecords = records
-      .map(this.transformProduct)
-      .filter(Boolean);
+    const mappedRecords = records.map(this.transformProduct).filter(Boolean);
 
     return {
       products: mappedRecords,
