@@ -1,6 +1,6 @@
 # SF-X Sayt Driver Plugin
 
-This package contains the SF-X Sayt (Search-as-you-type) Driver plugin.
+This package contains the SF-X SAYT (Search-as-you-type) Driver plugin.
 
 ## Prerequisites
 
@@ -35,12 +35,12 @@ This plugin listens for and dispatches a number of events.
 
 ### Received
 
-* `sfx::autocomplete_fetch_data`: When received, a request to the GroupBy Sayt API is made. An `sfx::autocomplete_received_results` event is dispatched with the results. In case of an error, the `sfx::autocomplete_sayt_error` event is dispatched instead.
-* `sfx::sayt_products_request`: When received, a search request to the GroupBy API is made to receive products. An `sfx::sayt_products_response` event is dispatched with the results. In case of an error, the `sfx::sayt_products_error` event is dispatched instead.
+* `AUTOCOMPLETE_REQUEST`: When received, a request to the GroupBy Sayt API is made. An `AUTOCOMPLETE_RESPONSE` event is dispatched with the results. In case of an error, the `AUTOCOMPLETE_ERROR` event is dispatched instead.
+* `SAYT_PRODUCTS_REQUEST`: When received, a search request to the GroupBy API is made to receive products. An `SAYT_PRODUCTS_RESPONSE` event is dispatched with the results. In case of an error, the `SAYT_PRODUCTS_ERROR` event is dispatched instead.
 
 ### Dispatched
 
-* `sfx::autocomplete_received_results`: Dispatched when a Sayt request has completed. Its payload is the result of the request and includes search autocomplete terms.
-* `sfx::autocomplete_sayt_error`: Dispatched when an error has occurred during a Sayt request.
-* `sfx::sayt_products_response`: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.
-* `sfx::sayt_products_error`: Dispatched when an error has occurred during a search request.
+* `AUTOCOMPLETE_RESPONSE`: Dispatched when a Sayt request has completed. Its payload is the result of the request and includes search autocomplete terms.
+* `AUTOCOMPLETE_ERROR`: Dispatched when an error has occurred during a Sayt request.
+* `SAYT_PRODUCTS_RESPONSE`: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.
+* `SAYT_PRODUCTS_ERROR`: Dispatched when an error has occurred during a search request.
