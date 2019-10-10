@@ -11,4 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     search request using the GroupBy API, then dispatches a
     `SEARCH_RESPONSE_EVENT` event containing the response.
   - SFX-248: The `@sfx/events` package is used for event names and payload interfaces.
-  - SFX-385: Added a constructor argument to pass in a custom product transformer.
+  - SFX-385: Added the ability to supply plugin options through the constructor.
