@@ -53,7 +53,7 @@ describe('Sayt Driver Plugin', () => {
 
   describe('constructor()', () => {
     it('should save a passed product transformer as a transformProduct property', () => {
-      const productTransformer = (product) => 123;
+      const productTransformer = ((product) => 123) as any;
 
       const driver = new SaytDriverPlugin({ productTransformer });
 
@@ -62,9 +62,9 @@ describe('Sayt Driver Plugin', () => {
 
     it('should have a default identity transformProduct property if no transformer is passed', () => {
       const driver = new SaytDriverPlugin();
-      const object = { some: 'object' };
+      const object: any = { some: 'object' };
 
-      const result = driver.transformProduct(object as any);
+      const result = driver.transformProduct(object);
 
       expect(result).to.equal(object);
     });

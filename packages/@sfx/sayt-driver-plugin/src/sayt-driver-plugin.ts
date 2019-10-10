@@ -78,7 +78,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
    * Binds relevant functions. Sets transformProduct property if a
    * product transformer function is passed.
    */
-  constructor(options?: SaytDriverOptions) {
+  constructor(options: SaytDriverOptions = {}) {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
