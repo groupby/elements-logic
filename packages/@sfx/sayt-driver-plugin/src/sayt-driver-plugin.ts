@@ -83,9 +83,10 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
     this.searchCallback = this.searchCallback.bind(this);
 
-    if (options && options.productTransformer) {
-      this.transformProduct = options.productTransformer;
-    }
+    const {
+      productTransformer = ((product: Record): Record => product) as any,
+    } = options;
+    this.transformProduct = productTransformer;
   }
 
   /**
