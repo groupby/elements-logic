@@ -55,14 +55,14 @@ describe('Sayt Driver Plugin', () => {
     it('should save a passed product transformer as a transformProduct property', () => {
       const productTransformer: any = ((product) => 123);
 
-      const driver = new SaytDriverPlugin({ productTransformer });
+      driver = new SaytDriverPlugin({ productTransformer });
 
       expect(driver.transformProduct).to.equal(productTransformer);
     });
 
     it('should have a default identity transformProduct property if no transformer is passed', () => {
-      const driver = new SaytDriverPlugin();
       const object: any = { some: 'object' };
+      driver = new SaytDriverPlugin();
 
       const result = driver.transformProduct(object);
 
@@ -436,7 +436,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should filter out any products that map to falsy values', () => {
       driver.transformProduct = (product, i) => {
-        if (i === 1) return;
+        if (i === 1) return undefined;
         return {
           key1: product.allMeta.title,
         };

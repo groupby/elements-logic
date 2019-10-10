@@ -29,14 +29,14 @@ describe('SearchDriverPlugin', () => {
     it('should save a passed product transformer as a transformProduct property', () => {
       const productTransformer: any = ((product) => 123);
 
-      const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
+      searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
 
       expect(searchDriverPlugin.transformProduct).to.equal(productTransformer);
     });
 
     it('should have a default identity transformProduct property if no transformer is passed', () => {
-      const searchDriverPlugin = new SearchDriverPlugin();
       const object: any = { some: 'object' };
+      searchDriverPlugin = new SearchDriverPlugin();
 
       const result = searchDriverPlugin.transformProduct(object);
 
@@ -218,7 +218,7 @@ describe('SearchDriverPlugin', () => {
 
     it('should filter out any products that map to falsy', () => {
       searchDriverPlugin.transformProduct = (product, i) => {
-        if (i === 1) return;
+        if (i === 1) return undefined;
         return {
           key1: product.allMeta.title,
         };
