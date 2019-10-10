@@ -12,6 +12,7 @@ import {
   AutocompleteSearchTermItem,
   AutocompleteResponsePayload,
   AutocompleteErrorPayload,
+  Product,
   ProductTransformer,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
@@ -229,5 +230,5 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 }
 
 export interface SaytDriverOptions {
-  productTransformer?: ProductTransformer<any>;
+  productTransformer?: ProductTransformer<Product>;
 }
