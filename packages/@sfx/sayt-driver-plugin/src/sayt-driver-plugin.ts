@@ -81,7 +81,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
     this.searchCallback = this.searchCallback.bind(this);
 
     const {
-      // eslint-disable-next-line @typescript-eslint/no-implicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       productTransformer = ((product: Record): Record => product) as any,
     } = options;
     this.transformProduct = productTransformer;
