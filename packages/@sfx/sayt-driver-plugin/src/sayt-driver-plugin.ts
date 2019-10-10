@@ -66,13 +66,10 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Default product transformer identity function.
-   * Intended to be overwritten by passing a custom product transformer.
-   *
-   * @param product The product to be returned as-is.
-   * @returns The received product object.
+   * The product transformer that will transform a [[Record]] to
+   * the desired form.
    */
-  transformProduct: ProductTransformer<P> = ((product: Record): Record => product) as any;
+  transformProduct: ProductTransformer<P>;
 
   /**
    * Binds relevant functions. Sets transformProduct property if a
