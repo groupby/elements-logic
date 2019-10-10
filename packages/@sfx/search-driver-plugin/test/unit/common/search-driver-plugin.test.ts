@@ -157,8 +157,7 @@ describe('SearchDriverPlugin', () => {
         originalResponse: { full: 'response' },
         products: ['product 1', 'product 2'],
       };
-      const searchCallback = stub(searchDriverPlugin, 'searchCallback')
-        .returns(searchCallbackResponse);
+      stub(searchDriverPlugin, 'searchCallback').returns(searchCallbackResponse);
       const search = stub();
       search.withArgs({
         fields: ['*'],
