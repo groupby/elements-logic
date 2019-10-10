@@ -31,7 +31,7 @@ This plugin accepts the following options:
 
 ## Events
 
-This plugin listens for and dispatches a number of events.
+This plugin listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
 
 ### Received
 
@@ -44,3 +44,5 @@ This plugin listens for and dispatches a number of events.
 * `AUTOCOMPLETE_ERROR`: Dispatched when an error has occurred during a Sayt request.
 * `SAYT_PRODUCTS_RESPONSE`: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.
 * `SAYT_PRODUCTS_ERROR`: Dispatched when an error has occurred during a search request.
+
+[sfx-events]: https://github.com/groupby/sfx-events
