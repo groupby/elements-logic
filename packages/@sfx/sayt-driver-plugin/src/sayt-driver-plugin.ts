@@ -12,7 +12,6 @@ import {
   AutocompleteSearchTermItem,
   AutocompleteResponsePayload,
   AutocompleteErrorPayload,
-  Product,
   ProductTransformer,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,

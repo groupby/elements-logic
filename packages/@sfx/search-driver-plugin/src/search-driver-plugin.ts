@@ -6,7 +6,6 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
-  Product,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
