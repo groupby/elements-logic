@@ -103,7 +103,7 @@ yarn lint:tests
 
 - To run automated lint fixes on all files within each package's `src` directory:
 ```sh
-yarn lint:script:fix
+yarn lint:scripts:fix
 ```
 
 - To run automated lint fixes on all files within each package's `test` directory:
