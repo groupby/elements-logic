@@ -27,7 +27,7 @@ describe('SearchDriverPlugin', () => {
 
   describe('constructor()', () => {
     it('should save a passed product transformer as a transformProduct property', () => {
-      const productTransformer = (product) => 123;
+      const productTransformer = ((product) => 123) as any;
 
       const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
 
