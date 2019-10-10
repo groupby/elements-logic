@@ -5,6 +5,7 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
+  Product,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
@@ -54,13 +55,15 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * Constructs a new instance of the plugin and binds the necessary
    * callbacks.
    */
-  constructor(options?: SearchDriverOptions) {
+  constructor(options: SearchDriverOptions = {}) {
     this.fetchSearchData = this.fetchSearchData.bind(this);
     this.searchCallback = this.searchCallback.bind(this);
 
-    if (options && options.productTransformer) {
-      this.transformProduct = options.productTransformer;
-    }
+    const {
+      productTransformer = ((product: Record): Record => product) as any,
+    } = options;
+
+    this.transformProduct = productTransformer;
   }
 
   /**
@@ -131,9 +134,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    */
   searchCallback(response: Results): SearchResponseSection<P> {
     const { records } = response;
-    const mappedRecords = records
-      .map(this.transformProduct)
-      .filter(Boolean);
+    const mappedRecords = records.map(this.transformProduct).filter(Boolean);
 
     return {
       originalResponse: response,
@@ -143,5 +144,5 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
 }
 
 export interface SearchDriverOptions {
-  productTransformer?: ProductTransformer<any>;
+  productTransformer?: ProductTransformer<Product>;
 }
