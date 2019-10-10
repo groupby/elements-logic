@@ -200,8 +200,8 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Extracts query and products from the given response.
-   * Calls `this.transformProduct` on each product found in the response.
-   * Filters out any products that map to a falsy value.
+   * It calls [[this.transformProduct]] on each product found in the response
+   * and filters out any that map to a falsy value.
    *
    * @param response An object containing the original search response.
    * @returns An object containing an array of valid simplified products and the original response.
