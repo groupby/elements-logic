@@ -436,7 +436,7 @@ describe('Sayt Driver Plugin', () => {
 
     it('should filter out any products that map to falsy values', () => {
       driver.transformProduct = (product, i) => {
-        if (i == 1) return;
+        if (i === 1) return;
         return {
           key1: product.allMeta.title,
         };
