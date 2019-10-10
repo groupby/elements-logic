@@ -6,7 +6,6 @@ import {
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
 } from '@sfx/events';
-import searchDriverPlugin from '@sfx/search-driver-plugin/dist/search-driver-plugin';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
 
