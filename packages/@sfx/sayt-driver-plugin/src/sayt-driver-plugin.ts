@@ -72,16 +72,17 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   transformProduct: ProductTransformer<P>;
 
   /**
-   * Binds relevant functions. Sets transformProduct property if a
+   * Binds relevant functions. Sets [[transformProduct]] property if a
    * product transformer function is passed.
    */
-  constructor(options: SaytDriverOptions = {}) {
+  constructor(options: SaytDriverOptions<P> = {}) {
     this.fetchAutocompleteTerms = this.fetchAutocompleteTerms.bind(this);
     this.fetchProductData = this.fetchProductData.bind(this);
     this.autocompleteCallback = this.autocompleteCallback.bind(this);
     this.searchCallback = this.searchCallback.bind(this);
 
     const {
+      // eslint-disable-next-line @typescript-eslint/no-implicit-any
       productTransformer = ((product: Record): Record => product) as any,
     } = options;
     this.transformProduct = productTransformer;
@@ -198,7 +199,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Extracts query and products from the given response.
-   * It calls [[this.transformProduct]] on each product found in the response
+   * It calls [[transformProduct]] on each product found in the response
    * and filters out any that map to a falsy value.
    *
    * @param response An object containing the original search response.
@@ -226,6 +227,15 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   }
 }
 
-export interface SaytDriverOptions {
-  productTransformer?: ProductTransformer<Product>;
+/**
+ * The configuration options for [[SaytDriver]].
+ *
+ * @typeparam P The product type.
+ */
+export interface SaytDriverOptions<P> {
+  /**
+   * A function to transform a [[Record]] from the GroupBy Search API
+   * to the desired form.
+   */
+  productTransformer?: ProductTransformer<P>;
 }
