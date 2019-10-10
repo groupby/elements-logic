@@ -153,12 +153,12 @@ describe('SearchDriverPlugin', () => {
     it('should forward the query to the search plugin', () => {
       const query = 'search term';
       const results = Promise.resolve({ search: 'results' });
-      const searchCallback = stub(searchDriverPlugin, 'searchCallback');
       const searchCallbackResponse = {
         originalResponse: { full: 'response' },
         products: ['product 1', 'product 2'],
       };
-      searchCallback.returns(searchCallbackResponse);
+      const searchCallback = stub(searchDriverPlugin, 'searchCallback')
+        .returns(searchCallbackResponse);
       const search = stub();
       search.withArgs({
         fields: ['*'],
@@ -173,9 +173,9 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('searchCallback()', () => {
-    let response;
     const firstProductTitle = 'first-product';
     const secondProductTitle = 'second-product';
+    let response;
 
     beforeEach(() => {
       response = {
