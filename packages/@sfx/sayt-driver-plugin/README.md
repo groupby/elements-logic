@@ -1,4 +1,4 @@
-# SF-X Sayt Driver Plugin
+# SF-X SAYT Driver Plugin
 
 This package contains the SF-X SAYT (Search-as-you-type) Driver plugin.
 
@@ -35,7 +35,7 @@ This plugin listens for and dispatches a number of events.
 
 ### Received
 
-* `AUTOCOMPLETE_REQUEST`: When received, a request to the GroupBy Sayt API is made. An `AUTOCOMPLETE_RESPONSE` event is dispatched with the results. In case of an error, the `AUTOCOMPLETE_ERROR` event is dispatched instead.
+* `AUTOCOMPLETE_REQUEST`: When received, a request to the GroupBy SAYT API is made. An `AUTOCOMPLETE_RESPONSE` event is dispatched with the results. In case of an error, the `AUTOCOMPLETE_ERROR` event is dispatched instead.
 * `SAYT_PRODUCTS_REQUEST`: When received, a search request to the GroupBy API is made to receive products. An `SAYT_PRODUCTS_RESPONSE` event is dispatched with the results. In case of an error, the `SAYT_PRODUCTS_ERROR` event is dispatched instead.
 
 ### Dispatched
