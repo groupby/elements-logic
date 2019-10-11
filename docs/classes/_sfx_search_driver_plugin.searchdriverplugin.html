@@ -62,7 +62,7 @@
 					<a href="_sfx_search_driver_plugin.searchdriverplugin.html">SearchDriverPlugin</a>
 				</li>
 			</ul>
-			<h1>Class SearchDriverPlugin</h1>
+			<h1>Class SearchDriverPlugin&lt;P&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -76,6 +76,14 @@
 						for interacting with GroupBy&#39;s Search API.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>P</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
@@ -106,6 +114,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#core" class="tsd-kind-icon">core</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#transformproduct" class="tsd-kind-icon">transform<wbr>Product</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -120,6 +129,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#fetchsearchdata" class="tsd-kind-icon">fetch<wbr>Search<wbr>Data</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#ready" class="tsd-kind-icon">ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#searchcallback" class="tsd-kind-icon">search<wbr>Callback</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#sendsearchapirequest" class="tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_search_driver_plugin.searchdriverplugin.html#unregister" class="tsd-kind-icon">unregister</a></li>
 							</ul>
@@ -139,13 +149,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<wbr>Driver<wbr>Plugin<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-signature-type">SearchDriverPlugin</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<wbr>Driver<wbr>Plugin<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_sfx_search_driver_plugin.searchdriveroptions.html" class="tsd-signature-type">SearchDriverOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-signature-type">SearchDriverPlugin</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L41">search-driver-plugin/src/search-driver-plugin.ts:41</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L49">search-driver-plugin/src/search-driver-plugin.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -154,6 +164,12 @@
 									callbacks.</p>
 								</div>
 							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/_sfx_search_driver_plugin.searchdriveroptions.html" class="tsd-signature-type">SearchDriverOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-signature-type">SearchDriverPlugin</a></h4>
 						</li>
 					</ul>
@@ -167,7 +183,7 @@
 					<div class="tsd-signature tsd-kind-icon">core<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PluginRegistry</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L29">search-driver-plugin/src/search-driver-plugin.ts:29</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L31">search-driver-plugin/src/search-driver-plugin.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -182,12 +198,28 @@
 					<div class="tsd-signature tsd-kind-icon">events<wbr>Plugin<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;dom_events&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L34">search-driver-plugin/src/search-driver-plugin.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L36">search-driver-plugin/src/search-driver-plugin.ts:36</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Name of the events plugin.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="transformproduct" class="tsd-anchor"></a>
+					<h3>transform<wbr>Product</h3>
+					<div class="tsd-signature tsd-kind-icon">transform<wbr>Product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProductTransformer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L49">search-driver-plugin/src/search-driver-plugin.ts:49</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The product transformer that will transform a [[Record]] to
+							the desired form.</p>
 						</div>
 					</div>
 				</section>
@@ -204,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L19">search-driver-plugin/src/search-driver-plugin.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L21">search-driver-plugin/src/search-driver-plugin.ts:21</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PluginMetadata</span></h4>
@@ -224,7 +256,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L85">search-driver-plugin/src/search-driver-plugin.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L101">search-driver-plugin/src/search-driver-plugin.ts:101</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +290,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L66">search-driver-plugin/src/search-driver-plugin.ts:66</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L82">search-driver-plugin/src/search-driver-plugin.ts:82</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,7 +315,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L57">search-driver-plugin/src/search-driver-plugin.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L73">search-driver-plugin/src/search-driver-plugin.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,16 +338,50 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="sendsearchapirequest" class="tsd-anchor"></a>
-					<h3>send<wbr>Search<wbr>Api<wbr>Request</h3>
+					<a name="searchcallback" class="tsd-anchor"></a>
+					<h3>search<wbr>Callback</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Results</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">search<wbr>Callback<span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Results</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SearchResponseSection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L103">search-driver-plugin/src/search-driver-plugin.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L133">search-driver-plugin/src/search-driver-plugin.ts:133</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Extracts query and products from the given response.
+										Calls <a href="_sfx_search_driver_plugin.searchdriverplugin.html#transformproduct">transformProduct</a> on each product found in the response.
+									Filters out any products that map to a falsy value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>response: <span class="tsd-signature-type">Results</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object containing the original query and product records.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SearchResponseSection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>An object containing the query and an array of valid simplified products.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="sendsearchapirequest" class="tsd-anchor"></a>
+					<h3>send<wbr>Search<wbr>Api<wbr>Request</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SearchResponseSection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L119">search-driver-plugin/src/search-driver-plugin.ts:119</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -332,7 +398,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Results</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SearchResponseSection</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -346,7 +412,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L73">search-driver-plugin/src/search-driver-plugin.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L89">search-driver-plugin/src/search-driver-plugin.ts:89</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -367,7 +433,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Search<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L39">search-driver-plugin/src/search-driver-plugin.ts:39</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L41">search-driver-plugin/src/search-driver-plugin.ts:41</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -381,7 +447,7 @@
 						<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;*&#x27;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L40">search-driver-plugin/src/search-driver-plugin.ts:40</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/search-driver-plugin/src/search-driver-plugin.ts#L42">search-driver-plugin/src/search-driver-plugin.ts:42</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -433,7 +499,7 @@
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
 						<ul>
-							<li class="current tsd-kind-class tsd-parent-kind-external-module">
+							<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 								<a href="_sfx_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a>
 								<ul>
 									<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -444,6 +510,9 @@
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
 										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#transformproduct" class="tsd-kind-icon">transform<wbr>Product</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#metadata" class="tsd-kind-icon">metadata</a>
@@ -458,6 +527,9 @@
 										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#register" class="tsd-kind-icon">register</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#searchcallback" class="tsd-kind-icon">search<wbr>Callback</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
 										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#sendsearchapirequest" class="tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
@@ -467,6 +539,9 @@
 										<a href="_sfx_search_driver_plugin.searchdriverplugin.html#defaultsearchconfig" class="tsd-kind-icon">default<wbr>Search<wbr>Config</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/_sfx_search_driver_plugin.searchdriveroptions.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Options</a>
 							</li>
 						</ul>
 					</li>

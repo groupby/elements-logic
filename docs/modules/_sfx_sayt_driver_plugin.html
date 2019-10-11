@@ -66,6 +66,49 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<h1 id="sf-x-sayt-driver-plugin">SF-X SAYT Driver Plugin</h1>
+					<p>This package contains the SF-X SAYT (Search-as-you-type) Driver plugin.</p>
+					<h2 id="prerequisites">Prerequisites</h2>
+					<p>This plugin depends on the following plugins:</p>
+					<ul>
+						<li><code>dom_events</code></li>
+						<li><code>sayt</code></li>
+						<li><code>search</code></li>
+					</ul>
+					<p>These plugins must be registered either before or in the same batch as
+					this plugin.</p>
+					<h2 id="usage">Usage</h2>
+					<p>To use the plugin, simply instantiate it and register it with Core:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> saytDriverPlugin = <span class="hljs-keyword">new</span> SaytDriverPlugin({});
+core.<span class="hljs-keyword">register</span>(saytDriverPlugin);</code></pre>
+					<p>This plugin accepts the following options:</p>
+					<ul>
+						<li><code>productTransformer</code> (optional)<ul>
+								<li>A function that accepts a Record object and returns a transformed
+									product. This argument is only necessary if the View Layer is being
+									used. More generally, this function is an opportunity to transform
+								the data into a useable format for your application&#39;s front-end.</li>
+							</ul>
+						</li>
+					</ul>
+					<h2 id="events">Events</h2>
+					<p>This plugin listens for and dispatches a number of events. These events are defined in the <a href="https://github.com/groupby/sfx-events"><code>@sfx/events</code></a> package.</p>
+					<h3 id="received">Received</h3>
+					<ul>
+						<li><code>AUTOCOMPLETE_REQUEST</code>: When received, a request to the GroupBy SAYT API is made. An <code>AUTOCOMPLETE_RESPONSE</code> event is dispatched with the results. In case of an error, the <code>AUTOCOMPLETE_ERROR</code> event is dispatched instead.</li>
+						<li><code>SAYT_PRODUCTS_REQUEST</code>: When received, a search request to the GroupBy API is made to receive products. An <code>SAYT_PRODUCTS_RESPONSE</code> event is dispatched with the results. In case of an error, the <code>SAYT_PRODUCTS_ERROR</code> event is dispatched instead.</li>
+					</ul>
+					<h3 id="dispatched">Dispatched</h3>
+					<ul>
+						<li><code>AUTOCOMPLETE_RESPONSE</code>: Dispatched when a Sayt request has completed. Its payload is the result of the request and includes search autocomplete terms.</li>
+						<li><code>AUTOCOMPLETE_ERROR</code>: Dispatched when an error has occurred during a Sayt request.</li>
+						<li><code>SAYT_PRODUCTS_RESPONSE</code>: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.</li>
+						<li><code>SAYT_PRODUCTS_ERROR</code>: Dispatched when an error has occurred during a search request.</li>
+					</ul>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -73,7 +116,13 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Plugin</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../classes/_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Plugin</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/_sfx_sayt_driver_plugin.saytdriveroptions.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -119,8 +168,11 @@
 					<li class="current tsd-kind-external-module">
 						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 						<ul>
-							<li class=" tsd-kind-class tsd-parent-kind-external-module">
+							<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 								<a href="../classes/_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Plugin</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/_sfx_sayt_driver_plugin.saytdriveroptions.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Options</a>
 							</li>
 						</ul>
 					</li>

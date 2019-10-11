@@ -62,7 +62,7 @@
 					<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html">SaytDriverPlugin</a>
 				</li>
 			</ul>
-			<h1>Class SaytDriverPlugin</h1>
+			<h1>Class SaytDriverPlugin&lt;P&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -78,6 +78,14 @@
 						and then emitting the API response back in an event.</p>
 					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>P</h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
@@ -108,6 +116,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#core" class="tsd-kind-icon">core</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#transformproduct" class="tsd-kind-icon">transform<wbr>Product</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -123,7 +132,6 @@
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#constructsearchterms" class="tsd-kind-icon">construct<wbr>Search<wbr>Terms</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#fetchautocompleteterms" class="tsd-kind-icon">fetch<wbr>Autocomplete<wbr>Terms</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#fetchproductdata" class="tsd-kind-icon">fetch<wbr>Product<wbr>Data</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#parserecord" class="tsd-kind-icon">parse<wbr>Record</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#ready" class="tsd-kind-icon">ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#register" class="tsd-kind-icon">register</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#searchcallback" class="tsd-kind-icon">search<wbr>Callback</a></li>
@@ -147,15 +155,27 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Sayt<wbr>Driver<wbr>Plugin<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-signature-type">SaytDriverPlugin</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Sayt<wbr>Driver<wbr>Plugin<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">?: </span><a href="../interfaces/_sfx_sayt_driver_plugin.saytdriveroptions.html" class="tsd-signature-type">SaytDriverOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-signature-type">SaytDriverPlugin</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L64">sayt-driver-plugin/src/sayt-driver-plugin.ts:64</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L71">sayt-driver-plugin/src/sayt-driver-plugin.ts:71</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Binds relevant functions. Sets <a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#transformproduct">transformProduct</a> property if a
+									product transformer function is passed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> options: <a href="../interfaces/_sfx_sayt_driver_plugin.saytdriveroptions.html" class="tsd-signature-type">SaytDriverOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+								</li>
+							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-signature-type">SaytDriverPlugin</a></h4>
 						</li>
 					</ul>
@@ -169,7 +189,7 @@
 					<div class="tsd-signature tsd-kind-icon">core<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PluginRegistry</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L52">sayt-driver-plugin/src/sayt-driver-plugin.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L53">sayt-driver-plugin/src/sayt-driver-plugin.ts:53</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -184,12 +204,28 @@
 					<div class="tsd-signature tsd-kind-icon">events<wbr>Plugin<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;dom_events&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L57">sayt-driver-plugin/src/sayt-driver-plugin.ts:57</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L58">sayt-driver-plugin/src/sayt-driver-plugin.ts:58</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>Name of the events plugin.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="transformproduct" class="tsd-anchor"></a>
+					<h3>transform<wbr>Product</h3>
+					<div class="tsd-signature tsd-kind-icon">transform<wbr>Product<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProductTransformer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L71">sayt-driver-plugin/src/sayt-driver-plugin.ts:71</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The product transformer that will transform a [[Record]] to
+							the desired form.</p>
 						</div>
 					</div>
 				</section>
@@ -206,7 +242,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L38">sayt-driver-plugin/src/sayt-driver-plugin.ts:38</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L39">sayt-driver-plugin/src/sayt-driver-plugin.ts:39</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PluginMetadata</span></h4>
@@ -226,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L172">sayt-driver-plugin/src/sayt-driver-plugin.ts:172</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L189">sayt-driver-plugin/src/sayt-driver-plugin.ts:189</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -258,7 +294,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L243">sayt-driver-plugin/src/sayt-driver-plugin.ts:243</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L223">sayt-driver-plugin/src/sayt-driver-plugin.ts:223</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -290,7 +326,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L106">sayt-driver-plugin/src/sayt-driver-plugin.ts:106</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L123">sayt-driver-plugin/src/sayt-driver-plugin.ts:123</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -322,7 +358,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L125">sayt-driver-plugin/src/sayt-driver-plugin.ts:125</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L142">sayt-driver-plugin/src/sayt-driver-plugin.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,38 +381,6 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="parserecord" class="tsd-anchor"></a>
-					<h3>parse<wbr>Record</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">parse<wbr>Record<span class="tsd-signature-symbol">(</span>record<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L224">sayt-driver-plugin/src/sayt-driver-plugin.ts:224</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Parses a given product record for valid data. Throws an error if data is invalid.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>record: <span class="tsd-signature-type">Record</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>An object containing the product record data.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
-							<p>An object containing relevant product data.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="ready" class="tsd-anchor"></a>
 					<h3>ready</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
@@ -386,7 +390,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L87">sayt-driver-plugin/src/sayt-driver-plugin.ts:87</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L104">sayt-driver-plugin/src/sayt-driver-plugin.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -409,7 +413,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L79">sayt-driver-plugin/src/sayt-driver-plugin.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L96">sayt-driver-plugin/src/sayt-driver-plugin.ts:96</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -435,18 +439,20 @@
 					<a name="searchcallback" class="tsd-anchor"></a>
 					<h3>search<wbr>Callback</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">search<wbr>Callback<span class="tsd-signature-symbol">(</span>searchResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Results</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SaytProductsResponsePayload</span></li>
+						<li class="tsd-signature tsd-kind-icon">search<wbr>Callback<span class="tsd-signature-symbol">(</span>searchResponse<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Results</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L188">sayt-driver-plugin/src/sayt-driver-plugin.ts:188</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L207">sayt-driver-plugin/src/sayt-driver-plugin.ts:207</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Extracts query and products from the given response.</p>
+									<p>Extracts query and products from the given response.
+										It calls <a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#transformproduct">transformProduct</a> on each product found in the response
+									and filters out any that map to a falsy value.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -455,7 +461,7 @@
 									<h5>searchResponse: <span class="tsd-signature-type">Results</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SaytProductsResponsePayload</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>An object containing an array of valid simplified products and the original response.</p>
 						</li>
 					</ul>
@@ -470,7 +476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L149">sayt-driver-plugin/src/sayt-driver-plugin.ts:149</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L166">sayt-driver-plugin/src/sayt-driver-plugin.ts:166</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -503,13 +509,13 @@
 					<a name="sendsearchapirequest" class="tsd-anchor"></a>
 					<h3>send<wbr>Search<wbr>Api<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">QueryTimeAutocompleteConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">send<wbr>Search<wbr>Api<wbr>Request<span class="tsd-signature-symbol">(</span>query<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, config<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">QueryTimeAutocompleteConfig</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L161">sayt-driver-plugin/src/sayt-driver-plugin.ts:161</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L178">sayt-driver-plugin/src/sayt-driver-plugin.ts:178</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -532,7 +538,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">SaytProductsResponsePayload</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise from the Search API that has been reformatted
 							with the passed callback.</p>
 						</li>
@@ -548,7 +554,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L95">sayt-driver-plugin/src/sayt-driver-plugin.ts:95</a></li>
+									<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L112">sayt-driver-plugin/src/sayt-driver-plugin.ts:112</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -569,7 +575,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Search<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L62">sayt-driver-plugin/src/sayt-driver-plugin.ts:62</a></li>
+							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L63">sayt-driver-plugin/src/sayt-driver-plugin.ts:63</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -583,7 +589,7 @@
 						<div class="tsd-signature tsd-kind-icon">fields<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[&#x27;*&#x27;]</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/a3cf3b0/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L63">sayt-driver-plugin/src/sayt-driver-plugin.ts:63</a></li>
+								<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/sayt-driver-plugin/src/sayt-driver-plugin.ts#L64">sayt-driver-plugin/src/sayt-driver-plugin.ts:64</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -629,7 +635,7 @@
 					<li class="current tsd-kind-external-module">
 						<a href="../modules/_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
 						<ul>
-							<li class="current tsd-kind-class tsd-parent-kind-external-module">
+							<li class="current tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
 								<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Plugin</a>
 								<ul>
 									<li class=" tsd-kind-constructor tsd-parent-kind-class">
@@ -640,6 +646,9 @@
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
 										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#transformproduct" class="tsd-kind-icon">transform<wbr>Product</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
 										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#metadata" class="tsd-kind-icon">metadata</a>
@@ -655,9 +664,6 @@
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
 										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#fetchproductdata" class="tsd-kind-icon">fetch<wbr>Product<wbr>Data</a>
-									</li>
-									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#parserecord" class="tsd-kind-icon">parse<wbr>Record</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
 										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#ready" class="tsd-kind-icon">ready</a>
@@ -681,6 +687,9 @@
 										<a href="_sfx_sayt_driver_plugin.saytdriverplugin.html#defaultsearchconfig" class="tsd-kind-icon">default<wbr>Search<wbr>Config</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/_sfx_sayt_driver_plugin.saytdriveroptions.html" class="tsd-kind-icon">Sayt<wbr>Driver<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
