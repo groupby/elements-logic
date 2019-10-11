@@ -51,6 +51,25 @@ describe('Sayt Driver Plugin', () => {
     };
   });
 
+  describe('constructor()', () => {
+    it('should save a passed product transformer as a transformProduct property', () => {
+      const productTransformer: any = (() => 123);
+
+      driver = new SaytDriverPlugin({ productTransformer });
+
+      expect(driver.transformProduct).to.equal(productTransformer);
+    });
+
+    it('should have a default identity transformProduct property if no transformer is passed', () => {
+      const object: any = { some: 'object' };
+      driver = new SaytDriverPlugin();
+
+      const result = driver.transformProduct(object);
+
+      expect(result).to.equal(object);
+    });
+  });
+
   describe('get metadata()', () => {
     it('should specify a plugin name of sayt_driver', () => {
       expect(driver.metadata.name).to.equal('sayt_driver');
@@ -370,141 +389,63 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('parseRecord()', () => {
-    let record;
+  describe('searchCallback()', () => {
+    const firstProductTitle = 'first-product';
+    const secondProductTitle = 'second-product';
+    let response;
 
     beforeEach(() => {
-      record = {
-        allMeta: {},
-      };
-    });
-
-    it('should throw if product has no visual variants', () => {
-      const callback = () => driver.parseRecord(record);
-
-      expect(callback).to.throw();
-    });
-
-    it('should throw if product has no non-visual variants', () => {
-      record.allMeta.visualVariants = [{
-        nonvisualVariants: [],
-      }];
-      const callback = () => driver.parseRecord(record);
-
-      expect(callback).to.throw();
-    });
-
-    it('should throw if product has undefined non-visual variant', () => {
-      record.allMeta.visualVariants = [{
-        nonvisualVariants: [undefined],
-      }];
-      const callback = () => driver.parseRecord(record);
-
-      expect(callback).to.throw();
-    });
-
-    it('should return data segments if product has valid data', () => {
-      const nonvisualVariants = [{}, {}];
-      const firstVariant = { nonvisualVariants };
-      const data = {
-        visualVariants: [firstVariant],
-      };
-      record = { allMeta: data };
-
-      const result = driver.parseRecord(record);
-
-      expect(result).to.deep.equal({ data, firstVariant, nonvisualVariants });
-    });
-  });
-
-  describe('searchCallback()', () => {
-    it('should return a complete product object, along with the original response', () => {
-      const response = {
-        records: [{
-          allMeta: {
-            title: 'some-title',
-            visualVariants: [{
-              productImage: 'some-link',
-              nonvisualVariants: [{
-                originalPrice: 3.99,
-              }],
-            }],
-          },
-        }],
-      };
-      const expectedResponse = {
-        products: [
-          {
-            title: 'some-title',
-            price: 3.99,
-            imageSrc: 'some-link',
-            imageAlt: 'some-title',
-            productUrl: 'some-link',
-          },
-        ],
-        originalResponse: response,
-      };
-
-      const actualProduct = driver.searchCallback(response);
-
-      expect(actualProduct).to.deep.equal(expectedResponse);
-    });
-
-    it('should filter out an incomplete product object', () => {
-      const goodObject = {
-        allMeta: {
-          title: 'some-title',
-          visualVariants: [{
-            productImage: 'some-link',
-            nonvisualVariants: [{
-              originalPrice: 3.99,
-            }],
-          }],
-        },
-      };
-
-      const badObject1 = {
-        allMeta: {},
-      };
-
-      const badObject2 = {
-        allMeta: {
-          title: 'some-title',
-          visualVariants: [],
-        },
-      };
-
-      const expectedGoodObject = {
-        title: 'some-title',
-        price: 3.99,
-        imageSrc: 'some-link',
-        imageAlt: 'some-title',
-        productUrl: 'some-link',
-      };
-
-      const input = {
+      response = {
         records: [
-          goodObject,
-          goodObject,
-          badObject1,
-          badObject2,
-          badObject2,
-          goodObject,
+          {
+            allMeta: {
+              title: firstProductTitle,
+            },
+          },
+          {
+            allMeta: {
+              title: secondProductTitle,
+            },
+          },
         ],
       };
+    });
 
-      const expectedResponse = {
-        products: [
-          expectedGoodObject,
-          expectedGoodObject,
-          expectedGoodObject,
-        ],
-        originalResponse: input,
+    it('should return a response with products', () => {
+      const result = driver.searchCallback(response);
+
+      expect(result.products).to.have.lengthOf(2);
+      expect(result.products[0].allMeta.title).to.equal(firstProductTitle);
+      expect(result.products[1].allMeta.title).to.equal(secondProductTitle);
+    });
+
+    it('should map products using the transform function', () => {
+      const key2 = 'value2';
+      driver.transformProduct = (product) => ({
+        key1: product.allMeta.title,
+        key2,
+      });
+
+      const result = driver.searchCallback(response);
+
+      expect(result.products).to.deep.equal([
+        { key1: firstProductTitle, key2 },
+        { key1: secondProductTitle, key2 },
+      ]);
+    });
+
+    it('should filter out any products that map to falsy values', () => {
+      driver.transformProduct = (product, i) => {
+        if (i === 1) return undefined;
+        return {
+          key1: product.allMeta.title,
+        };
       };
 
-      const actualProduct = driver.searchCallback(input);
+      const result = driver.searchCallback(response);
 
-      expect(actualProduct).to.deep.equal(expectedResponse);
+      expect(result.products).to.have.lengthOf(1);
+      expect(result.products[0].key1).to.equal(firstProductTitle);
     });
   });
 });
