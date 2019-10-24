@@ -35,6 +35,11 @@ export default class CachePlugin implements Plugin {
     this.store = store;
   }
 
+  /**
+   * Returns this plugin's store for registration.
+   *
+   * @returns [[store]]
+   */
   register(): Map<unknown, unknown> {
     return this.store;
   }
