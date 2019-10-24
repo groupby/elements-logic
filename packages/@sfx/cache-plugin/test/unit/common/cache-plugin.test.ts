@@ -1,4 +1,4 @@
-import { expect, spy, stub } from '../../utils';
+import { expect } from '../../utils';
 import CachePlugin from '../../../src/cache-plugin';
 
 describe('CachePlugin', () => {
