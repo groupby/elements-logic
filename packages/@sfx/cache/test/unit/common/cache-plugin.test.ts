@@ -19,8 +19,26 @@ describe('CachePlugin', () => {
   });
 
   describe('constructor()', () => {
+    it('should create an empty map by default', () => {
+      expect(cachePlugin.store).to.be.a('Map').that.is.empty;
+    });
+
+    it('should accept an initial store', () => {
+      const store = new Map([['a', 1]]);
+
+      cachePlugin = new CachePlugin({ store });
+
+      expect(cachePlugin.store).to.equal(store);
+    });
   });
 
   describe('register()', () => {
+    it('should return the stored Map', () => {
+      const store = cachePlugin.store = new Map([['a', 1]]);
+
+      const cache = cachePlugin.register();
+
+      expect(cache).to.equal(store);
+    });
   });
 });
