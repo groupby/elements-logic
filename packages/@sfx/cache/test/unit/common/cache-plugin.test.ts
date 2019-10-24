@@ -9,6 +9,13 @@ describe('CachePlugin', () => {
   });
 
   describe('metadata getter', () => {
+    it('should have the name `cache`', () => {
+      expect(cachePlugin.metadata.name).to.equal('cache');
+    });
+
+    it('should specify no dependencies', () => {
+      expect(cachePlugin.metadata.depends).to.deep.equal([]);
+    });
   });
 
   describe('constructor()', () => {
