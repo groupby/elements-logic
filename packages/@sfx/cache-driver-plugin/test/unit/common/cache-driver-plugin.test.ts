@@ -1,5 +1,5 @@
 import { CACHE_REQUEST } from '@sfx/events';
-import { expect, spy, stub } from '../../utils';
+import { expect, sinon, spy, stub } from '../../utils';
 import CacheDriverPlugin from '../../../src/cache-driver-plugin';
 
 describe('CacheDriverPlugin', () => {
@@ -37,6 +37,25 @@ describe('CacheDriverPlugin', () => {
       cacheDriverPlugin.ready();
 
       expect(registerListener).to.be.calledWith(CACHE_REQUEST, cacheDriverPlugin.handleRequest);
+    });
+  });
+
+  describe('handleRequest()', () => {
+    it('should dispatch the requested data from the cache', () => {
+      const name = 'key';
+      const group = 'grp';
+      const returnEvent = 'ret';
+      const data = { a: 'a' };
+      const req = { name, returnEvent, group };
+      const dispatchEvent = spy();
+      cacheDriverPlugin.core = {
+        cache: new Map([['key::grp', data]]),
+        dom_events: { dispatchEvent },
+      };
+
+      cacheDriverPlugin.handleRequest(req);
+
+      expect(dispatchEvent).to.be.calledWith(returnEvent, sinon.match.same(data));
     });
   });
 });

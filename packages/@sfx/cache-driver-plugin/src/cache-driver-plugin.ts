@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginMetadata, PluginRegistry } from '@sfx/core';
-import { CACHE_REQUEST } from '@sfx/events';
+import { CACHE_REQUEST, CacheRequestPayload } from '@sfx/events';
 
 /**
  * The SF-X cache driver plugin.
@@ -19,6 +19,10 @@ export default class CacheDriverPlugin implements Plugin {
    */
   core: PluginRegistry;
 
+  constructor() {
+    this.handleRequest = this.handleRequest.bind(this);
+  }
+
   /**
    * Saves the plugin registry for later use. This plugin does not
    * expose a value.
@@ -33,6 +37,8 @@ export default class CacheDriverPlugin implements Plugin {
     this.core.dom_events.registerListener(CACHE_REQUEST, this.handleRequest);
   }
 
-  handleRequest(): void {
+  handleRequest(req: CacheRequestPayload): void {
+    const data = this.core.cache.get(`${req.name}::${req.group}`);
+    this.core.dom_events.dispatchEvent(req.returnEvent, data);
   }
 }
