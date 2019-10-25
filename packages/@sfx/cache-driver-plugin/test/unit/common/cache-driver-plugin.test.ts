@@ -1,3 +1,4 @@
+import { CACHE_REQUEST } from '@sfx/events';
 import { expect, spy, stub } from '../../utils';
 import CacheDriverPlugin from '../../../src/cache-driver-plugin';
 
@@ -25,6 +26,17 @@ describe('CacheDriverPlugin', () => {
       cacheDriverPlugin.register(registry);
 
       expect(cacheDriverPlugin.core).to.equal(registry);
+    });
+  });
+
+  describe('ready()', () => {
+    it(`should listen for ${CACHE_REQUEST}`, () => {
+      const registerListener = spy();
+      cacheDriverPlugin.core = { dom_events: { registerListener } };
+
+      cacheDriverPlugin.ready();
+
+      expect(registerListener).to.be.calledWith(CACHE_REQUEST, cacheDriverPlugin.handleRequest);
     });
   });
 });
