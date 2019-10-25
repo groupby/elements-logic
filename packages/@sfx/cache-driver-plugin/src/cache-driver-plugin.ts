@@ -33,6 +33,12 @@ export default class CacheDriverPlugin implements Plugin {
     this.core = plugins;
   }
 
+  /**
+   * Registers a number of event listeners.
+   * The following events are listened for:
+   *
+   * - [[CACHE_REQUEST]]
+   */
   ready(): void {
     this.core.dom_events.registerListener(CACHE_REQUEST, this.handleRequest);
   }
