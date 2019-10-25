@@ -126,6 +126,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       .then((results) => {
         const payload: AutocompleteResponsePayload = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, payload);
+        if (this.core.cache) this.core.cache.set(`${AUTOCOMPLETE_RESPONSE}::${group}`, payload);
       })
       .catch((error) => {
         const payload: AutocompleteErrorPayload = { error, group };

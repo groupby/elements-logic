@@ -302,6 +302,17 @@ describe('Sayt Driver Plugin', () => {
         .to.be.eventually.calledOnceWith(AUTOCOMPLETE_RESPONSE, { results, group });
     });
 
+    it('should cache the payload', () => {
+      const set = spy();
+      driver.core.cache = { set };
+      sendAutocompleteApiRequest.resolves(results);
+
+      driver.fetchAutocompleteTerms(saytDataPayload);
+
+      return expect(Promise.resolve(set))
+        .to.be.eventually.calledOnceWith(`${AUTOCOMPLETE_RESPONSE}::${group}`, { results, group });
+    });
+
     it('should send an error in an event if the API request fails', () => {
       const error = new Error('test error');
       sendAutocompleteApiRequest.rejects(error);
