@@ -1,16 +1,26 @@
 # SF-X Cache Plugin
 
-This package contains the SF-X Cache Plugin class.
+This package contains the SF-X Cache Driver Plugin class.
 
 ## Usage
 
 To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const cachePlugin = new CachePlugin();
-core.register(cachePlugin);
+const cacheDriverPlugin = new CacheDriverPlugin();
+core.register(cacheDriverPlugin);
 ```
 
-This plugin registers an instance of `Map` that is intended to be used by
-other plugins as a cache or other data store. No automatic cache
-clearing or expiring is performed.
+## Events
+
+This plugin listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+
+### Received
+
+* `CACHE_REQUEST`: When received, a request to the cache is made and the response is dispatched with a `CACHE_RESPONSE` event, dispatched with the name provided in the payload of `CACHE_REQUEST`.
+
+### Dispatched
+
+* `CACHE_RESPONSE`: Dispatched when a `CACHE_REQUEST` is fulfilled. The event is not dispatched with the `CACHE_RESPONSE` name, but is dispatched under the name provided with the corresponding `CACHE_REQUEST` payload.
+
+[sfx-events]: https://github.com/groupby/sfx-events
