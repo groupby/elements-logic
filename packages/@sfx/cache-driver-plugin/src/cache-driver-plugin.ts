@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Plugin, PluginMetadata, PluginRegistry } from '@sfx/core';
-import { CACHE_REQUEST, CacheRequestPayload } from '@sfx/events';
+import { CACHE_REQUEST, CacheRequestPayload, CacheResponsePayload } from '@sfx/events';
 
 /**
  * The SF-X cache driver plugin.
@@ -38,7 +38,9 @@ export default class CacheDriverPlugin implements Plugin {
   }
 
   handleRequest(req: CacheRequestPayload): void {
-    const data = this.core.cache.get(`${req.name}::${req.group || ''}`);
-    this.core.dom_events.dispatchEvent(req.returnEvent, data);
+    const { name, group, returnEvent } = req;
+    const data = this.core.cache.get(`${name}::${group || ''}`);
+    const payload: CacheResponsePayload = { name, data, group };
+    this.core.dom_events.dispatchEvent(returnEvent, payload);
   }
 }

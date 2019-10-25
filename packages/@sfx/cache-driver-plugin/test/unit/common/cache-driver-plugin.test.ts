@@ -64,7 +64,7 @@ describe('CacheDriverPlugin', () => {
 
       cacheDriverPlugin.handleRequest(req);
 
-      expect(dispatchEvent).to.be.calledWith(returnEvent, sinon.match.same(data));
+      expect(dispatchEvent).to.be.calledWith(returnEvent, { name, data, group });
     });
 
     it('should expand an undefined group to the empty string', () => {
@@ -73,7 +73,7 @@ describe('CacheDriverPlugin', () => {
 
       cacheDriverPlugin.handleRequest(req);
 
-      expect(dispatchEvent).to.be.calledWith(returnEvent, sinon.match.same(data));
+      expect(dispatchEvent).to.be.calledWith(returnEvent, { name, data, group: undefined });
     });
   });
 });
