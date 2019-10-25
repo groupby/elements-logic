@@ -116,7 +116,8 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Sends a request to the Sayt API for autocomplete terms and dispatches
-   * events on success and failure.
+   * events on success and failure. If the fetch is successful and a
+   * cache is present, the payload dispatched is also cached.
    *
    * @param event Event that contains the Sayt API request payload.
    */
