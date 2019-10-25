@@ -10,8 +10,8 @@ describe('CacheDriverPlugin', () => {
   });
 
   describe('metadata getter', () => {
-    it('should have the name `cache-driver`', () => {
-      expect(cacheDriverPlugin.metadata.name).to.equal('cache-driver');
+    it('should have the name `cache_driver`', () => {
+      expect(cacheDriverPlugin.metadata.name).to.equal('cache_driver');
     });
 
     it('should specify `cache` and `dom_events` as dependencies', () => {

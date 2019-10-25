@@ -9,7 +9,7 @@ import { CACHE_REQUEST, CacheRequestPayload, CacheResponsePayload } from '@sfx/e
 export default class CacheDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'cache-driver',
+      name: 'cache_driver',
       depends: ['cache', 'dom_events'],
     };
   }
