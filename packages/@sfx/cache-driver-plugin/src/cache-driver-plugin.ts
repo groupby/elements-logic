@@ -38,7 +38,7 @@ export default class CacheDriverPlugin implements Plugin {
   }
 
   handleRequest(req: CacheRequestPayload): void {
-    const data = this.core.cache.get(`${req.name}::${req.group}`);
+    const data = this.core.cache.get(`${req.name}::${req.group || ''}`);
     this.core.dom_events.dispatchEvent(req.returnEvent, data);
   }
 }

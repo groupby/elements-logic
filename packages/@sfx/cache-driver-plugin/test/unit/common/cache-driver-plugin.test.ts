@@ -41,17 +41,35 @@ describe('CacheDriverPlugin', () => {
   });
 
   describe('handleRequest()', () => {
-    it('should dispatch the requested data from the cache', () => {
-      const name = 'key';
-      const group = 'grp';
-      const returnEvent = 'ret';
-      const data = { a: 'a' };
-      const req = { name, returnEvent, group };
-      const dispatchEvent = spy();
+    const name = 'key';
+    const group = 'grp';
+    const returnEvent = 'ret';
+    let dispatchEvent;
+    let data;
+    let cache;
+
+    beforeEach(() => {
+      dispatchEvent = spy();
+      data = { a: 'a' };
+      cache = new Map();
       cacheDriverPlugin.core = {
-        cache: new Map([['key::grp', data]]),
+        cache,
         dom_events: { dispatchEvent },
       };
+    });
+
+    it('should dispatch the requested data from the cache', () => {
+      const req = { name, returnEvent, group };
+      cache.set('key::grp', data);
+
+      cacheDriverPlugin.handleRequest(req);
+
+      expect(dispatchEvent).to.be.calledWith(returnEvent, sinon.match.same(data));
+    });
+
+    it('should expand an undefined group to the empty string', () => {
+      const req = { name, returnEvent };
+      cache.set('key::', data);
 
       cacheDriverPlugin.handleRequest(req);
 
