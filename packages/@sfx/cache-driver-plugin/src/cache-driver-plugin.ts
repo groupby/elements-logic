@@ -19,6 +19,10 @@ export default class CacheDriverPlugin implements Plugin {
    */
   core: PluginRegistry;
 
+  /**
+   * Constructs a new instance of this plugin and binds the necessary
+   * callbacks.
+   */
   constructor() {
     this.handleRequest = this.handleRequest.bind(this);
   }
