@@ -21,5 +21,8 @@
     "directory": "packages/@sfx/cache-driver-plugin"
   },
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@sfx/events": "groupby/sfx-events#c508034377472f636a4ffc90e32a922da358bbf1"
+  }
 }
