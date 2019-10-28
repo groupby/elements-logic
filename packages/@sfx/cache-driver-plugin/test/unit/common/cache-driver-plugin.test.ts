@@ -75,5 +75,13 @@ describe('CacheDriverPlugin', () => {
 
       expect(dispatchEvent).to.be.calledWith(returnEvent, { name, data, group: undefined });
     });
+
+    it('should dispatch an undefined payload if no data is cached', () => {
+      const req = { name, returnEvent, group };
+
+      cacheDriverPlugin.handleRequest(req);
+
+      expect(dispatchEvent).to.be.calledWith(returnEvent, {name, data: undefined, group });
+    });
   });
 });
