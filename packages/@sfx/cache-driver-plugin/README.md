@@ -17,7 +17,7 @@ This plugin listens for and dispatches a number of events. These events are defi
 
 ### Received
 
-* `CACHE_REQUEST`: When received, a request to the cache is made and the response is dispatched with a `CACHE_RESPONSE` event, dispatched with the name provided in the payload of `CACHE_REQUEST`.
+* `CACHE_REQUEST`: When received, a request to the cache is made and a response is dispatched with an event name provided in the payload of `CACHE_REQUEST`.
 
 ### Dispatched
 
