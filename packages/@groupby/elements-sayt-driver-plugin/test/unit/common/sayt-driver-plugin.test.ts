@@ -270,9 +270,9 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('fetchAutocompleteTerms()', () => {
+    const group = 'some-group-id';
     let dispatchEvent;
     let results;
-    let group;
     let sendAutocompleteApiRequest;
 
     beforeEach(() => {
@@ -282,7 +282,6 @@ describe('Sayt Driver Plugin', () => {
       };
       results = { a: 'b' };
       sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
-      group = 'some-group-id';
     });
 
     it('should call sendAutocompleteApiRequest with query from event and valid config', () => {
