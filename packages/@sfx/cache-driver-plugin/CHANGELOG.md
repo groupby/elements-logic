@@ -6,5 +6,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- SFX-158: Added the `CachePlugin` module.
-  - It exposes an instance of `Map` to `Core`.
+- SFX-158: Added the `CacheDriverPlugin` module.
+  - Listens for cache requests and emits response events.
