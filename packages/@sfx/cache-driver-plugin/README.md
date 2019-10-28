@@ -21,6 +21,6 @@ This plugin listens for and dispatches a number of events. These events are defi
 
 ### Dispatched
 
-* `CACHE_RESPONSE`: Dispatched when a `CACHE_REQUEST` is fulfilled. The event is not dispatched with the `CACHE_RESPONSE` name, but is dispatched under the name provided with the corresponding `CACHE_REQUEST` payload.
+* A cache response event: Dispatched when a `CACHE_REQUEST` is fulfilled. The event is dispatched under the name provided with the corresponding `CACHE_REQUEST` payload.
 
 [sfx-events]: https://github.com/groupby/sfx-events
