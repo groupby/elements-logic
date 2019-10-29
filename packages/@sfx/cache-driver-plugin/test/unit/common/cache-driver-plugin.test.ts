@@ -1,5 +1,5 @@
 import { CACHE_REQUEST } from '@sfx/events';
-import { expect, sinon, spy, stub } from '../../utils';
+import { expect, spy } from '../../utils';
 import CacheDriverPlugin from '../../../src/cache-driver-plugin';
 
 describe('CacheDriverPlugin', () => {
@@ -81,7 +81,7 @@ describe('CacheDriverPlugin', () => {
 
       cacheDriverPlugin.handleRequest(req);
 
-      expect(dispatchEvent).to.be.calledWith(returnEvent, {name, data: undefined, group });
+      expect(dispatchEvent).to.be.calledWith(returnEvent, { name, data: undefined, group });
     });
   });
 });
