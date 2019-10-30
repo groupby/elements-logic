@@ -52,8 +52,8 @@ export default class CacheDriverPlugin implements Plugin {
    *
    * @param req The cache request details.
    */
-  handleRequest(req: CacheRequestPayload): void {
-    const { name, group, returnEvent } = req;
+  handleRequest(req: CustomEvent<CacheRequestPayload>): void {
+    const { name, group, returnEvent } = req.detail;
     const data = this.core.cache.get(`${name}::${group || ''}`);
     const payload: CacheResponsePayload = { name, data, group };
     this.core.dom_events.dispatchEvent(returnEvent, payload);
