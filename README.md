@@ -4,7 +4,7 @@ SFX Logic SDK for integrating GroupBy's APIs into a front-end e-commerce applica
 ## Installation
 To clone this repo with submodules run:
 ```
-git clone --recursive https://github.com/groupby/sfx-logic
+git clone --recursive https://github.com/groupby/elements-logic
 ```
 or if the repo is already cloned and you want to install submodules only, run:
 ```
@@ -17,7 +17,7 @@ Run the `./scripts/setup.sh` script to build all of the SFX-Logic packages.
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
+The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
 
 ### Building packages
 To build an individual package, run the following command:
@@ -61,7 +61,7 @@ This project ships with [ESLint](https://eslint.org/) configuration to enforce a
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@sfx`](packages/@sfx) directory.
+The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
