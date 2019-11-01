@@ -135,12 +135,12 @@ To use elements-logic in the browser, point to a bundle with a script tag:
 You can now instantiate Core and the plugins. For example:
 
 ```js
-const core = new elementsCore.Core();
-const domEventsPlugin = new elementsPlugins.DomEventsPlugin()
-const saytPlugin = new elementsPlugins.SaytPlugin({ subdomain: 'apparel' });
-const saytDriverPlugin = new elementsPlugins.SaytDriverPlugin();
-const searchPlugin = new elementsPlugins.SearchPlugin({ customerId: 'apparel' });
-const searchDriverPlugin = new elementsPlugins.SearchDriverPlugin();
+const core = new GbElementsCore.Core();
+const domEventsPlugin = new GbElementsPlugins.DomEventsPlugin()
+const saytPlugin = new GbElementsPlugins.SaytPlugin({ subdomain: 'apparel' });
+const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin();
+const searchPlugin = new GbElementsPlugins.SearchPlugin({ customerId: 'apparel' });
+const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin();
 
 // register all plugins with core
 core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
@@ -154,9 +154,9 @@ function productTransformer(record) {
   return newProduct;
 }
 
-const core = new elementsCore.Core();
+const core = new GbElementsCore.Core();
 // ...instantiate other plugins
 
-const saytDriverPlugin = new elementsPlugins.SaytDriverPlugin({ productTransformer });
-const searchDriverPlugin = new elementsPlugins.SearchDriverPlugin({ productTransformer });
+const saytDriverPlugin = new GbElementsPlugins.SaytDriverPlugin({ productTransformer });
+const searchDriverPlugin = new GbElementsPlugins.SearchDriverPlugin({ productTransformer });
 ```

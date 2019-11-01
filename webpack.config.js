@@ -21,11 +21,11 @@ module.exports = {
   module: {
     rules: [{
       test: path.resolve(__dirname, 'presets', 'core.ts'),
-      use: { loader: 'expose-loader', options: 'elementsCore' }
+      use: { loader: 'expose-loader', options: 'GbElementsCore' }
     },
     {
       test: path.resolve(__dirname, 'presets', 'plugins.ts'),
-      use: { loader: 'expose-loader', options: 'elementsPlugins' }
+      use: { loader: 'expose-loader', options: 'GbElementsPlugins' }
     },
     {
       test: /\.tsx?$/,
