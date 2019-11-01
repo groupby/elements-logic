@@ -59,7 +59,7 @@ describe('CacheDriverPlugin', () => {
     });
 
     it('should dispatch the requested data from the cache', () => {
-      const req = { name, returnEvent, group };
+      const req = { detail: { name, returnEvent, group } };
       cache.set('key::grp', data);
 
       cacheDriverPlugin.handleRequest(req);
@@ -68,7 +68,7 @@ describe('CacheDriverPlugin', () => {
     });
 
     it('should expand an undefined group to the empty string', () => {
-      const req = { name, returnEvent };
+      const req = { detail: { name, returnEvent } };
       cache.set('key::', data);
 
       cacheDriverPlugin.handleRequest(req);
@@ -77,7 +77,7 @@ describe('CacheDriverPlugin', () => {
     });
 
     it('should dispatch an undefined payload if no data is cached', () => {
-      const req = { name, returnEvent, group };
+      const req = { detail: { name, returnEvent, group } };
 
       cacheDriverPlugin.handleRequest(req);
 
