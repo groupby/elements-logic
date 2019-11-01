@@ -1,5 +1,5 @@
 /**
- * A plugin for use with the SF-X Core. Plugins supply functionality to
+ * A plugin for use with the GroupBy Elements Core. Plugins supply functionality to
  * the otherwise function-less Core. Plugins may depend on other
  * plugins.
  *

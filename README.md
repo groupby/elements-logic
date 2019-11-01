@@ -135,12 +135,12 @@ To use sfx-logic in the browser, point to a bundle with a script tag:
 You can now instantiate Core and the plugins. For example:
 
 ```js
-const core = new sfxCore.Core();
-const domEventsPlugin = new sfxPlugins.DomEventsPlugin()
-const saytPlugin = new sfxPlugins.SaytPlugin({ subdomain: 'apparel' });
-const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin();
-const searchPlugin = new sfxPlugins.SearchPlugin({ customerId: 'apparel' });
-const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin();
+const core = new elementsCore.Core();
+const domEventsPlugin = new elementsPlugins.DomEventsPlugin()
+const saytPlugin = new elementsPlugins.SaytPlugin({ subdomain: 'apparel' });
+const saytDriverPlugin = new elementsPlugins.SaytDriverPlugin();
+const searchPlugin = new elementsPlugins.SearchPlugin({ customerId: 'apparel' });
+const searchDriverPlugin = new elementsPlugins.SearchDriverPlugin();
 
 // register all plugins with core
 core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
@@ -154,9 +154,9 @@ function productTransformer(record) {
   return newProduct;
 }
 
-const core = new sfxCore.Core();
+const core = new elementsCore.Core();
 // ...instantiate other plugins
 
-const saytDriverPlugin = new sfxPlugins.SaytDriverPlugin({ productTransformer });
-const searchDriverPlugin = new sfxPlugins.SearchDriverPlugin({ productTransformer });
+const saytDriverPlugin = new elementsPlugins.SaytDriverPlugin({ productTransformer });
+const searchDriverPlugin = new elementsPlugins.SearchDriverPlugin({ productTransformer });
 ```

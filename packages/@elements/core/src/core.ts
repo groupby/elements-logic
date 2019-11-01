@@ -14,7 +14,7 @@ import {
 } from './utils/dependencies';
 
 /**
- * The core of the SF-X plugin system. This entity is responsible for
+ * The core of the GroupBy Elements plugin system. This entity is responsible for
  * managing plugins and provides a mechanism for plugins to communicate
  * with each other.
  */
