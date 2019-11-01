@@ -61,7 +61,7 @@ This project ships with [ESLint](https://eslint.org/) configuration to enforce a
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
@@ -89,7 +89,7 @@ yarn lint:tests:fix
 
 ### Project-wide linting
 
-To lint all the SFX-Logic packages at once, run the following commands at the root of the monorepo:
+To lint all the Elements-Logic packages at once, run the following commands at the root of the monorepo:
 
 - To lint all files within each package's `src` directory:
 ```sh
@@ -118,7 +118,7 @@ yarn docs
 ```
 
 ## Bundling
-To bundle the SFX-Logic packages, run the following command at the root of the monorepo:
+To bundle the Elements-Logic packages, run the following command at the root of the monorepo:
 ```sh
 yarn bundle
 ```
@@ -126,10 +126,10 @@ yarn bundle
 The resulting bundles can be found within the `dist` directory at the root of the repo.
 
 ## Usage
-To use sfx-logic in the browser, point to a bundle with a script tag:
+To use elements-logic in the browser, point to a bundle with a script tag:
 
 ```html
-<script src="your-sfx-logic-bundle"></script>
+<script src="your-elements-logic-bundle"></script>
 ```
 
 You can now instantiate Core and the plugins. For example:
@@ -146,7 +146,7 @@ const searchDriverPlugin = new elementsPlugins.SearchDriverPlugin();
 core.register([saytPlugin, saytDriverPlugin, domEventsPlugin, searchPlugin, searchDriverPlugin]);
 ```
 
-If you are additionally using `sfx-view`, or require the search data to be transformed to be ready for your own views, you should define a `productTransformer` function that accepts a `Record` (a product as it is returned from a search), returns a `Product` (a product in the format needed for `sfx-view` or your own views) and pass it to the `saytDriverPlugin` and `searchDriverPlugin`:
+If you are additionally using `elements-view`, or require the search data to be transformed to be ready for your own views, you should define a `productTransformer` function that accepts a `Record` (a product as it is returned from a search), returns a `Product` (a product in the format needed for `elements-view` or your own views) and pass it to the `saytDriverPlugin` and `searchDriverPlugin`:
 
 ```js
 function productTransformer(record) {

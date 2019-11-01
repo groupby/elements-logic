@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupby/sfx-logic.git",
+    "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@elements/search-plugin"
   },
   "author": "",

@@ -12,7 +12,7 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: 'sfx-[name]-bundle.js',
+    filename: 'gbe-[name]-bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
 

@@ -2,7 +2,7 @@
 import { Plugin, PluginRegistry, PluginMetadata } from '@elements/core';
 
 /**
- * The browser version of the events plugin designed for the SF-X product.
+ * The browser version of the events plugin designed for the GroupBy Elements product.
  * This plugin is responsible for exposing methods that will allow other
  * plugins to register, unregister, and dispatch events.
  */
