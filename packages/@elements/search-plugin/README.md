@@ -1,6 +1,6 @@
-# SF-X Search Plugin
+# GroupBy Elements Search Plugin
 
-This package contains the SF-X Search Plugin class.
+This package contains the GB Elements Search Plugin class.
 
 ## Usage
 

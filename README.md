@@ -1,5 +1,5 @@
-# SFX Logic
-SFX Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.
+# GroupBy Elements Logic
+GB Elements Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.
 
 ## Installation
 To clone this repo with submodules run:
@@ -11,13 +11,13 @@ or if the repo is already cloned and you want to install submodules only, run:
 git submodule update --init
 ```
 ## Setup
-Run the `./scripts/setup.sh` script to build all of the SFX-Logic packages.
+Run the `./scripts/setup.sh` script to build all of the Elements-Logic packages.
 ```sh
   ./scripts/setup.sh
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the SFX-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
 
 ### Building packages
 To build an individual package, run the following command:

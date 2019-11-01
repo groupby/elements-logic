@@ -1,6 +1,6 @@
-# SF-X DOM Events Plugin
+# GroupBy Elements DOM Events Plugin
 
-This package contains the SF-X `DomEventsPlugin` class.
+This package contains the GB Elements `DomEventsPlugin` class.
 
 ## Usage
 

@@ -1,6 +1,6 @@
-# SF-X Search Driver Plugin
+# GroupBy Elements Search Driver Plugin
 
-This package contains the SF-X Search Driver plugin.
+This package contains the GB Elements Search Driver plugin.
 
 ## Prerequisites
 

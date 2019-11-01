@@ -1,6 +1,6 @@
-# SF-X Core
+# GroupBy Elements Core
 
-This package contains the SF-X Core class and related plugin interfaces.
+This package contains the GB Elements Core class and related plugin interfaces.
 
 ## Usage
 

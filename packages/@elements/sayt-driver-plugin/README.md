@@ -1,6 +1,6 @@
-# SF-X SAYT Driver Plugin
+# GroupBy Elements SAYT Driver Plugin
 
-This package contains the SF-X SAYT (Search-as-you-type) Driver plugin.
+This package contains the GB Elements SAYT (Search-as-you-type) Driver plugin.
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ This plugin accepts the following options:
 
 ## Events
 
-This plugin listens for and dispatches a number of events. These events are defined in the [`@elements/events`][sfx-events] package.
+This plugin listens for and dispatches a number of events. These events are defined in the [`@elements/events`][elements-events] package.
 
 ### Received
 
@@ -45,4 +45,4 @@ This plugin listens for and dispatches a number of events. These events are defi
 * `SAYT_PRODUCTS_RESPONSE`: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.
 * `SAYT_PRODUCTS_ERROR`: Dispatched when an error has occurred during a search request.
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[elements-events]: https://github.com/groupby/elements-events

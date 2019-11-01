@@ -1,6 +1,6 @@
-# SF-X SAYT Plugin
+# GroupBy Elements SAYT Plugin
 
-This package contains the SF-X SAYT Plugin class.
+This package contains the GB Elements SAYT Plugin class.
 
 ## Usage
 
