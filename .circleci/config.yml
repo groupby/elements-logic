@@ -280,56 +280,56 @@ workflows:
             - build_elements_search_driver_plugin
 
       - unit_test:
-          name: unit_test_core
+          name: unit_test_elements_core
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_dom_events_plugin
+          name: unit_test_elements_dom_events_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_sayt_plugin
+          name: unit_test_elements_sayt_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_search_plugin
+          name: unit_test_elements_search_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_sayt_driver_plugin
+          name: unit_test_elements_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_search_driver_plugin
+          name: unit_test_elements_search_driver_plugin
           <<: *requires_build_final
 
       - unit_test_browser:
-          name: unit_test_browser_core
+          name: unit_test_browser_elements_core
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_dom_events_plugin
+          name: unit_test_browser_elements_dom_events_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_sayt_plugin
+          name: unit_test_browser_elements_sayt_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_search_plugin
+          name: unit_test_browser_elements_search_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_sayt_driver_plugin
+          name: unit_test_browser_elements_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_search_driver_plugin
+          name: unit_test_browser_elements_search_driver_plugin
           <<: *requires_build_final
       - unit_test_final:
           requires:
-            - unit_test_core
-            - unit_test_dom_events_plugin
-            - unit_test_sayt_plugin
-            - unit_test_search_plugin
-            - unit_test_sayt_driver_plugin
-            - unit_test_search_driver_plugin
-            - unit_test_browser_core
-            - unit_test_browser_dom_events_plugin
-            - unit_test_browser_sayt_plugin
-            - unit_test_browser_search_plugin
-            - unit_test_browser_sayt_driver_plugin
-            - unit_test_browser_search_driver_plugin
+            - unit_test_elements_core
+            - unit_test_elements_dom_events_plugin
+            - unit_test_elements_sayt_plugin
+            - unit_test_elements_search_plugin
+            - unit_test_elements_sayt_driver_plugin
+            - unit_test_elements_search_driver_plugin
+            - unit_test_browser_elements_core
+            - unit_test_browser_elements_dom_events_plugin
+            - unit_test_browser_elements_sayt_plugin
+            - unit_test_browser_elements_search_plugin
+            - unit_test_browser_elements_sayt_driver_plugin
+            - unit_test_browser_elements_search_driver_plugin
 
       - lint:
           requires:
