@@ -177,7 +177,7 @@ jobs:
             package="${CIRCLE_JOB#unit_test_browser_}"
             package="${package//_/-}"
 
-            cd "packages/@groupby/${package}"
+            cd "packages/@groupby/elements-${package}"
             yarn test:browser
 
   ### unit_test_final
