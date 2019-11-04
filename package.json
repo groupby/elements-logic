@@ -4,20 +4,20 @@
   "description": "GroupBy Elements Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
   "private": true,
   "workspaces": [
-    "packages/@elements/core",
-    "packages/@elements/dom-events-plugin",
-    "packages/@elements/!(*-driver-plugin)",
-    "packages/@elements/*"
+    "packages/@groupby/elements-core",
+    "packages/@groupby/elements-dom-events-plugin",
+    "packages/@groupby/elements-!(*-driver-plugin)",
+    "packages/@groupby/*"
   ],
   "scripts": {
     "bundle": "webpack",
     "docs": "typedoc --options ./typedoc.js packages",
-    "lint:scripts": "eslint ./packages/@elements/*/src/ --ext .ts --plugin only-warn",
-    "lint:scripts:fix": "eslint ./packages/@elements/*/src/ --fix --ext .ts --plugin only-warn",
-    "lint:scripts:ci": "eslint ./packages/@elements/*/src/ --ext .ts --max-warnings 0",
-    "lint:tests": "eslint ./packages/@elements/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:fix": "eslint ./packages/@elements/*/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:ci": "eslint ./packages/@elements/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
+    "lint:scripts": "eslint ./packages/@groupby/*/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./packages/@groupby/*/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:ci": "eslint ./packages/@groupby/*/src/ --ext .ts --max-warnings 0",
+    "lint:tests": "eslint ./packages/@groupby/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./packages/@groupby/*/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:ci": "eslint ./packages/@groupby/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
   },
   "repository": {
     "type": "git",

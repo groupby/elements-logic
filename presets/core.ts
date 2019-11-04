@@ -1,1 +1,1 @@
-export * from '@elements/core';
+export * from '@groupby/elements-core';

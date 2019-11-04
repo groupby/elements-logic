@@ -17,7 +17,7 @@ Run the `./scripts/setup.sh` script to build all of the Elements-Logic packages.
 ```
 
 ## Commands
-The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@groupby`](packages/@groupby) directory.
 
 ### Building packages
 To build an individual package, run the following command:
@@ -61,7 +61,7 @@ This project ships with [ESLint](https://eslint.org/) configuration to enforce a
 
 ### Package-specific linting
 
-The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@elements`](packages/@elements) directory.
+The following commands are run in the context of an individual package contained within the Elements-Logic monorepo. The individual packages can be found within the [`packages/@groupby`](packages/@groupby) directory.
 
 To lint files for an individual package, navigate to its directory and use one of the following commands.
 
