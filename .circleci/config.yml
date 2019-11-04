@@ -40,9 +40,9 @@ defaults:
       cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
       chmod +x .git/hooks/prepare-commit-msg
 
-  requires_build_elements_core: &requires_build_elements_core
+  requires_build_core: &requires_build_core
     requires:
-      - build_elements_core
+      - build_core
   requires_build_final: &requires_build_final
     requires:
       - build_final
@@ -95,7 +95,7 @@ jobs:
             package="${CIRCLE_JOB#build_}"
             package="${package//_/-}"
 
-            cd "packages/@groupby/${package}"
+            cd "packages/@groupby/elements-${package}"
             yarn build
       - run: *archive_build
       - save_cache:
@@ -113,22 +113,22 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_core-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_core-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_dom_events_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt_driver_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_driver_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_driver_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_driver_plugin-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -156,7 +156,7 @@ jobs:
             package="${CIRCLE_JOB#unit_test_}"
             package="${package//_/-}"
 
-            cd "packages/@groupby/${package}"
+            cd "packages/@groupby/elements-${package}"
             yarn test
 
   ### unit_test_browser: unit_test_browser_{package}
@@ -170,7 +170,7 @@ jobs:
       - restore_cache: *yarn_cache
       - restore_cache: *build_final_cache_partial
       - run: *extract_build_archive
-      - run: *yarn_install
+      - run: *yarn_install 
       - run:
           name: Test
           command: |
@@ -245,91 +245,91 @@ workflows:
               ignore: /release\/.*/
 
       - build:
-          name: build_elements_core
+          name: build_core
           requires:
             - generate_cache_key_file
       - build:
-          name: build_elements_dom_events_plugin
-          <<: *requires_build_elements_core
+          name: build_dom_events_plugin
+          <<: *requires_build_core
       - build:
-          name: build_elements_sayt_plugin
-          <<: *requires_build_elements_core
+          name: build_sayt_plugin
+          <<: *requires_build_core
       - build:
-          name: build_elements_search_plugin
-          <<: *requires_build_elements_core
+          name: build_search_plugin
+          <<: *requires_build_core
       - collect_builds:
           name: collect_independent_builds
           requires:
-            - build_elements_core
-            - build_elements_dom_events_plugin
-            - build_elements_sayt_plugin
-            - build_elements_search_plugin
+            - build_core
+            - build_dom_events_plugin
+            - build_sayt_plugin
+            - build_search_plugin
 
       - build:
-          name: build_elements_sayt_driver_plugin
+          name: build_sayt_driver_plugin
           requires:
             - collect_independent_builds
       - build:
-          name: build_elements_search_driver_plugin
+          name: build_search_driver_plugin
           requires:
             - collect_independent_builds
       - collect_builds:
           name: build_final
           requires:
-            - build_elements_sayt_driver_plugin
-            - build_elements_search_driver_plugin
+            - build_sayt_driver_plugin
+            - build_search_driver_plugin
 
       - unit_test:
-          name: unit_test_elements_core
+          name: unit_test_core
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_dom_events_plugin
+          name: unit_test_dom_events_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_sayt_plugin
+          name: unit_test_sayt_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_search_plugin
+          name: unit_test_search_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_sayt_driver_plugin
+          name: unit_test_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test:
-          name: unit_test_elements_search_driver_plugin
+          name: unit_test_search_driver_plugin
           <<: *requires_build_final
 
       - unit_test_browser:
-          name: unit_test_browser_elements_core
+          name: unit_test_browser_core
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_elements_dom_events_plugin
+          name: unit_test_browser_dom_events_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_elements_sayt_plugin
+          name: unit_test_browser_sayt_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_elements_search_plugin
+          name: unit_test_browser_search_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_elements_sayt_driver_plugin
+          name: unit_test_browser_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test_browser:
-          name: unit_test_browser_elements_search_driver_plugin
+          name: unit_test_browser_search_driver_plugin
           <<: *requires_build_final
       - unit_test_final:
           requires:
-            - unit_test_elements_core
-            - unit_test_elements_dom_events_plugin
-            - unit_test_elements_sayt_plugin
-            - unit_test_elements_search_plugin
-            - unit_test_elements_sayt_driver_plugin
-            - unit_test_elements_search_driver_plugin
-            - unit_test_browser_elements_core
-            - unit_test_browser_elements_dom_events_plugin
-            - unit_test_browser_elements_sayt_plugin
-            - unit_test_browser_elements_search_plugin
-            - unit_test_browser_elements_sayt_driver_plugin
-            - unit_test_browser_elements_search_driver_plugin
+            - unit_test_core
+            - unit_test_dom_events_plugin
+            - unit_test_sayt_plugin
+            - unit_test_search_plugin
+            - unit_test_sayt_driver_plugin
+            - unit_test_search_driver_plugin
+            - unit_test_browser_core
+            - unit_test_browser_dom_events_plugin
+            - unit_test_browser_sayt_plugin
+            - unit_test_browser_search_plugin
+            - unit_test_browser_sayt_driver_plugin
+            - unit_test_browser_search_driver_plugin
 
       - lint:
           requires:
