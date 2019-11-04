@@ -40,9 +40,9 @@ defaults:
       cp .circleci/prepare-commit-msg .git/hooks/prepare-commit-msg
       chmod +x .git/hooks/prepare-commit-msg
 
-  requires_build_core: &requires_build_core
+  requires_build_elements_core: &requires_build_elements_core
     requires:
-      - build_core
+      - build_elements_core
   requires_build_final: &requires_build_final
     requires:
       - build_final
