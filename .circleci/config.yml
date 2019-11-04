@@ -170,7 +170,7 @@ jobs:
       - restore_cache: *yarn_cache
       - restore_cache: *build_final_cache_partial
       - run: *extract_build_archive
-      - run: *yarn_install 
+      - run: *yarn_install
       - run:
           name: Test
           command: |
