@@ -113,22 +113,22 @@ jobs:
       - attach_workspace:
           at: /home/circleci
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_core-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_core-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_dom_events_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_driver_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_sayt_driver_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_driver_plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_elements_search_driver_plugin-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -245,39 +245,39 @@ workflows:
               ignore: /release\/.*/
 
       - build:
-          name: build_core
+          name: build_elements_core
           requires:
             - generate_cache_key_file
       - build:
-          name: build_dom_events_plugin
-          <<: *requires_build_core
+          name: build_elements_dom_events_plugin
+          <<: *requires_build_elements_core
       - build:
-          name: build_sayt_plugin
-          <<: *requires_build_core
+          name: build_elements_sayt_plugin
+          <<: *requires_build_elements_core
       - build:
-          name: build_search_plugin
-          <<: *requires_build_core
+          name: build_elements_search_plugin
+          <<: *requires_build_elements_core
       - collect_builds:
           name: collect_independent_builds
           requires:
-            - build_core
-            - build_dom_events_plugin
-            - build_sayt_plugin
-            - build_search_plugin
+            - build_elements_core
+            - build_elements_dom_events_plugin
+            - build_elements_sayt_plugin
+            - build_elements_search_plugin
 
       - build:
-          name: build_sayt_driver_plugin
+          name: build_elements_sayt_driver_plugin
           requires:
             - collect_independent_builds
       - build:
-          name: build_search_driver_plugin
+          name: build_elements_search_driver_plugin
           requires:
             - collect_independent_builds
       - collect_builds:
           name: build_final
           requires:
-            - build_sayt_driver_plugin
-            - build_search_driver_plugin
+            - build_elements_sayt_driver_plugin
+            - build_elements_search_driver_plugin
 
       - unit_test:
           name: unit_test_core
