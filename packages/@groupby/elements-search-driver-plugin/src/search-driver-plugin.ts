@@ -3,6 +3,12 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
+  Record,
+  Results,
+  Request as SearchRequest,
+  QueryConfiguration,
+} from '@sfx/search-plugin';
+import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
@@ -114,10 +120,10 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   /**
    * Sends a search request using the GroupBy API.
    *
-   * @param query the query to send.
+   * @param request The request object that contains the search term and any extra parameters.
    */
-  sendSearchApiRequest(query: string): Promise<SearchResponseSection<P>> {
-    const fullQuery = { ...this.defaultSearchConfig, query };
+  sendSearchApiRequest(request: Partial<SearchRequest>): Promise<SearchResponseSection<P>> {
+    const fullQuery = { ...this.defaultSearchConfig, ...request };
     return this.core.search.search(fullQuery)
       .then(this.searchCallback);
   }

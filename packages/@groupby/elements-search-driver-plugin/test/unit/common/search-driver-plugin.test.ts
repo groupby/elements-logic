@@ -150,8 +150,11 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('sendSearchApiRequest()', () => {
-    it('should forward the query to the search plugin', () => {
+    it('should forward the query and any config options to the search plugin', () => {
       const query = 'search term';
+      const area = 'area';
+      const collection = 'collection';
+      const request = { query, area, collection };
       const results = Promise.resolve({ search: 'results' });
       const searchCallbackResponse = {
         originalResponse: { full: 'response' },
@@ -162,10 +165,12 @@ describe('SearchDriverPlugin', () => {
       search.withArgs({
         fields: ['*'],
         query,
+        area,
+        collection,
       }).returns(results);
       searchDriverPlugin.core = { search: { search } };
 
-      const result = searchDriverPlugin.sendSearchApiRequest(query);
+      const result = searchDriverPlugin.sendSearchApiRequest(request);
 
       return expect(result).to.eventually.equal(searchCallbackResponse);
     });
