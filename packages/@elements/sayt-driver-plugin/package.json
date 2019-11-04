@@ -26,6 +26,6 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
-    "@elements/events": "groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e"
+    "@groupby/elements-events": "groupby/elements-events#c4a4853a424992db9c170fea6990dc2a52c3061e"
   }
 }

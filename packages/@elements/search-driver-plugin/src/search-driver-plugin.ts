@@ -11,7 +11,7 @@ import {
   SearchResponsePayload,
   SearchResponseSection,
   SearchErrorPayload,
-} from '@elements/events';
+} from '@groupby/elements-events';
 
 /**
  * This plugin is responsible for exposing events that allow

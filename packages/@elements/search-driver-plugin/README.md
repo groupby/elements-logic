@@ -26,7 +26,7 @@ This plugin currently does not accept any options.
 ## Events
 
 This plugin listens for and dispatches a number of events.
-These events are defined in the [`@elements/events`][elements-events] package.
+These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 [elements-events]: https://github.com/groupby/elements-events
 

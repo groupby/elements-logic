@@ -5,7 +5,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
-} from '@elements/events';
+} from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
 

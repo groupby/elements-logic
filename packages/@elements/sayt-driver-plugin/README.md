@@ -31,7 +31,7 @@ This plugin accepts the following options:
 
 ## Events
 
-This plugin listens for and dispatches a number of events. These events are defined in the [`@elements/events`][elements-events] package.
+This plugin listens for and dispatches a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 ### Received
 

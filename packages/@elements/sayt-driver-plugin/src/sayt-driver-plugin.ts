@@ -16,7 +16,7 @@ import {
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
-} from '@elements/events';
+} from '@groupby/elements-events';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import {
   AutocompleteResponse,
