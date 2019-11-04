@@ -97,6 +97,7 @@ describe('SearchDriverPlugin', () => {
 
     it('should search with the given search term', () => {
       const query = 'search term';
+      const request = { query };
       sendSearchApiRequest.resolves();
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent: () => {} },
@@ -104,7 +105,23 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
 
-      expect(sendSearchApiRequest).to.be.calledWith(query);
+      expect(sendSearchApiRequest).to.be.calledWith(request);
+    });
+
+    it('should search with any extra config options', () => {
+      const query = 'search term';
+      const area = 'area';
+      const collection = 'collection';
+      const config = { area, collection };
+      const request = { query, area, collection };
+      sendSearchApiRequest.resolves();
+      searchDriverPlugin.core = {
+        [eventsPluginName]: { dispatchEvent: () => {} },
+      };
+
+      searchDriverPlugin.fetchSearchData({ detail: { query, config } } as any);
+
+      expect(sendSearchApiRequest).to.be.calledWith(request);
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {

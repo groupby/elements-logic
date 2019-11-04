@@ -3,12 +3,6 @@ import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
-  Record,
-  Results,
-  Request as SearchRequest,
-  QueryConfiguration,
-} from '@sfx/search-plugin';
-import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
@@ -105,8 +99,8 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { query, group } = event.detail;
-    this.sendSearchApiRequest(query)
+    const { query, group, config } = event.detail;
+    this.sendSearchApiRequest({ query, ...config })
       .then((results) => {
         const payload: SearchResponsePayload<P> = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
