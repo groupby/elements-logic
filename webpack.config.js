@@ -12,7 +12,7 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: 'sfx-[name]-bundle.js',
+    filename: 'gbe-[name]-bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -21,11 +21,11 @@ module.exports = {
   module: {
     rules: [{
       test: path.resolve(__dirname, 'presets', 'core.ts'),
-      use: { loader: 'expose-loader', options: 'sfxCore' }
+      use: { loader: 'expose-loader', options: 'GbElementsCore' }
     },
     {
       test: path.resolve(__dirname, 'presets', 'plugins.ts'),
-      use: { loader: 'expose-loader', options: 'sfxPlugins' }
+      use: { loader: 'expose-loader', options: 'GbElementsPlugins' }
     },
     {
       test: /\.tsx?$/,

@@ -1,34 +1,34 @@
 {
-  "name": "sfx-logic",
+  "name": "elements-logic",
   "version": "0.0.0",
-  "description": "SF-X Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
+  "description": "GroupBy Elements Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
   "private": true,
   "workspaces": [
-    "packages/@sfx/core",
-    "packages/@sfx/dom-events-plugin",
-    "packages/@sfx/!(*-driver-plugin)",
-    "packages/@sfx/*"
+    "packages/@groupby/elements-core",
+    "packages/@groupby/elements-dom-events-plugin",
+    "packages/@groupby/elements-!(*-driver-plugin)",
+    "packages/@groupby/*"
   ],
   "scripts": {
     "bundle": "webpack",
     "docs": "typedoc --options ./typedoc.js packages",
-    "lint:scripts": "eslint ./packages/@sfx/*/src/ --ext .ts --plugin only-warn",
-    "lint:scripts:fix": "eslint ./packages/@sfx/*/src/ --fix --ext .ts --plugin only-warn",
-    "lint:scripts:ci": "eslint ./packages/@sfx/*/src/ --ext .ts --max-warnings 0",
-    "lint:tests": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:fix": "eslint ./packages/@sfx/*/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
-    "lint:tests:ci": "eslint ./packages/@sfx/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
+    "lint:scripts": "eslint ./packages/@groupby/*/src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./packages/@groupby/*/src/ --fix --ext .ts --plugin only-warn",
+    "lint:scripts:ci": "eslint ./packages/@groupby/*/src/ --ext .ts --max-warnings 0",
+    "lint:tests": "eslint ./packages/@groupby/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./packages/@groupby/*/test/ --fix --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:ci": "eslint ./packages/@groupby/*/test/ --ext .ts --no-eslintrc -c ./scripts/config/eslint/test/.eslintrc.js --max-warnings 0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupby/sfx-logic.git"
+    "url": "https://github.com/groupby/elements-logic.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/groupby/sfx-logic/issues"
+    "url": "https://github.com/groupby/elements-logic/issues"
   },
-  "homepage": "https://github.com/groupby/sfx-logic#readme",
+  "homepage": "https://github.com/groupby/elements-logic#readme",
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
     "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",

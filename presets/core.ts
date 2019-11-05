@@ -1,1 +1,1 @@
-export * from '@sfx/core';
+export * from '@groupby/elements-core';
