@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>DomEventsPluginOptions | SF-X</title>
+	<title>DomEventsPluginExposedValue | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_sfx_dom_events_plugin.html">@sfx/dom-events-plugin</a>
+					<a href="../modules/_groupby_elements_dom_events_plugin.html">@groupby/elements-dom-events-plugin</a>
 				</li>
 				<li>
-					<a href="_sfx_dom_events_plugin.domeventspluginoptions.html">DomEventsPluginOptions</a>
+					<a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html">DomEventsPluginExposedValue</a>
 				</li>
 			</ul>
-			<h1>Interface DomEventsPluginOptions</h1>
+			<h1>Interface DomEventsPluginExposedValue</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>DOM Events Plugin options.</p>
+						<p>DOM Events Plugin exposed value. This plugin will return an object of
+						the outlined shape during the plugin registration lifecycle.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +81,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">DomEventsPluginOptions</span>
+						<span class="target">DomEventsPluginExposedValue</span>
 					</li>
 				</ul>
 			</section>
@@ -91,8 +92,9 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_dom_events_plugin.domeventspluginoptions.html#customevent" class="tsd-kind-icon">Custom<wbr>Event</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_sfx_dom_events_plugin.domeventspluginoptions.html#window" class="tsd-kind-icon">window</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#dispatchevent" class="tsd-kind-icon">dispatch<wbr>Event</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#registerlistener" class="tsd-kind-icon">register<wbr>Listener</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#unregisterlistener" class="tsd-kind-icon">unregister<wbr>Listener</a></li>
 							</ul>
 						</section>
 					</div>
@@ -101,72 +103,146 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="customevent" class="tsd-anchor"></a>
-					<h3>Custom<wbr>Event</h3>
-					<div class="tsd-signature tsd-kind-icon">Custom<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<a name="dispatchevent" class="tsd-anchor"></a>
+					<h3>dispatch<wbr>Event</h3>
+					<div class="tsd-signature tsd-kind-icon">dispatch<wbr>Event<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/dom-events-plugin/src/dom-events-plugin.ts#L132">dom-events-plugin/src/dom-events-plugin.ts:132</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/b670dfe/packages/@groupby/elements-dom-events-plugin/src/dom-events-plugin.ts#L163">elements-dom-events-plugin/src/dom-events-plugin.ts:163</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Will be used to create custom event objects.</p>
+							<p>Dispatches an event with the provided name and payload.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Name of the event to be dispatched.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Data to accompany the dispatched event.</p>
+							</dd>
+						</dl>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5>constructor<span class="tsd-signature-symbol">: </span>function</h5>
-								<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-type-literal tsd-has-type-parameter tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon">new __type&lt;T&gt;<span class="tsd-signature-symbol">(</span>typeArg<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, eventInitDict<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">CustomEventInit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, payload<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<aside class="tsd-sources">
-											<ul>
-												<li>Defined in /home/circleci/project/node_modules/typedoc/node_modules/typescript/lib/lib.dom.d.ts:3425</li>
-											</ul>
-										</aside>
-										<h4 class="tsd-type-parameters-title">Type parameters</h4>
-										<ul class="tsd-type-parameters">
-											<li>
-												<h4>T</h4>
-											</li>
-										</ul>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>typeArg: <span class="tsd-signature-type">string</span></h5>
+												<h5>eventName: <span class="tsd-signature-type">string</span></h5>
 											</li>
 											<li>
-												<h5><span class="tsd-flag ts-flagOptional">Optional</span> eventInitDict: <span class="tsd-signature-type">CustomEventInit</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+												<h5><span class="tsd-flag ts-flagOptional">Optional</span> payload: <span class="tsd-signature-type">any</span></h5>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 									</li>
-							</ul>        </li>
-							<li class="tsd-parameter">
-								<h5>prototype<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span></h5>
+								</ul>
 							</li>
 						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="window" class="tsd-anchor"></a>
-					<h3>window</h3>
-					<div class="tsd-signature tsd-kind-icon">window<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Window</span></div>
+					<a name="registerlistener" class="tsd-anchor"></a>
+					<h3>register<wbr>Listener</h3>
+					<div class="tsd-signature tsd-kind-icon">register<wbr>Listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/sfx-logic/blob/d11cacf/packages/@sfx/dom-events-plugin/src/dom-events-plugin.ts#L128">dom-events-plugin/src/dom-events-plugin.ts:128</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/b670dfe/packages/@groupby/elements-dom-events-plugin/src/dom-events-plugin.ts#L147">elements-dom-events-plugin/src/dom-events-plugin.ts:147</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Will be used to invoke event-related methods to add/remove listeners
-							and dispatch events.</p>
+							<p>Registers an event listener for a given event and a callback to be
+							invoked in response to the same event.</p>
 						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Name of the event to be registered/listened for.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Callback to be registered with the listener.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>eventName: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>callback: <span class="tsd-signature-type">EventListener</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="unregisterlistener" class="tsd-anchor"></a>
+					<h3>unregister<wbr>Listener</h3>
+					<div class="tsd-signature tsd-kind-icon">unregister<wbr>Listener<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/b670dfe/packages/@groupby/elements-dom-events-plugin/src/dom-events-plugin.ts#L155">elements-dom-events-plugin/src/dom-events-plugin.ts:155</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Unregisters an event listener for the given event as well as
+							its corresponding callback function.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>Name of the event to unregister.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>Callback to be unregistered along with the event.</p>
+							</dd>
+						</dl>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>eventName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventListener</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>eventName: <span class="tsd-signature-type">string</span></h5>
+											</li>
+											<li>
+												<h5>callback: <span class="tsd-signature-type">EventListener</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</div>
 				</section>
 			</section>
@@ -178,67 +254,70 @@
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_core.html">@sfx/core</a>
+						<a href="../modules/_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
+						<a href="../modules/_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a>
+								<a href="../classes/_groupby_elements_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a>
 							</li>
 							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a>
+								<a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a>
 								<ul>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_sfx_dom_events_plugin.domeventspluginoptions.html#customevent" class="tsd-kind-icon">Custom<wbr>Event</a>
+										<a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#dispatchevent" class="tsd-kind-icon">dispatch<wbr>Event</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_sfx_dom_events_plugin.domeventspluginoptions.html#window" class="tsd-kind-icon">window</a>
+										<a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#registerlistener" class="tsd-kind-icon">register<wbr>Listener</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_groupby_elements_dom_events_plugin.domeventspluginexposedvalue.html#unregisterlistener" class="tsd-kind-icon">unregister<wbr>Listener</a>
 									</li>
 								</ul>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="_groupby_elements_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>

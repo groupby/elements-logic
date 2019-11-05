@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/dom-events-plugin | SF-X</title>
+	<title>@groupby/elements-search-plugin | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,10 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_dom_events_plugin.html">@sfx/dom-events-plugin</a>
+					<a href="_groupby_elements_search_plugin.html">@groupby/elements-search-plugin</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/dom-events-plugin</h1>
+			<h1>Package @groupby/elements-search-plugin</h1>
 		</div>
 	</div>
 </header>
@@ -68,31 +68,25 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-dom-events-plugin">SF-X DOM Events Plugin</h1>
-					<p>This package contains the SF-X <code>DomEventsPlugin</code> class.</p>
+					<h1 id="groupby-elements-search-plugin">GroupBy Elements Search Plugin</h1>
+					<p>This package contains the GB Elements Search Plugin class.</p>
 					<h2 id="usage">Usage</h2>
-					<p>To use the <code>DomEventsPlugin</code>, first instantiate it and then register it with
-					the Core entity:</p>
-					<pre><code class="language-js"><span class="hljs-keyword">const</span> domEventsPlugin = <span class="hljs-keyword">new</span> DomEventsPlugin(<span class="hljs-comment">/* options */</span>);
-core.<span class="hljs-keyword">register</span>(domEventsPlugin);</code></pre>
-					<p>The plugin&#39;s constructor takes an optional options object.
-						Please refer to the <code>DomEventsPluginOptions</code> interface in
-						<a href="src/dom-events-plugin.ts">src/dom-events-plugin.ts</a> for more details on
-					available options.</p>
-					<h2 id="methods">Methods</h2>
-					<h3 id="registerlistener">registerListener()</h3>
-					<p>Use the <code>registerListener</code> method to register event listeners. The method
-					takes an eventName and a callback function.</p>
-					<pre><code class="language-js">register<span class="hljs-constructor">Listener(<span class="hljs-params">eventName</span>, <span class="hljs-params">callback</span>)</span>;</code></pre>
-					<h3 id="unregisterlistener">unregisterListener()</h3>
-					<p>Use the <code>unregisterListener</code> method to unregister event listeners. The method
-					takes an eventName and a callback function.</p>
-					<pre><code class="language-js">unregister<span class="hljs-constructor">Listener(<span class="hljs-params">eventName</span>, <span class="hljs-params">callback</span>)</span>;</code></pre>
-					<h3 id="dispatchevent">dispatchEvent()</h3>
-					<p>Use the <code>dispatchEvent</code> method to dispatch events. The method takes an
-						eventName and an option payload which can be used to send information
-					with the dispatched event.</p>
-					<pre><code class="language-js">dispatch<span class="hljs-constructor">Event(<span class="hljs-params">eventName</span>, <span class="hljs-params">payload</span>)</span>;</code></pre>
+					<p>To use the plugin, simply instantiate it and register it with Core:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> searchPlugin = <span class="hljs-keyword">new</span> SearchPlugin({
+  customerId: <span class="hljs-string">'mycustomerid'</span>, <span class="hljs-comment">// replace with your customer ID</span>
+  https: <span class="hljs-literal">true</span>,                <span class="hljs-comment">// optional. Default: true</span>
+  <span class="hljs-comment">// ... BrowserBridge options</span>
+});
+core.register(searchPlugin);</code></pre>
+					<p>The plugin registers an instance of the <a href="https://www.npmjs.com/package/groupby-api">Search API client</a> with Core.</p>
+					<h3 id="options">Options</h3>
+					<p>The SearchPlugin constructor takes in an options object to configure the
+					plugin.</p>
+					<ul>
+						<li><code>customerId</code>: <strong>Required.</strong> This is your GroupBy customer ID.</li>
+						<li><code>https</code>: Use HTTPS. Default: <code>true</code>.</li>
+						<li>All <a href="https://github.com/groupby/api-javascript/blob/0bc32ac7c3e186b1c74b9918800b4d754a91afa4/src/core/bridge.ts#L238-L241"><code>BrowserBridge</code> options</a>.</li>
+					</ul>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -102,14 +96,14 @@ core.<span class="hljs-keyword">register</span>(domEventsPlugin);</code></pre>
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
@@ -123,60 +117,60 @@ core.<span class="hljs-keyword">register</span>(domEventsPlugin);</code></pre>
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html">@sfx/core</a>
+						<a href="_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
+						<a href="_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
+						<a href="_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
+						<a href="_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_dom_events_plugin.domeventsplugin.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin</a>
+								<a href="../classes/_groupby_elements_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_sfx_dom_events_plugin.domeventspluginexposedvalue.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Exposed<wbr>Value</a>
+								<a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_sfx_dom_events_plugin.domeventspluginoptions.html" class="tsd-kind-icon">Dom<wbr>Events<wbr>Plugin<wbr>Options</a>
+								<a href="../interfaces/_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

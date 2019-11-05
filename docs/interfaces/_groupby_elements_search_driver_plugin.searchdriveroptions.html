@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@sfx/search-plugin | SF-X</title>
+	<title>SearchDriverOptions | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">SF-X</a>
+					<a href="../index.html" class="title">GroupBy Elements</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -56,10 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_sfx_search_plugin.html">@sfx/search-plugin</a>
+					<a href="../modules/_groupby_elements_search_driver_plugin.html">@groupby/elements-search-driver-plugin</a>
+				</li>
+				<li>
+					<a href="_groupby_elements_search_driver_plugin.searchdriveroptions.html">SearchDriverOptions</a>
 				</li>
 			</ul>
-			<h1>Package @sfx/search-plugin</h1>
+			<h1>Interface SearchDriverOptions&lt;P&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -68,44 +71,61 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="sf-x-search-plugin">SF-X Search Plugin</h1>
-					<p>This package contains the SF-X Search Plugin class.</p>
-					<h2 id="usage">Usage</h2>
-					<p>To use the plugin, simply instantiate it and register it with Core:</p>
-					<pre><code class="language-js"><span class="hljs-keyword">const</span> searchPlugin = <span class="hljs-keyword">new</span> SearchPlugin({
-  customerId: <span class="hljs-string">'mycustomerid'</span>, <span class="hljs-comment">// replace with your customer ID</span>
-  https: <span class="hljs-literal">true</span>,                <span class="hljs-comment">// optional. Default: true</span>
-  <span class="hljs-comment">// ... BrowserBridge options</span>
-});
-core.register(searchPlugin);</code></pre>
-					<p>The plugin registers an instance of the <a href="https://www.npmjs.com/package/groupby-api">Search API client</a> with Core.</p>
-					<h3 id="options">Options</h3>
-					<p>The SearchPlugin constructor takes in an options object to configure the
-					plugin.</p>
-					<ul>
-						<li><code>customerId</code>: <strong>Required.</strong> This is your GroupBy customer ID.</li>
-						<li><code>https</code>: Use HTTPS. Default: <code>true</code>.</li>
-						<li>All <a href="https://github.com/groupby/api-javascript/blob/0bc32ac7c3e186b1c74b9918800b4d754a91afa4/src/core/bridge.ts#L238-L241"><code>BrowserBridge</code> options</a>.</li>
-					</ul>
+					<div class="lead">
+						<p>The configuration options for [[SearchDriver]].</p>
+					</div>
 				</div>
+			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>P</h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The product type.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">SearchDriverOptions</span>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Classes</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_sfx_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_search_driver_plugin.searchdriveroptions.html#producttransformer" class="tsd-kind-icon">product<wbr>Transformer</a></li>
 							</ul>
 						</section>
-						<section class="tsd-index-section ">
-							<h3>Interfaces</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_sfx_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a></li>
-							</ul>
-						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="producttransformer" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> product<wbr>Transformer</h3>
+					<div class="tsd-signature tsd-kind-icon">product<wbr>Transformer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ProductTransformer</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/b670dfe/packages/@groupby/elements-search-driver-plugin/src/search-driver-plugin.ts#L154">elements-search-driver-plugin/src/search-driver-plugin.ts:154</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A function to transform a [[Record]] from the GroupBy Search API
+							to the desired form.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -117,60 +137,62 @@ core.register(searchPlugin);</code></pre>
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html">@sfx/core</a>
+						<a href="../modules/_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html">@sfx/dom-<wbr>events-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html">@sfx/sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_core.html" class="tsd-kind-icon">@sfx/core</a>
+						<a href="../modules/_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_dom_events_plugin.html" class="tsd-kind-icon">@sfx/dom-<wbr>events-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_driver_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_sfx_sayt_plugin.html" class="tsd-kind-icon">@sfx/sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_sfx_search_driver_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>driver-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="_sfx_search_plugin.html" class="tsd-kind-icon">@sfx/search-<wbr>plugin</a>
+						<a href="../modules/_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 						<ul>
-							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_sfx_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a>
+							<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../classes/_groupby_elements_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a>
 							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_sfx_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_sfx_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a>
+							<li class="current tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="_groupby_elements_search_driver_plugin.searchdriveroptions.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Options</a>
+								<ul>
+									<li class=" tsd-kind-property tsd-parent-kind-interface">
+										<a href="_groupby_elements_search_driver_plugin.searchdriveroptions.html#producttransformer" class="tsd-kind-icon">product<wbr>Transformer</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
