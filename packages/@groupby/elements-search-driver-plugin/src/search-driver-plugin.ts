@@ -91,7 +91,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Performs a search with the given search term and configurations
+   * Performs a search with the given search term and configuration
    * and emits the result through an event. The result is emitted in a
    * [[SEARCH_RESPONSE]] event. If the search fails for any
    * reason, a [[SEARCH_ERROR]] is dispatched with the error.

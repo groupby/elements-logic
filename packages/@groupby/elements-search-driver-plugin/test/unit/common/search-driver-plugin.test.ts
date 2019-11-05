@@ -108,7 +108,7 @@ describe('SearchDriverPlugin', () => {
       expect(sendSearchApiRequest).to.be.calledWith(request);
     });
 
-    it('should search with any extra config options', () => {
+    it('should search with all provided config options', () => {
       const query = 'search term';
       const area = 'area';
       const collection = 'collection';
@@ -167,7 +167,7 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('sendSearchApiRequest()', () => {
-    it('should forward the query and any config options to the search plugin', () => {
+    it('should forward the query and all provided config options to the search plugin', () => {
       const query = 'search term';
       const area = 'area';
       const collection = 'collection';
