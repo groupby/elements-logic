@@ -1,5 +1,5 @@
 {
-  "name": "@sfx/cache-plugin",
+  "name": "@groupby/elements-cache-plugin",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -17,12 +17,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/groupby/sfx-logic.git",
-    "directory": "packages/@sfx/cache-plugin"
+    "url": "https://github.com/groupby/elements-logic.git",
+    "directory": "packages/@groupby/elements-cache-plugin"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@sfx/events": "groupby/sfx-events#1e6b3739237f9f4f553671b57485f5c0a6da55f5"
+    "@groupby/elements-events": "groupby/elements-events#1e6b3739237f9f4f553671b57485f5c0a6da55f5"
   }
 }

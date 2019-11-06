@@ -1,6 +1,6 @@
-# SF-X Cache Plugin
+# GroupBy Elements Cache Plugin
 
-This package contains the SF-X Cache Plugin class.
+This package contains the GroupBy Elements Cache Plugin class.
 
 ## Usage
 

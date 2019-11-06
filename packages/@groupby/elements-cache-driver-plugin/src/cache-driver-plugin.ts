@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Plugin, PluginMetadata, PluginRegistry } from '@sfx/core';
-import { CACHE_REQUEST, CacheRequestPayload, CacheResponsePayload } from '@sfx/events';
+import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
+import { CACHE_REQUEST, CacheRequestPayload, CacheResponsePayload } from '@groupby/elements-events';
 
 /**
- * The SF-X cache driver plugin.
- * This plugin exposes an event-based interface to the SF-X cache.
+ * The GroupBy Elements cache driver plugin.
+ * This plugin exposes an event-based interface to the GB Elements cache.
  */
 export default class CacheDriverPlugin implements Plugin {
   get metadata(): PluginMetadata {

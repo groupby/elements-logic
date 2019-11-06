@@ -1,6 +1,6 @@
-# SF-X Cache Plugin
+# GroupBy Elements Cache Plugin
 
-This package contains the SF-X Cache Driver Plugin class.
+This package contains the GroupBy Elements Cache Driver Plugin class.
 
 ## Usage
 
@@ -13,7 +13,7 @@ core.register(cacheDriverPlugin);
 
 ## Events
 
-This plugin listens for and dispatches a number of events. These events are defined in the [`@sfx/events`][sfx-events] package.
+This plugin listens for and dispatches a number of events. These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
 ### Received
 
@@ -23,4 +23,4 @@ This plugin listens for and dispatches a number of events. These events are defi
 
 * A cache response event: Dispatched when a `CACHE_REQUEST` is fulfilled. The event is dispatched under the name provided with the corresponding `CACHE_REQUEST` payload.
 
-[sfx-events]: https://github.com/groupby/sfx-events
+[elements-events]: https://github.com/groupby/elements-events

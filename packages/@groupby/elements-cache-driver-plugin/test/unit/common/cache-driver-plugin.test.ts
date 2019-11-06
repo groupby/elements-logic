@@ -1,4 +1,4 @@
-import { CACHE_REQUEST } from '@sfx/events';
+import { CACHE_REQUEST } from '@groupby/elements-events';
 import { expect, spy } from '../../utils';
 import CacheDriverPlugin from '../../../src/cache-driver-plugin';
 

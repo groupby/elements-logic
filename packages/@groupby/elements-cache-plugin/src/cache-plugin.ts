@@ -1,9 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Plugin, PluginMetadata } from '@sfx/core';
+import { Plugin, PluginMetadata } from '@groupby/elements-core';
 
 /**
- * The SF-X cache plugin. This plugin registers an instance of `Map` that
- * is intended to be used by other plugins as a cache or other data
+ * The GroupBy Elements cache plugin. This plugin registers an instance of
+ * `Map` that is intended to be used by other plugins as a cache or other data
  * store. No automatic cache clearing or expiring is performed.
  */
 export default class CachePlugin implements Plugin {
