@@ -23,6 +23,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "groupby/elements-events#1e6b3739237f9f4f553671b57485f5c0a6da55f5"
+    "@groupby/elements-events": "groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758"
   }
 }
