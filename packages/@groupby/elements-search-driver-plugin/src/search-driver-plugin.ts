@@ -91,16 +91,16 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Performs a search with the given search term and emits the result
-   * through an event. The result is emitted in a
+   * Performs a search with the given search term and configuration
+   * and emits the result through an event. The result is emitted in a
    * [[SEARCH_RESPONSE]] event. If the search fails for any
    * reason, a [[SEARCH_ERROR]] is dispatched with the error.
    *
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { query, group } = event.detail;
-    this.sendSearchApiRequest(query)
+    const { query, group, config } = event.detail;
+    this.sendSearchApiRequest({ query, ...config })
       .then((results) => {
         const payload: SearchResponsePayload<P> = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
@@ -114,10 +114,10 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
   /**
    * Sends a search request using the GroupBy API.
    *
-   * @param query the query to send.
+   * @param request The request object that contains the search term and any extra parameters.
    */
-  sendSearchApiRequest(query: string): Promise<SearchResponseSection<P>> {
-    const fullQuery = { ...this.defaultSearchConfig, query };
+  sendSearchApiRequest(request: Partial<SearchRequest>): Promise<SearchResponseSection<P>> {
+    const fullQuery = { ...this.defaultSearchConfig, ...request };
     return this.core.search.search(fullQuery)
       .then(this.searchCallback);
   }

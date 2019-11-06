@@ -97,6 +97,7 @@ describe('SearchDriverPlugin', () => {
 
     it('should search with the given search term', () => {
       const query = 'search term';
+      const request = { query };
       sendSearchApiRequest.resolves();
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent: () => {} },
@@ -104,7 +105,23 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
 
-      expect(sendSearchApiRequest).to.be.calledWith(query);
+      expect(sendSearchApiRequest).to.be.calledWith(request);
+    });
+
+    it('should search with all provided config options', () => {
+      const query = 'search term';
+      const area = 'area';
+      const collection = 'collection';
+      const config = { area, collection };
+      const request = { query, area, collection };
+      sendSearchApiRequest.resolves();
+      searchDriverPlugin.core = {
+        [eventsPluginName]: { dispatchEvent: () => {} },
+      };
+
+      searchDriverPlugin.fetchSearchData({ detail: { query, config } } as any);
+
+      expect(sendSearchApiRequest).to.be.calledWith(request);
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
@@ -150,8 +167,11 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('sendSearchApiRequest()', () => {
-    it('should forward the query to the search plugin', () => {
+    it('should forward the query and all provided config options to the search plugin', () => {
       const query = 'search term';
+      const area = 'area';
+      const collection = 'collection';
+      const request = { query, area, collection };
       const results = Promise.resolve({ search: 'results' });
       const searchCallbackResponse = {
         originalResponse: { full: 'response' },
@@ -162,10 +182,12 @@ describe('SearchDriverPlugin', () => {
       search.withArgs({
         fields: ['*'],
         query,
+        area,
+        collection,
       }).returns(results);
       searchDriverPlugin.core = { search: { search } };
 
-      const result = searchDriverPlugin.sendSearchApiRequest(query);
+      const result = searchDriverPlugin.sendSearchApiRequest(request);
 
       return expect(result).to.eventually.equal(searchCallbackResponse);
     });
