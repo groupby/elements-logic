@@ -17,7 +17,7 @@ export default class CachePlugin implements Plugin {
   /**
    * The data store in which cache entries are stored.
    */
-  store: Map<unknown, unknown>;
+  store: CacheStore;
 
   /**
    * Instantiates this plugin. By default, an empty `Map` is created as
@@ -40,7 +40,7 @@ export default class CachePlugin implements Plugin {
    *
    * @returns [[store]]
    */
-  register(): Map<unknown, unknown> {
+  register(): CacheStore {
     return this.store;
   }
 }
@@ -50,5 +50,10 @@ export default class CachePlugin implements Plugin {
  */
 export interface CachePluginOptions {
   /** The store with which to initialize the plugin. */
-  store: Map<unknown, unknown>;
+  store: CacheStore;
 }
+
+/**
+ * The type of the cache store.
+ */
+export type CacheStore = Map<unknown, unknown>;
