@@ -18,9 +18,11 @@ This plugin listens for and dispatches a number of events. These events are defi
 ### Received
 
 * `CACHE_REQUEST`: When received, a request to the cache is made and a response is dispatched with the event name provided in the payload of `CACHE_REQUEST`.
+  It is recommended to prefix the return event name with the value of `CACHE_RESPONSE_PREFIX`.
 
 ### Dispatched
 
-* A cache response event: Dispatched when a `CACHE_REQUEST` is fulfilled. The event is dispatched under the name provided with the corresponding `CACHE_REQUEST` payload.
+* A cache response event: Dispatched when a `CACHE_REQUEST` is fulfilled.
+  The event is dispatched under the name provided by the corresponding `CACHE_REQUEST` payload.
 
 [elements-events]: https://github.com/groupby/elements-events

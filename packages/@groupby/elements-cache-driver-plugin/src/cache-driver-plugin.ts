@@ -49,6 +49,8 @@ export default class CacheDriverPlugin implements Plugin {
 
   /**
    * Dispatches the requested data from the cache.
+   * The event name provided by the request is used as the name of the
+   * return event.
    *
    * @param req The cache request details.
    */
