@@ -270,9 +270,9 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('fetchAutocompleteTerms()', () => {
+    const group = 'some-group-id';
     let dispatchEvent;
     let results;
-    let group;
     let sendAutocompleteApiRequest;
 
     beforeEach(() => {
@@ -282,7 +282,6 @@ describe('Sayt Driver Plugin', () => {
       };
       results = { a: 'b' };
       sendAutocompleteApiRequest = stub(driver, 'sendAutocompleteApiRequest');
-      group = 'some-group-id';
     });
 
     it('should call sendAutocompleteApiRequest with query from event and valid config', () => {
@@ -300,6 +299,17 @@ describe('Sayt Driver Plugin', () => {
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(AUTOCOMPLETE_RESPONSE, { results, group });
+    });
+
+    it('should cache the payload', () => {
+      const set = spy();
+      driver.core.cache = { set };
+      sendAutocompleteApiRequest.resolves(results);
+
+      driver.fetchAutocompleteTerms(saytDataPayload);
+
+      return expect(Promise.resolve(set))
+        .to.be.eventually.calledOnceWith(`${AUTOCOMPLETE_RESPONSE}::${group}`, { results, group });
     });
 
     it('should send an error in an event if the API request fails', () => {

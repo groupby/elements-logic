@@ -11,3 +11,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - SFX-248: The `@groupby/elements-events` package is used for event names and payload interfaces.
   - SFX-333: Added retrieval and event emission of products.
   - SFX-385: Added the option to supply a custom product transformer.
+  - SFX-158: Autocomplete responses are saved to the cache if available.

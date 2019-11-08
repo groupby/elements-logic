@@ -1,0 +1,30 @@
+{
+  "name": "@groupby/elements-cache-plugin",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "esnext": "esnext/index.js",
+  "scripts": {
+    "build": "../../../scripts/build.sh",
+    "dev": "nodemon --config ../../../nodemon.json --exec npm run build",
+    "test": "nyc mocha",
+    "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
+    "test:browser": "karma start karma.conf.js",
+    "tdd:browser": "karma start karma.conf.js --no-single-run",
+    "lint:scripts": ".eslint ./src/ --ext .ts --plugin only-warn",
+    "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
+    "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
+    "lint:tests:fix": "eslint ./test/ --ext .ts --fix --no-eslintrc -c ../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/elements-logic.git",
+    "directory": "packages/@groupby/elements-cache-plugin"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@groupby/elements-events": "groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758"
+  }
+}

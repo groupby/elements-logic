@@ -116,7 +116,8 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Sends a request to the Sayt API for autocomplete terms and dispatches
-   * events on success and failure.
+   * events on success and failure. If the fetch is successful and a
+   * cache is present, the payload dispatched is also cached.
    *
    * @param event Event that contains the Sayt API request payload.
    */
@@ -126,6 +127,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       .then((results) => {
         const payload: AutocompleteResponsePayload = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(AUTOCOMPLETE_RESPONSE, payload);
+        if (this.core.cache) this.core.cache.set(`${AUTOCOMPLETE_RESPONSE}::${group}`, payload);
       })
       .catch((error) => {
         const payload: AutocompleteErrorPayload = { error, group };
