@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>@groupby/elements-search-driver-plugin | GroupBy Elements</title>
+	<title>@groupby/elements-cache-plugin | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="_groupby_elements_search_driver_plugin.html">@groupby/elements-search-driver-plugin</a>
+					<a href="_groupby_elements_cache_plugin.html">@groupby/elements-cache-plugin</a>
 				</li>
 			</ul>
-			<h1>Package @groupby/elements-search-driver-plugin</h1>
+			<h1>Package @groupby/elements-cache-plugin</h1>
 		</div>
 	</div>
 </header>
@@ -68,37 +68,15 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<h1 id="groupby-elements-search-driver-plugin">GroupBy Elements Search Driver Plugin</h1>
-					<p>This package contains the GB Elements Search Driver plugin.</p>
-					<h2 id="prerequisites">Prerequisites</h2>
-					<p>This plugin depends on the following plugins:</p>
-					<ul>
-						<li><code>dom_events</code></li>
-						<li><code>search</code></li>
-					</ul>
-					<p>These plugins must be registered either before or in the same batch as
-					this plugin.</p>
+					<h1 id="groupby-elements-cache-plugin">GroupBy Elements Cache Plugin</h1>
+					<p>This package contains the GroupBy Elements Cache Plugin class.</p>
 					<h2 id="usage">Usage</h2>
 					<p>To use the plugin, simply instantiate it and register it with Core:</p>
-					<pre><code class="language-js"><span class="hljs-keyword">const</span> searchDriverPlugin = <span class="hljs-keyword">new</span> SearchDriverPlugin();
-core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre>
-					<p>This plugin currently does not accept any options.</p>
-					<h2 id="events">Events</h2>
-					<p>This plugin listens for and dispatches a number of events.
-					These events are defined in the <a href="https://github.com/groupby/elements-events"><code>@groupby/elements-events</code></a> package.</p>
-					<h3 id="received">Received</h3>
-					<ul>
-						<li><code>SEARCH_REQUEST</code>: When received, a search request to the GroupBy
-							API is made. A <code>SEARCH_RESPONSE</code> event is dispatched with the
-						results.</li>
-					</ul>
-					<h3 id="dispatched">Dispatched</h3>
-					<ul>
-						<li><code>SEARCH_RESPONSE</code>: Dispatched when a search request has
-						completed. Its payload is the result of the request.</li>
-						<li><code>SEARCH_ERROR</code>: Dispatched when an error has occurred during a
-						search request.</li>
-					</ul>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> cachePlugin = <span class="hljs-keyword">new</span> CachePlugin();
+core.<span class="hljs-keyword">register</span>(cachePlugin);</code></pre>
+					<p>This plugin registers an instance of <code>Map</code> that is intended to be used by
+						other plugins as a cache or other data store. No automatic cache
+					clearing or expiring is performed.</p>
 				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -108,15 +86,39 @@ core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../classes/_groupby_elements_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_cache_plugin.cacheplugin.html" class="tsd-kind-icon">Cache<wbr>Plugin</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/_groupby_elements_search_driver_plugin.searchdriveroptions.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Options</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_groupby_elements_cache_plugin.cachepluginoptions.html" class="tsd-kind-icon">Cache<wbr>Plugin<wbr>Options</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="_groupby_elements_cache_plugin.html#cachestore" class="tsd-kind-icon">Cache<wbr>Store</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="cachestore" class="tsd-anchor"></a>
+					<h3>Cache<wbr>Store</h3>
+					<div class="tsd-signature tsd-kind-icon">Cache<wbr>Store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-plugin/src/cache-plugin.ts#L59">elements-cache-plugin/src/cache-plugin.ts:59</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of the cache store.</p>
+						</div>
 					</div>
 				</section>
 			</section>
@@ -130,7 +132,7 @@ core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_cache_driver_plugin.html">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="_groupby_elements_cache_plugin.html">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -145,7 +147,7 @@ core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -158,9 +160,24 @@ core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_cache_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
 						<a href="_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
+						<ul>
+							<li class=" tsd-kind-class tsd-parent-kind-external-module">
+								<a href="../classes/_groupby_elements_cache_plugin.cacheplugin.html" class="tsd-kind-icon">Cache<wbr>Plugin</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
+								<a href="../interfaces/_groupby_elements_cache_plugin.cachepluginoptions.html" class="tsd-kind-icon">Cache<wbr>Plugin<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+								<a href="_groupby_elements_cache_plugin.html#cachestore" class="tsd-kind-icon">Cache<wbr>Store</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
 					</li>
@@ -173,21 +190,9 @@ core.<span class="hljs-keyword">register</span>(searchDriverPlugin);</code></pre
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
-						<ul>
-							<li class=" tsd-kind-class tsd-parent-kind-external-module tsd-has-type-parameter">
-								<a href="../classes/_groupby_elements_search_driver_plugin.searchdriverplugin.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Plugin</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
-								<a href="../interfaces/_groupby_elements_search_driver_plugin.searchdriveroptions.html" class="tsd-kind-icon">Search<wbr>Driver<wbr>Options</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>

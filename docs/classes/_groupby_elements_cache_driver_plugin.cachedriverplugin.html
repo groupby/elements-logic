@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SearchPlugin | GroupBy Elements</title>
+	<title>CacheDriverPlugin | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-search-plugin</a>
+					<a href="../modules/_groupby_elements_cache_driver_plugin.html">@groupby/elements-cache-driver-plugin</a>
 				</li>
 				<li>
-					<a href="_groupby_elements_search_plugin.searchplugin.html">SearchPlugin</a>
+					<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html">CacheDriverPlugin</a>
 				</li>
 			</ul>
-			<h1>Class SearchPlugin</h1>
+			<h1>Class CacheDriverPlugin</h1>
 		</div>
 	</div>
 </header>
@@ -72,7 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>This plugin exposes an instance of the GroupBy search client.</p>
+						<p>The GroupBy Elements cache driver plugin.
+						This plugin exposes an event-based interface to the GB Elements cache.</p>
 					</div>
 				</div>
 			</section>
@@ -80,7 +81,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">SearchPlugin</span>
+						<span class="target">CacheDriverPlugin</span>
 					</li>
 				</ul>
 			</section>
@@ -97,25 +98,27 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_groupby_elements_search_plugin.searchplugin.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_search_plugin.searchplugin.html#browserbridge" class="tsd-kind-icon">browser<wbr>Bridge</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#core" class="tsd-kind-icon">core</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_search_plugin.searchplugin.html#metadata" class="tsd-kind-icon">metadata</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#metadata" class="tsd-kind-icon">metadata</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_search_plugin.searchplugin.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#handlerequest" class="tsd-kind-icon">handle<wbr>Request</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#ready" class="tsd-kind-icon">ready</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#register" class="tsd-kind-icon">register</a></li>
 							</ul>
 						</section>
 					</div>
@@ -127,32 +130,22 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Search<wbr>Plugin<span class="tsd-signature-symbol">(</span>options<span class="tsd-signature-symbol">: </span><a href="../interfaces/_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-signature-type">SearchPluginOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_groupby_elements_search_plugin.searchplugin.html" class="tsd-signature-type">SearchPlugin</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Cache<wbr>Driver<wbr>Plugin<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html" class="tsd-signature-type">CacheDriverPlugin</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L19">elements-search-plugin/src/search-plugin.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L20">elements-cache-driver-plugin/src/cache-driver-plugin.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Instantiates an instance of the search BrowserBridge client.</p>
+									<p>Constructs a new instance of this plugin and binds the necessary
+									callbacks.</p>
 								</div>
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>options: <a href="../interfaces/_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-signature-type">SearchPluginOptions</a></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The options to instantiate the search data source browser bridge client with.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_groupby_elements_search_plugin.searchplugin.html" class="tsd-signature-type">SearchPlugin</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html" class="tsd-signature-type">CacheDriverPlugin</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -160,17 +153,17 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="browserbridge" class="tsd-anchor"></a>
-					<h3>browser<wbr>Bridge</h3>
-					<div class="tsd-signature tsd-kind-icon">browser<wbr>Bridge<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-signature-type">SearchPluginExposedValue</a></div>
+					<a name="core" class="tsd-anchor"></a>
+					<h3>core</h3>
+					<div class="tsd-signature tsd-kind-icon">core<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PluginRegistry</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L19">elements-search-plugin/src/search-plugin.ts:19</a></li>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L20">elements-cache-driver-plugin/src/cache-driver-plugin.ts:20</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The value that the Search Data Source plugin exposes to the Core entity.</p>
+							<p>A reference to the registry of plugins for internal use.</p>
 						</div>
 					</div>
 				</section>
@@ -187,7 +180,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L9">elements-search-plugin/src/search-plugin.ts:9</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L10">elements-cache-driver-plugin/src/cache-driver-plugin.ts:10</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PluginMetadata</span></h4>
@@ -198,24 +191,93 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="register" class="tsd-anchor"></a>
-					<h3>register</h3>
+					<a name="handlerequest" class="tsd-anchor"></a>
+					<h3>handle<wbr>Request</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-signature-type">SearchPluginExposedValue</a></li>
+						<li class="tsd-signature tsd-kind-icon">handle<wbr>Request<span class="tsd-signature-symbol">(</span>request<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CacheRequestPayload</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L45">elements-search-plugin/src/search-plugin.ts:45</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L57">elements-cache-driver-plugin/src/cache-driver-plugin.ts:57</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns this plugin&#39;s instance of the search client.</p>
+									<p>Dispatches the requested data from the cache.
+										The event name provided by the request is used as the name of the
+									return event.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-signature-type">SearchPluginExposedValue</a></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>request: <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CacheRequestPayload</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The cache request details.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ready" class="tsd-anchor"></a>
+					<h3>ready</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L46">elements-cache-driver-plugin/src/cache-driver-plugin.ts:46</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Registers a number of event listeners.
+									The following events are listened for:</p>
+								</div>
+								<ul>
+									<li>[[CACHE_REQUEST]]</li>
+								</ul>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="register" class="tsd-anchor"></a>
+					<h3>register</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PluginRegistry</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/59a0592/packages/@groupby/elements-cache-driver-plugin/src/cache-driver-plugin.ts#L36">elements-cache-driver-plugin/src/cache-driver-plugin.ts:36</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Saves the plugin registry for later use. This plugin does not
+									expose a value.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>plugins: <span class="tsd-signature-type">PluginRegistry</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>the plugin registry to use.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -227,7 +289,7 @@
 					<li class="globals  ">
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_cache_driver_plugin.html">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -248,16 +310,45 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-external-module">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_cache_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
+						<ul>
+							<li class="current tsd-kind-class tsd-parent-kind-external-module">
+								<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html" class="tsd-kind-icon">Cache<wbr>Driver<wbr>Plugin</a>
+								<ul>
+									<li class=" tsd-kind-constructor tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#constructor" class="tsd-kind-icon">constructor</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#core" class="tsd-kind-icon">core</a>
+									</li>
+									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#metadata" class="tsd-kind-icon">metadata</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#handlerequest" class="tsd-kind-icon">handle<wbr>Request</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#ready" class="tsd-kind-icon">ready</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_cache_driver_plugin.cachedriverplugin.html#register" class="tsd-kind-icon">register</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
@@ -276,38 +367,9 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
-						<ul>
-							<li class="current tsd-kind-class tsd-parent-kind-external-module">
-								<a href="_groupby_elements_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a>
-								<ul>
-									<li class=" tsd-kind-constructor tsd-parent-kind-class">
-										<a href="_groupby_elements_search_plugin.searchplugin.html#constructor" class="tsd-kind-icon">constructor</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-class">
-										<a href="_groupby_elements_search_plugin.searchplugin.html#browserbridge" class="tsd-kind-icon">browser<wbr>Bridge</a>
-									</li>
-									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-										<a href="_groupby_elements_search_plugin.searchplugin.html#metadata" class="tsd-kind-icon">metadata</a>
-									</li>
-									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="_groupby_elements_search_plugin.searchplugin.html#register" class="tsd-kind-icon">register</a>
-									</li>
-								</ul>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 				</ul>
 			</nav>
 		</div>
