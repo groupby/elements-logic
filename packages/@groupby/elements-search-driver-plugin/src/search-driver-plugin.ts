@@ -104,10 +104,12 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
     this.sendSearchApiRequest({ query, ...config })
       .then((results) => {
         const payload: SearchResponsePayload<P> = { results, group };
+        console.log('>>> LOGIC searchhhh core cache', payload, this.core.cache, `${SEARCH_RESPONSE}::${group}`);
+        if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
-        console.log('>>> LOGIC search core cache', payload, this.core.cache);
-        if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
+        // console.log('>>> LOGIC search core cache', payload, this.core.cache);
+        // if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
