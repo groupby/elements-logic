@@ -150,6 +150,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
           group,
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
+        if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, ['test1', 'test2', 'test3']);
       })
       .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
