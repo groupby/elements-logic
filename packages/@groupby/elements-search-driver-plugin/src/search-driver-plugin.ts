@@ -104,8 +104,9 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
       .then((results) => {
         const payload: SearchResponsePayload<P> = { results, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
-        console.log('>>> core cache', payload, this.core.cache)
-        if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, ['payload1', 'payl2', 'pay3']);
+        // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
+        console.log('>>> core cache', payload, this.core.cache);
+        if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
