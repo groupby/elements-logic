@@ -356,6 +356,17 @@ describe('Sayt Driver Plugin', () => {
         .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_RESPONSE, { products, group });
     });
 
+    it('should cache the payload', () => {
+      const set = spy();
+      driver.core.cache = { set };
+      sendSearchApiRequest.resolves({products});
+
+      driver.fetchProductData(saytDataPayload);
+
+      return expect(Promise.resolve(set))
+        .to.be.eventually.calledOnceWith(`${SAYT_PRODUCTS_RESPONSE}::${group}`, { products, group });
+    });
+
     it('should send an error in an event if the API request fails', () => {
       const error = new Error('test error');
       sendSearchApiRequest.rejects(error);
