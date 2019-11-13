@@ -152,8 +152,9 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
           group,
         };
         console.log('>>> LOGIC sayt core cache', payload, this.core.cache, `${SAYT_PRODUCTS_RESPONSE}::${group}`);
-        if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
+        // if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
+        if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
         // const test = {results: {products: ['payload1', 'payl2', 'pay3']}}
 
       })
