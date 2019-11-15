@@ -88,7 +88,6 @@ describe('SearchDriverPlugin', () => {
     let area;
     let collection;
     let config;
-    let dom_events;
     let results;
     let group;
     let sendSearchApiRequest;
@@ -98,13 +97,11 @@ describe('SearchDriverPlugin', () => {
       area = 'area';
       collection = 'collection';
       config = { area, collection };
-      dom_events = {
-        registerListener: () => null,
-        unregisterListener: () => null,
-        dispatchEvent: () => null,
-      };
-      results = { a: 'a' };
       group = undefined;
+      results = { a: 'a' };
+      searchDriverPlugin.core = {
+        [eventsPluginName]: { dispatchEvent: () => {} },
+      };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
       query = 'search term';
     });
@@ -112,9 +109,6 @@ describe('SearchDriverPlugin', () => {
     it('should search with the given search term', () => {
       const request = { query };
       sendSearchApiRequest.resolves();
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => {} },
-      };
 
       searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
 
@@ -124,9 +118,6 @@ describe('SearchDriverPlugin', () => {
     it('should search with all provided config options', () => {
       const request = { query, area, collection };
       sendSearchApiRequest.resolves();
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => {} },
-      };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, config } } as any);
 
@@ -135,11 +126,8 @@ describe('SearchDriverPlugin', () => {
 
     it('should cache the payload', () => {
       const set = spy();
-      searchDriverPlugin.core = {
-        dom_events,
-      };
-      searchDriverPlugin.core.cache = { set };
       sendSearchApiRequest.resolves(results);
+      searchDriverPlugin.core.cache = { set };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
 
