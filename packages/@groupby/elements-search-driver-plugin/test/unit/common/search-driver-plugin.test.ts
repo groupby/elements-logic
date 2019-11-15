@@ -134,10 +134,10 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should cache the payload', () => {
+      const set = spy();
       searchDriverPlugin.core = {
         dom_events,
       };
-      const set = spy();
       searchDriverPlugin.core.cache = { set };
       sendSearchApiRequest.resolves(results);
 
