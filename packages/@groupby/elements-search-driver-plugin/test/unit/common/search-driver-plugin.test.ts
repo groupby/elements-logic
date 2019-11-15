@@ -85,18 +85,31 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('fetchSearchData()', () => {
+    let area;
+    let collection;
+    let config;
+    let dom_events;
     let results;
     let group;
     let sendSearchApiRequest;
+    let query;
 
     beforeEach(() => {
+      area = 'area';
+      collection = 'collection';
+      config = { area, collection };
+      dom_events = {
+        registerListener: () => null,
+        unregisterListener: () => null,
+        dispatchEvent: () => null,
+      };
       results = { a: 'a' };
       group = undefined;
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
+      query = 'search term';
     });
 
     it('should search with the given search term', () => {
-      const query = 'search term';
       const request = { query };
       sendSearchApiRequest.resolves();
       searchDriverPlugin.core = {
@@ -109,10 +122,6 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should search with all provided config options', () => {
-      const query = 'search term';
-      const area = 'area';
-      const collection = 'collection';
-      const config = { area, collection };
       const request = { query, area, collection };
       sendSearchApiRequest.resolves();
       searchDriverPlugin.core = {
@@ -124,21 +133,19 @@ describe('SearchDriverPlugin', () => {
       expect(sendSearchApiRequest).to.be.calledWith(request);
     });
 
-    // it('should cache the payload', () => {
-    //   const query = 'search term';
-    //   const area = 'area';
-    //   const collection = 'collection';
-    //   const config = { area, collection };
-    //   const request = { query, area, collection };
-    //   const set = spy();
-    //   searchDriverPlugin.cache = { set };
-    //   sendSearchApiRequest.resolves(request);
-    //
-    //   searchDriverPlugin.fetchSearchData({ detail: { query, config } } as any);
-    //
-    //   return expect(Promise.resolve(set))
-    //     .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { results, group });
-    // });
+    it('should cache the payload', () => {
+      searchDriverPlugin.core = {
+        dom_events,
+      };
+      const set = spy();
+      searchDriverPlugin.core.cache = { set };
+      sendSearchApiRequest.resolves(results);
+
+      searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
+
+      return expect(Promise.resolve(set))
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { results, group });
+    });
 
     it('should dispatch an event with the results and the group if present', (done) => {
       const dispatchEvent = spy(() => {
