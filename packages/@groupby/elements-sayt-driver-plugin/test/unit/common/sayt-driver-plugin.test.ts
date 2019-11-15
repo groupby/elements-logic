@@ -359,7 +359,7 @@ describe('Sayt Driver Plugin', () => {
     it('should cache the payload', () => {
       const set = spy();
       driver.core.cache = { set };
-      sendSearchApiRequest.resolves({products});
+      sendSearchApiRequest.resolves({ products });
 
       driver.fetchProductData(saytDataPayload);
 
