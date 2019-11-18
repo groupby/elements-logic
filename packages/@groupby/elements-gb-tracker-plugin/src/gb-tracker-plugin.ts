@@ -1,3 +1,4 @@
+import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 // import * as GbTracker from 'gb-tracker-client';
@@ -68,8 +69,14 @@ export default class GbTrackerPlugin implements Plugin {
   /**
    * Triggers a Search beacon.
    */
-  triggerSearchBeacon() {
-    // @TODO Fill this in.
+  triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>) {
+    const payload: AutoSearchEvent = {
+      search: {
+        id: event.detail.id,
+        origin: event.detail.origin,
+      },
+    };
+    this.gbTracker.sendAutoSearchEvent(payload);
   }
 
   /**
@@ -88,3 +95,8 @@ export interface TrackerPluginOptions {
 
 export const TrackerSearchEvent: string = 'gbe::tracker::search';
 export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
+export interface TrackerSearchPayload {
+  id: string;
+  origin: SendableOrigin;
+  searchResults: any;
+}

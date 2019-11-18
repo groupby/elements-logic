@@ -1,4 +1,5 @@
 import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
+import { AutoSearchEvent } from 'gb-tracker-client/models';
 import { expect, stub, spy } from '../../utils';
 import GbTrackerPlugin, { TrackerPluginOptions, TrackerSearchEvent, TrackerSaytEvent } from '../../../src/gb-tracker-plugin';
 
@@ -82,7 +83,25 @@ describe('GbTrackerPlugin', () => {
   });
 
   describe('triggerSearchBeacon()', () => {
-    it('should send an auto-search event');
+    it('should send an auto-search event', () => {
+      const searchInfo = {
+        id: 'some-search-id',
+        origin: 'some-origin',
+        searchResults: [],
+      }
+      const searchTrackerEvent = { detail: searchInfo };
+      const sendAutoSearchEvent = spy();
+      trackerPlugin.gbTracker = { sendAutoSearchEvent };
+
+      trackerPlugin.triggerSearchBeacon(searchTrackerEvent);
+
+      expect(sendAutoSearchEvent).to.be.calledWith({
+        search: {
+          id: 'some-search-id',
+          origin: 'some-origin',
+        },
+      });
+    });
   });
 
   describe('triggerSaytBeacon()', () => {
