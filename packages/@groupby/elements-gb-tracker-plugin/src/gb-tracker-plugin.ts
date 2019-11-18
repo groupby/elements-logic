@@ -54,12 +54,20 @@ export default class GbTrackerPlugin implements Plugin {
    */
   ready() {
     this.core[this.eventsPluginName].registerListener(TrackerSearchEvent, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].registerListener(TrackerSaytEvent, this.triggerSaytBeacon);
   }
 
   /**
-   * Triggers a search beacon.
+   * Triggers a Search beacon.
    */
   triggerSearchBeacon() {
+    // @TODO Fill this in.
+  }
+
+  /**
+   * Triggers a Sayt beacon.
+   */
+  triggerSaytBeacon() {
     // @TODO Fill this in.
   }
 }

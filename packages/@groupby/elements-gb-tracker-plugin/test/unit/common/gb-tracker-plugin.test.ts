@@ -65,6 +65,7 @@ describe('GbTrackerPlugin', () => {
       trackerPlugin.ready();
 
       expect(registerListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
+      expect(registerListener).to.be.calledWith(TrackerSaytEvent, trackerPlugin.triggerSaytBeacon);
     });
   });
 
