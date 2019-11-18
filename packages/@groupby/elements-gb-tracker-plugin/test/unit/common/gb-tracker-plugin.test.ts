@@ -70,6 +70,14 @@ describe('GbTrackerPlugin', () => {
   });
 
   describe('unregister()', () => {
-    it('should unregister tracker event listeners');
+    it('should unregister tracker event listeners', () => {
+      const unregisterListener = spy();
+      trackerPlugin.core = { dom_events: { unregisterListener } };
+
+      trackerPlugin.unregister();
+
+      expect(unregisterListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
+      expect(unregisterListener).to.be.calledWith(TrackerSaytEvent, trackerPlugin.triggerSaytBeacon);
+    });
   });
 });

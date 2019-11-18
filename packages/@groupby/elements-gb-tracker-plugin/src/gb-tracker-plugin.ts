@@ -58,6 +58,14 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
+   * Unregister event listeners for tracker events.
+   */
+  unregister() {
+    this.core[this.eventsPluginName].unregisterListener(TrackerSearchEvent, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].unregisterListener(TrackerSaytEvent, this.triggerSaytBeacon);
+  }
+
+  /**
    * Triggers a Search beacon.
    */
   triggerSearchBeacon() {
