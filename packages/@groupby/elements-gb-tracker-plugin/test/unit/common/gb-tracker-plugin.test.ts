@@ -1,6 +1,6 @@
 import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
-import { expect, stub } from '../../utils';
-import GbTrackerPlugin, { TrackerPluginOptions } from '../../../src/gb-tracker-plugin';
+import { expect, stub, spy } from '../../utils';
+import GbTrackerPlugin, { TrackerPluginOptions, TrackerSearchEvent, TrackerSaytEvent } from '../../../src/gb-tracker-plugin';
 
 describe('GbTrackerPlugin', () => {
   let trackerPlugin: any;
@@ -55,5 +55,20 @@ describe('GbTrackerPlugin', () => {
 
       expect(trackerPlugin.core).to.deep.equal(core);
     });
+  });
+
+  describe('ready()', () => {
+    it('should set tracker event listeners', () => {
+      const registerListener = spy();
+      trackerPlugin.core = { dom_events: { registerListener } };
+
+      trackerPlugin.ready();
+
+      expect(registerListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
+    });
+  });
+
+  describe('unregister()', () => {
+    it('should unregister tracker event listeners');
   });
 });

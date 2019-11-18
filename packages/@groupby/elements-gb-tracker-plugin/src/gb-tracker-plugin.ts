@@ -48,6 +48,20 @@ export default class GbTrackerPlugin implements Plugin {
     this.core = plugins;
     return this.gbTracker;
   }
+
+  /**
+   * Sets event listeners for tracker events.
+   */
+  ready() {
+    this.core[this.eventsPluginName].registerListener(TrackerSearchEvent, this.triggerSearchBeacon);
+  }
+
+  /**
+   * Triggers a search beacon.
+   */
+  triggerSearchBeacon() {
+    // @TODO Fill this in.
+  }
 }
 
 export interface TrackerPluginOptions {
