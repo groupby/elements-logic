@@ -1,4 +1,4 @@
-import * as GbTrackerPackage from 'gb-tracker-client';
+import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
 import { expect, stub } from '../../utils';
 import GbTrackerPlugin, { TrackerPluginOptions } from '../../../src/gb-tracker-plugin';
 
@@ -25,14 +25,15 @@ describe('GbTrackerPlugin', () => {
   describe('constructor()', () => {
     it('should create a new instance of GbTracker with options', () => {
       const gbTrackerInstance = { a: 'a' };
-      console.log("================");
-      console.log(GbTrackerPackage);
-      const GbTracker = stub(GbTrackerPackage, 'constructor').returns(gbTrackerInstance);
-      const options: any = { customerId: 'my-customer-id', b: 'b' };
+      const GbTracker = stub(GbTrackerPackage, 'GbTracker').returns(gbTrackerInstance);
+      const customerId = 'my-customer-id';
+      const area = 'my-area';
+      const overridePixelUrl = 'my-pixel-url';
+      const options: any = { customerId, area, overridePixelUrl };
 
       trackerPlugin = new GbTrackerPlugin(options);
 
-      expect(GbTracker).to.be.calledWith(options);
+      expect(GbTracker).to.be.calledWith(customerId, area, overridePixelUrl);
       expect(GbTracker.calledWithNew()).to.be.true;
       expect(trackerPlugin.gbTracker).to.equal(gbTrackerInstance);
     });
@@ -41,6 +42,7 @@ describe('GbTrackerPlugin', () => {
   // describe('register()', () => {
   //   it('should return the gb-tracker instance', () => {
   //     const gbTrackerInstance = trackerPlugin.gbTracker = { a: 'a' };
+
   //     const registerReturnValue = trackerPlugin.register();
 
   //     expect(registerReturnValue).to.equal(gbTrackerInstance);
