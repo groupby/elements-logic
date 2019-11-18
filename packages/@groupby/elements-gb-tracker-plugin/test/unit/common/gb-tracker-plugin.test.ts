@@ -39,13 +39,13 @@ describe('GbTrackerPlugin', () => {
     });
   });
 
-  // describe('register()', () => {
-  //   it('should return the gb-tracker instance', () => {
-  //     const gbTrackerInstance = trackerPlugin.gbTracker = { a: 'a' };
+  describe('register()', () => {
+    it('should return the gb-tracker instance', () => {
+      const gbTrackerInstance = trackerPlugin.gbTracker = { a: 'a' };
 
-  //     const registerReturnValue = trackerPlugin.register();
+      const registerReturnValue = trackerPlugin.register();
 
-  //     expect(registerReturnValue).to.equal(gbTrackerInstance);
-  //   });
-  // });
+      expect(registerReturnValue).to.equal(gbTrackerInstance);
+    });
+  });
 });
