@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
-import { Plugin, PluginMetadata } from '@groupby/elements-core';
+import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 // import * as GbTracker from 'gb-tracker-client';
 import { GbTracker } from 'gb-tracker-client/slim-es';
 
@@ -21,6 +21,11 @@ export default class GbTrackerPlugin implements Plugin {
   gbTracker: ReturnType<typeof GbTracker>;
 
   /**
+   * A reference to the registry of plugins for later use.
+   */
+  core: PluginRegistry;
+
+  /**
    * Name of the events plugin.
    */
   eventsPluginName = 'dom_events';
@@ -39,7 +44,8 @@ export default class GbTrackerPlugin implements Plugin {
   /**
    * Returns this plugin's instance of the sayt client.
    */
-  register(): ReturnType<typeof GbTracker> {
+  register(plugins: PluginRegistry): ReturnType<typeof GbTracker> {
+    this.core = plugins;
     return this.gbTracker;
   }
 }

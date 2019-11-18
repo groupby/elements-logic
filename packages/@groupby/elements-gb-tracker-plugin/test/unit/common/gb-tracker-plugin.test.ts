@@ -47,5 +47,13 @@ describe('GbTrackerPlugin', () => {
 
       expect(registerReturnValue).to.equal(gbTrackerInstance);
     });
+
+    it('should set the collection of core plugins to a property', () => {
+      const core = { a: 'a', b: 'b' };
+
+      trackerPlugin.register(core);
+
+      expect(trackerPlugin.core).to.deep.equal(core);
+    });
   });
 });
