@@ -44,3 +44,6 @@ export interface TrackerPluginOptions {
   area?: string;
   overridePixelUrl?: string;
 }
+
+export const TrackerSearchEvent: string = 'gbe::tracker::search';
+export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
