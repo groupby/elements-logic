@@ -80,4 +80,12 @@ describe('GbTrackerPlugin', () => {
       expect(unregisterListener).to.be.calledWith(TrackerSaytEvent, trackerPlugin.triggerSaytBeacon);
     });
   });
+
+  describe('triggerSearchBeacon()', () => {
+    it('should send an auto-search event');
+  });
+
+  describe('triggerSaytBeacon()', () => {
+    it('should send an auto-search event with origin of "sayt"');
+  });
 });
