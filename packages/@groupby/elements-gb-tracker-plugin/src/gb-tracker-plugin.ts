@@ -11,7 +11,7 @@ export default class GbTrackerPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
       name: 'gb-tracker',
-      depends: [],
+      depends: ['dom_events'],
     };
   }
 
@@ -19,6 +19,11 @@ export default class GbTrackerPlugin implements Plugin {
    * The value that the Sayt plugin exposes to the Core entity.
    */
   gbTracker: ReturnType<typeof GbTracker>;
+
+  /**
+   * Name of the events plugin.
+   */
+  eventsPluginName = 'dom_events';
 
   /**
    * The sayt plugin constructor instantiates an instance of the sayt plugin

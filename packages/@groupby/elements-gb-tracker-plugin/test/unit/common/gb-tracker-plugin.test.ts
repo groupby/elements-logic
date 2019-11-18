@@ -18,7 +18,7 @@ describe('GbTrackerPlugin', () => {
     });
 
     it('should not specify any dependencies', () => {
-      expect(trackerPlugin.metadata.depends).to.deep.equal([]);
+      expect(trackerPlugin.metadata.depends).to.deep.equal(['dom_events']);
     });
   });
 
