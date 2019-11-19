@@ -66,6 +66,9 @@ export default class GbTrackerPlugin implements Plugin {
 
   /**
    * Triggers a Search beacon.
+   * Assumes a search results payload is sent along with an origin.
+   *
+   * @param event The event containing search tracking data.
    */
   triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>) {
     const payload: AutoSearchEvent = {
