@@ -96,6 +96,7 @@ describe('SearchDriverPlugin', () => {
     let group;
     let results;
     let sendSearchApiRequest;
+    let dispatchSearchTrackerEvent;
 
     beforeEach(() => {
       config = { area, collection };
@@ -105,6 +106,7 @@ describe('SearchDriverPlugin', () => {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
+      dispatchSearchTrackerEvent = stub(searchDriverPlugin, 'dispatchSearchTrackerEvent');
     });
 
     it('should search with the given search term', () => {

@@ -140,7 +140,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
     };
   }
 
-  dispatchSearchTrackerEvent(results: Results) {
+  dispatchSearchTrackerEvent(results: Results): void {
     const trackerSearchPayload: TrackerSearchPayload = {
       results,
       origin: {
