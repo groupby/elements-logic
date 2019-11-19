@@ -1,8 +1,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
+// eslint-disable-next-line import/no-unresolved
 import { GbTracker } from 'gb-tracker-client/slim-es';
+// eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 import { Results } from 'groupby-api';
+
+export const TrackerSearchEvent: string = 'gbe::tracker::search';
+export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
@@ -53,14 +58,14 @@ export default class GbTrackerPlugin implements Plugin {
   /**
    * Sets event listeners for tracker events.
    */
-  ready() {
+  ready(): void {
     this.core[this.eventsPluginName].registerListener(TrackerSearchEvent, this.triggerSearchBeacon);
   }
 
   /**
    * Unregister event listeners for tracker events.
    */
-  unregister() {
+  unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(TrackerSearchEvent, this.triggerSearchBeacon);
   }
 
@@ -70,7 +75,7 @@ export default class GbTrackerPlugin implements Plugin {
    *
    * @param event The event containing search tracking data.
    */
-  triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>) {
+  triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>): void {
     const payload: AutoSearchEvent = {
       search: {
         id: event.detail.results.id,
@@ -93,10 +98,7 @@ export interface TrackerPluginOptions {
   overridePixelUrl?: string;
 }
 
-export const TrackerSearchEvent: string = 'gbe::tracker::search';
-export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
 export interface TrackerSearchPayload {
   results: Results;
   origin: SendableOrigin;
-  searchResults: any;
 }
