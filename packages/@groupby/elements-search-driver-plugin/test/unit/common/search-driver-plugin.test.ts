@@ -1,4 +1,9 @@
-import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR, TRACKER_SEARCH } from '@groupby/elements-events';
+import {
+  SEARCH_REQUEST,
+  SEARCH_RESPONSE,
+  SEARCH_ERROR,
+  TRACKER_SEARCH,
+} from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '../../../src/search-driver-plugin';
 
