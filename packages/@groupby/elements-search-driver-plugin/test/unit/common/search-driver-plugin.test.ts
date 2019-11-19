@@ -1,4 +1,4 @@
-import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR } from '@groupby/elements-events';
+import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR, TRACKER_SEARCH } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '../../../src/search-driver-plugin';
 
@@ -257,6 +257,29 @@ describe('SearchDriverPlugin', () => {
 
       expect(result.products).to.have.lengthOf(1);
       expect(result.products[0].key1).to.equal(firstProductTitle);
+    });
+  });
+
+  describe('dispatchSearchTrackerEvent()',  () => {
+    it('should dispatch a TRACKER_SEARCH event given a search response', () => {
+      const results = { some: 'data' };
+      const dispatchEvent = spy();
+      const core = {
+        [eventsPluginName]: {
+          dispatchEvent,
+        },
+      };
+      searchDriverPlugin.core = core;
+
+      searchDriverPlugin.dispatchSearchTrackerEvent(results);
+
+      expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
+        results,
+        origin: {
+          autosearch: true,
+          search: true,
+        },
+      });
     });
   });
 });

@@ -4,10 +4,12 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
+  TRACKER_SEARCH,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
   SearchErrorPayload,
+  TrackerSearchPayload,
 } from '@groupby/elements-events';
 
 /**
@@ -136,6 +138,17 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
       originalResponse: response,
       products: mappedRecords,
     };
+  }
+
+  dispatchSearchTrackerEvent(results: Results) {
+    const trackerSearchPayload: TrackerSearchPayload = {
+      results,
+      origin: {
+        autosearch: true, // @TODO Which should be set?
+        search: true,
+      },
+    };
+    this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
   }
 }
 
