@@ -5,9 +5,7 @@ import { GbTracker } from 'gb-tracker-client/slim-es';
 // eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 import { Results } from 'groupby-api';
-
-/** The event to trigger a search beacon. */
-export const TRACKER_SEARCH: string = 'gbe::tracker::search';
+import { TRACKER_SEARCH } from '@groupby/elements-events';
 
 /**
  * The type of the [[TRACKER_SEARCH]] event payload.
