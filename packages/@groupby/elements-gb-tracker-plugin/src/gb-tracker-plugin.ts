@@ -1,8 +1,8 @@
-import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 // eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
-// import * as GbTracker from 'gb-tracker-client';
 import { GbTracker } from 'gb-tracker-client/slim-es';
+import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
+import { Results } from 'groupby-api';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
@@ -72,7 +72,7 @@ export default class GbTrackerPlugin implements Plugin {
   triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>) {
     const payload: AutoSearchEvent = {
       search: {
-        id: event.detail.id,
+        id: event.detail.results.id,
         origin: event.detail.origin,
       },
     };
@@ -96,7 +96,7 @@ export interface TrackerPluginOptions {
 export const TrackerSearchEvent: string = 'gbe::tracker::search';
 export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
 export interface TrackerSearchPayload {
-  id: string;
+  results: Results;
   origin: SendableOrigin;
   searchResults: any;
 }

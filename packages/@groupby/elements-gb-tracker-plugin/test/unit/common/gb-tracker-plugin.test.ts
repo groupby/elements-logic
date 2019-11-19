@@ -85,9 +85,8 @@ describe('GbTrackerPlugin', () => {
   describe('triggerSearchBeacon()', () => {
     it('should send an auto-search event', () => {
       const searchInfo = {
-        id: 'some-search-id',
         origin: 'some-origin',
-        searchResults: [],
+        results: { id: 'some-search-id' },
       }
       const searchTrackerEvent = { detail: searchInfo };
       const sendAutoSearchEvent = spy();
