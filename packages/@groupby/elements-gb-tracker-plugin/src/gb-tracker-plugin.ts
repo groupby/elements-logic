@@ -10,6 +10,16 @@ import { Results } from 'groupby-api';
 export const TrackerSearchEvent: string = 'gbe::tracker::search';
 
 /**
+ * The type of the [[TrackerSearchEvent]] event payload.
+ */
+export interface TrackerSearchPayload {
+  /** The search results. */
+  results: Results;
+  /** The origin of the search action. */
+  origin: SendableOrigin;
+}
+
+/**
  * This plugin is responsible for exposing an instance of sayt
  * to Core.
  */
@@ -96,9 +106,4 @@ export interface TrackerPluginOptions {
   area?: string;
   // @TODO Is this option needed? What does it do?
   overridePixelUrl?: string;
-}
-
-export interface TrackerSearchPayload {
-  results: Results;
-  origin: SendableOrigin;
 }
