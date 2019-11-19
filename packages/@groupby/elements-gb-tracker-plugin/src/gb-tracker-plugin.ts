@@ -7,10 +7,10 @@ import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 import { Results } from 'groupby-api';
 
 /** The event to trigger a search beacon. */
-export const TrackerSearchEvent: string = 'gbe::tracker::search';
+export const TRACKER_SEARCH: string = 'gbe::tracker::search';
 
 /**
- * The type of the [[TrackerSearchEvent]] event payload.
+ * The type of the [[TRACKER_SEARCH]] event payload.
  */
 export interface TrackerSearchPayload {
   /** The search results. */
@@ -69,14 +69,14 @@ export default class GbTrackerPlugin implements Plugin {
    * Sets event listeners for tracker events.
    */
   ready(): void {
-    this.core[this.eventsPluginName].registerListener(TrackerSearchEvent, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].registerListener(TRACKER_SEARCH, this.triggerSearchBeacon);
   }
 
   /**
    * Unregister event listeners for tracker events.
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(TrackerSearchEvent, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].unregisterListener(TRACKER_SEARCH, this.triggerSearchBeacon);
   }
 
   /**

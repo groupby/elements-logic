@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
 import { expect, stub, spy } from '../../utils';
-import GbTrackerPlugin, { TrackerSearchEvent } from '../../../src/gb-tracker-plugin';
+import GbTrackerPlugin, { TRACKER_SEARCH } from '../../../src/gb-tracker-plugin';
 
 describe('GbTrackerPlugin', () => {
   let trackerPlugin: any;
@@ -65,7 +65,7 @@ describe('GbTrackerPlugin', () => {
 
       trackerPlugin.ready();
 
-      expect(registerListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
+      expect(registerListener).to.be.calledWith(TRACKER_SEARCH, trackerPlugin.triggerSearchBeacon);
     });
   });
 
@@ -76,7 +76,7 @@ describe('GbTrackerPlugin', () => {
 
       trackerPlugin.unregister();
 
-      expect(unregisterListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
+      expect(unregisterListener).to.be.calledWith(TRACKER_SEARCH, trackerPlugin.triggerSearchBeacon);
     });
   });
 
