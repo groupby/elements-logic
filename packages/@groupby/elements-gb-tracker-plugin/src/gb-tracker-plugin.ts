@@ -55,7 +55,6 @@ export default class GbTrackerPlugin implements Plugin {
    */
   ready() {
     this.core[this.eventsPluginName].registerListener(TrackerSearchEvent, this.triggerSearchBeacon);
-    this.core[this.eventsPluginName].registerListener(TrackerSaytEvent, this.triggerSaytBeacon);
   }
 
   /**
@@ -63,7 +62,6 @@ export default class GbTrackerPlugin implements Plugin {
    */
   unregister() {
     this.core[this.eventsPluginName].unregisterListener(TrackerSearchEvent, this.triggerSearchBeacon);
-    this.core[this.eventsPluginName].unregisterListener(TrackerSaytEvent, this.triggerSaytBeacon);
   }
 
   /**
@@ -77,13 +75,6 @@ export default class GbTrackerPlugin implements Plugin {
       },
     };
     this.gbTracker.sendAutoSearchEvent(payload);
-  }
-
-  /**
-   * Triggers a Sayt beacon.
-   */
-  triggerSaytBeacon() {
-    // @TODO Fill this in.
   }
 }
 

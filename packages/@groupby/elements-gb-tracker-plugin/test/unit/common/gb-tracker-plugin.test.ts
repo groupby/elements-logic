@@ -66,7 +66,6 @@ describe('GbTrackerPlugin', () => {
       trackerPlugin.ready();
 
       expect(registerListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
-      expect(registerListener).to.be.calledWith(TrackerSaytEvent, trackerPlugin.triggerSaytBeacon);
     });
   });
 
@@ -78,7 +77,6 @@ describe('GbTrackerPlugin', () => {
       trackerPlugin.unregister();
 
       expect(unregisterListener).to.be.calledWith(TrackerSearchEvent, trackerPlugin.triggerSearchBeacon);
-      expect(unregisterListener).to.be.calledWith(TrackerSaytEvent, trackerPlugin.triggerSaytBeacon);
     });
   });
 
@@ -101,9 +99,5 @@ describe('GbTrackerPlugin', () => {
         },
       });
     });
-  });
-
-  describe('triggerSaytBeacon()', () => {
-    it('should send an auto-search event with origin of "sayt"');
   });
 });
