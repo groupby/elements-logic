@@ -99,17 +99,24 @@
     moment "^2.22.2"
     regexpu-core "^4.2.0"
 
+<<<<<<< HEAD
 "@groupby/elements-events@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@groupby/elements-events/-/elements-events-0.1.0.tgz#dc15c8535205ee5da0f31258764329a4f502286f"
   integrity sha512-kvYUGBMvGmhmNL1rCa6SPGbR6hS4RiKz+KNjbfvQTQDtgFDsuaDi4Yu8lHSlw4eQBZQCT9QOgpJCzN1CTa08HQ==
+=======
+"@groupby/elements-events@groupby/elements-events#488e34ea91d694c1a7902df2808dbcd00f0b42c6":
+  version "0.0.0"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/488e34ea91d694c1a7902df2808dbcd00f0b42c6"
+>>>>>>> Update dependencies after removal of groupby-api
   dependencies:
+    gb-tracker-client "^3.7.2"
     groupby-api "^2.6.2"
     sayt "^0.1.9"
 
-"@groupby/elements-events@groupby/elements-events#master":
+"@groupby/elements-events@groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758":
   version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/1696267a35450b9644d3bfa5cfc824bcb2bc8978"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/710e5545802bcc4929b253add2677bd22561a758"
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"

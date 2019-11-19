@@ -24,7 +24,6 @@
   "license": "MIT",
   "dependencies": {
     "@groupby/elements-events": "groupby/elements-events#488e34ea91d694c1a7902df2808dbcd00f0b42c6",
-    "gb-tracker-client": "^3.7.2",
-    "groupby-api": "^2.6.2"
+    "gb-tracker-client": "^3.7.2"
   }
 }

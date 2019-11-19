@@ -3,8 +3,7 @@ import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 // eslint-disable-next-line import/no-unresolved
 import { GbTracker } from 'gb-tracker-client/slim-es';
 // eslint-disable-next-line import/no-unresolved
-import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
-import { Results } from 'groupby-api';
+import { AutoSearchEvent } from 'gb-tracker-client/models';
 import { TRACKER_SEARCH, TrackerSearchPayload } from '@groupby/elements-events';
 
 /**
