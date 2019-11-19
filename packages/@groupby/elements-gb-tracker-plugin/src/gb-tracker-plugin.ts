@@ -5,17 +5,7 @@ import { GbTracker } from 'gb-tracker-client/slim-es';
 // eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 import { Results } from 'groupby-api';
-import { TRACKER_SEARCH } from '@groupby/elements-events';
-
-/**
- * The type of the [[TRACKER_SEARCH]] event payload.
- */
-export interface TrackerSearchPayload {
-  /** The search results. */
-  results: Results;
-  /** The origin of the search action. */
-  origin: SendableOrigin;
-}
+import { TRACKER_SEARCH, TrackerSearchPayload } from '@groupby/elements-events';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
