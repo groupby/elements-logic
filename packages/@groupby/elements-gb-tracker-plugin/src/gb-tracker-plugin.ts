@@ -6,8 +6,8 @@ import { GbTracker } from 'gb-tracker-client/slim-es';
 import { AutoSearchEvent, SendableOrigin } from 'gb-tracker-client/models';
 import { Results } from 'groupby-api';
 
+/** The event to trigger a search beacon. */
 export const TrackerSearchEvent: string = 'gbe::tracker::search';
-export const TrackerSaytEvent: string = 'gbe::tracker::sayt';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
