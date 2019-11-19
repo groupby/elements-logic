@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-unresolved
 import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
+import { TRACKER_SEARCH } from '@groupby/elements-events';
 import { expect, stub, spy } from '../../utils';
 import GbTrackerPlugin from '../../../src/gb-tracker-plugin';
-import { TRACKER_SEARCH } from '@groupby/elements-events';
 
 describe('GbTrackerPlugin', () => {
   let trackerPlugin: any;
