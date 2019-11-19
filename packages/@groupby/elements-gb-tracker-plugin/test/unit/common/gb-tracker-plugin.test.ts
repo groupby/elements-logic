@@ -1,7 +1,7 @@
+// eslint-disable-next-line import/no-unresolved
 import * as GbTrackerPackage from 'gb-tracker-client/slim-es';
-import { AutoSearchEvent } from 'gb-tracker-client/models';
 import { expect, stub, spy } from '../../utils';
-import GbTrackerPlugin, { TrackerPluginOptions, TrackerSearchEvent, TrackerSaytEvent } from '../../../src/gb-tracker-plugin';
+import GbTrackerPlugin, { TrackerSearchEvent } from '../../../src/gb-tracker-plugin';
 
 describe('GbTrackerPlugin', () => {
   let trackerPlugin: any;
@@ -85,7 +85,7 @@ describe('GbTrackerPlugin', () => {
       const searchInfo = {
         origin: 'some-origin',
         results: { id: 'some-search-id' },
-      }
+      };
       const searchTrackerEvent = { detail: searchInfo };
       const sendAutoSearchEvent = spy();
       trackerPlugin.gbTracker = { sendAutoSearchEvent };
