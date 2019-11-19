@@ -25,7 +25,8 @@
   "author": "GroupBy Inc",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "^0.1.0"
+    "@groupby/elements-events": "^0.1.0",
+    "gb-tracker-client": "^3.7.2"
   },
   "peerDependencies": {
     "@groupby/elements-core": "^0.1.0",
