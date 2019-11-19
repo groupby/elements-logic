@@ -81,9 +81,15 @@ export default class GbTrackerPlugin implements Plugin {
   }
 }
 
+/**
+ * The options used to instantiate a [[GbTrackerPlugin]].
+ */
 export interface TrackerPluginOptions {
+  /** The ID of the client. */
   customerId: string;
+  /** The area in which the tracked actions will occur. */
   area?: string;
+  // @TODO Is this option needed? What does it do?
   overridePixelUrl?: string;
 }
 
