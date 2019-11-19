@@ -23,6 +23,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "gb-tracker-client": "^3.7.2"
+    "gb-tracker-client": "^3.7.2",
+    "groupby-api": "^2.6.2"
   }
 }
