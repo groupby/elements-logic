@@ -85,17 +85,15 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('fetchSearchData()', () => {
-    let area;
-    let collection;
+    const area = 'area';
+    const collection = 'collection';
+    const query = 'search term';
     let config;
-    let results;
     let group;
+    let results;
     let sendSearchApiRequest;
-    let query;
 
     beforeEach(() => {
-      area = 'area';
-      collection = 'collection';
       config = { area, collection };
       group = undefined;
       results = { a: 'a' };
@@ -103,7 +101,6 @@ describe('SearchDriverPlugin', () => {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
-      query = 'search term';
     });
 
     it('should search with the given search term', () => {
