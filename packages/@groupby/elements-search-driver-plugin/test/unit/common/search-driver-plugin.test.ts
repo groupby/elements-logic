@@ -179,21 +179,22 @@ describe('SearchDriverPlugin', () => {
       searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
     });
 
-    it.skip('should dispatch a search tracker event when the search succeeds', (done) => {
-      const dispatchSearchTrackerEvent = stub(searchDriverPlugin, 'dispatchSearchTrackerEvent');
+    it('should dispatch a search tracker event when the search succeeds', (done) => {
       results = {
         originalResponse: {
           id: 'search-id',
         },
       };
       sendSearchApiRequest.resolves(results);
+      dispatchSearchTrackerEvent.callsFake(() => {
+        expect(dispatchSearchTrackerEvent).to.be.calledWith(results.originalResponse);
+        done();
+      });
       searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => null },
+        [eventsPluginName]: { dispatchEvent: () => {} },
       };
 
       searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
-
-      return expect(dispatchSearchTrackerEvent).to.eventually.be.calledWith(results.originalResponse);
     });
   });
 
