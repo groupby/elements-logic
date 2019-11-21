@@ -97,6 +97,7 @@ describe('SearchDriverPlugin', () => {
     let results;
     let sendSearchApiRequest;
     let dispatchSearchTrackerEvent;
+    let core;
 
     beforeEach(() => {
       config = { area, collection };
@@ -107,6 +108,11 @@ describe('SearchDriverPlugin', () => {
       };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
       dispatchSearchTrackerEvent = stub(searchDriverPlugin, 'dispatchSearchTrackerEvent');
+      searchDriverPlugin.core = core = {
+        [eventsPluginName]: {
+          dispatchEvent: () => {},
+        },
+      };
     });
 
     it('should search with the given search term', () => {
@@ -145,9 +151,7 @@ describe('SearchDriverPlugin', () => {
       });
       group = 'group';
       sendSearchApiRequest.resolves(results);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      core[eventsPluginName] = { dispatchEvent };
 
       searchDriverPlugin.fetchSearchData({ detail: { query: 'search', group } } as any);
     });
@@ -158,9 +162,7 @@ describe('SearchDriverPlugin', () => {
         done();
       });
       sendSearchApiRequest.resolves(results);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      core[eventsPluginName] = { dispatchEvent };
 
       searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
     });
@@ -172,9 +174,7 @@ describe('SearchDriverPlugin', () => {
         done();
       });
       sendSearchApiRequest.rejects(error);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      core[eventsPluginName] = { dispatchEvent };
 
       searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
     });
@@ -190,9 +190,6 @@ describe('SearchDriverPlugin', () => {
         expect(dispatchSearchTrackerEvent).to.be.calledWith(results.originalResponse);
         done();
       });
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => {} },
-      };
 
       searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
     });
