@@ -142,11 +142,15 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
     };
   }
 
+  /**
+   * Dispatches a search tracker event.
+   *
+   * @param results The results from the search response.
+   */
   dispatchSearchTrackerEvent(results: Results): void {
     const trackerSearchPayload: TrackerSearchPayload = {
       results,
       origin: {
-        autosearch: true, // @TODO Which should be set?
         search: true,
       },
     };

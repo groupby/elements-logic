@@ -298,7 +298,6 @@ describe('SearchDriverPlugin', () => {
       expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
         results,
         origin: {
-          autosearch: true,
           search: true,
         },
       });
