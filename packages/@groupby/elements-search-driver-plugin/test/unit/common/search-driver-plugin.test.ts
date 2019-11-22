@@ -85,23 +85,27 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('fetchSearchData()', () => {
-    let results;
+    const area = 'area';
+    const collection = 'collection';
+    const query = 'search term';
+    let config;
     let group;
+    let results;
     let sendSearchApiRequest;
 
     beforeEach(() => {
-      results = { a: 'a' };
+      config = { area, collection };
       group = undefined;
+      results = { a: 'a' };
+      searchDriverPlugin.core = {
+        [eventsPluginName]: { dispatchEvent: () => {} },
+      };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
     });
 
     it('should search with the given search term', () => {
-      const query = 'search term';
       const request = { query };
       sendSearchApiRequest.resolves();
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => {} },
-      };
 
       searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
 
@@ -109,19 +113,23 @@ describe('SearchDriverPlugin', () => {
     });
 
     it('should search with all provided config options', () => {
-      const query = 'search term';
-      const area = 'area';
-      const collection = 'collection';
-      const config = { area, collection };
       const request = { query, area, collection };
       sendSearchApiRequest.resolves();
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent: () => {} },
-      };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, config } } as any);
 
       expect(sendSearchApiRequest).to.be.calledWith(request);
+    });
+
+    it('should cache the payload', () => {
+      const set = spy();
+      sendSearchApiRequest.resolves(results);
+      searchDriverPlugin.core.cache = { set };
+
+      searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
+
+      return expect(Promise.resolve(set))
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { results, group });
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
