@@ -89,9 +89,9 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@groupby/elements-events@groupby/elements-events#710e5545802bcc4929b253add2677bd22561a758":
+"@groupby/elements-events@groupby/elements-events#66ab6ebc4b2786f65ffc8ae64d3facbd2e628065":
   version "0.0.0"
-  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/710e5545802bcc4929b253add2677bd22561a758"
+  resolved "https://codeload.github.com/groupby/elements-events/tar.gz/66ab6ebc4b2786f65ffc8ae64d3facbd2e628065"
   dependencies:
     groupby-api "^2.6.2"
     sayt "^0.1.9"
