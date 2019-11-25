@@ -9,7 +9,6 @@ import {
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
-  SearchResponseSection,
   SearchErrorPayload,
 } from '@groupby/elements-events';
 
@@ -102,7 +101,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
     const { query, group, config } = event.detail;
     this.sendSearchApiRequest({ query, ...config })
       .then((results) => {
-        const payload: SearchResponsePayload<P> = { results, group };
+        const payload: SearchResponsePayload<P> = { ...results, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
       })
@@ -117,7 +116,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    *
    * @param request The request object that contains the search term and any extra parameters.
    */
-  sendSearchApiRequest(request: Partial<SearchRequest>): Promise<SearchResponseSection<P>> {
+  sendSearchApiRequest(request: Partial<SearchRequest>): Promise<SearchResponsePayload<P>> {
     const fullQuery = { ...this.defaultSearchConfig, ...request };
     return this.core.search.search(fullQuery)
       .then(this.searchCallback);
@@ -131,7 +130,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and an array of valid simplified products.
    */
-  searchCallback(response: Results): SearchResponseSection<P> {
+  searchCallback(response: Results): SearchResponsePayload<P> {
     const { records } = response;
     const mappedRecords = records.map(this.transformProduct).filter(Boolean);
 

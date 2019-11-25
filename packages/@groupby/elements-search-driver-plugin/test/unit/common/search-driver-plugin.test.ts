@@ -129,12 +129,12 @@ describe('SearchDriverPlugin', () => {
       searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
 
       return expect(Promise.resolve(set))
-        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { results, group });
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...results, group });
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
         done();
       });
       group = 'group';
@@ -148,7 +148,7 @@ describe('SearchDriverPlugin', () => {
 
     it('should send an undefined group if one is not provided', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
         done();
       });
       sendSearchApiRequest.resolves(results);
