@@ -129,7 +129,7 @@ describe('SearchDriverPlugin', () => {
       searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
 
       return expect(Promise.resolve(set))
-        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { results, group });
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...results, group });
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
