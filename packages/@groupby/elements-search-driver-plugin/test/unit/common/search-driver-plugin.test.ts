@@ -1,5 +1,4 @@
 import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR } from '@groupby/elements-events';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import SearchDriverPlugin from '@groupby/elements-search-driver-plugin/src/search-driver-plugin';
 import { expect, spy, stub } from '../../utils';
 

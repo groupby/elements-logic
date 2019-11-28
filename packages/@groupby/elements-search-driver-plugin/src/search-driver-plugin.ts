@@ -1,6 +1,4 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
   SEARCH_REQUEST,
