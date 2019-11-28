@@ -30,6 +30,7 @@
   },
   "peerDependencies": {
     "@groupby/elements-core": "^0.1.0",
+    "@groupby/elements-dom-events-plugin": "^0.1.0",
     "@groupby/elements-sayt-plugin": "^0.1.0",
     "@groupby/elements-search-plugin": "^0.1.0"
   }
