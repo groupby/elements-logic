@@ -1,6 +1,6 @@
 import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR } from '@groupby/elements-events';
-import SearchDriverPlugin from '@groupby/elements-search-driver-plugin/src/search-driver-plugin';
 import { expect, spy, stub } from '../../utils';
+import SearchDriverPlugin from '../../../src/search-driver-plugin';
 
 describe('SearchDriverPlugin', () => {
   const eventsPluginName = 'dom_events';
