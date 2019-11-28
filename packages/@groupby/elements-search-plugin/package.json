@@ -27,5 +27,8 @@
   "dependencies": {
     "@types/es6-shim": "^0.31.39",
     "groupby-api": "^2.6.2"
+  },
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
   }
 }

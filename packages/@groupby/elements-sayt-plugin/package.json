@@ -24,5 +24,8 @@
   "license": "MIT",
   "dependencies": {
     "sayt": "^0.1.9"
+  },
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
   }
 }

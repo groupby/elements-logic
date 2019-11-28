@@ -23,5 +23,8 @@
   },
   "author": "",
   "license": "MIT",
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
+  }
 }
