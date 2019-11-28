@@ -21,7 +21,7 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-dom-events-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "sideEffects": false,
   "peerDependencies": {

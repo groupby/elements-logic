@@ -22,7 +22,7 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-search-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "dependencies": {
     "@types/es6-shim": "^0.31.39",

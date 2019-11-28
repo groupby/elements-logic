@@ -20,7 +20,7 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-sayt-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "dependencies": {
     "sayt": "^0.1.9"
