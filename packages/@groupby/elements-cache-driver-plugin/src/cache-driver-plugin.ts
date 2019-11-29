@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 import { CACHE_REQUEST, CacheRequestPayload, CacheResponsePayload } from '@groupby/elements-events';
 

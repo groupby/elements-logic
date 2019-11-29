@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-dom-events-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,10 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-dom-events-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
-  "sideEffects": false
+  "sideEffects": false,
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
+  }
 }

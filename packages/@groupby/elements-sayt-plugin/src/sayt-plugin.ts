@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata } from '@groupby/elements-core';
 import { Sayt, SaytConfig } from 'sayt';
 

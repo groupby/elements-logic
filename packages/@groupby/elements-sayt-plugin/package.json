@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-sayt-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -20,9 +20,12 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-sayt-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "dependencies": {
     "sayt": "^0.1.9"
+  },
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-search-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,10 +22,13 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-search-plugin"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "dependencies": {
     "@types/es6-shim": "^0.31.39",
     "groupby-api": "^2.6.2"
+  },
+  "peerDependencies": {
+    "@groupby/elements-core": "^0.1.0"
   }
 }

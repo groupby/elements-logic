@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-core",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "GroupBy Elements Core",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "url": "https://github.com/groupby/elements-logic.git",
     "directory": "packages/@groupby/elements-core"
   },
-  "author": "",
+  "author": "GroupBy Inc",
   "license": "MIT",
   "sideEffects": false
 }
