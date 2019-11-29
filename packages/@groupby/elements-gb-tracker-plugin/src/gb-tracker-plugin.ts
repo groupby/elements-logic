@@ -40,7 +40,6 @@ export default class GbTrackerPlugin implements Plugin {
    * @param options The options to instantiate the sayt client with.
    */
   constructor(options: TrackerPluginOptions) {
-    // @TODO Add options if necessary. Should have intelligent defaults.
     this.gbTracker = new GbTracker(options.customerId, options.area, options.overridePixelUrl);
   }
 
