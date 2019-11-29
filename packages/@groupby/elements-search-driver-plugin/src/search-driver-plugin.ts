@@ -108,7 +108,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
         // @TODO Pass origin string into dispatchSearchTrackerEvent()
-        this.dispatchSearchTrackerEvent(results.originalResponse);
+        this.dispatchSearchTrackerEvent(results.originalResponse, 'FIX_ME');
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
@@ -149,26 +149,15 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * Dispatches a search tracker event.
    *
    * @param results The results from the search response.
+   * @param originValue The search event's origin.
    */
-  dispatchSearchTrackerEvent(results: Results): void {
-    // @TODO Accept 'origin' string
+  dispatchSearchTrackerEvent(results: Results, originValue: string): void {
+    const origin: SendableOrigin = { [originValue]: true };
     const trackerSearchPayload: TrackerSearchPayload = {
       results,
-      origin: {
-        // @TODO add search/sayt: true depending on origin string
-        search: true,
-      },
+      origin,
     };
     this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
-  }
-
-  /**
-   * Return a valid origin object given a string.
-   */
-  getOriginFromString(originIndicator: string): SendableOrigin {
-    return {
-      [originIndicator]: true,
-    };
   }
 }
 

@@ -283,7 +283,8 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('dispatchSearchTrackerEvent()',  () => {
-    it('should dispatch a TRACKER_SEARCH event given a search response', () => {
+    it('should dispatch a TRACKER_SEARCH event given a search response and origin', () => {
+      const origin = 'some-origin';
       const results = { some: 'data' };
       const dispatchEvent = spy();
       const core = {
@@ -293,25 +294,13 @@ describe('SearchDriverPlugin', () => {
       };
       searchDriverPlugin.core = core;
 
-      searchDriverPlugin.dispatchSearchTrackerEvent(results);
+      searchDriverPlugin.dispatchSearchTrackerEvent(results, origin);
 
       expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
         results,
         origin: {
-          search: true,
+          [origin]: true,
         },
-      });
-    });
-  });
-
-  describe('getOriginFromString()', () => {
-    it('should return a valid origin object given an origin string', () => {
-      const originString = 'some-origin';
-
-      const originResult = searchDriverPlugin.getOriginFromString(originString);
-
-      expect(originResult).to.deep.equal({
-        'some-origin': true,
       });
     });
   });
