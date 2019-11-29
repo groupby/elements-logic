@@ -306,12 +306,12 @@ describe('SearchDriverPlugin', () => {
 
   describe('getOriginFromString()', () => {
     it('should return a valid origin object given an origin string', () => {
-      const originString = 'sayt';
+      const originString = 'some-origin';
 
       const originResult = searchDriverPlugin.getOriginFromString(originString);
 
       expect(originResult).to.deep.equal({
-        sayt: true,
+        'some-origin': true,
       });
     });
   });
