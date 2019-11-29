@@ -11,6 +11,7 @@ import {
   SearchErrorPayload,
   TrackerSearchPayload,
 } from '@groupby/elements-events';
+import { SendableOrigin } from 'gb-tracker-client';
 
 /**
  * This plugin is responsible for exposing events that allow
@@ -159,6 +160,15 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
       },
     };
     this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
+  }
+
+  /**
+   * Return a valid origin object given a string.
+   */
+  getOriginFromString(originIndicator: string): SendableOrigin {
+    return {
+      [originIndicator]: true,
+    };
   }
 }
 

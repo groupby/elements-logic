@@ -303,4 +303,16 @@ describe('SearchDriverPlugin', () => {
       });
     });
   });
+
+  describe('getOriginFromString()', () => {
+    it('should return a valid origin object given an origin string', () => {
+      const originString = 'sayt';
+
+      const originResult = searchDriverPlugin.getOriginFromString(originString);
+
+      expect(originResult).to.deep.equal({
+        sayt: true,
+      });
+    });
+  });
 });
