@@ -98,9 +98,12 @@ describe('SearchDriverPlugin', () => {
     let sendSearchApiRequest;
     let dispatchSearchTrackerEvent;
     let core;
+    let query;
 
     beforeEach(() => {
       config = { area, collection };
+      query = 'search term';
+      results = { a: 'a' };
       group = undefined;
       results = { a: 'a' };
       searchDriverPlugin.core = {
@@ -153,7 +156,7 @@ describe('SearchDriverPlugin', () => {
       sendSearchApiRequest.resolves(results);
       core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: { query: 'search', group } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query, group } } as any);
     });
 
     it('should send an undefined group if one is not provided', (done) => {
@@ -164,7 +167,7 @@ describe('SearchDriverPlugin', () => {
       sendSearchApiRequest.resolves(results);
       core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
     });
 
     it('should dispatch an error event when the search fails', (done) => {
@@ -176,10 +179,11 @@ describe('SearchDriverPlugin', () => {
       sendSearchApiRequest.rejects(error);
       core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
+      searchDriverPlugin.fetchSearchData({ detail: 'bad-search' } as any);
     });
 
-    it('should dispatch a search tracker event when the search succeeds', (done) => {
+    it('should dispatch a search tracker event with origin when the search succeeds', (done) => {
+      const origin = 'some-origin';
       results = {
         originalResponse: {
           id: 'search-id',
@@ -187,11 +191,11 @@ describe('SearchDriverPlugin', () => {
       };
       sendSearchApiRequest.resolves(results);
       dispatchSearchTrackerEvent.callsFake(() => {
-        expect(dispatchSearchTrackerEvent).to.be.calledWith(results.originalResponse);
+        expect(dispatchSearchTrackerEvent).to.be.calledWith(results.originalResponse, origin);
         done();
       });
 
-      searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query, origin } } as any);
     });
   });
 
