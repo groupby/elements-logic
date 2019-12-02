@@ -5,6 +5,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
+  TRACKER_SEARCH,
 } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
@@ -467,6 +468,22 @@ describe('Sayt Driver Plugin', () => {
 
       expect(result.products).to.have.lengthOf(1);
       expect(result.products[0].key1).to.equal(firstProductTitle);
+    });
+  });
+
+  describe('dispatchSearchTrackerEvent()', () => {
+    it('should dispatch a TRACKER_SEARCH event given a search response and origin', () => {
+      const origin = 'some-origin';
+      const results = { some: 'data' };
+      const dispatchEvent = dom_events.dispatchEvent = spy();
+      driver.core = { dom_events };
+
+      driver.dispatchSearchTrackerEvent(results, origin);
+
+      expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
+        results,
+        origin: { [origin]: true },
+      });
     });
   });
 });

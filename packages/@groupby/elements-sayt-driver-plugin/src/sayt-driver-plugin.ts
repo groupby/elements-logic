@@ -1,3 +1,4 @@
+import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import {
   AUTOCOMPLETE_REQUEST,
@@ -6,6 +7,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
+  TRACKER_SEARCH,
   AutocompleteRequestPayload,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
@@ -15,6 +17,7 @@ import {
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
+  TrackerSearchPayload,
 } from '@groupby/elements-events';
 import {
   AutocompleteResponse,
@@ -220,6 +223,15 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
       .map((term) => ({ label: term.value }));
+  }
+
+  dispatchSearchTrackerEvent(results: Results, originValue: string): void {
+    const origin: SendableOrigin = { [originValue]: true };
+    const trackerSearchPayload: TrackerSearchPayload = {
+      results,
+      origin,
+    };
+    this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
   }
 }
 
