@@ -6,8 +6,9 @@
   "workspaces": [
     "packages/@groupby/elements-core",
     "packages/@groupby/elements-dom-events-plugin",
-    "packages/@groupby/elements-!(*-driver-plugin)",
-    "packages/@groupby/*"
+    "packages/@groupby/elements-!(*-driver-plugin|quickstart)",
+    "packages/@groupby/elements-!(quickstart)",
+    "packages/@groupby/elements-quickstart"
   ],
   "scripts": {
     "bundle": "webpack",
