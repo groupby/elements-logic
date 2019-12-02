@@ -1,3 +1,4 @@
+import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
@@ -12,7 +13,6 @@ import {
   SearchErrorPayload,
   TrackerSearchPayload,
 } from '@groupby/elements-events';
-import { SendableOrigin } from 'gb-tracker-client';
 
 /**
  * This plugin is responsible for exposing events that allow
