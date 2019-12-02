@@ -139,7 +139,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
    * @param event Event that contains the Search API request payload.
    */
   fetchProductData(event: CustomEvent<SaytProductsRequestPayload>): void {
-    const { query, group, config } = event.detail;
+    const { query, group, config, origin } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then((results) => {
         const payload: SaytProductsResponsePayload<P> = {
@@ -148,6 +148,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
+        this.dispatchSearchTrackerEvent(results.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };

@@ -41,6 +41,7 @@ describe('Sayt Driver Plugin', () => {
         query,
         config,
         group: 'some-group-id',
+        origin: 'some-origin',
       },
     };
     productDataPayload = {
@@ -324,11 +325,12 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe('fetchProductData()', () => {
+  describe.only('fetchProductData()', () => {
     let dispatchEvent;
     let products;
     let group;
     let sendSearchApiRequest;
+    let dispatchSearchTrackerEvent;
 
     beforeEach(() => {
       dispatchEvent = dom_events.dispatchEvent = spy();
@@ -338,6 +340,7 @@ describe('Sayt Driver Plugin', () => {
       products = [{ a: 'b' }];
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
       group = 'some-group-id';
+      dispatchSearchTrackerEvent = stub(driver, 'dispatchSearchTrackerEvent');
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
@@ -376,6 +379,18 @@ describe('Sayt Driver Plugin', () => {
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_ERROR, { error, group });
+    });
+
+    it.only('should trigger a tracker event on a successful API request', () => {
+      const results = { some: 'results' };
+      const originalResponse = { results };
+      const apiResponse = { products, originalResponse };
+      sendSearchApiRequest.resolves(apiResponse);
+
+      driver.fetchProductData(saytDataPayload);
+
+      expect(Promise.resolve(dispatchSearchTrackerEvent))
+        .to.be.eventually.calledOnceWith(originalResponse, saytDataPayload.detail.origin);
     });
   });
 
