@@ -325,7 +325,7 @@ describe('Sayt Driver Plugin', () => {
     });
   });
 
-  describe.only('fetchProductData()', () => {
+  describe('fetchProductData()', () => {
     let dispatchEvent;
     let products;
     let group;
@@ -381,7 +381,7 @@ describe('Sayt Driver Plugin', () => {
         .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_ERROR, { error, group });
     });
 
-    it.only('should trigger a tracker event on a successful API request', () => {
+    it('should trigger a tracker event on a successful API request', () => {
       const results = { some: 'results' };
       const originalResponse = { results };
       const apiResponse = { products, originalResponse };
