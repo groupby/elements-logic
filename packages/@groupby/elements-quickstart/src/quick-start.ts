@@ -8,6 +8,7 @@ import { SearchDriverPlugin } from '@groupby/elements-search-driver-plugin';
 import { SearchPlugin } from '@groupby/elements-search-plugin';
 
 export default function quickStart(): Core {
+  const core = new Core();
   const cacheDriverPlugin = new CacheDriverPlugin();
   const cachePlugin = new CachePlugin();
   const domEventsPlugin = new DomEventsPlugin();
@@ -15,5 +16,16 @@ export default function quickStart(): Core {
   const saytPlugin = new SaytPlugin();
   const searchDriverPlugin = new SearchDriverPlugin();
   const searchPlugin = new SearchPlugin({} as any);
-  return new Core();
+
+  core.register([
+    cacheDriverPlugin,
+    cachePlugin,
+    domEventsPlugin,
+    saytDriverPlugin,
+    saytPlugin,
+    searchDriverPlugin,
+    searchPlugin,
+  ]);
+
+  return core;
 }

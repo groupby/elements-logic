@@ -53,7 +53,36 @@ describe('quickStart()', () => {
     expect(SearchDriverPlugin.calledWithNew()).to.be.true;
   });
 
-  it('should registers plugins');
+  it('should register plugins', () => {
+    const cachePlugin = { cache: 'cache' };
+    const cacheDriverPlugin = { cacheDriver: 'cacheDriver' };
+    const domEventsPlugin = { domEvents: 'domEvents' };
+    const saytPlugin = { sayt: 'sayt' };
+    const saytDriverPlugin = { saytDriver: 'saytDriver' };
+    const searchPlugin = { search: 'search' };
+    const searchDriverPlugin = { searchDriver: 'searchDriver' };
+    CachePlugin.returns(cachePlugin);
+    CacheDriverPlugin.returns(cacheDriverPlugin);
+    DomEventsPlugin.returns(domEventsPlugin);
+    SaytPlugin.returns(saytPlugin);
+    SaytDriverPlugin.returns(saytDriverPlugin);
+    SearchPlugin.returns(searchPlugin);
+    SearchDriverPlugin.returns(searchDriverPlugin);
+
+    quickStart();
+
+    const plugins = register.firstCall.args[0];
+    expect(plugins).to.have.members([
+      cacheDriverPlugin,
+      cachePlugin,
+      domEventsPlugin,
+      saytDriverPlugin,
+      saytPlugin,
+      searchDriverPlugin,
+      searchPlugin,
+    ]);
+  });
+
   it('should forward customerId to SaytPlugin');
   it('should forward productTransformer to SaytPlugin');
   it('should forward productTransformer to SearchPlugin');
