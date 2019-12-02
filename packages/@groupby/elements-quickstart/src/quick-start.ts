@@ -7,13 +7,13 @@ import { SaytPlugin } from '@groupby/elements-sayt-plugin';
 import { SearchDriverPlugin } from '@groupby/elements-search-driver-plugin';
 import { SearchPlugin } from '@groupby/elements-search-plugin';
 
-export default function quickStart(): Core {
+export default function quickStart({ customerId }: QuickStartOptions): Core {
   const core = new Core();
   const cacheDriverPlugin = new CacheDriverPlugin();
   const cachePlugin = new CachePlugin();
   const domEventsPlugin = new DomEventsPlugin();
   const saytDriverPlugin = new SaytDriverPlugin();
-  const saytPlugin = new SaytPlugin();
+  const saytPlugin = new SaytPlugin({ subdomain: customerId });
   const searchDriverPlugin = new SearchDriverPlugin();
   const searchPlugin = new SearchPlugin({} as any);
 
@@ -28,4 +28,8 @@ export default function quickStart(): Core {
   ]);
 
   return core;
+}
+
+export interface QuickStartOptions {
+  customerId: string;
 }

@@ -10,6 +10,7 @@ import { expect, spy, stub } from '../../utils';
 import quickStart from '../../../src/quick-start';
 
 describe('quickStart()', () => {
+  const customerId = 'custid';
   let CoreStub;
   let CachePlugin;
   let CacheDriverPlugin;
@@ -35,14 +36,14 @@ describe('quickStart()', () => {
   });
 
   it('should return an instance of Core', () => {
-    const returnedCore = quickStart();
+    const returnedCore = quickStart({ customerId });
 
     expect(CoreStub.calledWithNew()).to.be.true;
     expect(returnedCore).to.equal(core);
   });
 
   it('should instantiate plugins', () => {
-    quickStart();
+    quickStart({ customerId });
 
     expect(CachePlugin.calledWithNew()).to.be.true;
     expect(CacheDriverPlugin.calledWithNew()).to.be.true;
@@ -69,7 +70,7 @@ describe('quickStart()', () => {
     SearchPlugin.returns(searchPlugin);
     SearchDriverPlugin.returns(searchDriverPlugin);
 
-    quickStart();
+    quickStart({ customerId });
 
     const plugins = register.firstCall.args[0];
     expect(plugins).to.have.members([
@@ -83,7 +84,12 @@ describe('quickStart()', () => {
     ]);
   });
 
-  it('should forward customerId to SaytPlugin');
+  it('should forward customerId to SaytPlugin', () => {
+    quickStart({ customerId });
+
+    expect(SaytPlugin).to.be.calledWith({ subdomain: customerId });
+  });
+
   it('should forward productTransformer to SaytPlugin');
   it('should forward productTransformer to SearchPlugin');
 });
