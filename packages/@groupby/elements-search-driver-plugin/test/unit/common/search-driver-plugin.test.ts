@@ -91,10 +91,9 @@ describe('SearchDriverPlugin', () => {
   describe('fetchSearchData()', () => {
     const area = 'area';
     const collection = 'collection';
-    const query = 'search term';
     let config;
     let group;
-    let results;
+    let response;
     let sendSearchApiRequest;
     let dispatchSearchTrackerEvent;
     let core;
@@ -103,9 +102,8 @@ describe('SearchDriverPlugin', () => {
     beforeEach(() => {
       config = { area, collection };
       query = 'search term';
-      results = { a: 'a' };
+      response = { a: 'a', results: {} };
       group = undefined;
-      results = { a: 'a' };
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
@@ -138,22 +136,22 @@ describe('SearchDriverPlugin', () => {
 
     it('should cache the payload', () => {
       const set = spy();
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves(response);
       searchDriverPlugin.core.cache = { set };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
 
       return expect(Promise.resolve(set))
-        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...results, group });
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...response, group });
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...response, group });
         done();
       });
       group = 'group';
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves(response);
       core[eventsPluginName] = { dispatchEvent };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, group } } as any);
@@ -161,10 +159,10 @@ describe('SearchDriverPlugin', () => {
 
     it('should send an undefined group if one is not provided', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...response, group });
         done();
       });
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves(response);
       core[eventsPluginName] = { dispatchEvent };
 
       searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
@@ -184,14 +182,14 @@ describe('SearchDriverPlugin', () => {
 
     it('should dispatch a search tracker event with origin when the search succeeds', (done) => {
       const origin = 'some-origin';
-      results = {
+      response = {
         originalResponse: {
           id: 'search-id',
         },
       };
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves(response);
       dispatchSearchTrackerEvent.callsFake(() => {
-        expect(dispatchSearchTrackerEvent).to.be.calledWith(results.originalResponse, origin);
+        expect(dispatchSearchTrackerEvent).to.be.calledWith(response.originalResponse, origin);
         done();
       });
 
