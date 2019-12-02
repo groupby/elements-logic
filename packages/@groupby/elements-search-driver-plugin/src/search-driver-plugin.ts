@@ -9,7 +9,6 @@ import {
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
-  SearchResponseSection,
   SearchErrorPayload,
   TrackerSearchPayload,
 } from '@groupby/elements-events';
@@ -107,7 +106,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
         const payload: SearchResponsePayload<P> = { ...response, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
-        this.dispatchSearchTrackerEvent(response.results.originalResponse, origin);
+        this.dispatchSearchTrackerEvent(response.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
@@ -134,7 +133,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param response An object containing the original query and product records.
    * @returns An object containing the query and an array of valid simplified products.
    */
-  searchCallback(response: Results): SearchResponseSection<P> {
+  searchCallback(response: Results): SearchResponsePayload<P> {
     const { records } = response;
     const mappedRecords = records.map(this.transformProduct).filter(Boolean);
 

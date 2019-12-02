@@ -182,14 +182,10 @@ describe('SearchDriverPlugin', () => {
 
     it('should dispatch a search tracker event with origin when the search succeeds', (done) => {
       const origin = 'some-origin';
-      response.results = {
-        originalResponse: {
-          id: 'search-id',
-        },
-      };
+      response.originalResponse = { id: 'search-id' };
       sendSearchApiRequest.resolves(response);
       dispatchSearchTrackerEvent.callsFake(() => {
-        expect(dispatchSearchTrackerEvent).to.be.calledWith(response.results.originalResponse, origin);
+        expect(dispatchSearchTrackerEvent).to.be.calledWith(response.originalResponse, origin);
         done();
       });
 
