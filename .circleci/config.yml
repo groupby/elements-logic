@@ -125,10 +125,16 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_plugin-
       - run: *extract_build_archive
       - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_cache-plugin-
+      - run: *extract_build_archive
+      - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_driver_plugin-
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_driver_plugin-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_cache_driver_plugin-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -260,6 +266,9 @@ workflows:
       - build:
           name: build_search_plugin
           <<: *requires_build_core
+      - build:
+          name: build_cache_plugin
+          <<: *requires_build_core
       - collect_builds:
           name: collect_independent_builds
           requires:
@@ -267,6 +276,7 @@ workflows:
             - build_dom_events_plugin
             - build_sayt_plugin
             - build_search_plugin
+            - build_cache_plugin
 
       - build:
           name: build_sayt_driver_plugin
@@ -274,6 +284,10 @@ workflows:
             - collect_independent_builds
       - build:
           name: build_search_driver_plugin
+          requires:
+            - collect_independent_builds
+      - build:
+          name: build_cache_driver_plugin
           requires:
             - collect_independent_builds
       - collect_builds:
@@ -295,10 +309,16 @@ workflows:
           name: unit_test_search_plugin
           <<: *requires_build_final
       - unit_test:
+          name: unit_test_cache_plugin
+          <<: *requires_build_final
+      - unit_test:
           name: unit_test_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test:
           name: unit_test_search_driver_plugin
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_cache_driver_plugin
           <<: *requires_build_final
 
       - unit_test_browser:
@@ -314,10 +334,16 @@ workflows:
           name: unit_test_browser_search_plugin
           <<: *requires_build_final
       - unit_test_browser:
+          name: unit_test_browser_cache_plugin
+          <<: *requires_build_final
+      - unit_test_browser:
           name: unit_test_browser_sayt_driver_plugin
           <<: *requires_build_final
       - unit_test_browser:
           name: unit_test_browser_search_driver_plugin
+          <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_cache_driver_plugin
           <<: *requires_build_final
       - unit_test_final:
           requires:
@@ -325,14 +351,18 @@ workflows:
             - unit_test_dom_events_plugin
             - unit_test_sayt_plugin
             - unit_test_search_plugin
+            - unit_test_cache_plugin
             - unit_test_sayt_driver_plugin
             - unit_test_search_driver_plugin
+            - unit_test_cache_driver_plugin
             - unit_test_browser_core
             - unit_test_browser_dom_events_plugin
             - unit_test_browser_sayt_plugin
             - unit_test_browser_search_plugin
+            - unit_test_browser_cache_plugin
             - unit_test_browser_sayt_driver_plugin
             - unit_test_browser_search_driver_plugin
+            - unit_test_browser_cache_driver_plugin
 
       - lint:
           requires:
