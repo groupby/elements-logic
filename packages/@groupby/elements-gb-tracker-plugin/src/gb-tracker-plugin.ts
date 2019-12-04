@@ -40,6 +40,8 @@ export default class GbTrackerPlugin implements Plugin {
    * @param options The options to instantiate the sayt client with.
    */
   constructor(options: TrackerPluginOptions) {
+    this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
+
     this.gbTracker = new GbTracker(options.customerId, options.area, options.overridePixelUrl);
   }
 
