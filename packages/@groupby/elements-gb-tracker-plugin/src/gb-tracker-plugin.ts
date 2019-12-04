@@ -58,6 +58,8 @@ export default class GbTrackerPlugin implements Plugin {
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(TRACKER_SEARCH, this.triggerSearchBeacon);
+
+    this.gbTracker.autoSetVisitor();
   }
 
   /**

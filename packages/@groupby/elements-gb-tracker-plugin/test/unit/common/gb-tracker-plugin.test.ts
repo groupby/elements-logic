@@ -63,6 +63,7 @@ describe('GbTrackerPlugin', () => {
     it('should set tracker event listeners', () => {
       const registerListener = spy();
       trackerPlugin.core = { dom_events: { registerListener } };
+      stub(trackerPlugin.gbTracker, 'autoSetVisitor');
 
       trackerPlugin.ready();
 
