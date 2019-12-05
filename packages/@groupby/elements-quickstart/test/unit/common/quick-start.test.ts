@@ -85,19 +85,19 @@ describe('quickStart()', () => {
   });
 
   it('should forward customerId and options to the SaytPlugin', () => {
-    const sayt = { collection: 'collection' };
+    const options = { collection: 'collection' };
     
-    quickStart({ customerId, pluginOptions: { sayt } });
+    quickStart({ customerId, pluginOptions: { sayt: options } });
 
-    expect(SaytPlugin).to.be.calledWith({ ...sayt, subdomain: customerId });
+    expect(SaytPlugin).to.be.calledWith({ ...options, subdomain: customerId });
   });
 
   it('should forward customerId and options to the SearchPlugin', () => {
-    const search = { https: true };
+    const options = { https: true };
     
-    quickStart({ customerId, pluginOptions: { search } });
+    quickStart({ customerId, pluginOptions: { search: options } });
 
-    expect(SearchPlugin).to.be.calledWith({ ...search, customerId });
+    expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
   });
 
   it('should forward productTransformer to SaytDriverPlugin', () => {
@@ -117,20 +117,20 @@ describe('quickStart()', () => {
   });
 
   it('should forward cache options to the CachePlugin', () => {
-    const cache = { store: new Map() };
+    const options = { store: new Map() };
 
-    quickStart({ customerId, pluginOptions: { cache } });
+    quickStart({ customerId, pluginOptions: { cache: options } });
 
-    expect(CachePlugin).to.be.calledWith(cache);
+    expect(CachePlugin).to.be.calledWith(options);
   });
 
   it('should forward dom event options to the DomEventsPlugin', () => {
     const window = stub().returns(class Window{});
     const CustomEvent = stub();
-    const dom_events = { window, CustomEvent };
+    const options = { window, CustomEvent };
 
-    quickStart({ customerId, pluginOptions: { dom_events } });
+    quickStart({ customerId, pluginOptions: { dom_events: options } });
 
-    expect(DomEventsPlugin).to.be.calledWith(dom_events);
+    expect(DomEventsPlugin).to.be.calledWith(options);
   });
 });
