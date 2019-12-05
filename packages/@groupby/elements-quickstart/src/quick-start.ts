@@ -8,7 +8,6 @@ import { SaytPlugin } from '@groupby/elements-sayt-plugin';
 import { SearchDriverPlugin, SearchDriverOptions } from '@groupby/elements-search-driver-plugin';
 import { SearchPlugin, SearchPluginOptions } from '@groupby/elements-search-plugin';
 import { SaytConfig } from 'sayt';
-import {  } from '@groupby/elements-sayt-driver-plugin/dist/sayt-driver-plugin';
 
 export default function quickStart<P>({
   customerId,
