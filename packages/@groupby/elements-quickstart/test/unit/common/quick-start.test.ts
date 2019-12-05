@@ -84,10 +84,12 @@ describe('quickStart()', () => {
     ]);
   });
 
-  it('should forward customerId to SaytPlugin', () => {
-    quickStart({ customerId });
+  it('should forward customerId and options to the SaytPlugin', () => {
+    const sayt = { collection: 'collection' };
+    
+    quickStart({ customerId, pluginOptions: { sayt } });
 
-    expect(SaytPlugin).to.be.calledWith({ subdomain: customerId });
+    expect(SaytPlugin).to.be.calledWith({ ...sayt, subdomain: customerId });
   });
 
   it('should forward customerId to SearchPlugin', () => {
