@@ -92,10 +92,12 @@ describe('quickStart()', () => {
     expect(SaytPlugin).to.be.calledWith({ ...sayt, subdomain: customerId });
   });
 
-  it('should forward customerId to SearchPlugin', () => {
-    quickStart({ customerId });
+  it('should forward customerId and options to the SearchPlugin', () => {
+    const search = { https: true };
+    
+    quickStart({ customerId, pluginOptions: { search } });
 
-    expect(SearchPlugin).to.be.calledWith({ customerId });
+    expect(SearchPlugin).to.be.calledWith({ ...search, customerId });
   });
 
   it('should forward productTransformer to SaytDriverPlugin', () => {

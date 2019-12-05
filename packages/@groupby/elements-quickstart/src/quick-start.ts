@@ -6,7 +6,7 @@ import { ProductTransformer } from '@groupby/elements-events';
 import { SaytDriverPlugin } from '@groupby/elements-sayt-driver-plugin';
 import { SaytPlugin } from '@groupby/elements-sayt-plugin';
 import { SearchDriverPlugin } from '@groupby/elements-search-driver-plugin';
-import { SearchPlugin } from '@groupby/elements-search-plugin';
+import { SearchPlugin, SearchPluginOptions } from '@groupby/elements-search-plugin';
 import { SaytConfig } from 'sayt';
 
 export default function quickStart<P>({
@@ -16,6 +16,7 @@ export default function quickStart<P>({
     cache,
     dom_events,
     sayt,
+    search, 
   } = {},
 }: QuickStartOptions<P>): Core {
   const core = new Core();
@@ -25,7 +26,7 @@ export default function quickStart<P>({
   const saytDriverPlugin = new SaytDriverPlugin({ productTransformer });
   const saytPlugin = new SaytPlugin({ ...sayt, subdomain: customerId });
   const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
-  const searchPlugin = new SearchPlugin({ customerId });
+  const searchPlugin = new SearchPlugin({ ...search, customerId });
 
   core.register([
     cacheDriverPlugin,
@@ -47,5 +48,6 @@ export interface QuickStartOptions<P> {
     cache?: Partial<CachePluginOptions>;
     dom_events?: Partial<DomEventsPluginOptions>;
     sayt?: SaytConfig;
+    search?: Partial<SearchPluginOptions>;
   }
 }
