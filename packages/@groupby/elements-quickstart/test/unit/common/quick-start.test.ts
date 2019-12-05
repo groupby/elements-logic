@@ -90,9 +90,19 @@ describe('quickStart()', () => {
     expect(SaytPlugin).to.be.calledWith({ subdomain: customerId });
   });
 
-  it('should forward productTransformer to SaytPlugin', () => {
+  it('should forward productTransformer to SaytDriverPlugin', () => {
+    const productTransformer = () => ({ a: 'a' });
 
+    quickStart({ customerId, productTransformer });
+
+    expect(SaytDriverPlugin).to.be.calledWith({ productTransformer });
   });
 
-  it('should forward productTransformer to SearchPlugin');
+  it('should forward productTransformer to SearchDriverPlugin', () => {
+    const productTransformer = () => ({ a: 'a' });
+
+    quickStart({ customerId, productTransformer });
+
+    expect(SearchDriverPlugin).to.be.calledWith({ productTransformer });
+  });
 });
