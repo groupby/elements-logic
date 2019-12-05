@@ -19,7 +19,7 @@ export default function quickStart<P>({
   const saytDriverPlugin = new SaytDriverPlugin({ productTransformer });
   const saytPlugin = new SaytPlugin({ subdomain: customerId });
   const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
-  const searchPlugin = new SearchPlugin({} as any);
+  const searchPlugin = new SearchPlugin({ customerId });
 
   core.register([
     cacheDriverPlugin,
