@@ -111,4 +111,12 @@ describe('quickStart()', () => {
 
     expect(SearchDriverPlugin).to.be.calledWith({ productTransformer });
   });
+
+  it('should forward cache options to the CachePlugin', () => {
+    const cacheOptions = { store: new Map() };
+
+    quickStart({ cacheOptions, customerId });
+
+    expect(CachePlugin).to.be.calledWith( cacheOptions )
+  });
 });
