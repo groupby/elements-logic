@@ -119,4 +119,14 @@ describe('quickStart()', () => {
 
     expect(CachePlugin).to.be.calledWith( cacheOptions )
   });
+
+  it('should forward dom event options to the DomEventsPlugin', () => {
+    const window = stub().returns(class Window{});
+    const CustomEvent = stub();
+    const domEventsOptions = { window, CustomEvent };
+
+    quickStart({ customerId, domEventsOptions });
+
+    expect(DomEventsPlugin).to.be.calledWith( domEventsOptions )
+  });
 });

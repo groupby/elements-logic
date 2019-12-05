@@ -1,7 +1,7 @@
 import { CacheDriverPlugin } from '@groupby/elements-cache-driver-plugin';
 import { CachePlugin, CachePluginOptions } from '@groupby/elements-cache-plugin';
 import { Core } from '@groupby/elements-core';
-import { DomEventsPlugin } from '@groupby/elements-dom-events-plugin';
+import { DomEventsPlugin, DomEventsPluginOptions } from '@groupby/elements-dom-events-plugin';
 import { ProductTransformer } from '@groupby/elements-events';
 import { SaytDriverPlugin } from '@groupby/elements-sayt-driver-plugin';
 import { SaytPlugin } from '@groupby/elements-sayt-plugin';
@@ -11,12 +11,13 @@ import { SearchPlugin } from '@groupby/elements-search-plugin';
 export default function quickStart<P>({
   cacheOptions,
   customerId,
+  domEventsOptions,
   productTransformer,
 }: QuickStartOptions<P>): Core {
   const core = new Core();
   const cacheDriverPlugin = new CacheDriverPlugin();
   const cachePlugin = new CachePlugin(cacheOptions);
-  const domEventsPlugin = new DomEventsPlugin();
+  const domEventsPlugin = new DomEventsPlugin(domEventsOptions);
   const saytDriverPlugin = new SaytDriverPlugin({ productTransformer });
   const saytPlugin = new SaytPlugin({ subdomain: customerId });
   const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
@@ -38,5 +39,6 @@ export default function quickStart<P>({
 export interface QuickStartOptions<P> {
   cacheOptions?: Partial<CachePluginOptions>;
   customerId: string;
+  domEventsOptions?: DomEventsPluginOptions;
   productTransformer?: ProductTransformer<P>;
 }
