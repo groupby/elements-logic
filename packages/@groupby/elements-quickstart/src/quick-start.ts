@@ -9,15 +9,17 @@ import { SearchDriverPlugin } from '@groupby/elements-search-driver-plugin';
 import { SearchPlugin } from '@groupby/elements-search-plugin';
 
 export default function quickStart<P>({
-  cacheOptions,
   customerId,
-  domEventsOptions,
   productTransformer,
+  pluginOptions: {
+    cache,
+    dom_events
+  } = {},
 }: QuickStartOptions<P>): Core {
   const core = new Core();
   const cacheDriverPlugin = new CacheDriverPlugin();
-  const cachePlugin = new CachePlugin(cacheOptions);
-  const domEventsPlugin = new DomEventsPlugin(domEventsOptions);
+  const cachePlugin = new CachePlugin(cache);
+  const domEventsPlugin = new DomEventsPlugin(dom_events);
   const saytDriverPlugin = new SaytDriverPlugin({ productTransformer });
   const saytPlugin = new SaytPlugin({ subdomain: customerId });
   const searchDriverPlugin = new SearchDriverPlugin({ productTransformer });
@@ -37,8 +39,10 @@ export default function quickStart<P>({
 }
 
 export interface QuickStartOptions<P> {
-  cacheOptions?: Partial<CachePluginOptions>;
   customerId: string;
-  domEventsOptions?: DomEventsPluginOptions;
   productTransformer?: ProductTransformer<P>;
+  pluginOptions?: {
+    cache?: Partial<CachePluginOptions>;
+    dom_events?: Partial<DomEventsPluginOptions>;
+  }
 }

@@ -113,20 +113,20 @@ describe('quickStart()', () => {
   });
 
   it('should forward cache options to the CachePlugin', () => {
-    const cacheOptions = { store: new Map() };
+    const cache = { store: new Map() };
 
-    quickStart({ cacheOptions, customerId });
+    quickStart({ customerId, pluginOptions: { cache } });
 
-    expect(CachePlugin).to.be.calledWith( cacheOptions )
+    expect(CachePlugin).to.be.calledWith(cache);
   });
 
   it('should forward dom event options to the DomEventsPlugin', () => {
     const window = stub().returns(class Window{});
     const CustomEvent = stub();
-    const domEventsOptions = { window, CustomEvent };
+    const dom_events = { window, CustomEvent };
 
-    quickStart({ customerId, domEventsOptions });
+    quickStart({ customerId, pluginOptions: { dom_events } });
 
-    expect(DomEventsPlugin).to.be.calledWith( domEventsOptions )
+    expect(DomEventsPlugin).to.be.calledWith(dom_events);
   });
 });
