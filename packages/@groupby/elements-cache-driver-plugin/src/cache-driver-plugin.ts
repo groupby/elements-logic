@@ -13,6 +13,8 @@ export default class CacheDriverPlugin implements Plugin {
     };
   }
 
+  options: CacheDriverOptions = {};
+
   /**
    * A reference to the registry of plugins for internal use.
    */
@@ -22,7 +24,7 @@ export default class CacheDriverPlugin implements Plugin {
    * Constructs a new instance of this plugin and binds the necessary
    * callbacks.
    */
-  constructor() {
+  constructor(options: Partial<CacheDriverOptions> = {}) {
     this.handleRequest = this.handleRequest.bind(this);
   }
 
@@ -60,3 +62,6 @@ export default class CacheDriverPlugin implements Plugin {
     this.core.dom_events.dispatchEvent(returnEvent, payload);
   }
 }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface CacheDriverOptions {}
