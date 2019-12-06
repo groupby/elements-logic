@@ -126,6 +126,14 @@ describe('quickStart()', () => {
     expect(CachePlugin).to.be.calledWith(options);
   });
 
+  it.only('should forward options to the CacheDriverPlugin', () => {
+    const options = {};
+
+    quickStart({ customerId, pluginOptions: { cache_driver: options } });
+
+    expect(CacheDriverPlugin).to.be.calledWith(options);
+  });
+
   it('should forward dom event options to the DomEventsPlugin', () => {
     const window = stub();
     const CustomEvent = stub();

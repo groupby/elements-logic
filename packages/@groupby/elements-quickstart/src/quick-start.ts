@@ -1,4 +1,4 @@
-import { CacheDriverPlugin } from '@groupby/elements-cache-driver-plugin';
+import { CacheDriverPlugin, CacheDriverOptions } from '@groupby/elements-cache-driver-plugin';
 import { CachePlugin, CachePluginOptions } from '@groupby/elements-cache-plugin';
 import { Core } from '@groupby/elements-core';
 import { DomEventsPlugin, DomEventsPluginOptions } from '@groupby/elements-dom-events-plugin';
@@ -39,6 +39,7 @@ export default function quickStart<P>({
   pluginOptions: {
     /** Options for the Cache plugin. */
     cache,
+    cache_driver,
     /** Options for the DOM Events plugin. */
     dom_events,
     /** Options for the SAYT plugin. */
@@ -52,7 +53,7 @@ export default function quickStart<P>({
   } = {},
 }: QuickStartOptions<P>): Core {
   const core = new Core();
-  const cacheDriverPlugin = new CacheDriverPlugin();
+  const cacheDriverPlugin = new CacheDriverPlugin(cache_driver);
   const cachePlugin = new CachePlugin(cache);
   const domEventsPlugin = new DomEventsPlugin(dom_events);
   const saytDriverPlugin = new SaytDriverPlugin({ ...sayt_driver, productTransformer });
@@ -88,6 +89,7 @@ export interface QuickStartOptions<P> {
   pluginOptions?: {
     /** Options for the Cache plugin. */
     cache?: Partial<CachePluginOptions>;
+    cache_driver?: Partial<CacheDriverOptions>;
     /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
     /** Options for the SAYT plugin. */
