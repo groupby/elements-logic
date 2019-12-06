@@ -6,10 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [minor]
 ### Added
-- ELE-247: Added `SaytOptions` interface.
+- ELE-247: Added `SaytPluginOptions` interface.
 
 ### Changed
-- ELE-247: Changed options intake interface from the imported `SaytConfig` to the extended `SaytOptions`.
+- ELE-247: Changed options intake interface from the imported `SaytConfig` to the extended `SaytPluginOptions`.
 
 ## [0.1.0] - 2019-11-28
 ### Added

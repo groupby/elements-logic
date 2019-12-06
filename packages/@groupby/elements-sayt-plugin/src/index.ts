@@ -1,2 +1,2 @@
-export { default as SaytPlugin, SaytOptions } from './sayt-plugin';
+export { default as SaytPlugin, SaytPluginOptions } from './sayt-plugin';
 export * from 'sayt';
