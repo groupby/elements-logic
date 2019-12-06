@@ -17,7 +17,7 @@ import {
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
   SaytProductsErrorPayload,
-  TrackerSearchPayload,
+  BeaconSearchPayload,
 } from '@groupby/elements-events';
 import {
   AutocompleteResponse,
@@ -228,11 +228,11 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   dispatchSearchTrackerEvent(results: Results, originValue: string): void {
     const origin: SendableOrigin = { [originValue]: true };
-    const trackerSearchPayload: TrackerSearchPayload = {
+    const BeaconSearchPayload: BeaconSearchPayload = {
       results,
       origin,
     };
-    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, trackerSearchPayload);
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, BeaconSearchPayload);
   }
 }
 

@@ -4,7 +4,7 @@ import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 import { GbTracker } from 'gb-tracker-client/slim-es';
 // eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent } from 'gb-tracker-client/models';
-import { BEACON_SEARCH, TrackerSearchPayload } from '@groupby/elements-events';
+import { BEACON_SEARCH, BeaconSearchPayload } from '@groupby/elements-events';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
@@ -75,7 +75,7 @@ export default class GbTrackerPlugin implements Plugin {
    *
    * @param event The event containing search tracking data.
    */
-  triggerSearchBeacon(event: CustomEvent<TrackerSearchPayload>): void {
+  triggerSearchBeacon(event: CustomEvent<BeaconSearchPayload>): void {
     const payload: AutoSearchEvent = {
       search: {
         id: event.detail.results.id,
