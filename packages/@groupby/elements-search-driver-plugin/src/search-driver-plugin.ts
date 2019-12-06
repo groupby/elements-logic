@@ -100,7 +100,12 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { query, group, config, origin } = event.detail;
+    const {
+      query,
+      group,
+      config,
+      origin,
+    } = event.detail;
     this.sendSearchApiRequest({ query, ...config })
       .then((response) => {
         const payload: SearchResponsePayload<P> = { ...response, group };
@@ -151,11 +156,11 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    */
   dispatchSearchTrackerEvent(results: Results, originValue: string): void {
     const origin: SendableOrigin = { [originValue]: true };
-    const BeaconSearchPayload: BeaconSearchPayload = {
+    const beaconSearchPayload: BeaconSearchPayload = {
       results,
       origin,
     };
-    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, BeaconSearchPayload);
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, beaconSearchPayload);
   }
 }
 
