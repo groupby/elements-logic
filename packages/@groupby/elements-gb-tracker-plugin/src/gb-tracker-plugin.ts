@@ -18,7 +18,7 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
-   * The value that the Sayt plugin exposes to the Core entity.
+   * The value that the [[GbTrackerPlugin]] exposes to the Core entity.
    */
   gbTracker: ReturnType<typeof GbTracker>;
 
