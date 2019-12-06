@@ -33,10 +33,11 @@ export default class GbTrackerPlugin implements Plugin {
   eventsPluginName = 'dom_events';
 
   /**
-   * The sayt plugin constructor instantiates an instance of the sayt plugin
-   * and attaches it to this plugin's sayt property.
+   * The [[GbTrackerPlugin]] constructor instantiates an instance of the
+   * [[GbTracker]] client and attaches it to this plugin's `gbTracker`
+   * property.
    *
-   * @param options The options to instantiate the sayt client with.
+   * @param options The options for instantiating the GbTracker client.
    */
   constructor(options: TrackerPluginOptions) {
     this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
