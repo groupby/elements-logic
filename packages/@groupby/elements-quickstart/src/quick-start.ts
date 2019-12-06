@@ -100,5 +100,5 @@ export interface QuickStartOptions<P> {
     search?: Partial<SearchPluginOptions>;
     /** Options for the Search Driver plugin. */
     search_driver?: Partial<SearchDriverOptions<P>>;
-  }
+  };
 }
