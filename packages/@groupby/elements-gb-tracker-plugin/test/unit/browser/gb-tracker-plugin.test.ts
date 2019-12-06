@@ -1,4 +1,4 @@
-import { expect, stub, spy } from '../../utils';
+import { expect, stub } from '../../utils';
 import GbTrackerPlugin from '../../../src/gb-tracker-plugin';
 
 describe('GbTrackerPlugin', () => {

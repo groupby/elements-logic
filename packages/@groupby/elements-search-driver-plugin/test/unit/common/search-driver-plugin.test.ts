@@ -280,7 +280,7 @@ describe('SearchDriverPlugin', () => {
     });
   });
 
-  describe('dispatchSearchTrackerEvent()',  () => {
+  describe('dispatchSearchTrackerEvent()', () => {
     it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
       const origin = 'some-origin';
       const results = { some: 'data' };
