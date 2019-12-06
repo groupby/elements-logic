@@ -4,10 +4,9 @@ import { Core } from '@groupby/elements-core';
 import { DomEventsPlugin, DomEventsPluginOptions } from '@groupby/elements-dom-events-plugin';
 import { ProductTransformer } from '@groupby/elements-events';
 import { SaytDriverPlugin, SaytDriverOptions } from '@groupby/elements-sayt-driver-plugin';
-import { SaytPlugin } from '@groupby/elements-sayt-plugin';
+import { SaytPlugin, SaytPluginOptions } from '@groupby/elements-sayt-plugin';
 import { SearchDriverPlugin, SearchDriverOptions } from '@groupby/elements-search-driver-plugin';
 import { SearchPlugin, SearchPluginOptions } from '@groupby/elements-search-plugin';
-import { SaytConfig } from 'sayt';
 
 /**
  * The GroupBy Elements quick start function.
