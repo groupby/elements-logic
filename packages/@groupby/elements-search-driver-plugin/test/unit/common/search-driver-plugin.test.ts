@@ -2,7 +2,7 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
-  TRACKER_SEARCH,
+  BEACON_SEARCH,
 } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '../../../src/search-driver-plugin';
@@ -281,7 +281,7 @@ describe('SearchDriverPlugin', () => {
   });
 
   describe('dispatchSearchTrackerEvent()',  () => {
-    it('should dispatch a TRACKER_SEARCH event given a search response and origin', () => {
+    it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
       const origin = 'some-origin';
       const results = { some: 'data' };
       const dispatchEvent = spy();
@@ -294,7 +294,7 @@ describe('SearchDriverPlugin', () => {
 
       searchDriverPlugin.dispatchSearchTrackerEvent(results, origin);
 
-      expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
+      expect(dispatchEvent).to.be.calledWith(BEACON_SEARCH, {
         results,
         origin: {
           [origin]: true,

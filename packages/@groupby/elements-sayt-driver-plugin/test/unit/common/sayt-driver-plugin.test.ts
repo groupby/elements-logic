@@ -5,7 +5,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
-  TRACKER_SEARCH,
+  BEACON_SEARCH,
 } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
@@ -487,7 +487,7 @@ describe('Sayt Driver Plugin', () => {
   });
 
   describe('dispatchSearchTrackerEvent()', () => {
-    it('should dispatch a TRACKER_SEARCH event given a search response and origin', () => {
+    it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
       const origin = 'some-origin';
       const results = { some: 'data' };
       const dispatchEvent = dom_events.dispatchEvent = spy();
@@ -495,7 +495,7 @@ describe('Sayt Driver Plugin', () => {
 
       driver.dispatchSearchTrackerEvent(results, origin);
 
-      expect(dispatchEvent).to.be.calledWith(TRACKER_SEARCH, {
+      expect(dispatchEvent).to.be.calledWith(BEACON_SEARCH, {
         results,
         origin: { [origin]: true },
       });

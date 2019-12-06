@@ -5,7 +5,7 @@ import {
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
   SEARCH_ERROR,
-  TRACKER_SEARCH,
+  BEACON_SEARCH,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
@@ -155,7 +155,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
       results,
       origin,
     };
-    this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, trackerSearchPayload);
   }
 }
 

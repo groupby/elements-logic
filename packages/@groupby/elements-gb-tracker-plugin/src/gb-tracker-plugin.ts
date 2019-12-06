@@ -4,7 +4,7 @@ import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 import { GbTracker } from 'gb-tracker-client/slim-es';
 // eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent } from 'gb-tracker-client/models';
-import { TRACKER_SEARCH, TrackerSearchPayload } from '@groupby/elements-events';
+import { BEACON_SEARCH, TrackerSearchPayload } from '@groupby/elements-events';
 
 /**
  * This plugin is responsible for exposing an instance of sayt
@@ -57,7 +57,7 @@ export default class GbTrackerPlugin implements Plugin {
    * Sets event listeners for tracker events.
    */
   ready(): void {
-    this.core[this.eventsPluginName].registerListener(TRACKER_SEARCH, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].registerListener(BEACON_SEARCH, this.triggerSearchBeacon);
 
     this.gbTracker.autoSetVisitor();
   }
@@ -66,7 +66,7 @@ export default class GbTrackerPlugin implements Plugin {
    * Unregister event listeners for tracker events.
    */
   unregister(): void {
-    this.core[this.eventsPluginName].unregisterListener(TRACKER_SEARCH, this.triggerSearchBeacon);
+    this.core[this.eventsPluginName].unregisterListener(BEACON_SEARCH, this.triggerSearchBeacon);
   }
 
   /**

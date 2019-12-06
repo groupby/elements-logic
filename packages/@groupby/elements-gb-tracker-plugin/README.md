@@ -37,4 +37,4 @@ These events are defined in the [`@groupby/elements-events`][elements-events] pa
 
 ### Received
 
-* `TRACKER_SEARCH`: When received, a GroupBy Search beacon is triggered.
+* `BEACON_SEARCH`: When received, a GroupBy Search beacon is triggered.

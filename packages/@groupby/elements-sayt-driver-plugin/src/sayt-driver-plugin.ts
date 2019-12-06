@@ -7,7 +7,7 @@ import {
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
-  TRACKER_SEARCH,
+  BEACON_SEARCH,
   AutocompleteRequestPayload,
   AutocompleteResultGroup,
   AutocompleteSearchTermItem,
@@ -232,7 +232,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       results,
       origin,
     };
-    this.core[this.eventsPluginName].dispatchEvent(TRACKER_SEARCH, trackerSearchPayload);
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, trackerSearchPayload);
   }
 }
 
