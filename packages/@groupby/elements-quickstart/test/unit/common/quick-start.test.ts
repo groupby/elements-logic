@@ -127,7 +127,7 @@ describe('quickStart()', () => {
   });
 
   it('should forward dom event options to the DomEventsPlugin', () => {
-    const window = stub().returns(class Window{});
+    const window = stub();
     const CustomEvent = stub();
     const options = { window, CustomEvent };
 
