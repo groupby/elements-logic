@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies, import/no-unresolved
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
 // eslint-disable-next-line import/no-unresolved
 import { GbTracker } from 'gb-tracker-client/slim-es';
