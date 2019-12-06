@@ -25,6 +25,7 @@ export default class CacheDriverPlugin implements Plugin {
    * callbacks.
    */
   constructor(options: Partial<CacheDriverOptions> = {}) {
+    this.options = { ...this.options, ...options };
     this.handleRequest = this.handleRequest.bind(this);
   }
 
