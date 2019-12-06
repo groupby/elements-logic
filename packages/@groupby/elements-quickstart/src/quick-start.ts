@@ -9,8 +9,28 @@ import { SearchDriverPlugin, SearchDriverOptions } from '@groupby/elements-searc
 import { SearchPlugin, SearchPluginOptions } from '@groupby/elements-search-plugin';
 import { SaytConfig } from 'sayt';
 
+/**
+ * The GroupBy Elements quick start function.
+ * This function instantiates [[Core]] and registers a number of plugins.
+ *
+ * The plugins included are:
+ * - `cache`
+ * - `cache_driver
+ * - `dom_events`
+ * - `sayt`
+ * - `sayt_driver`
+ * - `search`
+ * - `search_driver`
+ *
+ * @param __namedParameters Options for plugin configuration.
+ * @returns An instance of Core with the above plugins configured and registered.
+ */
 export default function quickStart<P>({
+  /** The GroupBy customer ID to use. */
   customerId,
+  /**
+   * The function to use to transform a GroupBy Search API Record into an Elements Product.
+   */
   productTransformer,
   pluginOptions: {
     cache,
