@@ -6,8 +6,7 @@ import { AutoSearchEvent } from 'gb-tracker-client/models';
 import { BEACON_SEARCH, BeaconSearchPayload } from '@groupby/elements-events';
 
 /**
- * This plugin is responsible for exposing an instance of sayt
- * to Core.
+ * This plugin is responsible for exposing an [[GbTracker]] instance to Core.
  */
 export default class GbTrackerPlugin implements Plugin {
   get metadata(): PluginMetadata {
