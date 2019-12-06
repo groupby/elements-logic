@@ -7,4 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - ELE-249: Added the `GbTrackerPlugin` module.
-  - Added a listener for search tracking events.
+  - Added a listener for search beacon events.
