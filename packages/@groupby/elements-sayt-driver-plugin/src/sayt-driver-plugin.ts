@@ -139,7 +139,12 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
    * @param event Event that contains the Search API request payload.
    */
   fetchProductData(event: CustomEvent<SaytProductsRequestPayload>): void {
-    const { query, group, config, origin } = event.detail;
+    const {
+      query,
+      group,
+      config,
+      origin,
+    } = event.detail;
     this.sendSearchApiRequest(query, config)
       .then((results) => {
         const payload: SaytProductsResponsePayload<P> = {
