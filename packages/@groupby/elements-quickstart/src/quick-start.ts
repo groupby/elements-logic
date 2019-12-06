@@ -29,16 +29,27 @@ export default function quickStart<P>({
   /** The GroupBy customer ID to use. */
   customerId,
   /**
-   * The function to use to transform a GroupBy Search API Record into an Elements Product.
+   * The function to use to transform a GroupBy Search API Record
+   * into an Elements Product.
    */
   productTransformer,
+  /**
+   * Options to configure individual plugins.
+   * All keys are optional.
+   */
   pluginOptions: {
+    /** Options for the Cache plugin. */
     cache,
+    /** Options for the DOM Events plugin. */
     dom_events,
+    /** Options for the SAYT plugin. */
     sayt,
+    /** Options for the SAYT Driver plugin. */
     sayt_driver,
+    /** Options for the Search plugin. */
     search,
-    search_driver, 
+    /** Options for the Search Driver plugin. */
+    search_driver,
   } = {},
 }: QuickStartOptions<P>): Core {
   const core = new Core();
@@ -63,15 +74,30 @@ export default function quickStart<P>({
   return core;
 }
 
+/**
+ * Options for the quick start function.
+ */
 export interface QuickStartOptions<P> {
+  /** The GroupBy customer ID to pass to use. */
   customerId: string;
+  /**
+   * The function to use to transform a GroupBy Search API Record
+   * into an Elements Product.
+   */
   productTransformer?: ProductTransformer<P>;
+  /** Options to configure individual plugins. */
   pluginOptions?: {
+    /** Options for the Cache plugin. */
     cache?: Partial<CachePluginOptions>;
+    /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
+    /** Options for the SAYT plugin. */
     sayt?: SaytConfig;
+    /** Options for the SAYT Driver plugin. */
     sayt_driver?: Partial<SaytDriverOptions<P>>;
+    /** Options for the Search plugin. */
     search?: Partial<SearchPluginOptions>;
+    /** Options for the Search Driver plugin. */
     search_driver?: Partial<SearchDriverOptions<P>>;
   }
 }
