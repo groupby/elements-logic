@@ -16,12 +16,16 @@ this plugin.
 To use the plugin, simply instantiate it and register it with Core:
 
 ```js
-const gbTrackerPlugin = new GbTrackerPlugin('my-customer-id');
+const gbTrackerPlugin = new GbTrackerPlugin({
+    customerId: 'my-customer-id',
+    area: 'some-area',
+    collection: 'some-collection',
+});
 core.register(gbTrackerPlugin);
 ```
 
-It accepts a mandatory `customerId`. It also accepts an optional `area`
-argument to handle tracking actions against specific areas.
+It accepts a mandatory `customerId`. It also accepts optional `area` and `collection`
+arguments to handle tracking actions against specific areas and collections.
 
 Additionally, the plugin will automatically listen for and act on beacon
 events. It is designed to work with the other plugins in the Logic Layer.
