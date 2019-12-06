@@ -228,11 +228,11 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
 
   dispatchSearchTrackerEvent(results: Results, originValue: string): void {
     const origin: SendableOrigin = { [originValue]: true };
-    const BeaconSearchPayload: BeaconSearchPayload = {
+    const beaconSearchPayload: BeaconSearchPayload = {
       results,
       origin,
     };
-    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, BeaconSearchPayload);
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, beaconSearchPayload);
   }
 }
 
