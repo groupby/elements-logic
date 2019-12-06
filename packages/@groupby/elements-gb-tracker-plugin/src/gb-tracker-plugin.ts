@@ -45,7 +45,7 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
-   * Returns this plugin's instance of the sayt client.
+   * Returns this plugin's instance of the [[GbTracker]] client.
    */
   register(plugins: PluginRegistry): ReturnType<typeof GbTracker> {
     this.core = plugins;
@@ -53,7 +53,8 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
-   * Sets event listeners for tracker events.
+   * Sets event listeners for beacon events. Also calls the GbTracker method
+   * `autoSetVisitor()` to allow for future beacon events to be registered.
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(BEACON_SEARCH, this.triggerSearchBeacon);
@@ -62,15 +63,14 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
-   * Unregister event listeners for tracker events.
+   * Unregister event listeners for beacon events.
    */
   unregister(): void {
     this.core[this.eventsPluginName].unregisterListener(BEACON_SEARCH, this.triggerSearchBeacon);
   }
 
   /**
-   * Triggers a Search beacon.
-   * Assumes a search results payload is sent along with an origin.
+   * Triggers a Search beacon. Intended for use as an event listener.
    *
    * @param event The event containing search tracking data.
    */
