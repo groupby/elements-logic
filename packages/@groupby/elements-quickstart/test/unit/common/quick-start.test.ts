@@ -86,7 +86,7 @@ describe('quickStart()', () => {
 
   it('should forward customerId and options to the SaytPlugin', () => {
     const options = { collection: 'collection' };
-    
+
     quickStart({ customerId, pluginOptions: { sayt: options } });
 
     expect(SaytPlugin).to.be.calledWith({ ...options, subdomain: customerId });
@@ -94,7 +94,7 @@ describe('quickStart()', () => {
 
   it('should forward customerId and options to the SearchPlugin', () => {
     const options = { https: true };
-    
+
     quickStart({ customerId, pluginOptions: { search: options } });
 
     expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
@@ -103,12 +103,12 @@ describe('quickStart()', () => {
   it('should forward options and productTransformer to SaytDriverPlugin', () => {
     const productTransformer = () => ({ a: 'a' });
     const options = { productTransformer };
-    
+
     quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
-    
+
     expect(SaytDriverPlugin).to.be.calledWith({ ...options, productTransformer });
   });
-  
+
   it('should forward options and productTransformer to SearchDriverPlugin', () => {
     const productTransformer = () => ({ a: 'a' });
     const options = { productTransformer };
