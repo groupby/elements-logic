@@ -39,6 +39,7 @@ export default function quickStart<P>({
   pluginOptions: {
     /** Options for the Cache plugin. */
     cache,
+    /** Options for the Cache Driver plugin. */
     cache_driver,
     /** Options for the DOM Events plugin. */
     dom_events,
@@ -89,6 +90,7 @@ export interface QuickStartOptions<P> {
   pluginOptions?: {
     /** Options for the Cache plugin. */
     cache?: Partial<CachePluginOptions>;
+    /** Options for the Cache Driver plugin. */
     cache_driver?: Partial<CacheDriverOptions>;
     /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
