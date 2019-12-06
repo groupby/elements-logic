@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
