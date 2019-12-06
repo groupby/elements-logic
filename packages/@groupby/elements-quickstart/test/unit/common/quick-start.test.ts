@@ -21,6 +21,7 @@ describe('quickStart()', () => {
   let SearchDriverPlugin;
   let core;
   let register;
+  let productTransformer;
 
   beforeEach(() => {
     register = spy();
@@ -33,6 +34,7 @@ describe('quickStart()', () => {
     SaytDriverPlugin = stub(SaytDriver, 'SaytDriverPlugin');
     SearchPlugin = stub(Search, 'SearchPlugin');
     SearchDriverPlugin = stub(SearchDriver, 'SearchDriverPlugin');
+    productTransformer = stub();
   });
 
   it('should return an instance of Core', () => {
@@ -100,22 +102,32 @@ describe('quickStart()', () => {
     expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
   });
 
-  it('should forward options and productTransformer to SaytDriverPlugin', () => {
-    const productTransformer = () => ({ a: 'a' });
-    const options = { productTransformer };
+  it('should forward productTransformer to SaytDriverPlugin', () => {
+    quickStart({ customerId, productTransformer });
 
-    quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
-
-    expect(SaytDriverPlugin).to.be.calledWith({ ...options, productTransformer });
+    expect(SaytDriverPlugin).to.be.calledWith({ productTransformer });
   });
 
-  it('should forward options and productTransformer to SearchDriverPlugin', () => {
-    const productTransformer = () => ({ a: 'a' });
+  it('should forward options to the SaytDriverPlugin', () => {
     const options = { productTransformer };
 
-    quickStart({ customerId, productTransformer, pluginOptions: { search_driver: options } });
+    quickStart({ customerId, pluginOptions: { sayt_driver: options }})
+
+    expect(SaytDriverPlugin).to.be.calledWith(options);
+  });
+
+  it('should forward productTransformer to SearchDriverPlugin', () => {
+    quickStart({ customerId, productTransformer });
 
     expect(SearchDriverPlugin).to.be.calledWith({ productTransformer });
+  });
+
+  it('should forward options to the SearchDriverPlugin', () => {
+    const options = { productTransformer };
+
+    quickStart({ customerId, pluginOptions: { search_driver: options }})
+
+    expect(SearchDriverPlugin).to.be.calledWith(options);
   });
 
   it('should forward cache options to the CachePlugin', () => {
@@ -126,7 +138,7 @@ describe('quickStart()', () => {
     expect(CachePlugin).to.be.calledWith(options);
   });
 
-  it.only('should forward options to the CacheDriverPlugin', () => {
+  it('should forward options to the CacheDriverPlugin', () => {
     const options = {};
 
     quickStart({ customerId, pluginOptions: { cache_driver: options } });
