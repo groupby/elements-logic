@@ -24,7 +24,7 @@ export default class SaytPlugin implements Plugin {
    *
    * @param options The options to instantiate the sayt client with.
    */
-  constructor(options?: SaytConfig) {
+  constructor(options?: SaytOptions) {
     this.sayt = new Sayt(options);
   }
 
@@ -35,3 +35,6 @@ export default class SaytPlugin implements Plugin {
     return this.sayt;
   }
 }
+
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+export interface SaytOptions extends SaytConfig {}
