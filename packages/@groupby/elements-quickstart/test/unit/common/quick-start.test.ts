@@ -116,6 +116,16 @@ describe('quickStart()', () => {
     expect(SaytDriverPlugin).to.be.calledWith(options);
   });
 
+  it('should pass the productTransformer from the sayt driver options if it exists instead of the general one', () => {
+    const optionsProductTransformer = stub();
+    const options = { productTransformer: optionsProductTransformer };
+
+    quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
+
+    expect(SaytDriverPlugin).to.be.calledWith(options);
+    expect(SaytDriverPlugin).to.not.be.calledWith(productTransformer);
+  });
+
   it('should forward productTransformer to SearchDriverPlugin', () => {
     quickStart({ customerId, productTransformer });
 
@@ -128,6 +138,16 @@ describe('quickStart()', () => {
     quickStart({ customerId, pluginOptions: { search_driver: options }})
 
     expect(SearchDriverPlugin).to.be.calledWith(options);
+  });
+
+  it('should pass the productTransformer from the search driver options if it exists instead of the general one', () => {
+    const optionsProductTransformer = stub();
+    const options = { productTransformer: optionsProductTransformer };
+
+    quickStart({ customerId, productTransformer, pluginOptions: { search_driver: options } });
+
+    expect(SearchDriverPlugin).to.be.calledWith(options);
+    expect(SearchDriverPlugin).to.not.be.calledWith(productTransformer);
   });
 
   it('should forward cache options to the CachePlugin', () => {

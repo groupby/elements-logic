@@ -56,9 +56,9 @@ export default function quickStart<P>({
   const cacheDriverPlugin = new CacheDriverPlugin(cache_driver);
   const cachePlugin = new CachePlugin(cache);
   const domEventsPlugin = new DomEventsPlugin(dom_events);
-  const saytDriverPlugin = new SaytDriverPlugin({ ...sayt_driver, productTransformer });
+  const saytDriverPlugin = new SaytDriverPlugin({ productTransformer, ...sayt_driver });
   const saytPlugin = new SaytPlugin({ ...sayt, subdomain: customerId });
-  const searchDriverPlugin = new SearchDriverPlugin({ ...search_driver, productTransformer });
+  const searchDriverPlugin = new SearchDriverPlugin({ productTransformer, ...search_driver });
   const searchPlugin = new SearchPlugin({ ...search, customerId });
 
   core.register([
