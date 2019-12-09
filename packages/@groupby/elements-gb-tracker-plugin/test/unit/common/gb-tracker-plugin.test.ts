@@ -56,8 +56,6 @@ describe('GbTrackerPlugin', () => {
 
   describe('register()', () => {
     it('should return the gb-tracker instance', () => {
-      const gbTrackerInstance = trackerPlugin.gbTracker = { a: 'a' };
-
       const registerReturnValue = trackerPlugin.register();
 
       expect(registerReturnValue).to.equal(gbTrackerInstance);
