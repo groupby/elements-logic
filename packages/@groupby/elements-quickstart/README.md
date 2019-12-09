@@ -31,8 +31,8 @@ The `quickStart` function accepts an options object to configure the plugins.
   from the GroupBy API into an Elements Product object. This will be
   passed to the `SaytDriverPlugin` and `SearchDriverPlugin`.
 * `pluginOptions`: Optional. This is an object that allows you to configure individual plugins.
-  The object has as keys the plugin names (`search`, `search_driver`, etc.)
-  and as values the corresponding plugin option objects.
+  The object provides plugin options, where the keys are the plugin names (`search`, `search_driver`, etc.),
+  and the values are the corresponding plugin options.
   All properties supported by this object are optional.
 
   Supported keys are:
