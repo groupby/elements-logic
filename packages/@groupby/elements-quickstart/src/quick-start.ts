@@ -97,7 +97,7 @@ export interface QuickStartOptions<P> {
     /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
     /** Options for the SAYT plugin. */
-    sayt?: SaytPluginOptions;
+    sayt?: Partial<SaytPluginOptions>;
     /** Options for the SAYT Driver plugin. */
     sayt_driver?: Partial<SaytDriverOptions<P>>;
     /** Options for the Search plugin. */
