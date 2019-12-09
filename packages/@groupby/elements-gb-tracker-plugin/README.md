@@ -41,4 +41,4 @@ These events are defined in the [`@groupby/elements-events`][elements-events] pa
 
 ### Received
 
-* `BEACON_SEARCH`: When received, a GroupBy `Auto Search` beacon is triggered.
+* `BEACON_SEARCH`: When received, a GroupBy Auto Search beacon is triggered.
