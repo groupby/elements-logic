@@ -36,12 +36,11 @@ describe('GbTrackerPlugin', () => {
     it('should create a new instance of GbTracker with options', () => {
       const customerId = 'my-customer-id';
       const area = 'my-area';
-      const overridePixelUrl = 'my-pixel-url';
-      const options: any = { customerId, area, overridePixelUrl };
+      const options: any = { customerId, area };
 
       trackerPlugin = new GbTrackerPlugin(options);
 
-      expect(GbTracker).to.be.calledWith(customerId, area, overridePixelUrl);
+      expect(GbTracker).to.be.calledWith(customerId, area);
       expect(GbTracker.calledWithNew()).to.be.true;
       expect(trackerPlugin.gbTracker).to.equal(gbTrackerInstance);
     });

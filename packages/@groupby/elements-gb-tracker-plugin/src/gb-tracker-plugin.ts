@@ -42,7 +42,7 @@ export default class GbTrackerPlugin implements Plugin {
   constructor(options: TrackerPluginOptions) {
     this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
 
-    this.gbTracker = new GbTracker(options.customerId, options.area, options.overridePixelUrl);
+    this.gbTracker = new GbTracker(options.customerId, options.area);
     this.gbTracker.autoSetVisitor();
   }
 
@@ -92,6 +92,4 @@ export interface TrackerPluginOptions {
   customerId: string;
   /** The area in which the tracked actions will occur. */
   area?: string;
-  // @TODO Is this option needed? What does it do?
-  overridePixelUrl?: string;
 }
