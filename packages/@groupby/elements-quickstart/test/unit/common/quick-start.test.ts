@@ -22,6 +22,7 @@ describe('quickStart()', () => {
   let core;
   let register;
   let productTransformer;
+  let options: any;
 
   beforeEach(() => {
     register = spy();
@@ -35,6 +36,7 @@ describe('quickStart()', () => {
     SearchPlugin = stub(Search, 'SearchPlugin');
     SearchDriverPlugin = stub(SearchDriver, 'SearchDriverPlugin');
     productTransformer = stub();
+    options = { a: 'a' };
   });
 
   it('should return an instance of Core', () => {
@@ -87,16 +89,12 @@ describe('quickStart()', () => {
   });
 
   it('should forward customerId and options to the SaytPlugin', () => {
-    const options = { collection: 'collection' };
-
     quickStart({ customerId, pluginOptions: { sayt: options } });
 
     expect(SaytPlugin).to.be.calledWith({ ...options, subdomain: customerId });
   });
 
   it('should forward customerId and options to the SearchPlugin', () => {
-    const options = { https: true };
-
     quickStart({ customerId, pluginOptions: { search: options } });
 
     expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
@@ -109,7 +107,7 @@ describe('quickStart()', () => {
   });
 
   it('should forward options to the SaytDriverPlugin', () => {
-    const options = { productTransformer };
+    options.productTransformer = productTransformer;
 
     quickStart({ customerId, pluginOptions: { sayt_driver: options } });
 
@@ -118,7 +116,7 @@ describe('quickStart()', () => {
 
   it('should pass the productTransformer from the sayt driver options if it exists instead of the general one', () => {
     const optionsProductTransformer = stub();
-    const options = { productTransformer: optionsProductTransformer };
+    options.productTransformer = optionsProductTransformer;
 
     quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
 
@@ -133,7 +131,7 @@ describe('quickStart()', () => {
   });
 
   it('should forward options to the SearchDriverPlugin', () => {
-    const options = { productTransformer };
+    options.productTransformer = productTransformer;
 
     quickStart({ customerId, pluginOptions: { search_driver: options } });
 
@@ -142,7 +140,7 @@ describe('quickStart()', () => {
 
   it('should pass the productTransformer from the search driver options if it exists instead of the general one', () => {
     const optionsProductTransformer = stub();
-    const options = { productTransformer: optionsProductTransformer };
+    options.productTransformer = optionsProductTransformer;
 
     quickStart({ customerId, productTransformer, pluginOptions: { search_driver: options } });
 
@@ -151,26 +149,18 @@ describe('quickStart()', () => {
   });
 
   it('should forward cache options to the CachePlugin', () => {
-    const options = { store: new Map() };
-
     quickStart({ customerId, pluginOptions: { cache: options } });
 
     expect(CachePlugin).to.be.calledWith(options);
   });
 
   it('should forward options to the CacheDriverPlugin', () => {
-    const options = {};
-
     quickStart({ customerId, pluginOptions: { cache_driver: options } });
 
     expect(CacheDriverPlugin).to.be.calledWith(options);
   });
 
   it('should forward dom event options to the DomEventsPlugin', () => {
-    const window = stub();
-    const CustomEvent = stub();
-    const options = { window, CustomEvent };
-
     quickStart({ customerId, pluginOptions: { dom_events: options } });
 
     expect(DomEventsPlugin).to.be.calledWith(options);
