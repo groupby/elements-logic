@@ -2,10 +2,10 @@ import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ERROR,
+  BEACON_SEARCH,
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
-  BEACON_SEARCH,
 } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import { SaytDriverPlugin } from '../../../src/index';
