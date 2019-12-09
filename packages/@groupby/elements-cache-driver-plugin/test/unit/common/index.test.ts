@@ -1,7 +1,7 @@
 import { AssertTypesEqual, expect } from '../../utils';
 import {
   CacheDriverPlugin as CacheDriverPluginExport,
-  CacheDriverOptions as CacheDriverOptionsExport
+  CacheDriverOptions as CacheDriverOptionsExport,
 } from '../../../src';
 import CacheDriverPlugin, { CacheDriverOptions } from '../../../src/cache-driver-plugin';
 

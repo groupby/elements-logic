@@ -111,7 +111,7 @@ describe('quickStart()', () => {
   it('should forward options to the SaytDriverPlugin', () => {
     const options = { productTransformer };
 
-    quickStart({ customerId, pluginOptions: { sayt_driver: options }})
+    quickStart({ customerId, pluginOptions: { sayt_driver: options } });
 
     expect(SaytDriverPlugin).to.be.calledWith(options);
   });
@@ -135,7 +135,7 @@ describe('quickStart()', () => {
   it('should forward options to the SearchDriverPlugin', () => {
     const options = { productTransformer };
 
-    quickStart({ customerId, pluginOptions: { search_driver: options }})
+    quickStart({ customerId, pluginOptions: { search_driver: options } });
 
     expect(SearchDriverPlugin).to.be.calledWith(options);
   });
