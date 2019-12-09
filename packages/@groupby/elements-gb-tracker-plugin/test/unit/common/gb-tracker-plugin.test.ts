@@ -68,7 +68,7 @@ describe('GbTrackerPlugin', () => {
 
       trackerPlugin.register(core);
 
-      expect(trackerPlugin.core).to.deep.equal(core);
+      expect(trackerPlugin.core).to.equal(core);
     });
   });
 
