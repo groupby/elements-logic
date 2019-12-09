@@ -1,8 +1,8 @@
 import {
+  BEACON_SEARCH,
+  SEARCH_ERROR,
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
-  SEARCH_ERROR,
-  BEACON_SEARCH,
 } from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '../../../src/search-driver-plugin';

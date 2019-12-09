@@ -3,15 +3,15 @@ import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
+  BEACON_SEARCH,
+  SEARCH_ERROR,
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
-  SEARCH_ERROR,
-  BEACON_SEARCH,
+  BeaconSearchPayload,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
   SearchErrorPayload,
-  BeaconSearchPayload,
 } from '@groupby/elements-events';
 
 /**

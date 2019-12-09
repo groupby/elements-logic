@@ -1,9 +1,9 @@
 import { Plugin, PluginMetadata, PluginRegistry } from '@groupby/elements-core';
-// eslint-disable-next-line import/no-unresolved
-import { GbTracker } from 'gb-tracker-client/slim-es';
+import { BEACON_SEARCH, BeaconSearchPayload } from '@groupby/elements-events';
 // eslint-disable-next-line import/no-unresolved
 import { AutoSearchEvent } from 'gb-tracker-client/models';
-import { BEACON_SEARCH, BeaconSearchPayload } from '@groupby/elements-events';
+// eslint-disable-next-line import/no-unresolved
+import { GbTracker } from 'gb-tracker-client/slim-es';
 
 /**
  * This plugin is responsible for exposing an [[GbTracker]] instance to Core.
