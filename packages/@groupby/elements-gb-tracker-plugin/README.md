@@ -17,9 +17,9 @@ To use the plugin, simply instantiate it and register it with Core:
 
 ```js
 const gbTrackerPlugin = new GbTrackerPlugin({
-    customerId: 'my-customer-id',
-    area: 'some-area',
-    collection: 'some-collection',
+  customerId: 'my-customer-id',
+  area: 'some-area',
+  collection: 'some-collection',
 });
 core.register(gbTrackerPlugin);
 ```
