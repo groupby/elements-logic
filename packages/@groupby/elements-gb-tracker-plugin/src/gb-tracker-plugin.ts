@@ -43,6 +43,7 @@ export default class GbTrackerPlugin implements Plugin {
     this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
 
     this.gbTracker = new GbTracker(options.customerId, options.area, options.overridePixelUrl);
+    this.gbTracker.autoSetVisitor();
   }
 
   /**
@@ -59,8 +60,6 @@ export default class GbTrackerPlugin implements Plugin {
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(BEACON_SEARCH, this.triggerSearchBeacon);
-
-    this.gbTracker.autoSetVisitor();
   }
 
   /**

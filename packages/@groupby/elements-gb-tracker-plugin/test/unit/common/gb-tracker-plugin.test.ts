@@ -6,11 +6,19 @@ import GbTrackerPlugin from '../../../src/gb-tracker-plugin';
 
 describe('GbTrackerPlugin', () => {
   let trackerPlugin: any;
+  let autoSetVisitor;
+  let gbTrackerInstance;
+  let GbTracker;
+  let sendAutoSearchEvent;
 
   beforeEach(() => {
     const options = {
       customerId: 'my-customer-id',
     };
+    autoSetVisitor = spy();
+    sendAutoSearchEvent = spy();
+    gbTrackerInstance = { autoSetVisitor, sendAutoSearchEvent };
+    GbTracker = stub(GbTrackerPackage, 'GbTracker').returns(gbTrackerInstance);
     trackerPlugin = new GbTrackerPlugin(options as any);
   });
 
@@ -26,8 +34,6 @@ describe('GbTrackerPlugin', () => {
 
   describe('constructor()', () => {
     it('should create a new instance of GbTracker with options', () => {
-      const gbTrackerInstance = { a: 'a' };
-      const GbTracker = stub(GbTrackerPackage, 'GbTracker').returns(gbTrackerInstance);
       const customerId = 'my-customer-id';
       const area = 'my-area';
       const overridePixelUrl = 'my-pixel-url';
@@ -38,6 +44,12 @@ describe('GbTrackerPlugin', () => {
       expect(GbTracker).to.be.calledWith(customerId, area, overridePixelUrl);
       expect(GbTracker.calledWithNew()).to.be.true;
       expect(trackerPlugin.gbTracker).to.equal(gbTrackerInstance);
+    });
+
+    it('should call autoSetVisitor() on the constructed gbTracker instance', () => {
+      trackerPlugin = new GbTrackerPlugin({} as any);
+
+      expect(autoSetVisitor).to.be.called;
     });
   });
 
@@ -63,7 +75,6 @@ describe('GbTrackerPlugin', () => {
     it('should set tracker event listeners', () => {
       const registerListener = spy();
       trackerPlugin.core = { dom_events: { registerListener } };
-      stub(trackerPlugin.gbTracker, 'autoSetVisitor');
 
       trackerPlugin.ready();
 
@@ -89,8 +100,6 @@ describe('GbTrackerPlugin', () => {
         results: { id: 'some-search-id' },
       };
       const searchTrackerEvent = { detail: searchInfo };
-      const sendAutoSearchEvent = spy();
-      trackerPlugin.gbTracker = { sendAutoSearchEvent };
 
       trackerPlugin.triggerSearchBeacon(searchTrackerEvent);
 
