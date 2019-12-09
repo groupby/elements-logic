@@ -154,7 +154,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
-        this.dispatchSearchTrackerEvent(results.originalResponse, origin);
+        this.dispatchSearchBeacon(results.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
@@ -232,7 +232,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       .map((term) => ({ label: term.value }));
   }
 
-  dispatchSearchTrackerEvent(results: Results, originValue: string): void {
+  dispatchSearchBeacon(results: Results, originValue: string): void {
     const origin: SendableOrigin = { [originValue]: true };
     const beaconSearchPayload: BeaconSearchPayload = {
       results,

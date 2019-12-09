@@ -95,7 +95,7 @@ describe('SearchDriverPlugin', () => {
     let group;
     let response;
     let sendSearchApiRequest;
-    let dispatchSearchTrackerEvent;
+    let dispatchSearchBeacon;
     let core;
     let query;
 
@@ -108,7 +108,7 @@ describe('SearchDriverPlugin', () => {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
-      dispatchSearchTrackerEvent = stub(searchDriverPlugin, 'dispatchSearchTrackerEvent');
+      dispatchSearchBeacon = stub(searchDriverPlugin, 'dispatchSearchBeacon');
       searchDriverPlugin.core = core = {
         [eventsPluginName]: {
           dispatchEvent: () => {},
@@ -184,8 +184,8 @@ describe('SearchDriverPlugin', () => {
       const origin = 'some-origin';
       response.originalResponse = { id: 'search-id' };
       sendSearchApiRequest.resolves(response);
-      dispatchSearchTrackerEvent.callsFake(() => {
-        expect(dispatchSearchTrackerEvent).to.be.calledWith(response.originalResponse, origin);
+      dispatchSearchBeacon.callsFake(() => {
+        expect(dispatchSearchBeacon).to.be.calledWith(response.originalResponse, origin);
         done();
       });
 
@@ -280,7 +280,7 @@ describe('SearchDriverPlugin', () => {
     });
   });
 
-  describe('dispatchSearchTrackerEvent()', () => {
+  describe('dispatchSearchBeacon()', () => {
     it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
       const origin = 'some-origin';
       const results = { some: 'data' };
@@ -292,7 +292,7 @@ describe('SearchDriverPlugin', () => {
       };
       searchDriverPlugin.core = core;
 
-      searchDriverPlugin.dispatchSearchTrackerEvent(results, origin);
+      searchDriverPlugin.dispatchSearchBeacon(results, origin);
 
       expect(dispatchEvent).to.be.calledWith(BEACON_SEARCH, {
         results,

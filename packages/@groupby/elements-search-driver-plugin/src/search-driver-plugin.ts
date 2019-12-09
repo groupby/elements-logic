@@ -112,7 +112,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
         const payload: SearchResponsePayload<P> = { ...response, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
-        this.dispatchSearchTrackerEvent(response.originalResponse, origin);
+        this.dispatchSearchBeacon(response.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
@@ -155,7 +155,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param results The results from the search response.
    * @param originValue The search event's origin.
    */
-  dispatchSearchTrackerEvent(results: Results, originValue: string): void {
+  dispatchSearchBeacon(results: Results, originValue: string): void {
     const origin: SendableOrigin = { [originValue]: true };
     const beaconSearchPayload: BeaconSearchPayload = {
       results,
