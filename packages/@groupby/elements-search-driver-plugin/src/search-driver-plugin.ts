@@ -155,7 +155,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * @param results The results from the search response.
    * @param originValue The search event's origin.
    */
-  dispatchSearchBeacon(results: Results, originValue: string): void {
+  dispatchSearchBeacon(results: Results, originValue: keyof SendableOrigin): void {
     const origin: SendableOrigin = { [originValue]: true };
     const beaconSearchPayload: BeaconSearchPayload = {
       results,

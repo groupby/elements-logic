@@ -232,7 +232,7 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       .map((term) => ({ label: term.value }));
   }
 
-  dispatchSearchBeacon(results: Results, originValue: string): void {
+  dispatchSearchBeacon(results: Results, originValue: keyof SendableOrigin): void {
     const origin: SendableOrigin = { [originValue]: true };
     const beaconSearchPayload: BeaconSearchPayload = {
       results,
