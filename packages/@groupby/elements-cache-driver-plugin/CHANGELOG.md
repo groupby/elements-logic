@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [minor]
 ### Added
-- Add options to the `CacheDriverPlugin`.
+- ELE-247: Add options to the `CacheDriverPlugin`.
 
 ## [0.1.0] - 2019-11-28
 ### Added
