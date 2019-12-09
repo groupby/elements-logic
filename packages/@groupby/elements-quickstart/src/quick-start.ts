@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase, camelcase */
+
 import { CacheDriverPlugin, CacheDriverOptions } from '@groupby/elements-cache-driver-plugin';
 import { CachePlugin, CachePluginOptions } from '@groupby/elements-cache-plugin';
 import { Core } from '@groupby/elements-core';
