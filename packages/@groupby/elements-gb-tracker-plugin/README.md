@@ -27,8 +27,8 @@ core.register(gbTrackerPlugin);
 It accepts a mandatory `customerId`. It also accepts optional `area` and `collection`
 arguments to handle tracking actions against specific areas and collections.
 
-Additionally, the plugin will automatically listen for and act on beacon
-events. It is designed to work with the other plugins in the Logic Layer.
+Additionally, the plugin will automatically listen for and act on beacon events.
+It is designed to work with the other plugins in the Logic Layer.
 
 The plugin registers an instance of the [gb-tracker client](https://www.npmjs.com/package/gb-tracker-client) with Core.
 
