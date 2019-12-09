@@ -6,7 +6,8 @@ import { AutoSearchEvent } from 'gb-tracker-client/models';
 import { GbTracker } from 'gb-tracker-client/slim-es';
 
 /**
- * This plugin is responsible for exposing an [[GbTracker]] instance to Core.
+ * This plugin is responsible for exposing a [[GbTracker]] instance to Core.
+ * It listens for generic beacon events and triggers GroupBy-specific beacons.
  */
 export default class GbTrackerPlugin implements Plugin {
   get metadata(): PluginMetadata {
