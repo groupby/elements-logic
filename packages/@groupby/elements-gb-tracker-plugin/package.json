@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-gb-tracker-plugin",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
