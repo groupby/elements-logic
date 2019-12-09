@@ -107,6 +107,15 @@
     groupby-api "^2.6.2"
     sayt "^0.1.9"
 
+"@groupby/elements-events@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@groupby/elements-events/-/elements-events-0.2.0.tgz#9b0e8d0146e6d28743b9b23b53b4c6f7ba7ea694"
+  integrity sha512-ng/LEC3Bpzu3ufz/nr9E2WcS3Dc33xuqibwAAXM5iDYXwWSkpXBRQUbnEGCkPcWHy2uuBaFXbUelzG9lgDxsOw==
+  dependencies:
+    gb-tracker-client "^3.7.2"
+    groupby-api "^2.6.2"
+    sayt "^0.1.9"
+
 "@istanbuljs/nyc-config-typescript@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@istanbuljs/nyc-config-typescript/-/nyc-config-typescript-0.1.3.tgz#944d15b3ebdb71f963a628daffaa25ade981bb86"
