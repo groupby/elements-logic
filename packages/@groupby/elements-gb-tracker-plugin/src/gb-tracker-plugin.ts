@@ -55,8 +55,7 @@ export default class GbTrackerPlugin implements Plugin {
   }
 
   /**
-   * Sets event listeners for beacon events. Also calls the GbTracker method
-   * `autoSetVisitor()` to allow for future beacon events to be registered.
+   * Sets event listeners for beacon events.
    */
   ready(): void {
     this.core[this.eventsPluginName].registerListener(BEACON_SEARCH, this.triggerSearchBeacon);
