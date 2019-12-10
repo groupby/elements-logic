@@ -12,7 +12,7 @@ import { GbTracker } from 'gb-tracker-client/slim-es';
 export default class GbTrackerPlugin implements Plugin {
   get metadata(): PluginMetadata {
     return {
-      name: 'gb-tracker',
+      name: 'gb_tracker',
       depends: ['dom_events'],
     };
   }
