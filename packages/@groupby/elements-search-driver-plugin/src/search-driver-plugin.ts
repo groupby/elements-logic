@@ -96,7 +96,7 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
    * and emits the result through an event. A successful result is emitted in a
    * [[SEARCH_RESPONSE]] event. If the search fails for any
    * reason, a [[SEARCH_ERROR]] is dispatched with the error.
-   * Emits a beacon event if search is successful.
+   * Emits a [[BEACON_SEARCH]] event if search is successful.
    *
    * @param event the event whose payload is the search term.
    */
