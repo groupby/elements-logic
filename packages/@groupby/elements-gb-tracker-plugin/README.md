@@ -4,7 +4,7 @@ This package contains the GroupBy Tracker Plugin class. Its purpose is to provid
 
 ## Prerequisites
 
-This plugin depends on the following plugins:
+This plugin depends on the following Elements plugins:
 
 - `dom_events`
 
