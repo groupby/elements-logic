@@ -91,7 +91,9 @@ describe('quickStart()', () => {
   it('should forward customerId and options to the SaytPlugin', () => {
     quickStart({ customerId, pluginOptions: { sayt: options } });
 
-    expect(SaytPlugin).to.be.calledWith({ ...options, subdomain: customerId });
+    expect(SaytPlugin).to.be.calledWithExactly({ ...options, subdomain: customerId });
+  });
+
   it('should pass the customerId from the sayt plugin options if it exists instead of the general one', () => {
     options.subdomain = 'options custid';
 
@@ -103,7 +105,7 @@ describe('quickStart()', () => {
   it('should forward customerId and options to the SearchPlugin', () => {
     quickStart({ customerId, pluginOptions: { search: options } });
 
-    expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
+    expect(SearchPlugin).to.be.calledWithExactly({ ...options, customerId });
   });
 
   it('should pass the customerId from the search plugin options if it exists instead of the general one', () => {
@@ -117,13 +119,13 @@ describe('quickStart()', () => {
   it('should forward productTransformer to SaytDriverPlugin', () => {
     quickStart({ customerId, productTransformer });
 
-    expect(SaytDriverPlugin).to.be.calledWith({ productTransformer });
+    expect(SaytDriverPlugin).to.be.calledWithExactly({ productTransformer });
   });
 
   it('should forward options to the SaytDriverPlugin', () => {
     quickStart({ customerId, pluginOptions: { sayt_driver: options } });
 
-    expect(SaytDriverPlugin).to.be.calledWith(options);
+    expect(SaytDriverPlugin).to.be.calledWithExactly(options);
   });
 
   it('should pass the productTransformer from the sayt driver options if it exists instead of the general one', () => {
@@ -131,19 +133,19 @@ describe('quickStart()', () => {
 
     quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
 
-    expect(SaytDriverPlugin).to.be.calledWith(options);
+    expect(SaytDriverPlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward productTransformer to SearchDriverPlugin', () => {
     quickStart({ customerId, productTransformer });
 
-    expect(SearchDriverPlugin).to.be.calledWith({ productTransformer });
+    expect(SearchDriverPlugin).to.be.calledWithExactly({ productTransformer });
   });
 
   it('should forward options to the SearchDriverPlugin', () => {
     quickStart({ customerId, pluginOptions: { search_driver: options } });
 
-    expect(SearchDriverPlugin).to.be.calledWith(options);
+    expect(SearchDriverPlugin).to.be.calledWithExactly(options);
   });
 
   it('should pass the productTransformer from the search driver options if it exists instead of the general one', () => {
@@ -151,25 +153,24 @@ describe('quickStart()', () => {
 
     quickStart({ customerId, productTransformer, pluginOptions: { search_driver: options } });
 
-    expect(SearchDriverPlugin).to.be.calledWith(options);
-    expect(SearchDriverPlugin).to.not.be.calledWith(productTransformer);
+    expect(SearchDriverPlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward cache options to the CachePlugin', () => {
     quickStart({ customerId, pluginOptions: { cache: options } });
 
-    expect(CachePlugin).to.be.calledWith(options);
+    expect(CachePlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward options to the CacheDriverPlugin', () => {
     quickStart({ customerId, pluginOptions: { cache_driver: options } });
 
-    expect(CacheDriverPlugin).to.be.calledWith(options);
+    expect(CacheDriverPlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward dom event options to the DomEventsPlugin', () => {
     quickStart({ customerId, pluginOptions: { dom_events: options } });
 
-    expect(DomEventsPlugin).to.be.calledWith(options);
+    expect(DomEventsPlugin).to.be.calledWithExactly(options);
   });
 });
