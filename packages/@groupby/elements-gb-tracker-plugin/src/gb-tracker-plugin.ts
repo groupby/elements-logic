@@ -39,10 +39,13 @@ export default class GbTrackerPlugin implements Plugin {
    *
    * @param options The options for instantiating the GbTracker client.
    */
-  constructor(options: TrackerPluginOptions) {
+  constructor({
+    customerId,
+    area,
+  }: Partial<TrackerPluginOptions> = {}) {
     this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
 
-    this.gbTracker = new GbTracker(options.customerId, options.area);
+    this.gbTracker = new GbTracker(customerId, area);
     this.gbTracker.autoSetVisitor();
   }
 
