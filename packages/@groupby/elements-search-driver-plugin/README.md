@@ -42,4 +42,4 @@ These events are defined in the [`@groupby/elements-events`][elements-events] pa
   completed. Its payload is the result of the request.
 * `SEARCH_ERROR`: Dispatched when an error has occurred during a
   search request.
-* `BEACON_SEARCH`: Dispatched when a search is made sucessfully. Its payload contains the search results and the origin of the action that triggered the search. This is listened to by our `GbTrackerPlugin` and can be listened to by any other custom trackers.
+* `BEACON_SEARCH`: Dispatched when a search is made sucessfully. Its payload contains the search results and the origin of the action that triggered the search. This can be listened to by built-in or custom trackers.

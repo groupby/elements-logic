@@ -44,6 +44,6 @@ This plugin listens for and dispatches a number of events. These events are defi
 * `AUTOCOMPLETE_ERROR`: Dispatched when an error has occurred during a Sayt request.
 * `SAYT_PRODUCTS_RESPONSE`: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.
 * `SAYT_PRODUCTS_ERROR`: Dispatched when an error has occurred during a search request.
-* `BEACON_SEARCH`: Dispatched when a search is made sucessfully. Its payload contains the search results and the origin of the action that triggered the search. This is listened to by built-in or custom trackers.
+* `BEACON_SEARCH`: Dispatched when a search is made sucessfully. Its payload contains the search results and the origin of the action that triggered the search. This can be listened to by built-in or custom trackers.
 
 [elements-events]: https://github.com/groupby/elements-events
