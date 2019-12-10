@@ -24,7 +24,7 @@ describe('GbTrackerPlugin', () => {
 
   describe('metadata getter', () => {
     it('should have the name `gb-tracker`', () => {
-      expect(trackerPlugin.metadata.name).to.equal('gb-tracker');
+      expect(trackerPlugin.metadata.name).to.equal('gb_tracker');
     });
 
     it('should not specify any dependencies', () => {
