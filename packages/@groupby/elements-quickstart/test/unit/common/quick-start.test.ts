@@ -92,12 +92,26 @@ describe('quickStart()', () => {
     quickStart({ customerId, pluginOptions: { sayt: options } });
 
     expect(SaytPlugin).to.be.calledWith({ ...options, subdomain: customerId });
+  it('should pass the customerId from the sayt plugin options if it exists instead of the general one', () => {
+    options.subdomain = 'options custid';
+
+    quickStart({ customerId, pluginOptions: { sayt: options } });
+
+    expect(SaytPlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward customerId and options to the SearchPlugin', () => {
     quickStart({ customerId, pluginOptions: { search: options } });
 
     expect(SearchPlugin).to.be.calledWith({ ...options, customerId });
+  });
+
+  it('should pass the customerId from the search plugin options if it exists instead of the general one', () => {
+    options.customerId = 'options custid';
+
+    quickStart({ customerId, pluginOptions: { search: options } });
+
+    expect(SearchPlugin).to.be.calledWithExactly(options);
   });
 
   it('should forward productTransformer to SaytDriverPlugin', () => {
