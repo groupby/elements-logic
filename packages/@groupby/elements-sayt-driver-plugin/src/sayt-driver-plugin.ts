@@ -150,14 +150,14 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       origin,
     } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then((results) => {
+      .then((response) => {
         const payload: SaytProductsResponsePayload<P> = {
-          ...results,
+          ...response,
           group,
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
-        this.dispatchSearchBeacon(results.originalResponse, origin);
+        this.dispatchSearchBeacon(response.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
