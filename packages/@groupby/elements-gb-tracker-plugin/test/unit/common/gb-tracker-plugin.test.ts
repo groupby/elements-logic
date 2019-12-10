@@ -27,7 +27,7 @@ describe('GbTrackerPlugin', () => {
       expect(trackerPlugin.metadata.name).to.equal('gb_tracker');
     });
 
-    it('should not specify any dependencies', () => {
+    it('should specify the events plugin as a dependency', () => {
       expect(trackerPlugin.metadata.depends).to.have.members([
         'dom_events',
       ]);
