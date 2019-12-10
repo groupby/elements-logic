@@ -30,15 +30,17 @@ arguments to handle tracking actions against specific areas and collections.
 Additionally, the plugin will automatically listen for and act on beacon events.
 It is designed to work with the other plugins in the Logic Layer.
 
-The plugin registers an instance of the [gb-tracker client](https://www.npmjs.com/package/gb-tracker-client) with Core.
+The plugin registers an instance of the [gb-tracker client][gb-tracker-client] with Core.
 
 ## Events
 
 This plugin listens for a number of events.
 These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
-[elements-events]: https://github.com/groupby/elements-events
 
 ### Received
 
 * `BEACON_SEARCH`: When received, a GroupBy Auto Search beacon is triggered.
+
+[elements-events]: https://github.com/groupby/elements-events
+[gb-tracker-client]: https://www.npmjs.com/package/gb-tracker-client
