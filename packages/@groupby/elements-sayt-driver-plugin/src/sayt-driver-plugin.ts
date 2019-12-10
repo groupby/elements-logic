@@ -235,6 +235,13 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
       .map((term) => ({ label: term.value }));
   }
 
+  /**
+   * Dispatches a [[BEACON_SEARCH]] event to inform any listeners of a
+   * successful search.
+   *
+   * @param results The search results.
+   * @param originValue The value representing the action's origin.
+   */
   dispatchSearchBeacon(results: Results, originValue: keyof SendableOrigin): void {
     const origin: SendableOrigin = { [originValue]: true };
     const beaconSearchPayload: BeaconSearchPayload = {
