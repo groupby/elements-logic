@@ -35,7 +35,7 @@ describe('quickStart()', () => {
     SaytDriverPlugin = stub(SaytDriver, 'SaytDriverPlugin');
     SearchPlugin = stub(Search, 'SearchPlugin');
     SearchDriverPlugin = stub(SearchDriver, 'SearchDriverPlugin');
-    productTransformer = stub();
+    productTransformer = spy();
     options = { a: 'a' };
   });
 
@@ -113,13 +113,11 @@ describe('quickStart()', () => {
   });
 
   it('should pass the productTransformer from the sayt driver options if it exists instead of the general one', () => {
-    const optionsProductTransformer = stub();
-    options.productTransformer = optionsProductTransformer;
+    options.productTransformer = spy();
 
     quickStart({ customerId, productTransformer, pluginOptions: { sayt_driver: options } });
 
     expect(SaytDriverPlugin).to.be.calledWith(options);
-    expect(SaytDriverPlugin).to.not.be.calledWith(productTransformer);
   });
 
   it('should forward productTransformer to SearchDriverPlugin', () => {
@@ -135,8 +133,7 @@ describe('quickStart()', () => {
   });
 
   it('should pass the productTransformer from the search driver options if it exists instead of the general one', () => {
-    const optionsProductTransformer = stub();
-    options.productTransformer = optionsProductTransformer;
+    options.productTransformer = spy();
 
     quickStart({ customerId, productTransformer, pluginOptions: { search_driver: options } });
 
