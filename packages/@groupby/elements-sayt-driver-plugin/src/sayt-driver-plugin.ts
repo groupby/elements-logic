@@ -134,8 +134,11 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Sends a request to the Search API for product data and dispatches
-   * events on success and failure.
+   * Sends a request to the Search API for product data and emits the result
+   * through an event. A successful result is emitted in a
+   * [[SAYT_PRODUCTS_RESPONSE]] event. If the search fails for any reason, a
+   * [[SAYT_PRODUCTS_ERROR]] is dispatched with the error.
+   * Emits a beacon event if search is successful.
    *
    * @param event Event that contains the Search API request payload.
    */
