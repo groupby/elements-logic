@@ -37,7 +37,6 @@ The plugin registers an instance of the [gb-tracker client][gb-tracker-client] w
 This plugin listens for a number of events.
 These events are defined in the [`@groupby/elements-events`][elements-events] package.
 
-
 ### Received
 
 * `BEACON_SEARCH`: When received, a GroupBy Auto Search beacon is triggered.
