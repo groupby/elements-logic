@@ -91,17 +91,16 @@ describe('SearchDriverPlugin', () => {
   describe('fetchSearchData()', () => {
     const area = 'area';
     const collection = 'collection';
+    const query = 'search term';
     let config;
     let group;
     let response;
     let sendSearchApiRequest;
     let dispatchSearchBeacon;
     let core;
-    let query;
 
     beforeEach(() => {
       config = { area, collection };
-      query = 'search term';
       response = { a: 'a', results: {} };
       group = undefined;
       searchDriverPlugin.core = {
