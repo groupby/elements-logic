@@ -6,10 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] [minor]
 ### Added
-- ELE-247: Taught `CacheDriverPlugin` to accept options for consistency with other plugins.
-  No options are currently recognized.
-
-## [0.1.0] - 2019-11-28
-### Added
-- SFX-158: Added the `CacheDriverPlugin` module.
-  - Listens for cache requests and emits response events.
+- ELE-247: Add quick start function. This function instantiates Core
+  and registers the following plugins with provided configuration:
+  - `cache`
+  - `cache_driver`
+  - `dom_events`
+  - `sayt`
+  - `sayt_driver`
+  - `search`
+  - `search_driver`

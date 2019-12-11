@@ -28,6 +28,10 @@ module.exports = {
       use: { loader: 'expose-loader', options: 'GbElementsPlugins' }
     },
     {
+      test: path.resolve(__dirname, 'presets', 'all-plugins.ts'),
+      use: { loader: 'expose-loader', options: 'GbElementsLogic' }
+    },
+    {
       test: /\.tsx?$/,
       loader: 'ts-loader',
       exclude: [/node_modules/]

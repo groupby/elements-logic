@@ -125,7 +125,7 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_search_plugin-
       - run: *extract_build_archive
       - restore_cache:
-          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_cache-plugin-
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_cache_plugin-
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_driver_plugin-
@@ -135,6 +135,9 @@ jobs:
       - run: *extract_build_archive
       - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_cache_driver_plugin-
+      - run: *extract_build_archive
+      - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_quickstart-
       - run: *extract_build_archive
       - run: *archive_build
       - save_cache:
@@ -291,10 +294,20 @@ workflows:
           requires:
             - collect_independent_builds
       - collect_builds:
-          name: build_final
+          name: build_all_plugins
           requires:
             - build_sayt_driver_plugin
             - build_search_driver_plugin
+            - build_cache_driver_plugin
+
+      - build:
+          name: build_quickstart
+          requires:
+            - build_all_plugins
+      - collect_builds:
+          name: build_final
+          requires:
+            - build_quickstart
 
       - unit_test:
           name: unit_test_core
@@ -319,6 +332,9 @@ workflows:
           <<: *requires_build_final
       - unit_test:
           name: unit_test_cache_driver_plugin
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_quickstart
           <<: *requires_build_final
 
       - unit_test_browser:
@@ -345,6 +361,9 @@ workflows:
       - unit_test_browser:
           name: unit_test_browser_cache_driver_plugin
           <<: *requires_build_final
+      - unit_test_browser:
+          name: unit_test_browser_quickstart
+          <<: *requires_build_final
       - unit_test_final:
           requires:
             - unit_test_core
@@ -355,6 +374,7 @@ workflows:
             - unit_test_sayt_driver_plugin
             - unit_test_search_driver_plugin
             - unit_test_cache_driver_plugin
+            - unit_test_quickstart
             - unit_test_browser_core
             - unit_test_browser_dom_events_plugin
             - unit_test_browser_sayt_plugin
@@ -363,6 +383,7 @@ workflows:
             - unit_test_browser_sayt_driver_plugin
             - unit_test_browser_search_driver_plugin
             - unit_test_browser_cache_driver_plugin
+            - unit_test_browser_quickstart
 
       - lint:
           requires:

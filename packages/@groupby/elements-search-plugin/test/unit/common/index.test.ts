@@ -1,5 +1,4 @@
 import { AssertTypesEqual, expect } from '../../utils';
-// eslint-disable-next-line
 import SearchPlugin, { SearchPluginExposedValue, SearchPluginOptions } from '../../../src/search-plugin';
 import {
   SearchPlugin as SearchPluginExport,

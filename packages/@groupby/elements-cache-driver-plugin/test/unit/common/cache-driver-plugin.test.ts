@@ -19,6 +19,26 @@ describe('CacheDriverPlugin', () => {
     });
   });
 
+  describe('constructor()', () => {
+    let defaultOptions;
+
+    beforeEach(() => {
+      defaultOptions = {};
+    });
+
+    it('should create a new instance of the CacheDriverPlugin with default options', () => {
+      expect(cacheDriverPlugin.options).to.deep.equal(defaultOptions);
+    });
+
+    it('should combine the default and instance options', () => {
+      const options = { a: 'a' };
+
+      cacheDriverPlugin = new CacheDriverPlugin(options);
+
+      expect(cacheDriverPlugin.options).to.deep.equal({ ...defaultOptions, ...options });
+    });
+  });
+
   describe('register()', () => {
     it('should save the plugin registry for future use', () => {
       const registry: any = { a: 1, b: 2 };
