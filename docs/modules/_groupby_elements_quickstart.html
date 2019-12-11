@@ -1,0 +1,453 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>@groupby/elements-quickstart | GroupBy Elements</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">GroupBy Elements</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../index.html">Globals</a>
+				</li>
+				<li>
+					<a href="_groupby_elements_quickstart.html">@groupby/elements-quickstart</a>
+				</li>
+			</ul>
+			<h1>Package @groupby/elements-quickstart</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<h1 id="groupby-elements-quick-start">GroupBy Elements Quick Start</h1>
+					<p>This package contains the GB Elements quick start pack.</p>
+					<h2 id="usage">Usage</h2>
+					<p>To use the starter pack, call the <code>quickStart</code> function with a customer ID.
+					For example:</p>
+					<pre><code class="language-js"><span class="hljs-keyword">const</span> core = quickStart({
+  <span class="hljs-attr">customerId</span>: <span class="hljs-string">'mycustomerid'</span>,  <span class="hljs-comment">// replace with your customer ID</span>
+  <span class="hljs-attr">productTransformer</span>: <span class="hljs-function">(<span class="hljs-params">product</span>) =&gt;</span> { <span class="hljs-comment">/* ... */</span> }, <span class="hljs-comment">// optional but recommended</span>
+  <span class="hljs-attr">pluginOptions</span>: {             <span class="hljs-comment">// optional</span>
+    <span class="hljs-comment">// ...</span>
+  },
+});</code></pre>
+					<p>The <code>quickStart</code> function will return an instance of Elements Core
+					with all of the Elements plugins registered.</p>
+					<h3 id="options">Options</h3>
+					<p>The <code>quickStart</code> function accepts an options object to configure the plugins.</p>
+					<ul>
+						<li><p><code>customerId</code>: <strong>Required.</strong> This is your GroupBy customer ID. It will
+							be passed to <code>SaytPlugin</code> and <code>SearchPlugin</code>.</p>
+						</li>
+						<li><p><code>productTransformer</code>: Optional, but recommended.
+								This is a function that transforms the product records received
+								from the GroupBy API into an Elements Product object. This will be
+							passed to the <code>SaytDriverPlugin</code> and <code>SearchDriverPlugin</code>.</p>
+						</li>
+						<li><p><code>pluginOptions</code>: Optional. This is an object that allows you to configure individual plugins.
+								The object provides plugin options, where the keys are the plugin names (<code>search</code>, <code>search_driver</code>, etc.),
+								and the values are the corresponding plugin options.
+							All properties supported by this object are optional.</p>
+							<p>Supported keys are:</p>
+							<ul>
+								<li><code>cache</code></li>
+								<li><code>cache_driver</code></li>
+								<li><code>dom_events</code></li>
+								<li><code>sayt</code></li>
+								<li><code>sayt_driver</code></li>
+								<li><code>search</code></li>
+								<li><code>search_driver</code></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/_groupby_elements_quickstart.quickstartoptions.html" class="tsd-kind-icon">Quick<wbr>Start<wbr>Options</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter"><a href="_groupby_elements_quickstart.html#quickstart" class="tsd-kind-icon">quick<wbr>Start</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="quickstart" class="tsd-anchor"></a>
+					<h3>quick<wbr>Start</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">quick<wbr>Start&lt;P&gt;<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Core</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/c8aa225/packages/@groupby/elements-quickstart/src/quick-start.ts#L29">elements-quickstart/src/quick-start.ts:29</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>The GroupBy Elements quick start function.
+									This function instantiates <a href="../classes/_groupby_elements_core.core.html">Core</a> and registers a number of plugins.</p>
+								</div>
+								<p>The plugins included are:</p>
+								<ul>
+									<li><code>cache</code></li>
+									<li>`cache_driver</li>
+									<li><code>dom_events</code></li>
+									<li><code>sayt</code></li>
+									<li><code>sayt_driver</code></li>
+									<li><code>search</code></li>
+									<li><code>search_driver</code></li>
+								</ul>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>P</h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>__namedParameters: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Options for plugin configuration.</p>
+										</div>
+									</div>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>customer<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>The GroupBy customer ID to use.</p>
+												</div>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5>plugin<wbr>Options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>Options to configure individual plugins.
+													All keys are optional.</p>
+												</div>
+											</div>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter">
+													<h5>cache<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the Cache plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>cache_<wbr>driver<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the Cache Driver plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>dom_<wbr>events<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the DOM Events plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>sayt<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the SAYT plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>sayt_<wbr>driver<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the SAYT Driver plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>search<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the Search plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+												<li class="tsd-parameter">
+													<h5>search_<wbr>driver<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h5>
+													<div class="tsd-comment tsd-typography">
+														<div class="lead">
+															<p>Options for the Search Driver plugin.</p>
+														</div>
+													</div>
+													<ul class="tsd-parameters">
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="tsd-parameter">
+											<h5>product<wbr>Transformer<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>The function to use to transform a GroupBy Search API Record
+													into an Elements Product.</p>
+												</div>
+											</div>
+											<ul class="tsd-parameters">
+												<li class="tsd-parameter-siganture">
+													<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-variable tsd-is-not-exported">
+														<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>product<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+													</ul>
+													<ul class="tsd-descriptions">
+														<li class="tsd-description">
+															<h4 class="tsd-parameters-title">Parameters</h4>
+															<ul class="tsd-parameters">
+																<li>
+																	<h5>product: <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+																</li>
+															</ul>
+															<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Core</span></h4>
+							<p>An instance of Core with the above plugins configured and registered.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../index.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_cache_driver_plugin.html">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_cache_plugin.html">@groupby/elements-<wbr>cache-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="_groupby_elements_quickstart.html">@groupby/elements-<wbr>quickstart</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_cache_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
+						<a href="_groupby_elements_quickstart.html" class="tsd-kind-icon">@groupby/elements-<wbr>quickstart</a>
+						<ul>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/_groupby_elements_quickstart.quickstartoptions.html" class="tsd-kind-icon">Quick<wbr>Start<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="_groupby_elements_quickstart.html#quickstart" class="tsd-kind-icon">quick<wbr>Start</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
