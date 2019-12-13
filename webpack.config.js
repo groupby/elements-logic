@@ -1,6 +1,8 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const NODE_ENV = process.env.NODE_ENV;
+
 module.exports = {
   mode: 'development',
 
@@ -12,7 +14,9 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: 'gbe-[name]-bundle.js',
+    filename: () => {
+      return NODE_ENV === 'production' ? 'gbe-[name]-bundle.min.js' : 'gbe-[name]-bundle.js';
+    },
     path: path.resolve(__dirname, 'dist')
   },
 
