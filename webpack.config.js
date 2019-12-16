@@ -8,7 +8,7 @@ module.exports = {
 
   entry: {
     core: path.resolve(__dirname, 'presets/core.ts'),
-    'all-plugins': path.resolve(__dirname, 'presets/all-plugins.ts'),
+    logic: path.resolve(__dirname, 'presets/all-plugins.ts'),
   },
 
   devtool: 'source-map',
