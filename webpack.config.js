@@ -15,7 +15,7 @@ module.exports = {
 
   output: {
     filename: () => {
-      return NODE_ENV === 'production' ? 'gbe-[name]-bundle.min.js' : 'gbe-[name]-bundle.js';
+      return `gb-elements-[name]${NODE_ENV === 'production' ? '.min' : ''}.js`;
     },
     path: path.resolve(__dirname, 'dist')
   },
