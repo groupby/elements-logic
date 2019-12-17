@@ -2,6 +2,7 @@ import * as Cache from '@groupby/elements-cache-plugin';
 import * as CacheDriver from '@groupby/elements-cache-driver-plugin';
 import * as Core from '@groupby/elements-core';
 import * as DomEvents from '@groupby/elements-dom-events-plugin';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import * as GbTracker from '@groupby/elements-gb-tracker-plugin';
 import * as Sayt from '@groupby/elements-sayt-plugin';
 import * as SaytDriver from '@groupby/elements-sayt-driver-plugin';
