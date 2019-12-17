@@ -12,7 +12,7 @@
     "tdd": "nodemon --config ../../../nodemon.test.json --exec npm test",
     "test:browser": "karma start karma.conf.js",
     "tdd:browser": "karma start karma.conf.js --no-single-run",
-    "lint:scripts": ".eslint ./src/ --ext .ts --plugin only-warn",
+    "lint:scripts": "eslint ./src/ --ext .ts --plugin only-warn",
     "lint:scripts:fix": "eslint ./src/ --fix --ext .ts --plugin only-warn",
     "lint:tests": "eslint ./test/ --ext .ts --no-eslintrc -c ../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn",
     "lint:tests:fix": "eslint ./test/ --ext .ts --fix --no-eslintrc -c ../../../scripts/config/eslint/test/.eslintrc.js --plugin only-warn"
