@@ -119,6 +119,9 @@ jobs:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_dom_events_plugin-
       - run: *extract_build_archive
       - restore_cache:
+          key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_gb_tracker_plugin-
+      - run: *extract_build_archive
+      - restore_cache:
           key: build_cache-v{{ .Environment.CI_CACHE_VERSION }}-{{ .Branch }}-{{ .Revision }}-{{ checksum "../workflow-start" }}-build_sayt_plugin-
       - run: *extract_build_archive
       - restore_cache:
@@ -282,6 +285,10 @@ workflows:
             - build_cache_plugin
 
       - build:
+          name: build_gb_tracker_plugin
+          requires:
+            - collect_independent_builds
+      - build:
           name: build_sayt_driver_plugin
           requires:
             - collect_independent_builds
@@ -296,6 +303,7 @@ workflows:
       - collect_builds:
           name: build_all_plugins
           requires:
+            - build_gb_tracker_plugin
             - build_sayt_driver_plugin
             - build_search_driver_plugin
             - build_cache_driver_plugin
@@ -314,6 +322,9 @@ workflows:
           <<: *requires_build_final
       - unit_test:
           name: unit_test_dom_events_plugin
+          <<: *requires_build_final
+      - unit_test:
+          name: unit_test_gb_tracker_plugin
           <<: *requires_build_final
       - unit_test:
           name: unit_test_sayt_plugin
@@ -344,6 +355,9 @@ workflows:
           name: unit_test_browser_dom_events_plugin
           <<: *requires_build_final
       - unit_test_browser:
+          name: unit_test_browser_gb_tracker_plugin
+          <<: *requires_build_final
+      - unit_test_browser:
           name: unit_test_browser_sayt_plugin
           <<: *requires_build_final
       - unit_test_browser:
@@ -368,6 +382,7 @@ workflows:
           requires:
             - unit_test_core
             - unit_test_dom_events_plugin
+            - unit_test_gb_tracker_plugin
             - unit_test_sayt_plugin
             - unit_test_search_plugin
             - unit_test_cache_plugin
@@ -377,6 +392,7 @@ workflows:
             - unit_test_quickstart
             - unit_test_browser_core
             - unit_test_browser_dom_events_plugin
+            - unit_test_browser_gb_tracker_plugin
             - unit_test_browser_sayt_plugin
             - unit_test_browser_search_plugin
             - unit_test_browser_cache_plugin
