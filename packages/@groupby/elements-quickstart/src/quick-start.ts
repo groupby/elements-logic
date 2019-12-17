@@ -48,7 +48,7 @@ export default function quickStart<P>({
     cache_driver,
     /** Options for the DOM Events plugin. */
     dom_events,
-    /** Options for the Gb Tracker plugin. */
+    /** Options for the GB Tracker plugin. */
     gb_tracker,
     /** Options for the SAYT plugin. */
     sayt,
@@ -104,7 +104,7 @@ export interface QuickStartOptions<P> {
     cache_driver?: Partial<CacheDriverOptions>;
     /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
-    /** Options for the Gb Tracker plugin. */
+    /** Options for the GB Tracker plugin. */
     gb_tracker?: Partial<GbTrackerPluginOptions>;
     /** Options for the SAYT plugin. */
     sayt?: Partial<SaytPluginOptions>;

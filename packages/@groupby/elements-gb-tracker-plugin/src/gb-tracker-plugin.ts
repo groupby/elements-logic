@@ -37,7 +37,7 @@ export default class GbTrackerPlugin implements Plugin {
    * [[GbTracker]] client and attaches it to this plugin's `gbTracker`
    * property.
    *
-   * @param options The options for instantiating the GbTracker client.
+   * @param _namedParameters The options for instantiating the [[GbTracker]] client.
    */
   constructor({
     customerId,
