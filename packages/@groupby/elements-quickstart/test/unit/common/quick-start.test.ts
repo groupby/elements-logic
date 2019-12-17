@@ -182,7 +182,15 @@ describe('quickStart()', () => {
     expect(DomEventsPlugin).to.be.calledWithExactly(options);
   });
 
-  it('should forward options to the GbTrackerPlugin', () => {
+  it('should forward customerId and options to the GbTrackerPlugin', () => {
+    quickStart({ customerId, pluginOptions: { gb_tracker: options } });
+
+    expect(GbTrackerPlugin).to.be.calledWithExactly({ customerId, ...options });
+  });
+
+  it('should pass the customerId from the GbTrackerPlugin options if it exists instead of the general one', () => {
+    options.customerId = 'options custid';
+
     quickStart({ customerId, pluginOptions: { gb_tracker: options } });
 
     expect(GbTrackerPlugin).to.be.calledWithExactly(options);

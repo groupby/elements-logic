@@ -65,7 +65,7 @@ export default function quickStart<P>({
   const cacheDriverPlugin = new CacheDriverPlugin(cache_driver);
   const cachePlugin = new CachePlugin(cache);
   const domEventsPlugin = new DomEventsPlugin(dom_events);
-  const gbTrackerPlugin = new GbTrackerPlugin(gb_tracker);
+  const gbTrackerPlugin = new GbTrackerPlugin({ customerId, ...gb_tracker });
   const saytDriverPlugin = new SaytDriverPlugin({ ...wrappedProductTransformer, ...sayt_driver });
   const saytPlugin = new SaytPlugin({ subdomain: customerId, ...sayt });
   const searchDriverPlugin = new SearchDriverPlugin({ ...wrappedProductTransformer, ...search_driver });
