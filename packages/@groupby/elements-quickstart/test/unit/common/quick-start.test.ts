@@ -2,6 +2,7 @@ import * as Cache from '@groupby/elements-cache-plugin';
 import * as CacheDriver from '@groupby/elements-cache-driver-plugin';
 import * as Core from '@groupby/elements-core';
 import * as DomEvents from '@groupby/elements-dom-events-plugin';
+import * as GbTracker from '@groupby/elements-gb-tracker-plugin';
 import * as Sayt from '@groupby/elements-sayt-plugin';
 import * as SaytDriver from '@groupby/elements-sayt-driver-plugin';
 import * as Search from '@groupby/elements-search-plugin';
@@ -15,6 +16,7 @@ describe('quickStart()', () => {
   let CachePlugin;
   let CacheDriverPlugin;
   let DomEventsPlugin;
+  let GbTrackerPlugin;
   let SaytPlugin;
   let SaytDriverPlugin;
   let SearchPlugin;
@@ -31,6 +33,7 @@ describe('quickStart()', () => {
     CachePlugin = stub(Cache, 'CachePlugin');
     CacheDriverPlugin = stub(CacheDriver, 'CacheDriverPlugin');
     DomEventsPlugin = stub(DomEvents, 'DomEventsPlugin');
+    GbTrackerPlugin = stub(GbTracker, 'GbTrackerPlugin');
     SaytPlugin = stub(Sayt, 'SaytPlugin');
     SaytDriverPlugin = stub(SaytDriver, 'SaytDriverPlugin');
     SearchPlugin = stub(Search, 'SearchPlugin');
@@ -52,6 +55,7 @@ describe('quickStart()', () => {
     expect(CachePlugin.calledWithNew()).to.be.true;
     expect(CacheDriverPlugin.calledWithNew()).to.be.true;
     expect(DomEventsPlugin.calledWithNew()).to.be.true;
+    expect(GbTrackerPlugin.calledWithNew()).to.be.true;
     expect(SaytPlugin.calledWithNew()).to.be.true;
     expect(SaytDriverPlugin.calledWithNew()).to.be.true;
     expect(SearchPlugin.calledWithNew()).to.be.true;
@@ -62,6 +66,7 @@ describe('quickStart()', () => {
     const cachePlugin = { cache: 'cache' };
     const cacheDriverPlugin = { cacheDriver: 'cacheDriver' };
     const domEventsPlugin = { domEvents: 'domEvents' };
+    const gbTrackerPlugin = { gbTracker: 'gbTracker' };
     const saytPlugin = { sayt: 'sayt' };
     const saytDriverPlugin = { saytDriver: 'saytDriver' };
     const searchPlugin = { search: 'search' };
@@ -69,6 +74,7 @@ describe('quickStart()', () => {
     CachePlugin.returns(cachePlugin);
     CacheDriverPlugin.returns(cacheDriverPlugin);
     DomEventsPlugin.returns(domEventsPlugin);
+    GbTrackerPlugin.returns(gbTrackerPlugin);
     SaytPlugin.returns(saytPlugin);
     SaytDriverPlugin.returns(saytDriverPlugin);
     SearchPlugin.returns(searchPlugin);
@@ -81,6 +87,7 @@ describe('quickStart()', () => {
       cacheDriverPlugin,
       cachePlugin,
       domEventsPlugin,
+      gbTrackerPlugin,
       saytDriverPlugin,
       saytPlugin,
       searchDriverPlugin,
@@ -172,5 +179,11 @@ describe('quickStart()', () => {
     quickStart({ customerId, pluginOptions: { dom_events: options } });
 
     expect(DomEventsPlugin).to.be.calledWithExactly(options);
+  });
+
+  it('should forward options to the GbTrackerPlugin', () => {
+    quickStart({ customerId, pluginOptions: { gb_tracker: options } });
+
+    expect(GbTrackerPlugin).to.be.calledWithExactly(options);
   });
 });

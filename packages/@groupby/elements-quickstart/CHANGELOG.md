@@ -15,3 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `sayt_driver`
   - `search`
   - `search_driver`
+- ELE-249: Add `gb_tracker` plugin to the quick start function.

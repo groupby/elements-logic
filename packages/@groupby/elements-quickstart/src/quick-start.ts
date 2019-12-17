@@ -4,6 +4,7 @@ import { CacheDriverPlugin, CacheDriverOptions } from '@groupby/elements-cache-d
 import { CachePlugin, CachePluginOptions } from '@groupby/elements-cache-plugin';
 import { Core } from '@groupby/elements-core';
 import { DomEventsPlugin, DomEventsPluginOptions } from '@groupby/elements-dom-events-plugin';
+import { GbTrackerPlugin, GbTrackerPluginOptions } from '@groupby/elements-gb-tracker-plugin';
 import { ProductTransformer } from '@groupby/elements-events';
 import { SaytDriverPlugin, SaytDriverOptions } from '@groupby/elements-sayt-driver-plugin';
 import { SaytPlugin, SaytPluginOptions } from '@groupby/elements-sayt-plugin';
@@ -18,6 +19,7 @@ import { SearchPlugin, SearchPluginOptions } from '@groupby/elements-search-plug
  * - `cache`
  * - `cache_driver
  * - `dom_events`
+ * - `gb_tracker`
  * - `sayt`
  * - `sayt_driver`
  * - `search`
@@ -45,6 +47,8 @@ export default function quickStart<P>({
     cache_driver,
     /** Options for the DOM Events plugin. */
     dom_events,
+    /** Options for the Gb Tracker plugin. */
+    gb_tracker,
     /** Options for the SAYT plugin. */
     sayt,
     /** Options for the SAYT Driver plugin. */
@@ -60,6 +64,7 @@ export default function quickStart<P>({
   const cacheDriverPlugin = new CacheDriverPlugin(cache_driver);
   const cachePlugin = new CachePlugin(cache);
   const domEventsPlugin = new DomEventsPlugin(dom_events);
+  const gbTrackerPlugin = new GbTrackerPlugin(gb_tracker);
   const saytDriverPlugin = new SaytDriverPlugin({ ...wrappedProductTransformer, ...sayt_driver });
   const saytPlugin = new SaytPlugin({ subdomain: customerId, ...sayt });
   const searchDriverPlugin = new SearchDriverPlugin({ ...wrappedProductTransformer, ...search_driver });
@@ -69,6 +74,7 @@ export default function quickStart<P>({
     cacheDriverPlugin,
     cachePlugin,
     domEventsPlugin,
+    gbTrackerPlugin,
     saytDriverPlugin,
     saytPlugin,
     searchDriverPlugin,
@@ -97,6 +103,8 @@ export interface QuickStartOptions<P> {
     cache_driver?: Partial<CacheDriverOptions>;
     /** Options for the DOM Events plugin. */
     dom_events?: Partial<DomEventsPluginOptions>;
+    /** Options for the Gb Tracker plugin. */
+    gb_tracker?: Partial<GbTrackerPluginOptions>;
     /** Options for the SAYT plugin. */
     sayt?: Partial<SaytPluginOptions>;
     /** Options for the SAYT Driver plugin. */
