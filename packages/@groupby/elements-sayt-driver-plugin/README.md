@@ -24,10 +24,10 @@ core.register(saytDriverPlugin);
 
 This plugin accepts the following options:
 * `productTransformer` (optional)
-  * A function that accepts a Record object and returns a transformed
-  product. This argument is only necessary if the View Layer is being
-  used. More generally, this function is an opportunity to transform
-  the data into a useable format for your application's front-end.
+  * A function that accepts a Record object and returns a transformed product.
+    This argument is only necessary if the View Layer is being used.
+    More generally, this function is an opportunity to transform the data
+    into a useable format for your application's front-end.
 
 ## Events
 
