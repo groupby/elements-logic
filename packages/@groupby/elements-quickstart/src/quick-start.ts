@@ -4,6 +4,7 @@ import { CacheDriverPlugin, CacheDriverOptions } from '@groupby/elements-cache-d
 import { CachePlugin, CachePluginOptions } from '@groupby/elements-cache-plugin';
 import { Core } from '@groupby/elements-core';
 import { DomEventsPlugin, DomEventsPluginOptions } from '@groupby/elements-dom-events-plugin';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { GbTrackerPlugin, GbTrackerPluginOptions } from '@groupby/elements-gb-tracker-plugin';
 import { ProductTransformer } from '@groupby/elements-events';
 import { SaytDriverPlugin, SaytDriverOptions } from '@groupby/elements-sayt-driver-plugin';
