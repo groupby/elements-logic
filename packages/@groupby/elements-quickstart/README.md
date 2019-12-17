@@ -39,6 +39,7 @@ The `quickStart` function accepts an options object to configure the plugins.
   * `cache`
   * `cache_driver`
   * `dom_events`
+  * `gb_tracker`
   * `sayt`
   * `sayt_driver`
   * `search`
