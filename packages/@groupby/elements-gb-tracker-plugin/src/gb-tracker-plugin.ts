@@ -42,7 +42,7 @@ export default class GbTrackerPlugin implements Plugin {
   constructor({
     customerId,
     area,
-  }: Partial<TrackerPluginOptions> = {}) {
+  }: Partial<GbTrackerPluginOptions> = {}) {
     this.triggerSearchBeacon = this.triggerSearchBeacon.bind(this);
 
     this.gbTracker = new GbTracker(customerId, area);
@@ -90,7 +90,7 @@ export default class GbTrackerPlugin implements Plugin {
 /**
  * The options used to instantiate a [[GbTrackerPlugin]].
  */
-export interface TrackerPluginOptions {
+export interface GbTrackerPluginOptions {
   /** The ID of the client. */
   customerId: string;
   /** The area in which the tracked actions will occur. */
