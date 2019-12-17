@@ -14,9 +14,7 @@ module.exports = {
   devtool: 'source-map',
 
   output: {
-    filename: () => {
-      return `gb-elements-[name]${NODE_ENV === 'production' ? '.min' : ''}.js`;
-    },
+    filename: () => `gb-elements-[name]${NODE_ENV === 'production' ? '.min' : ''}.js`,
     path: path.resolve(__dirname, 'dist')
   },
 
