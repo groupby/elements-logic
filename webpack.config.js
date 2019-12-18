@@ -1,18 +1,20 @@
 const path = require('path');
 const webpack = require('webpack');
 
+const NODE_ENV = process.env.NODE_ENV;
+
 module.exports = {
   mode: 'development',
 
   entry: {
     core: path.resolve(__dirname, 'presets/core.ts'),
-    'all-plugins': path.resolve(__dirname, 'presets/all-plugins.ts'),
+    logic: path.resolve(__dirname, 'presets/all-plugins.ts'),
   },
 
   devtool: 'source-map',
 
   output: {
-    filename: 'gbe-[name]-bundle.js',
+    filename: () => `gb-elements-[name]${NODE_ENV === 'production' ? '.min' : ''}.js`,
     path: path.resolve(__dirname, 'dist')
   },
 

@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "bundle": "webpack",
+    "bundle:prod": "NODE_ENV=production webpack -p",
     "docs": "typedoc --options ./typedoc.js packages",
     "lint:scripts": "eslint ./packages/@groupby/*/src/ --ext .ts --plugin only-warn",
     "lint:scripts:fix": "eslint ./packages/@groupby/*/src/ --fix --ext .ts --plugin only-warn",
