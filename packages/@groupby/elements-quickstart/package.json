@@ -26,14 +26,15 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
-    "@groupby/elements-cache-driver-plugin": "^0.1.0",
-    "@groupby/elements-cache-plugin": "^0.1.0",
+    "@groupby/elements-cache-driver-plugin": "^0.2.0",
+    "@groupby/elements-cache-plugin": "^0.2.0",
     "@groupby/elements-core": "^0.1.0",
-    "@groupby/elements-dom-events-plugin": "^0.1.0",
+    "@groupby/elements-dom-events-plugin": "^0.2.0",
     "@groupby/elements-events": "^0.1.0",
-    "@groupby/elements-sayt-driver-plugin": "^0.1.0",
-    "@groupby/elements-sayt-plugin": "^0.1.0",
-    "@groupby/elements-search-driver-plugin": "^0.1.0",
-    "@groupby/elements-search-plugin": "^0.1.0"
+    "@groupby/elements-gb-tracker-plugin": "^0.2.0",
+    "@groupby/elements-sayt-driver-plugin": "^0.2.0",
+    "@groupby/elements-sayt-plugin": "^0.2.0",
+    "@groupby/elements-search-driver-plugin": "^0.2.0",
+    "@groupby/elements-search-plugin": "^0.2.0"
   }
 }
