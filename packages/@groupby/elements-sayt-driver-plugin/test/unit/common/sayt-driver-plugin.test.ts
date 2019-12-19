@@ -2,6 +2,7 @@ import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ERROR,
+  BEACON_SEARCH,
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
@@ -40,6 +41,7 @@ describe('Sayt Driver Plugin', () => {
         query,
         config,
         group: 'some-group-id',
+        origin: 'some-origin',
       },
     };
     productDataPayload = {
@@ -328,6 +330,7 @@ describe('Sayt Driver Plugin', () => {
     let products;
     let group;
     let sendSearchApiRequest;
+    let dispatchSearchBeacon;
 
     beforeEach(() => {
       dispatchEvent = dom_events.dispatchEvent = spy();
@@ -337,6 +340,7 @@ describe('Sayt Driver Plugin', () => {
       products = [{ a: 'b' }];
       sendSearchApiRequest = stub(driver, 'sendSearchApiRequest');
       group = 'some-group-id';
+      dispatchSearchBeacon = stub(driver, 'dispatchSearchBeacon');
     });
 
     it('should call sendSearchApiRequest with query from event and valid config', () => {
@@ -375,6 +379,18 @@ describe('Sayt Driver Plugin', () => {
 
       return expect(Promise.resolve(dispatchEvent))
         .to.be.eventually.calledOnceWith(SAYT_PRODUCTS_ERROR, { error, group });
+    });
+
+    it('should trigger a tracker event on a successful API request', () => {
+      const results = { some: 'results' };
+      const originalResponse = { results };
+      const apiResponse = { products, originalResponse };
+      sendSearchApiRequest.resolves(apiResponse);
+
+      driver.fetchProductData(saytDataPayload);
+
+      expect(Promise.resolve(dispatchSearchBeacon))
+        .to.be.eventually.calledOnceWith(originalResponse, saytDataPayload.detail.origin);
     });
   });
 
@@ -467,6 +483,22 @@ describe('Sayt Driver Plugin', () => {
 
       expect(result.products).to.have.lengthOf(1);
       expect(result.products[0].key1).to.equal(firstProductTitle);
+    });
+  });
+
+  describe('dispatchSearchBeacon()', () => {
+    it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
+      const origin = 'some-origin';
+      const results = { some: 'data' };
+      const dispatchEvent = dom_events.dispatchEvent = spy();
+      driver.core = { dom_events };
+
+      driver.dispatchSearchBeacon(results, origin);
+
+      expect(dispatchEvent).to.be.calledWith(BEACON_SEARCH, {
+        results,
+        origin: { [origin]: true },
+      });
     });
   });
 });

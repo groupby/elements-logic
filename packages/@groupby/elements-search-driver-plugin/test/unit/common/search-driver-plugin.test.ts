@@ -1,4 +1,9 @@
-import { SEARCH_REQUEST, SEARCH_RESPONSE, SEARCH_ERROR } from '@groupby/elements-events';
+import {
+  BEACON_SEARCH,
+  SEARCH_ERROR,
+  SEARCH_REQUEST,
+  SEARCH_RESPONSE,
+} from '@groupby/elements-events';
 import { expect, spy, stub } from '../../utils';
 import SearchDriverPlugin from '../../../src/search-driver-plugin';
 
@@ -89,17 +94,25 @@ describe('SearchDriverPlugin', () => {
     const query = 'search term';
     let config;
     let group;
-    let results;
+    let response;
     let sendSearchApiRequest;
+    let dispatchSearchBeacon;
+    let core;
 
     beforeEach(() => {
       config = { area, collection };
+      response = { a: 'a', results: {} };
       group = undefined;
-      results = { a: 'a' };
       searchDriverPlugin.core = {
         [eventsPluginName]: { dispatchEvent: () => {} },
       };
       sendSearchApiRequest = stub(searchDriverPlugin, 'sendSearchApiRequest');
+      dispatchSearchBeacon = stub(searchDriverPlugin, 'dispatchSearchBeacon');
+      searchDriverPlugin.core = core = {
+        [eventsPluginName]: {
+          dispatchEvent: () => {},
+        },
+      };
     });
 
     it('should search with the given search term', () => {
@@ -122,40 +135,36 @@ describe('SearchDriverPlugin', () => {
 
     it('should cache the payload', () => {
       const set = spy();
-      sendSearchApiRequest.resolves(results);
+      sendSearchApiRequest.resolves(response);
       searchDriverPlugin.core.cache = { set };
 
       searchDriverPlugin.fetchSearchData({ detail: { query, ...config } } as any);
 
       return expect(Promise.resolve(set))
-        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...results, group });
+        .to.be.eventually.calledOnceWith(`${SEARCH_RESPONSE}::${group}`, { ...response, group });
     });
 
     it('should dispatch an event with the results and the group if present', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...response, group });
         done();
       });
       group = 'group';
-      sendSearchApiRequest.resolves(results);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      sendSearchApiRequest.resolves(response);
+      core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: { query: 'search', group } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query, group } } as any);
     });
 
     it('should send an undefined group if one is not provided', (done) => {
       const dispatchEvent = spy(() => {
-        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...results, group });
+        expect(dispatchEvent).to.be.calledWith(SEARCH_RESPONSE, { ...response, group });
         done();
       });
-      sendSearchApiRequest.resolves(results);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      sendSearchApiRequest.resolves(response);
+      core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: { query: 'search' } } as any);
+      searchDriverPlugin.fetchSearchData({ detail: { query } } as any);
     });
 
     it('should dispatch an error event when the search fails', (done) => {
@@ -165,11 +174,21 @@ describe('SearchDriverPlugin', () => {
         done();
       });
       sendSearchApiRequest.rejects(error);
-      searchDriverPlugin.core = {
-        [eventsPluginName]: { dispatchEvent },
-      };
+      core[eventsPluginName] = { dispatchEvent };
 
-      searchDriverPlugin.fetchSearchData({ detail: 'search' } as any);
+      searchDriverPlugin.fetchSearchData({ detail: 'bad-search' } as any);
+    });
+
+    it('should dispatch a search tracker event with origin when the search succeeds', (done) => {
+      const origin = 'some-origin';
+      response.originalResponse = { id: 'search-id' };
+      sendSearchApiRequest.resolves(response);
+      dispatchSearchBeacon.callsFake(() => {
+        expect(dispatchSearchBeacon).to.be.calledWith(response.originalResponse, origin);
+        done();
+      });
+
+      searchDriverPlugin.fetchSearchData({ detail: { query, origin } } as any);
     });
   });
 
@@ -257,6 +276,29 @@ describe('SearchDriverPlugin', () => {
 
       expect(result.products).to.have.lengthOf(1);
       expect(result.products[0].key1).to.equal(firstProductTitle);
+    });
+  });
+
+  describe('dispatchSearchBeacon()', () => {
+    it('should dispatch a BEACON_SEARCH event given a search response and origin', () => {
+      const origin = 'some-origin';
+      const results = { some: 'data' };
+      const dispatchEvent = spy();
+      const core = {
+        [eventsPluginName]: {
+          dispatchEvent,
+        },
+      };
+      searchDriverPlugin.core = core;
+
+      searchDriverPlugin.dispatchSearchBeacon(results, origin);
+
+      expect(dispatchEvent).to.be.calledWith(BEACON_SEARCH, {
+        results,
+        origin: {
+          [origin]: true,
+        },
+      });
     });
   });
 });

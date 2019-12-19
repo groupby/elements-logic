@@ -1,8 +1,11 @@
+// eslint-disable-next-line import/no-unresolved
+import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import {
   AUTOCOMPLETE_REQUEST,
   AUTOCOMPLETE_RESPONSE,
   AUTOCOMPLETE_ERROR,
+  BEACON_SEARCH,
   SAYT_PRODUCTS_REQUEST,
   SAYT_PRODUCTS_RESPONSE,
   SAYT_PRODUCTS_ERROR,
@@ -11,6 +14,7 @@ import {
   AutocompleteSearchTermItem,
   AutocompleteResponsePayload,
   AutocompleteErrorPayload,
+  BeaconSearchPayload,
   ProductTransformer,
   SaytProductsRequestPayload,
   SaytProductsResponsePayload,
@@ -130,21 +134,30 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   }
 
   /**
-   * Sends a request to the Search API for product data and dispatches
-   * events on success and failure.
+   * Sends a request to the Search API for product data and emits the result
+   * through an event. A successful result is emitted in a
+   * [[SAYT_PRODUCTS_RESPONSE]] event. If the search fails for any reason, a
+   * [[SAYT_PRODUCTS_ERROR]] is dispatched with the error.
+   * Emits a beacon event if search is successful.
    *
    * @param event Event that contains the Search API request payload.
    */
   fetchProductData(event: CustomEvent<SaytProductsRequestPayload>): void {
-    const { query, group, config } = event.detail;
+    const {
+      query,
+      group,
+      config,
+      origin,
+    } = event.detail;
     this.sendSearchApiRequest(query, config)
-      .then((results) => {
+      .then((response) => {
         const payload: SaytProductsResponsePayload<P> = {
-          ...results,
+          ...response,
           group,
         };
         this.core[this.eventsPluginName].dispatchEvent(SAYT_PRODUCTS_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SAYT_PRODUCTS_RESPONSE}::${group}`, payload);
+        this.dispatchSearchBeacon(response.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SaytProductsErrorPayload = { error, group };
@@ -220,6 +233,22 @@ export default class SaytDriverPlugin<P = Record> implements Plugin {
   constructSearchTerms(terms: AutocompleteSearchTerm[]): AutocompleteSearchTermItem[] {
     return terms.filter((term) => term.value)
       .map((term) => ({ label: term.value }));
+  }
+
+  /**
+   * Dispatches a [[BEACON_SEARCH]] event to inform any listeners of a
+   * successful search.
+   *
+   * @param results The search results.
+   * @param originValue The value representing the action's origin.
+   */
+  dispatchSearchBeacon(results: Results, originValue: keyof SendableOrigin): void {
+    const origin: SendableOrigin = { [originValue]: true };
+    const beaconSearchPayload: BeaconSearchPayload = {
+      results,
+      origin,
+    };
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, beaconSearchPayload);
   }
 }
 

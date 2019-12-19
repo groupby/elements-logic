@@ -1,9 +1,13 @@
+// eslint-disable-next-line import/no-unresolved
+import { SendableOrigin } from 'gb-tracker-client';
 import { Plugin, PluginRegistry, PluginMetadata } from '@groupby/elements-core';
 import { Record, Results, Request as SearchRequest } from '@groupby/elements-search-plugin';
 import {
+  BEACON_SEARCH,
+  SEARCH_ERROR,
   SEARCH_REQUEST,
   SEARCH_RESPONSE,
-  SEARCH_ERROR,
+  BeaconSearchPayload,
   ProductTransformer,
   SearchRequestPayload,
   SearchResponsePayload,
@@ -89,19 +93,26 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
 
   /**
    * Performs a search with the given search term and configuration
-   * and emits the result through an event. The result is emitted in a
+   * and emits the result through an event. A successful result is emitted in a
    * [[SEARCH_RESPONSE]] event. If the search fails for any
    * reason, a [[SEARCH_ERROR]] is dispatched with the error.
+   * Emits a [[BEACON_SEARCH]] event if search is successful.
    *
    * @param event the event whose payload is the search term.
    */
   fetchSearchData(event: CustomEvent<SearchRequestPayload>): void {
-    const { query, group, config } = event.detail;
+    const {
+      query,
+      group,
+      config,
+      origin,
+    } = event.detail;
     this.sendSearchApiRequest({ query, ...config })
-      .then((results) => {
-        const payload: SearchResponsePayload<P> = { ...results, group };
+      .then((response) => {
+        const payload: SearchResponsePayload<P> = { ...response, group };
         this.core[this.eventsPluginName].dispatchEvent(SEARCH_RESPONSE, payload);
         if (this.core.cache) this.core.cache.set(`${SEARCH_RESPONSE}::${group}`, payload);
+        this.dispatchSearchBeacon(response.originalResponse, origin);
       })
       .catch((error) => {
         const payload: SearchErrorPayload = { error, group };
@@ -136,6 +147,21 @@ export default class SearchDriverPlugin<P = Record> implements Plugin {
       originalResponse: response,
       products: mappedRecords,
     };
+  }
+
+  /**
+   * Dispatches a search tracker event.
+   *
+   * @param results The results from the search response.
+   * @param originValue The search event's origin.
+   */
+  dispatchSearchBeacon(results: Results, originValue: keyof SendableOrigin): void {
+    const origin: SendableOrigin = { [originValue]: true };
+    const beaconSearchPayload: BeaconSearchPayload = {
+      results,
+      origin,
+    };
+    this.core[this.eventsPluginName].dispatchEvent(BEACON_SEARCH, beaconSearchPayload);
   }
 }
 

@@ -1,5 +1,5 @@
 {
-  "name": "@groupby/elements-cache-driver-plugin",
+  "name": "@groupby/elements-gb-tracker-plugin",
   "version": "0.1.0",
   "description": "",
   "main": "dist/index.js",
@@ -20,15 +20,15 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/groupby/elements-logic.git",
-    "directory": "packages/@groupby/elements-cache-driver-plugin"
+    "directory": "packages/@groupby/elements-gb-tracker-plugin"
   },
-  "author": "GroupBy Inc",
+  "author": "Groupby Inc",
   "license": "MIT",
   "dependencies": {
-    "@groupby/elements-events": "^0.1.0"
+    "@groupby/elements-events": "^0.2.0",
+    "gb-tracker-client": "^3.7.2"
   },
   "peerDependencies": {
-    "@groupby/elements-cache-plugin": "^0.1.0",
     "@groupby/elements-core": "^0.1.0",
     "@groupby/elements-dom-events-plugin": "^0.1.0"
   }
