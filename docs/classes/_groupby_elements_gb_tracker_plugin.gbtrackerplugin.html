@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Core | GroupBy Elements</title>
+	<title>GbTrackerPlugin | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_groupby_elements_core.html">@groupby/elements-core</a>
+					<a href="../modules/_groupby_elements_gb_tracker_plugin.html">@groupby/elements-gb-tracker-plugin</a>
 				</li>
 				<li>
-					<a href="_groupby_elements_core.core.html">Core</a>
+					<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html">GbTrackerPlugin</a>
 				</li>
 			</ul>
-			<h1>Class Core</h1>
+			<h1>Class GbTrackerPlugin</h1>
 		</div>
 	</div>
 </header>
@@ -72,9 +72,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The core of the GroupBy Elements plugin system. This entity is responsible for
-							managing plugins and provides a mechanism for plugins to communicate
-						with each other.</p>
+						<p>This plugin is responsible for exposing a [[GbTracker]] instance to Core.
+						It listens for generic beacon events and triggers GroupBy-specific beacons.</p>
 					</div>
 				</div>
 			</section>
@@ -82,8 +81,14 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Core</span>
+						<span class="target">GbTrackerPlugin</span>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><span class="tsd-signature-type">Plugin</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -91,124 +96,232 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#dependencygraph" class="tsd-kind-icon">dependency<wbr>Graph</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#directory" class="tsd-kind-icon">directory</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#registry" class="tsd-kind-icon">registry</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#core" class="tsd-kind-icon">core</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#gbtracker" class="tsd-kind-icon">gb<wbr>Tracker</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Accessors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#metadata" class="tsd-kind-icon">metadata</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#register" class="tsd-kind-icon">register</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#unregister" class="tsd-kind-icon">unregister</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_core.core.html#unregisterall" class="tsd-kind-icon">unregister<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#ready" class="tsd-kind-icon">ready</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#register" class="tsd-kind-icon">register</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#triggersearchbeacon" class="tsd-kind-icon">trigger<wbr>Search<wbr>Beacon</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#unregister" class="tsd-kind-icon">unregister</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="dependencygraph" class="tsd-anchor"></a>
-					<h3>dependency<wbr>Graph</h3>
-					<div class="tsd-signature tsd-kind-icon">dependency<wbr>Graph<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_core.dependencygraph.html" class="tsd-signature-type">DependencyGraph</a><span class="tsd-signature-symbol"> =&nbsp;createDependencyGraph()</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L45">elements-core/src/core.ts:45</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>An object with plugin names mapped to the names of the plugins that
-								depend on it. This dependency graph is represented as an adjacency
-							list.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="directory" class="tsd-anchor"></a>
-					<h3>directory</h3>
-					<div class="tsd-signature tsd-kind-icon">directory<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_core.plugindirectory.html" class="tsd-signature-type">PluginDirectory</a><span class="tsd-signature-symbol"> =&nbsp;Object.create(null)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L38">elements-core/src/core.ts:38</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The plugin directory. This object is a dictionary containing plugin
-							names as keys and the plugin objects as values.</p>
-						</div>
-						<p>Plugins do not have access to this directory.</p>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="registry" class="tsd-anchor"></a>
-					<h3>registry</h3>
-					<div class="tsd-signature tsd-kind-icon">registry<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_groupby_elements_core.pluginregistry.html" class="tsd-signature-type">PluginRegistry</a><span class="tsd-signature-symbol"> =&nbsp;Object.create(null)</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L30">elements-core/src/core.ts:30</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The plugin registry. This object is a dictionary containing plugin
-							names as keys and their corresponding exposed values as values.</p>
-						</div>
-						<p>The preferred way to access plugins in the registry is through
-							another plugin. Accessing the registry through Core outside of a
-						plugin is discouraged.</p>
-					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="register" class="tsd-anchor"></a>
-					<h3>register</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span>plugins<span class="tsd-signature-symbol">: </span><a href="../interfaces/_groupby_elements_core.plugin.html" class="tsd-signature-type">Plugin</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>GbTracker<wbr>Plugin<span class="tsd-signature-symbol">(</span>__namedParameters<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html" class="tsd-signature-type">GbTrackerPlugin</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L72">elements-core/src/core.ts:72</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L33">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Register one or more plugins with Core.</p>
+									<p>The <a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html">GbTrackerPlugin</a> constructor instantiates an instance of the
+										[[GbTracker]] client and attaches it to this plugin&#39;s <code>gbTracker</code>
+									property.</p>
 								</div>
-								<p>Plugins given here are registered as a batch: the next lifecycle
-									event does not occur until all plugins in this batch have
-								experienced the current lifecycle event.</p>
-								<p>The registration lifecycle is as follows:</p>
-								<ol>
-									<li><strong>Registration:</strong> The registry is populated with each plugin&#39;s
-										name and the value that it wants to expose. Plugins cannot
-									assume that other plugins have been registered.</li>
-									<li><strong>Initialization:</strong> Plugins perform setup tasks. Plugins are
-										aware of the existence of other plugins, but should not make use
-									of their functionality as they may not yet be initialized.</li>
-									<li><strong>Ready:</strong> Registration is complete. All plugins have been
-									initialized, and plugins may make use of other plugins.</li>
-								</ol>
-								<p>This function ensures that all plugin dependencies are available
-									before proceeding to register the plugins. Circular dependencies
-									are supported. If dependencies are missing, an error will be
-								thrown.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>plugins: <a href="../interfaces/_groupby_elements_core.plugin.html" class="tsd-signature-type">Plugin</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> __namedParameters: <span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;{}</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter">
+											<h5>area<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>The area in which the tracked actions will occur.</p>
+												</div>
+											</div>
+										</li>
+										<li class="tsd-parameter">
+											<h5>customer<wbr>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>The ID of the client.</p>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html" class="tsd-signature-type">GbTrackerPlugin</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="core" class="tsd-anchor"></a>
+					<h3>core</h3>
+					<div class="tsd-signature tsd-kind-icon">core<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PluginRegistry</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L28">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:28</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A reference to the registry of plugins for later use.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="eventspluginname" class="tsd-anchor"></a>
+					<h3>events<wbr>Plugin<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">events<wbr>Plugin<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;dom_events&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L33">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:33</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Name of the events plugin.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="gbtracker" class="tsd-anchor"></a>
+					<h3>gb<wbr>Tracker</h3>
+					<div class="tsd-signature tsd-kind-icon">gb<wbr>Tracker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TrackerFactory</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L23">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:23</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The value that the <a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html">GbTrackerPlugin</a> exposes to the Core entity.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Accessors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="metadata" class="tsd-anchor"></a>
+					<h3>metadata</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> metadata<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PluginMetadata</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L13">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:13</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PluginMetadata</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="ready" class="tsd-anchor"></a>
+					<h3>ready</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L65">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:65</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Sets event listeners for beacon events.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="register" class="tsd-anchor"></a>
+					<h3>register</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">register<span class="tsd-signature-symbol">(</span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PluginRegistry</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TrackerFactory</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L57">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:57</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns this plugin&#39;s instance of the [[GbTracker]] client.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>plugins: <span class="tsd-signature-type">PluginRegistry</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">ReturnType</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TrackerFactory</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="triggersearchbeacon" class="tsd-anchor"></a>
+					<h3>trigger<wbr>Search<wbr>Beacon</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">trigger<wbr>Search<wbr>Beacon<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BeaconSearchPayload</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L81">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:81</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Triggers a Search beacon. Intended for use as an event listener.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>event: <span class="tsd-signature-type">CustomEvent</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">BeaconSearchPayload</span><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>An array of plugin instances to register.</p>
+										<p>The event containing search tracking data.</p>
 									</div>
 								</li>
 							</ul>
@@ -220,60 +333,18 @@
 					<a name="unregister" class="tsd-anchor"></a>
 					<h3>unregister</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">unregister<span class="tsd-signature-symbol">(</span>plugins<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">unregister<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L94">elements-core/src/core.ts:94</a></li>
+									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-gb-tracker-plugin/src/gb-tracker-plugin.ts#L72">elements-gb-tracker-plugin/src/gb-tracker-plugin.ts:72</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Unregisters the given plugins. The plugin registry, directory and
-										dependency graph are all updated. The optional <code>unregister</code>
-										function of each plugin is called when the plugin is unregistered.
-									The order in which the plugins are unregistered is unspecified.</p>
-								</div>
-								<dl class="tsd-comment-tags">
-									<dt>throws</dt>
-									<dd><p>If unregistering a plugin will break a dependency.</p>
-									</dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>plugins: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The names of the plugins to unregister.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="unregisterall" class="tsd-anchor"></a>
-					<h3>unregister<wbr>All</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">unregister<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-core/src/core.ts#L106">elements-core/src/core.ts:106</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Unregisters all plugins. The plugin registry, directory and
-										dependency graph are all cleared. The optional <code>unregister</code>
-										function of each plugin is called when the plugin is unregistered.
-									The order in which the plugins are unregistered is unspecified.</p>
+									<p>Unregister event listeners for beacon events.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -294,13 +365,13 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_cache_plugin.html">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
-					<li class="current tsd-kind-external-module">
+					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
-					<li class=" tsd-kind-external-module">
+					<li class="current tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_gb_tracker_plugin.html">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -328,83 +399,56 @@
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="../modules/_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
+						<a href="../modules/_groupby_elements_gb_tracker_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
 						<ul>
 							<li class="current tsd-kind-class tsd-parent-kind-external-module">
-								<a href="_groupby_elements_core.core.html" class="tsd-kind-icon">Core</a>
+								<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin</a>
 								<ul>
-									<li class=" tsd-kind-property tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#dependencygraph" class="tsd-kind-icon">dependency<wbr>Graph</a>
+									<li class=" tsd-kind-constructor tsd-parent-kind-class">
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#constructor" class="tsd-kind-icon">constructor</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#directory" class="tsd-kind-icon">directory</a>
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#core" class="tsd-kind-icon">core</a>
 									</li>
 									<li class=" tsd-kind-property tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#registry" class="tsd-kind-icon">registry</a>
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#eventspluginname" class="tsd-kind-icon">events<wbr>Plugin<wbr>Name</a>
+									</li>
+									<li class=" tsd-kind-property tsd-parent-kind-class">
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#gbtracker" class="tsd-kind-icon">gb<wbr>Tracker</a>
+									</li>
+									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#metadata" class="tsd-kind-icon">metadata</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#register" class="tsd-kind-icon">register</a>
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#ready" class="tsd-kind-icon">ready</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#unregister" class="tsd-kind-icon">unregister</a>
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#register" class="tsd-kind-icon">register</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="_groupby_elements_core.core.html#unregisterall" class="tsd-kind-icon">unregister<wbr>All</a>
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#triggersearchbeacon" class="tsd-kind-icon">trigger<wbr>Search<wbr>Beacon</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html#unregister" class="tsd-kind-icon">unregister</a>
 									</li>
 								</ul>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_core.dependencygraph.html" class="tsd-kind-icon">Dependency<wbr>Graph</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_core.plugin.html" class="tsd-kind-icon">Plugin</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_core.plugindirectory.html" class="tsd-kind-icon">Plugin<wbr>Directory</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_core.pluginmetadata.html" class="tsd-kind-icon">Plugin<wbr>Metadata</a>
-							</li>
-							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/_groupby_elements_core.pluginregistry.html" class="tsd-kind-icon">Plugin<wbr>Registry</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#calculatemissingdependencies" class="tsd-kind-icon">calculate<wbr>Missing<wbr>Dependencies</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#createdependencygraph" class="tsd-kind-icon">create<wbr>Dependency<wbr>Graph</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#initplugins" class="tsd-kind-icon">init<wbr>Plugins</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#mergedependencygraphs" class="tsd-kind-icon">merge<wbr>Dependency<wbr>Graphs</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#readyplugins" class="tsd-kind-icon">ready<wbr>Plugins</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#registerplugins" class="tsd-kind-icon">register<wbr>Plugins</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#removefromdependencygraph" class="tsd-kind-icon">remove<wbr>From<wbr>Dependency<wbr>Graph</a>
-							</li>
-							<li class=" tsd-kind-function tsd-parent-kind-external-module">
-								<a href="../modules/_groupby_elements_core.html#unregisterplugins" class="tsd-kind-icon">unregister<wbr>Plugins</a>
+								<a href="../interfaces/_groupby_elements_gb_tracker_plugin.gbtrackerpluginoptions.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_gb_tracker_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
-					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="../modules/_groupby_elements_quickstart.html" class="tsd-kind-icon">@groupby/elements-<wbr>quickstart</a>
 					</li>

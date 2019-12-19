@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SearchPluginOptions | GroupBy Elements</title>
+	<title>@groupby/elements-gb-tracker-plugin | GroupBy Elements</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,10 @@
 					<a href="../index.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-search-plugin</a>
-				</li>
-				<li>
-					<a href="_groupby_elements_search_plugin.searchpluginoptions.html">SearchPluginOptions</a>
+					<a href="_groupby_elements_gb_tracker_plugin.html">@groupby/elements-gb-tracker-plugin</a>
 				</li>
 			</ul>
-			<h1>Interface SearchPluginOptions</h1>
+			<h1>Package @groupby/elements-gb-tracker-plugin</h1>
 		</div>
 	</div>
 </header>
@@ -71,94 +68,54 @@
 		<div class="col-8 col-content">
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The type of this plugin&#39;s options.</p>
-					</div>
+					<h1 id="groupby-elements-gb-tracker-plugin">GroupBy Elements GB Tracker Plugin</h1>
+					<p>This package contains the GroupBy Tracker Plugin class. Its purpose is to provide automatic beaconing integration with Groupby.</p>
+					<h2 id="prerequisites">Prerequisites</h2>
+					<p>This plugin depends on the following Elements plugins:</p>
+					<ul>
+						<li><code>dom_events</code></li>
+					</ul>
+					<p>These plugins must be registered either before or in the same batch as
+					this plugin.</p>
+					<h2 id="usage">Usage</h2>
+					<p>To use the plugin, simply instantiate it and register it with Core:</p>
+					<pre><code class="language-js">const gbTrackerPlugin = new <span class="hljs-type">GbTrackerPlugin</span>({
+  customerId: <span class="hljs-symbol">'my</span>-customer-id',
+  area: <span class="hljs-symbol">'some</span>-area',
+  collection: <span class="hljs-symbol">'some</span>-collection',
+});
+core.register(gbTrackerPlugin);</code></pre>
+					<p>It accepts a mandatory <code>customerId</code>. It also accepts optional <code>area</code> and <code>collection</code>
+					arguments to handle tracking actions against specific areas and collections.</p>
+					<p>Additionally, the plugin will automatically listen for and act on beacon events.
+					It is designed to work with the other plugins in the Logic Layer.</p>
+					<p>The plugin registers an instance of the <a href="https://www.npmjs.com/package/gb-tracker-client">gb-tracker client</a> with Core.</p>
+					<h2 id="events">Events</h2>
+					<p>This plugin listens for a number of events.
+					These events are defined in the <a href="https://github.com/groupby/elements-events"><code>@groupby/elements-events</code></a> package.</p>
+					<h3 id="received">Received</h3>
+					<ul>
+						<li><code>BEACON_SEARCH</code>: When received, a GroupBy Auto Search beacon is triggered.</li>
+					</ul>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-hierarchy">
-				<h3>Hierarchy</h3>
-				<ul class="tsd-hierarchy">
-					<li>
-						<span class="tsd-signature-type">BridgeConfig</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">SearchPluginOptions</span>
-							</li>
-						</ul>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Properties</h3>
+							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_search_plugin.searchpluginoptions.html#customerid" class="tsd-kind-icon">customer<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_groupby_elements_search_plugin.searchpluginoptions.html#https" class="tsd-kind-icon">https</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_groupby_elements_search_plugin.searchpluginoptions.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="_groupby_elements_search_plugin.searchpluginoptions.html#timeout" class="tsd-kind-icon">timeout</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/_groupby_elements_gb_tracker_plugin.gbtrackerpluginoptions.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin<wbr>Options</a></li>
 							</ul>
 						</section>
 					</div>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="customerid" class="tsd-anchor"></a>
-					<h3>customer<wbr>Id</h3>
-					<div class="tsd-signature tsd-kind-icon">customer<wbr>Id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L66">elements-search-plugin/src/search-plugin.ts:66</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The GroupBy customer ID to include in search requests.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="https" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> https</h3>
-					<div class="tsd-signature tsd-kind-icon">https<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/groupby/elements-logic/blob/0f3b2ff/packages/@groupby/elements-search-plugin/src/search-plugin.ts#L71">elements-search-plugin/src/search-plugin.ts:71</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether or not HTTPS is used. HTTPS is used if this value is <code>true</code>.
-							If not provided, this option defaults to <code>true</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="proxyurl" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> proxy<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">proxy<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from BridgeConfig.proxyUrl</p>
-						<ul>
-							<li>Defined in /home/circleci/project/node_modules/groupby-api/dist/core/bridge.d.ts:58</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="timeout" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> timeout</h3>
-					<div class="tsd-signature tsd-kind-icon">timeout<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from BridgeConfig.timeout</p>
-						<ul>
-							<li>Defined in /home/circleci/project/node_modules/groupby-api/dist/core/bridge.d.ts:57</li>
-						</ul>
-					</aside>
 				</section>
 			</section>
 		</div>
@@ -169,98 +126,81 @@
 						<a href="../index.html"><em>Globals</em></a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_cache_driver_plugin.html">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
+						<a href="_groupby_elements_cache_driver_plugin.html">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_cache_plugin.html">@groupby/elements-<wbr>cache-<wbr>plugin</a>
+						<a href="_groupby_elements_cache_plugin.html">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
+						<a href="_groupby_elements_core.html">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_gb_tracker_plugin.html">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_quickstart.html">@groupby/elements-<wbr>quickstart</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+						<a href="_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
+						<a href="_groupby_elements_gb_tracker_plugin.html">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_quickstart.html">@groupby/elements-<wbr>quickstart</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_plugin.html">@groupby/elements-<wbr>search-<wbr>plugin</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_cache_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
+						<a href="_groupby_elements_cache_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>driver-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
+						<a href="_groupby_elements_cache_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>cache-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
+						<a href="_groupby_elements_core.html" class="tsd-kind-icon">@groupby/elements-<wbr>core</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_gb_tracker_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_quickstart.html" class="tsd-kind-icon">@groupby/elements-<wbr>quickstart</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+						<a href="_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
+						<a href="_groupby_elements_gb_tracker_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/_groupby_elements_search_plugin.searchplugin.html" class="tsd-kind-icon">Search<wbr>Plugin</a>
+								<a href="../classes/_groupby_elements_gb_tracker_plugin.gbtrackerplugin.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_groupby_elements_search_plugin.searchpluginexposedvalue.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Exposed<wbr>Value</a>
-							</li>
-							<li class="current tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="_groupby_elements_search_plugin.searchpluginoptions.html" class="tsd-kind-icon">Search<wbr>Plugin<wbr>Options</a>
-								<ul>
-									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_groupby_elements_search_plugin.searchpluginoptions.html#customerid" class="tsd-kind-icon">customer<wbr>Id</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface">
-										<a href="_groupby_elements_search_plugin.searchpluginoptions.html#https" class="tsd-kind-icon">https</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_groupby_elements_search_plugin.searchpluginoptions.html#proxyurl" class="tsd-kind-icon">proxy<wbr>Url</a>
-									</li>
-									<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-										<a href="_groupby_elements_search_plugin.searchpluginoptions.html#timeout" class="tsd-kind-icon">timeout</a>
-									</li>
-								</ul>
+								<a href="../interfaces/_groupby_elements_gb_tracker_plugin.gbtrackerpluginoptions.html" class="tsd-kind-icon">Gb<wbr>Tracker<wbr>Plugin<wbr>Options</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_quickstart.html" class="tsd-kind-icon">@groupby/elements-<wbr>quickstart</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_sayt_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>sayt-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_driver_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>driver-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_search_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>search-<wbr>plugin</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

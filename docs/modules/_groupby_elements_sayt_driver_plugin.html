@@ -86,10 +86,10 @@ core.<span class="hljs-keyword">register</span>(saytDriverPlugin);</code></pre>
 					<p>This plugin accepts the following options:</p>
 					<ul>
 						<li><code>productTransformer</code> (optional)<ul>
-								<li>A function that accepts a Record object and returns a transformed
-									product. This argument is only necessary if the View Layer is being
-									used. More generally, this function is an opportunity to transform
-								the data into a useable format for your application&#39;s front-end.</li>
+								<li>A function that accepts a Record object and returns a transformed product.
+									This argument is only necessary if the View Layer is being used.
+									More generally, this function is an opportunity to transform the data
+								into a useable format for your application&#39;s front-end.</li>
 							</ul>
 						</li>
 					</ul>
@@ -106,6 +106,7 @@ core.<span class="hljs-keyword">register</span>(saytDriverPlugin);</code></pre>
 						<li><code>AUTOCOMPLETE_ERROR</code>: Dispatched when an error has occurred during a Sayt request.</li>
 						<li><code>SAYT_PRODUCTS_RESPONSE</code>: Dispatched when a search request has completed. Its payload is the result of the request and includes products that may have been transformed.</li>
 						<li><code>SAYT_PRODUCTS_ERROR</code>: Dispatched when an error has occurred during a search request.</li>
+						<li><code>BEACON_SEARCH</code>: Dispatched when a search is made sucessfully. Its payload contains the search results and the origin of the action that triggered the search. This can be listened to by built-in or custom trackers.</li>
 					</ul>
 				</div>
 			</section>
@@ -148,6 +149,9 @@ core.<span class="hljs-keyword">register</span>(saytDriverPlugin);</code></pre>
 						<a href="_groupby_elements_dom_events_plugin.html">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_gb_tracker_plugin.html">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_quickstart.html">@groupby/elements-<wbr>quickstart</a>
 					</li>
 					<li class="current tsd-kind-external-module">
@@ -177,6 +181,9 @@ core.<span class="hljs-keyword">register</span>(saytDriverPlugin);</code></pre>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_dom_events_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>dom-<wbr>events-<wbr>plugin</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_groupby_elements_gb_tracker_plugin.html" class="tsd-kind-icon">@groupby/elements-<wbr>gb-<wbr>tracker-<wbr>plugin</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_groupby_elements_quickstart.html" class="tsd-kind-icon">@groupby/elements-<wbr>quickstart</a>
