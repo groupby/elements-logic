@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-quickstart",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "GroupBy Elements Quick Start Helper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
