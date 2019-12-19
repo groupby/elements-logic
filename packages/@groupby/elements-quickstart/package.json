@@ -1,6 +1,6 @@
 {
   "name": "@groupby/elements-quickstart",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "GroupBy Elements Quick Start Helper",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,7 +31,7 @@
     "@groupby/elements-core": "^0.1.0",
     "@groupby/elements-dom-events-plugin": "^0.2.0",
     "@groupby/elements-events": "^0.1.0",
-    "@groupby/elements-gb-tracker-plugin": "^0.2.0",
+    "@groupby/elements-gb-tracker-plugin": "^0.1.0",
     "@groupby/elements-sayt-driver-plugin": "^0.2.0",
     "@groupby/elements-sayt-plugin": "^0.2.0",
     "@groupby/elements-search-driver-plugin": "^0.2.0",
