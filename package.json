@@ -1,6 +1,6 @@
 {
   "name": "elements-logic",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "GroupBy Elements Logic SDK for integrating GroupBy's APIs into a front-end e-commerce application.",
   "private": true,
   "workspaces": [
