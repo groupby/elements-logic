@@ -5,6 +5,66 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.0] - 2019-12-19
+
+Package versions:
+
+- `@groupby/elements-cache-driver-plugin`: 0.2.0 
+- `@groupby/elements-cache-plugin`: 0.1.0 
+- `@groupby/elements-core`: 0.1.0 
+- `@groupby/elements-dom-events-plugin`: 0.1.0 
+- `@groupby/elements-gb-tracker-plugin`: 0.1.0 
+- `@groupby/elements-quickstart`: 0.1.0 
+- `@groupby/elements-sayt-driver-plugin`: 0.2.0 
+- `@groupby/elements-sayt-plugin`: 0.1.1 
+- `@groupby/elements-search-driver-plugin`: 0.2.0 
+- `@groupby/elements-search-plugin`: 0.1.0 
+
+### Changed
+#### elements-sayt-plugin
+- ELE-247: Changed the type of the `SaytPlugin` options object to be `SaytPluginOptions` instead of `SaytConfig`.
+
+### Added
+#### elements-cache-driver-plugin
+- ELE-247: Taught `CacheDriverPlugin` to accept options for consistency with other plugins.
+  No options are currently recognized.
+
+#### elements-gb-tracker-plugin
+- ELE-249: Added the `GbTrackerPlugin` module.
+  - Added a listener for search beacon events.
+
+#### elements-quickstart
+- ELE-247: Add quick start function. This function instantiates Core
+  and registers the following plugins with provided configuration:
+  - `cache`
+  - `cache_driver`
+  - `dom_events`
+  - `sayt`
+  - `sayt_driver`
+  - `search`
+  - `search_driver`
+- ELE-249: Add `gb_tracker` plugin to the quick start function.
+
+#### elements-sayt-driver-plugin
+- ELE-249: Added basic beaconing functionality.
+  - Added a call to trigger a search beacon after a successful products search.
+  - Added `gb-tracker-client` as a dependency.
+
+#### elements-sayt-plugin
+- ELE-247: Added the `SaytPluginOptions` interface. It extends the `SaytConfig` interface.
+
+#### elements-search-driver-plugin
+- ELE-249: Added basic beaconing functionality.
+  - Added a call to trigger a search beacon after a successful search.
+  - Added `gb-tracker-client` as a dependency.
+
+### Fixed
+#### elements-sayt-driver-plugin
+- ELE-247: Exported the previously hidden `SaytDriverOptions` interface.
+
+#### elements-search-driver-plugin
+- ELE-247: Exported the previously hidden `SearchDriverOptions` interface.
+
 ## [0.1.0] - 2019-11-28
 
 Package versions:
